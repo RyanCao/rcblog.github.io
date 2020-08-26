@@ -1,0 +1,1015 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="google-site-verification" content="49oiCv3ByekO3dpofeoM5-jg6qK6p8iHMViUviIa-6I">
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+
+
+  <link rel="amphtml" href="http://blog.rcant.com/2018/01/05/unity/unity-mono-encode//amp/index.html">
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="Unity,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="蚂蚁博客" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
+
+
+
+
+
+
+<meta name="description" content="引子给Unity Dll 加密">
+<meta name="keywords" content="Unity">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Unity Dll 加密">
+<meta property="og:url" content="http://blog.rcant.com/2018/01/05/unity/unity-mono-encode/index.html">
+<meta property="og:site_name" content="蚂蚁博客">
+<meta property="og:description" content="引子给Unity Dll 加密">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-08-07T02:31:56.935Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Unity Dll 加密">
+<meta name="twitter:description" content="引子给Unity Dll 加密">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://blog.rcant.com/2018/01/05/unity/unity-mono-encode/">
+
+
+
+
+
+  <title> Unity Dll 加密 | 蚂蚁博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?908d315c785cbdcf5bd321971f778b92";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">蚂蚁博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Devlopper in C#</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>
+            
+            站点地图
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://blog.rcant.com/2018/01/05/unity/unity-mono-encode/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chester.C">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蚂蚁博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                Unity Dll 加密
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-05T11:39:17+08:00">
+                2018-01-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Unity/" itemprop="url" rel="index">
+                    <span itemprop="name">Unity</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/01/05/unity/unity-mono-encode/" class="leancloud_visitors" data-flag-title="Unity Dll 加密">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h2><p>给Unity Dll 加密</p>
+<a id="more"></a>
+
+<h2 id="软件环境"><a href="#软件环境" class="headerlink" title="软件环境"></a>软件环境</h2><ul>
+<li>VirturlBox 虚拟机 5.10</li>
+<li>虚拟机 Centos 7 64bit 系统</li>
+<li>Untiy 2017 版本</li>
+</ul>
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>Unity 编译代码会生成以下几个文件：</p>
+<ol>
+<li>Plugins 代码编译为 Assembly-CSharp-firstpass.dll</li>
+<li>Editor 代码会编译为 Assembly-CSharp-Editor.dll</li>
+<li>Plugins-Editor 代码会编译为 Assembly-CSharp-Editor-firstpass.dll</li>
+<li>其他代码会编译为 Assembly-CSharp.dll</li>
+</ol>
+<p>可以选择加密 Assembly-CSharp.dll 文件</p>
+<p>加密完文件，要保证Unity能识别加载，需要二进制还原</p>
+<p>Unity 使用libmono.so 加载DLL文件</p>
+<p><a href="https://github.com/Unity-Technologies/mono" target="_blank" rel="noopener">Unity mono 源码</a></p>
+<p>函数在 image.c 文件内，修改其中的 mono_image_open_from_data_with_name 方法</p>
+<p>修改前</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">MonoImage *</span><br><span class="line">mono_image_open_from_data_with_name (char *data, guint32 data_len, gboolean need_copy, MonoImageOpenStatus *status, gboolean refonly, const char *name)</span><br><span class="line">&#123;</span><br><span class="line">    MonoCLIImageInfo *iinfo;</span><br><span class="line">    MonoImage *image;</span><br><span class="line">    char *datac;</span><br><span class="line"></span><br><span class="line">    if (!data || !data_len) &#123;</span><br><span class="line">        if (status)</span><br><span class="line">            *status = MONO_IMAGE_IMAGE_INVALID;</span><br><span class="line">        return NULL;</span><br><span class="line">    &#125;</span><br><span class="line">    datac = data;</span><br><span class="line">    if (need_copy) &#123;</span><br><span class="line">        datac = g_try_malloc (data_len);</span><br><span class="line">        if (!datac) &#123;</span><br><span class="line">            if (status)</span><br><span class="line">                *status = MONO_IMAGE_ERROR_ERRNO;</span><br><span class="line">            return NULL;</span><br><span class="line">        &#125;</span><br><span class="line">        memcpy (datac, data, data_len);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    image = g_new0 (MonoImage, 1);</span><br><span class="line">    image-&gt;raw_data = datac;</span><br><span class="line">    image-&gt;raw_data_len = data_len;</span><br><span class="line">    image-&gt;raw_data_allocated = need_copy;</span><br><span class="line">    image-&gt;name = (name == NULL) ? g_strdup_printf (&quot;data-%p&quot;, datac) : g_strdup(name);</span><br><span class="line">    iinfo = g_new0 (MonoCLIImageInfo, 1);</span><br><span class="line">    image-&gt;image_info = iinfo;</span><br><span class="line">    image-&gt;ref_only = refonly;</span><br><span class="line">    image-&gt;ref_count = 1;</span><br><span class="line"></span><br><span class="line">    image = do_mono_image_load (image, status, TRUE, TRUE);</span><br><span class="line">    if (image == NULL)</span><br><span class="line">        return NULL;</span><br><span class="line"></span><br><span class="line">    return register_image (image);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>修改后</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">MonoImage *</span><br><span class="line">mono_image_open_from_data_with_name (char *data, guint32 data_len, gboolean need_copy, MonoImageOpenStatus *status, gboolean refonly, const char *name)</span><br><span class="line">&#123;</span><br><span class="line">    //修改数据流开始 内部的实现方法，可以自己定</span><br><span class="line">    if(strstr(name,&quot;Assembly-CSharp.dll&quot;))&#123;</span><br><span class="line">        int xorkey = 201;</span><br><span class="line">        int i = 0;</span><br><span class="line">        for (i = 3; i &lt; 11; ++i)</span><br><span class="line">        &#123;</span><br><span class="line">            data[i] = (data[i]^xorkey);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    //修改数据流结束</span><br><span class="line"></span><br><span class="line">    MonoCLIImageInfo *iinfo;</span><br><span class="line">    MonoImage *image;</span><br><span class="line">    char *datac;</span><br><span class="line"></span><br><span class="line">    if (!data || !data_len) &#123;</span><br><span class="line">        if (status)</span><br><span class="line">            *status = MONO_IMAGE_IMAGE_INVALID;</span><br><span class="line">        return NULL;</span><br><span class="line">    &#125;</span><br><span class="line">    datac = data;</span><br><span class="line">    if (need_copy) &#123;</span><br><span class="line">        datac = g_try_malloc (data_len);</span><br><span class="line">        if (!datac) &#123;</span><br><span class="line">            if (status)</span><br><span class="line">                *status = MONO_IMAGE_ERROR_ERRNO;</span><br><span class="line">            return NULL;</span><br><span class="line">        &#125;</span><br><span class="line">        memcpy (datac, data, data_len);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    image = g_new0 (MonoImage, 1);</span><br><span class="line">    image-&gt;raw_data = datac;</span><br><span class="line">    image-&gt;raw_data_len = data_len;</span><br><span class="line">    image-&gt;raw_data_allocated = need_copy;</span><br><span class="line">    image-&gt;name = (name == NULL) ? g_strdup_printf (&quot;data-%p&quot;, datac) : g_strdup(name);</span><br><span class="line">    iinfo = g_new0 (MonoCLIImageInfo, 1);</span><br><span class="line">    image-&gt;image_info = iinfo;</span><br><span class="line">    image-&gt;ref_only = refonly;</span><br><span class="line">    image-&gt;ref_count = 1;</span><br><span class="line"></span><br><span class="line">    image = do_mono_image_load (image, status, TRUE, TRUE);</span><br><span class="line">    if (image == NULL)</span><br><span class="line">        return NULL;</span><br><span class="line"></span><br><span class="line">    return register_image (image);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><h3 id="安装-CentOS-7"><a href="#安装-CentOS-7" class="headerlink" title="安装 CentOS 7"></a>安装 CentOS 7</h3><h3 id="更换镜像源"><a href="#更换镜像源" class="headerlink" title="更换镜像源"></a>更换镜像源</h3><p>参考其他文章</p>
+<h3 id="Vbox文件共享"><a href="#Vbox文件共享" class="headerlink" title="Vbox文件共享"></a>Vbox文件共享</h3><p>参考其他文章</p>
+<p>为了方便 文件传输</p>
+<h3 id="Mono代码下载"><a href="#Mono代码下载" class="headerlink" title="Mono代码下载"></a>Mono代码下载</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/Unity-Technologies/mono.git mono</span><br></pre></td></tr></table></figure>
+
+<h3 id="编译代码"><a href="#编译代码" class="headerlink" title="编译代码"></a>编译代码</h3><p>编译哪个版本的mono 需要切换到对应的分支上</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b unity-2017.1</span><br></pre></td></tr></table></figure>
+
+<p>需要安装 pkg-config, glib 2.4</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install pkgconfig glib2</span><br></pre></td></tr></table></figure>
+
+<p>当获取到源码以后是这样一个界面</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost mono-unity-2017.1]# tree -L 1</span><br><span class="line">.</span><br><span class="line">├── acinclude.m4</span><br><span class="line">├── add_to_build_results</span><br><span class="line">├── AUTHORS</span><br><span class="line">├── autogen.sh</span><br><span class="line">├── ChangeLog</span><br><span class="line">├── CMakeLists.txt</span><br><span class="line">├── configure.in</span><br><span class="line">├── config.xarm-windows.h</span><br><span class="line">├── COPYING.LIB</span><br><span class="line">├── data</span><br><span class="line">├── docs</span><br><span class="line">├── eglib</span><br><span class="line">├── envsetup.sh</span><br><span class="line">├── external</span><br><span class="line">├── ikvm-native</span><br><span class="line">├── libgc</span><br><span class="line">├── LICENSE</span><br><span class="line">├── Makefile.am</span><br><span class="line">├── man</span><br><span class="line">├── mcs</span><br><span class="line">├── mkinstalldirs</span><br><span class="line">├── mono</span><br><span class="line">├── mono-core.spec.in</span><br><span class="line">├── mono-uninstalled.pc.in</span><br><span class="line">├── mono-win32-setup-light.bmp</span><br><span class="line">├── monowiz.win32.nsi</span><br><span class="line">├── msvc</span><br><span class="line">├── NEWS</span><br><span class="line">├── nls.m4</span><br><span class="line">├── notes</span><br><span class="line">├── perl_lib</span><br><span class="line">├── po</span><br><span class="line">├── po.m4</span><br><span class="line">├── progtest.m4</span><br><span class="line">├── README</span><br><span class="line">├── README.vsnet</span><br><span class="line">├── runtime</span><br><span class="line">├── samples</span><br><span class="line">├── scripts</span><br><span class="line">├── support</span><br><span class="line">├── tools</span><br><span class="line">└── tuning</span><br><span class="line"></span><br><span class="line">20 directories, 22 files</span><br></pre></td></tr></table></figure>
+
+<p>在当前目录下执行脚本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"># sh external/buildscripts/build_runtime_android.sh</span><br><span class="line">Environment:</span><br><span class="line">        Host      = linux</span><br><span class="line">        Temporary = /tmp</span><br><span class="line">        Home      = /root</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Installing NDK &apos;r10e&apos;:</span><br><span class="line">        $ANDROID_NDK_ROOT not set; using /root/android-ndk_auto-r10e instead</span><br><span class="line">        Downloading &apos;r10e&apos; to &apos;/root/android-ndk_auto-r10e&apos;</span><br><span class="line">                URL: http://dl.google.com/android/ndk/android-ndk-r10e-linux-x86.bin</span><br><span class="line">                Output: /root/android-ndk_auto-r10e</span><br><span class="line">                Base: android-ndk-r10e-linux-x86</span><br><span class="line">                URL base: http://dl.google.com/android/ndk/</span><br><span class="line">                Suffix: .bin</span><br><span class="line">                Tmp DL: /tmp/android-ndk-r10e-linux-x86.bin</span><br><span class="line">                Tmp unpack: /tmp/android-ndk-r10e-linux-x86_unpack</span><br><span class="line">                Dest path: /root/</span><br><span class="line">                Dest name: android-ndk_auto-r10e</span><br><span class="line">Can&apos;t exec &quot;lwp-download&quot;: No such file or directory at /root/mono/mono-unity-2017.1/external/buildscripts/PrepareAndroidSDK.pm line 385.</span><br><span class="line">Can&apos;t exec &quot;/tmp/android-ndk-r10e-linux-x86.bin&quot;: No such file or directory at /root/mono/mono-unity-2017.1/external/buildscripts/PrepareAndroidSDK.pm line 403.</span><br><span class="line"></span><br><span class="line">Outputing updated environment:</span><br><span class="line">        &apos;envsetup.sh&apos;</span><br><span class="line"></span><br><span class="line">        $ANDROID_NDK_ROOT = /root/android-ndk_auto-r10e</span><br><span class="line"></span><br><span class="line">external/buildscripts/build_runtime_android.sh: line 14: source: envsetup.sh: file not found</span><br></pre></td></tr></table></figure>
+
+<p>去下载NDK，再配置</p>
+<p>需要在envsetup.sh中设置ANDROID_NDK_ROOT的值</p>
+<ol>
+<li>安装后发现缺少 libtool bison</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install libtool bison</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>出现缺少g++</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">configure: error: You need to install g++</span><br></pre></td></tr></table></figure>
+
+<p>解决 安装g++工具</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum groupinstall &quot;Development Tools&quot;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>缺少glib2</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">Package glib-2.0 was not found in the pkg-config search path.</span><br><span class="line">Perhaps you should add the directory containing `glib-2.0.pc&apos;</span><br><span class="line">to the PKG_CONFIG_PATH environment variable</span><br><span class="line">No package &apos;glib-2.0&apos; found</span><br><span class="line">Package gthread-2.0 was not found in the pkg-config search path.</span><br><span class="line">Perhaps you should add the directory containing `gthread-2.0.pc&apos;</span><br><span class="line">to the PKG_CONFIG_PATH environment variable</span><br><span class="line">No package &apos;gthread-2.0&apos; found</span><br><span class="line">Package glib-2.0 was not found in the pkg-config search path.</span><br><span class="line">Perhaps you should add the directory containing `glib-2.0.pc&apos;</span><br><span class="line">to the PKG_CONFIG_PATH environment variable</span><br><span class="line">No package &apos;glib-2.0&apos; found</span><br><span class="line">Package gthread-2.0 was not found in the pkg-config search path.</span><br><span class="line">Perhaps you should add the directory containing `gthread-2.0.pc&apos;</span><br><span class="line">to the PKG_CONFIG_PATH environment variable</span><br><span class="line">No package &apos;gthread-2.0&apos; found</span><br><span class="line">configure: error: You need at least glib-2.0 2.4.0</span><br></pre></td></tr></table></figure>
+
+<p>解决办法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install glib2-devel</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>再次编译 还是不通过，找到需要安装cmake</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install cmake</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li><p>到这里已经可以编译 Unity-5.3 版本的libmono.so<br>但是之后的还是不能编译通过</p>
+</li>
+<li><p>解决Unity-2017 编译不能通过问题</p>
+</li>
+</ol>
+<p>问题如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">It should have been installed in the `/usr/local/lib/mono/4.5/mscorlib.dll&apos; directory.</span><br></pre></td></tr></table></figure>
+
+<p>解决办法：<br>需要安装Mono<br>验证 mono版本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mono -V</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">../../unity/unity_utils.h:32:34: error: unknown type name ‘vprintf_func’</span><br><span class="line"> void mono_unity_set_vprintf_func(vprintf_func func);</span><br><span class="line">../../unity/unity_utils.h:34:42: error: unknown type name ‘MonoMemoryCallbacks’</span><br><span class="line"> void unity_mono_install_memory_callbacks(MonoMemoryCallbacks* callbacks);</span><br><span class="line">../../unity/unity_utils.c:129:35: error: unknown type name ‘vprintf_func’</span><br><span class="line"> void mono_unity_set_vprintf_func (vprintf_func func)</span><br></pre></td></tr></table></figure>
+
+<p>最后还是失败了！！！</p>
+<p>换成 Ubuntu 系统编译成功了</p>
+<p>执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./external/buildscripts/build_runtime_android.sh</span><br></pre></td></tr></table></figure>
+
+<h3 id="编译成功以后"><a href="#编译成功以后" class="headerlink" title="编译成功以后"></a>编译成功以后</h3><p>修改 image.c 代码</p>
+<p>重编译</p>
+<h3 id="android-krait-signal-handler-项目-报错"><a href="#android-krait-signal-handler-项目-报错" class="headerlink" title="android_krait_signal_handler 项目 报错"></a>android_krait_signal_handler 项目 报错</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./build.pl</span><br></pre></td></tr></table></figure>
+
+<p>安装perl lwp模块 下载最新的Android NDK资源 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install perl-libwww-perl</span><br></pre></td></tr></table></figure>
+
+<h3 id="重新执行"><a href="#重新执行" class="headerlink" title="重新执行"></a>重新执行</h3><p>执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./external/buildscripts/build_runtime_android.sh</span><br></pre></td></tr></table></figure>
+
+<h3 id="可以顺便修改下-mono-image-open-from-data-函数名"><a href="#可以顺便修改下-mono-image-open-from-data-函数名" class="headerlink" title="可以顺便修改下 mono_image_open_from_data 函数名"></a>可以顺便修改下 mono_image_open_from_data 函数名</h3><p>.h .c 两个地方都要改</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">```</span><br><span class="line"></span><br><span class="line">### 修改 build_runtime_android 编译选项</span><br><span class="line"></span><br><span class="line">编译时 不需要编译  ARMv5,ARMv6 两个版本</span><br><span class="line">``` </span><br><span class="line">#clean_build &quot;$CCFLAGS_ARMv5_CPU&quot; &quot;$LDFLAGS_ARMv5&quot; &quot;$OUTDIR/armv5&quot;</span><br><span class="line">#clean_build &quot;$CCFLAGS_ARMv6_CPU&quot; &quot;$LDFLAGS_ARMv5&quot; &quot;$OUTDIR/armv6_vfp&quot;</span><br></pre></td></tr></table></figure>
+
+<p>build_runtime_android.sh </p>
+<p>arm 下<br>把CFLAGS里的-g改成-O2</p>
+<p>build_runtime_android_x86.sh<br>x86 下<br>把CFLAGS里的-g 去掉</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Unity/" rel="tag"># Unity</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/14/django/django-admin-problem/" rel="next" title="Django admin">
+                <i class="fa fa-chevron-left"></i> Django admin
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/02/android/android_uuid_get/" rel="prev" title="获取Android唯一标识（唯一序列号）">
+                获取Android唯一标识（唯一序列号） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="Chester.C">
+          <p class="site-author-name" itemprop="name">Chester.C</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">74</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">49</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#引子"><span class="nav-number">1.</span> <span class="nav-text">引子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#软件环境"><span class="nav-number">2.</span> <span class="nav-text">软件环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原理"><span class="nav-number">3.</span> <span class="nav-text">原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#过程"><span class="nav-number">4.</span> <span class="nav-text">过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装-CentOS-7"><span class="nav-number">4.1.</span> <span class="nav-text">安装 CentOS 7</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更换镜像源"><span class="nav-number">4.2.</span> <span class="nav-text">更换镜像源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Vbox文件共享"><span class="nav-number">4.3.</span> <span class="nav-text">Vbox文件共享</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mono代码下载"><span class="nav-number">4.4.</span> <span class="nav-text">Mono代码下载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编译代码"><span class="nav-number">4.5.</span> <span class="nav-text">编译代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编译成功以后"><span class="nav-number">4.6.</span> <span class="nav-text">编译成功以后</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#android-krait-signal-handler-项目-报错"><span class="nav-number">4.7.</span> <span class="nav-text">android_krait_signal_handler 项目 报错</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重新执行"><span class="nav-number">4.8.</span> <span class="nav-text">重新执行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可以顺便修改下-mono-image-open-from-data-函数名"><span class="nav-number">4.9.</span> <span class="nav-text">可以顺便修改下 mono_image_open_from_data 函数名</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chester.C</span>
+  <p>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></p>
+</div>
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("OQBlgU8H1seTDvVrgC3Dhni0-gzGzoHsz", "wF7D3hVD9WjlV9V52bhlymHO");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+</body>
+</html>
