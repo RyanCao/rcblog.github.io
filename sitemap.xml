@@ -401,14 +401,14 @@
   </url>
   
   <url>
-    <loc>http://blog.rcant.com/2017/05/25/git/git-second/</loc>
+    <loc>http://blog.rcant.com/2017/05/27/git/git-forth/</loc>
     
     <lastmod>2020-08-07</lastmod>
     
   </url>
   
   <url>
-    <loc>http://blog.rcant.com/2017/05/27/git/git-forth/</loc>
+    <loc>http://blog.rcant.com/2017/05/25/git/git-second/</loc>
     
     <lastmod>2020-08-07</lastmod>
     
@@ -697,20 +697,6 @@
   </url>
   
   <url>
-    <loc>http://blog.rcant.com/tags/task/</loc>
-    <lastmod>2020-09-09</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://blog.rcant.com/tags/promise/</loc>
-    <lastmod>2020-09-09</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://blog.rcant.com/tags/Unity/</loc>
     <lastmod>2020-09-09</lastmod>
     <changefreq>daily</changefreq>
@@ -746,7 +732,7 @@
   </url>
   
   <url>
-    <loc>http://blog.rcant.com/tags/django/</loc>
+    <loc>http://blog.rcant.com/tags/UnitTest/</loc>
     <lastmod>2020-09-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -754,6 +740,13 @@
   
   <url>
     <loc>http://blog.rcant.com/tags/datastruct/</loc>
+    <lastmod>2020-09-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.rcant.com/tags/django/</loc>
     <lastmod>2020-09-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -921,6 +914,13 @@
   </url>
   
   <url>
+    <loc>http://blog.rcant.com/tags/postgresql/</loc>
+    <lastmod>2020-09-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://blog.rcant.com/tags/python/</loc>
     <lastmod>2020-09-09</lastmod>
     <changefreq>daily</changefreq>
@@ -943,13 +943,6 @@
   
   <url>
     <loc>http://blog.rcant.com/tags/python2/</loc>
-    <lastmod>2020-09-09</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://blog.rcant.com/tags/postgresql/</loc>
     <lastmod>2020-09-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -998,7 +991,14 @@
   </url>
   
   <url>
-    <loc>http://blog.rcant.com/tags/UnitTest/</loc>
+    <loc>http://blog.rcant.com/tags/task/</loc>
+    <lastmod>2020-09-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.rcant.com/tags/promise/</loc>
     <lastmod>2020-09-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1035,14 +1035,14 @@
   </url>
   
   <url>
-    <loc>http://blog.rcant.com/categories/django/</loc>
+    <loc>http://blog.rcant.com/categories/datastruct/</loc>
     <lastmod>2020-09-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://blog.rcant.com/categories/datastruct/</loc>
+    <loc>http://blog.rcant.com/categories/django/</loc>
     <lastmod>2020-09-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
