@@ -142,14 +142,14 @@
   </url>
   
   <url>
-    <loc>http://blog.rcant.com/2018/01/05/unity/unity-mono-encode/</loc>
+    <loc>http://blog.rcant.com/2017/03/07/unity/unity-code-optimization/</loc>
     
     <lastmod>2020-08-07</lastmod>
     
   </url>
   
   <url>
-    <loc>http://blog.rcant.com/2017/03/07/unity/unity-code-optimization/</loc>
+    <loc>http://blog.rcant.com/2018/01/05/unity/unity-mono-encode/</loc>
     
     <lastmod>2020-08-07</lastmod>
     
@@ -422,14 +422,14 @@
   </url>
   
   <url>
-    <loc>http://blog.rcant.com/2017/05/24/git/git-first/</loc>
+    <loc>http://blog.rcant.com/2017/05/19/docker/docker-volume/</loc>
     
     <lastmod>2020-08-07</lastmod>
     
   </url>
   
   <url>
-    <loc>http://blog.rcant.com/2017/05/19/docker/docker-volume/</loc>
+    <loc>http://blog.rcant.com/2017/05/24/git/git-first/</loc>
     
     <lastmod>2020-08-07</lastmod>
     
@@ -620,6 +620,20 @@
 
   
   <url>
+    <loc>http://blog.rcant.com/tags/android/</loc>
+    <lastmod>2020-09-16</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.rcant.com/tags/adb/</loc>
+    <lastmod>2020-09-16</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://blog.rcant.com/tags/genetic/</loc>
     <lastmod>2020-09-16</lastmod>
     <changefreq>daily</changefreq>
@@ -683,20 +697,6 @@
   </url>
   
   <url>
-    <loc>http://blog.rcant.com/tags/android/</loc>
-    <lastmod>2020-09-16</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://blog.rcant.com/tags/adb/</loc>
-    <lastmod>2020-09-16</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://blog.rcant.com/tags/CSharp/</loc>
     <lastmod>2020-09-16</lastmod>
     <changefreq>daily</changefreq>
@@ -739,6 +739,13 @@
   </url>
   
   <url>
+    <loc>http://blog.rcant.com/tags/Reflect/</loc>
+    <lastmod>2020-09-16</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://blog.rcant.com/tags/UnitTest/</loc>
     <lastmod>2020-09-16</lastmod>
     <changefreq>daily</changefreq>
@@ -747,13 +754,6 @@
   
   <url>
     <loc>http://blog.rcant.com/tags/django/</loc>
-    <lastmod>2020-09-16</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://blog.rcant.com/tags/datastruct/</loc>
     <lastmod>2020-09-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -774,7 +774,7 @@
   </url>
   
   <url>
-    <loc>http://blog.rcant.com/tags/git/</loc>
+    <loc>http://blog.rcant.com/tags/datastruct/</loc>
     <lastmod>2020-09-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -789,6 +789,13 @@
   
   <url>
     <loc>http://blog.rcant.com/tags/volume/</loc>
+    <lastmod>2020-09-16</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.rcant.com/tags/git/</loc>
     <lastmod>2020-09-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -823,13 +830,6 @@
   </url>
   
   <url>
-    <loc>http://blog.rcant.com/tags/osx/</loc>
-    <lastmod>2020-09-16</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://blog.rcant.com/tags/apk/</loc>
     <lastmod>2020-09-16</lastmod>
     <changefreq>daily</changefreq>
@@ -838,6 +838,13 @@
   
   <url>
     <loc>http://blog.rcant.com/tags/7z/</loc>
+    <lastmod>2020-09-16</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.rcant.com/tags/osx/</loc>
     <lastmod>2020-09-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -928,6 +935,13 @@
   </url>
   
   <url>
+    <loc>http://blog.rcant.com/tags/pytorch/</loc>
+    <lastmod>2020-09-16</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://blog.rcant.com/tags/python/</loc>
     <lastmod>2020-09-16</lastmod>
     <changefreq>daily</changefreq>
@@ -950,13 +964,6 @@
   
   <url>
     <loc>http://blog.rcant.com/tags/python2/</loc>
-    <lastmod>2020-09-16</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://blog.rcant.com/tags/pytorch/</loc>
     <lastmod>2020-09-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1011,14 +1018,14 @@
     <priority>0.6</priority>
   </url>
   
+
+  
   <url>
-    <loc>http://blog.rcant.com/tags/Reflect/</loc>
+    <loc>http://blog.rcant.com/categories/android/</loc>
     <lastmod>2020-09-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
-  
-
   
   <url>
     <loc>http://blog.rcant.com/categories/algorithm/</loc>
@@ -1029,13 +1036,6 @@
   
   <url>
     <loc>http://blog.rcant.com/categories/centos/</loc>
-    <lastmod>2020-09-16</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://blog.rcant.com/categories/android/</loc>
     <lastmod>2020-09-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1063,6 +1063,13 @@
   </url>
   
   <url>
+    <loc>http://blog.rcant.com/categories/docker/</loc>
+    <lastmod>2020-09-16</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://blog.rcant.com/categories/git/</loc>
     <lastmod>2020-09-16</lastmod>
     <changefreq>daily</changefreq>
@@ -1071,13 +1078,6 @@
   
   <url>
     <loc>http://blog.rcant.com/categories/gitlab/</loc>
-    <lastmod>2020-09-16</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://blog.rcant.com/categories/docker/</loc>
     <lastmod>2020-09-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
