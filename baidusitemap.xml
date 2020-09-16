@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://blog.rcant.com/2020/09/16/csharp/csharp-type/</loc>
+    <lastmod>2020-09-16</lastmod>
+  </url>
+  <url>
     <loc>http://blog.rcant.com/2020/09/01/datastruct/datastruct-skiplist/</loc>
     <lastmod>2020-09-14</lastmod>
   </url>
