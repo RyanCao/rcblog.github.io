@@ -1,273 +1,21 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.1.1">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
-
-<link rel="stylesheet" href="/css/main.css">
-
-
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
-
-<script id="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"blog.rcant.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"slideUpIn","post_header":"slideUpIn","post_body":"slideUpIn","coll_header":"slideUpIn","sidebar":"slideUpIn"}}};
-  </script>
-
-  <meta name="description" content="引子">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Unity 编辑器扩展">
-<meta property="og:url" content="http://blog.rcant.com/2020/09/18/unity/unity-extends/index.html">
-<meta property="og:site_name" content="Chester.Cao Blog">
-<meta property="og:description" content="引子">
-<meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://blog.rcant.com/2020/09/18/unity/unity-extends/extend-inspector.png">
-<meta property="og:image" content="http://blog.rcant.com/2020/09/18/unity/unity-extends/extend-menu.png">
-<meta property="og:image" content="http://blog.rcant.com/2020/09/18/unity/unity-extends/extend-rightmenu.png">
-<meta property="og:image" content="http://blog.rcant.com/2020/09/18/unity/unity-extends/extend-contextmenu.png">
-<meta property="og:image" content="http://blog.rcant.com/2020/09/18/unity/unity-extends/inspector-1.png">
-<meta property="og:image" content="http://blog.rcant.com/2020/09/18/unity/unity-extends/inspector-2.png">
-<meta property="og:image" content="http://blog.rcant.com/2020/09/18/unity/unity-extends/inspector-3.png">
-<meta property="og:image" content="http://blog.rcant.com/2020/09/18/unity/unity-extends/inspector-getset1.png">
-<meta property="og:image" content="http://blog.rcant.com/2020/09/18/unity/unity-extends/inspector-getset2.png">
-<meta property="og:image" content="http://blog.rcant.com/2020/09/18/unity/unity-extends/inspector-getset3.png">
-<meta property="article:published_time" content="2020-09-18T03:39:17.000Z">
-<meta property="article:modified_time" content="2020-09-18T09:19:05.638Z">
-<meta property="article:author" content="Chester.C">
-<meta property="article:tag" content="Unity">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://blog.rcant.com/2020/09/18/unity/unity-extends/extend-inspector.png">
-
-<link rel="canonical" href="http://blog.rcant.com/2020/09/18/unity/unity-extends/">
-
-
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : false,
-    isPost : true,
-    lang   : 'zh-CN'
-  };
-</script>
-
-  <title>Unity 编辑器扩展 | Chester.Cao Blog</title>
-  
-
-
-  <script>
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?974592ac4c5733a52af2b871678a5334";
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(hm, s);
-    })();
-  </script>
-
-
-
-
-  <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
-
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
-
-<link rel="alternate" href="/atom.xml" title="Chester.Cao Blog" type="application/atom+xml">
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <div class="headband"></div>
-
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
-    </div>
-  </div>
-
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">Chester.Cao Blog</h1>
-      <span class="logo-line-after"><i></i></span>
-    </a>
-      <p class="site-subtitle" itemprop="description">Devlopper in C#</p>
-  </div>
-
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
-    </div>
-  </div>
-</div>
-
-
-
-
-<nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
-
-  </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
-
-  </li>
-  </ul>
-</nav>
-
-
-
-
-</div>
-    </header>
-
-    
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
-
-
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-
-          <div class="content post posts-expand">
-            
-
-    
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blog.rcant.com/2020/09/18/unity/unity-extends/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Chester.C">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Chester.Cao Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          Unity 编辑器扩展
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-09-18 11:39:17 / 修改时间：17:19:05" itemprop="dateCreated datePublished" datetime="2020-09-18T11:39:17+08:00">2020-09-18</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Unity/" itemprop="url" rel="index"><span itemprop="name">Unity</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2020/09/18/unity/unity-extends/" class="post-meta-item leancloud_visitors" data-flag-title="Unity 编辑器扩展" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2020/09/18/unity/unity-extends/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/09/18/unity/unity-extends/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-        <h2 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h2><a id="more"></a>
+<!DOCTYPE html><html lang="zh-CN" mip><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title>Unity 编辑器扩展_Devlopper in C#</title><meta name="description" content="Unity 编辑器扩展 - Chester.C"><meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" type="text/css" href="https://c.mipcdn.com/static/v1/mip.css"><link rel="search" type="application/opensearchdescription+xml" href="http://blog.rcant.com/atom.xml" title="Chester.Cao Blog"><link rel="canonical" href="http://blog.rcant.com/2020/09/18/unity/unity-extends/"/><style mip-custom>a,abbr,acronym,address,applet,big,blockquote,body,caption,cite,code,dd,del,dfn,div,dl,dt,em,fieldset,form,h1,h2,h3,h4,h5,h6,html,iframe,img,ins,kbd,label,legend,li,object,ol,p,pre,q,s,samp,small,span,strike,strong,sub,sup,table,tbody,td,tfoot,th,thead,tr,tt,ul,var{margin:0;padding:0;border:0;font-family:inherit;font-size:100%;font-weight:inherit;font-style:inherit;vertical-align:baseline;outline:0}body{line-height:1;color:#000;background:#fff}ol,ul{list-style:none}table{vertical-align:middle;border-spacing:0;border-collapse:separate}caption,td,th{font-weight:400;text-align:left;vertical-align:middle}a img{border:none}html{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}*,:after,:before{-webkit-box-sizing:inherit;-moz-box-sizing:inherit;box-sizing:inherit}button::-moz-focus-inner,input[type=button]::-moz-focus-inner,input[type=reset]::-moz-focus-inner,input[type=submit]::-moz-focus-inner{margin:0;padding:0;border:0}button,input,select{margin:0;padding:0;border:0}body{overflow-x:hidden;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:15px;color:#444;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}.mip-nav-wrapper{padding:0 10px;background-color:#323436}.navbar-brand{color:#fff!important}@media screen and (min-width:767px){.mip-nav-wrapper a{color:#fff!important}}@media screen and (max-width:767px){.mip-nav-wrapper .navbar-brand{margin-top:2px}}.navbar-brand{display:block;overflow:hidden;max-width:200px;line-height:41px;white-space:nowrap;text-overflow:ellipsis}mip-fixed[type=bottom],mip-fixed[type=top]{overflow:visible}.post{position:relative;padding:15px 10px;border-top:1px solid #fff;border-bottom:1px solid #ddd;word-wrap:break-word;background-color:#fff}h1.title,h2.title{padding:10px 0;font-size:28px}.post .meta{color:#666}.article-more a{color:#2479c2}.article-content .date{display:inline-block;margin:0 10px;font-size:14px;font-style:italic;color:#999}.article-content{line-height:1.6em;color:#444}@media print{.article-content{font-size:12pt}}.article-content .highlight,.article-content blockquote,.article-content dl,.article-content iframe,.article-content ol,.article-content p,.article-content table,.article-content ul{margin:1em 0}.article-content h1{font-size:2em}.article-content h2{font-size:1.5em}.article-content h3{font-size:1.3em}.article-content h1,.article-content h2,.article-content h3,.article-content h4,.article-content h5,.article-content h6{margin:1em 0;font-weight:700;line-height:1em}.article-content a{text-decoration:none;color:#0e83cd}.article-content a:hover{text-decoration:underline;color:#1094e8}@media print{.article-content a{text-decoration:underline;color:#444}.article-content a:after{content:" (" attr(href) ")";font-size:80%}}.article-content strong{font-weight:700}.article-content em{font-style:italic}.article-content dl,.article-content ol,.article-content ul{margin-left:20px}.article-content dl dl,.article-content dl ol,.article-content dl ul,.article-content ol dl,.article-content ol ol,.article-content ol ul,.article-content ul dl,.article-content ul ol,.article-content ul ul{margin-top:0;margin-bottom:0}.article-content ul{list-style:disc}.article-content ol{list-style:decimal}.article-content dl{list-style:square}.article-content li p{margin:0}.article-content li .highlight,.article-content li blockquote,.article-content li iframe,.article-content li table{margin:1em 0}.article-content img,.article-content video{max-width:100%}.article-content table{max-width:100%;border:1px solid #e3e3e3}.article-content table th{font-weight:700}.article-content table td,.article-content table th{padding:5px 15px}.article-content table tr:nth-child(2n){background:#eee}.article-content blockquote{position:relative;padding:0 20px;border:1px solid #e3e3e3;border-left:5px solid #ddd}.article-content .tip,.article-content .tip-error,.article-content .tip-info{position:relative;margin:1em 0;padding:1em 20px;border:1px solid #e3e3e3;border-left:5px solid #5fb878;border-top-right-radius:2px;border-bottom-right-radius:2px}.article-content .tip br:first-child,.article-content .tip-error br:first-child,.article-content .tip-info br:first-child{display:none}.article-content .tip-error:before,.article-content .tip-info:before{content:"!";position:absolute;top:16px;left:-12px;width:20px;height:20px;font-family:Dosis,"Source Sans Pro","Helvetica Neue",Arial,sans-serif;font-size:14px;font-weight:700;line-height:20px;text-align:center;color:#fff;border-radius:100%;background-color:#5fb878}.article-content .tip-info{border-left-color:#1e9fff}.article-content .tip-info:before{background-color:#1e9fff}.article-content .tip-error{border-left-color:#ff5722}.article-content .tip-error:before{background-color:#ff5722}.main{padding:72px 10px 0;max-width:1000px;margin:0 auto}@media screen and (max-width:767px){.main{padding-top:44px}}code,pre{font-family:"Source Code Pro",Monaco,Menlo,Consolas,monospace;font-size:.95em;color:#4d4d4c;background:#eee;overflow-x:auto;-webkit-overflow-scrolling:touch}code{padding:0 5px}pre{padding:10px 15px;line-height:22px}pre code{display:block;padding:0;border:none}.highlight{overflow:auto;margin:0;padding:10px 15px;color:#4d4d4c;background:#eee}.highlight table{margin:0!important;border:0}.highlight table td,.highlight table th{padding:0}.highlight figcaption{margin:-5px 0 5px;font-size:.9em;color:#999}.highlight figcaption:after,.highlight figcaption:before{content:"";display:table}.highlight figcaption:after{clear:both}.highlight figcaption a{float:right}.highlight pre{padding:0;border:none;background:0 0}.highlight .line{height:22px}pre .comment,pre .title{color:#8e908c}pre .attribute,pre .css .class,pre .css .id,pre .css .pseudo,pre .html .doctype,pre .regexp,pre .ruby .constant,pre .tag,pre .variable,pre .xml .doctype,pre .xml .pi,pre .xml .tag .title{color:#c82829}pre .built_in,pre .constant,pre .literal,pre .number,pre .params,pre .preprocessor{color:#f5871f}pre .class,pre .css .rules .attribute,pre .ruby .class .title{color:#718c00}pre .header,pre .inheritance,pre .ruby .symbol,pre .string,pre .value,pre .xml .cdata{color:#718c00}pre .css .hexcolor{color:#3e999f}pre .coffeescript .title,pre .function,pre .javascript .title,pre .perl .sub,pre .python .decorator,pre .python .title,pre .ruby .function .title,pre .ruby .title .keyword{color:#4271ae}pre .javascript .function,pre .keyword{color:#8959a8}.footer{line-height:1.8;text-align:center;padding:15px;border-top:1px solid #fff;font-size:.9em;color:#999}.footer a{color:#2479c2}.pagination{width:100%;line-height:20px;position:relative;border-top:1px solid #fff;border-bottom:1px solid #ddd;padding:20px 0;overflow:hidden}.pagination .prev{float:left}.pagination .next{float:right}.pagination a{color:#2479c2}</style><meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/atom.xml" title="Chester.Cao Blog" type="application/atom+xml">
+</head><body><mip-fixed type="top"><div class="mip-nav-wrapper"><mip-nav-slidedown data-id="bs-navbar" data-showbrand="1" data-brandname="Chester.C" data-brandhref="/" class="mip-element-sidebar container"><nav id="bs-navbar" class="navbar-collapse collapse navbar navbar-static-top"><ul class="nav navbar-nav navbar-right"><li><a data-type="mip" href="/">Home</a></li><li><a data-type="mip" href="/archives/">Archive</a></li><li><a data-type="mip" href="/categories/">menu.Categories</a></li><li><a data-type="mip" href="/tags/">menu.Tags</a></li><li class="navbar-wise-close"><span id="navbar-wise-close-btn"></span></li></ul></nav></mip-nav-slidedown></div></mip-fixed><div class="main"><div class="post-detail"><article class="post"><h1 class="title">Unity 编辑器扩展</h1><div class="meta">2020年9月18日</div><div class="article-content"><h2 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h2><a href="#" id="more"></a>
 <h2 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h2><p>文章基于Unity 引擎<br>版本为 v2017.4</p>
-<h2 id="Unity-可扩展编辑区域"><a href="#Unity-可扩展编辑区域" class="headerlink" title="Unity 可扩展编辑区域"></a>Unity 可扩展编辑区域</h2><h3 id="1-Inspector-属性视图"><a href="#1-Inspector-属性视图" class="headerlink" title="1. Inspector (属性视图)"></a>1. <strong>Inspector</strong> (属性视图)</h3><img src="/2020/09/18/unity/unity-extends/extend-inspector.png" class="" title="属性视图">  
+<h2 id="Unity-可扩展编辑区域"><a href="#Unity-可扩展编辑区域" class="headerlink" title="Unity 可扩展编辑区域"></a>Unity 可扩展编辑区域</h2><h3 id="1-Inspector-属性视图"><a href="#1-Inspector-属性视图" class="headerlink" title="1. Inspector (属性视图)"></a>1. <strong>Inspector</strong> (属性视图)</h3><mip-img src="/2020/09/18/unity/unity-extends/extend-inspector.png" class="" title="属性视图"></mip-img>  
 
 <h3 id="2-Menu-菜单"><a href="#2-Menu-菜单" class="headerlink" title="2. Menu (菜单)"></a>2. <strong>Menu</strong> (菜单)</h3><p>eg :</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[MenuItem(&quot;Duan %g&quot;, false, 101)]</span><br><span class="line">public static void Duan()</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<img src="/2020/09/18/unity/unity-extends/extend-menu.png" class="" title="菜单">  
+<mip-img src="/2020/09/18/unity/unity-extends/extend-menu.png" class="" title="菜单"></mip-img>  
 
 <h3 id="3-Menu-右键菜单"><a href="#3-Menu-右键菜单" class="headerlink" title="3. Menu(右键菜单)"></a>3. <strong>Menu</strong>(右键菜单)</h3><p>是Menu的一种，需要在Menu之前加上Assets/</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[MenuItem(&quot;Assets&#x2F;导入资源&quot;)]</span><br><span class="line">public static void ImportAssets()</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<img src="/2020/09/18/unity/unity-extends/extend-rightmenu.png" class="" title="右键菜单">  
+<mip-img src="/2020/09/18/unity/unity-extends/extend-rightmenu.png" class="" title="右键菜单"></mip-img>  
 
 <h3 id="4-ContextMenu-脚本菜单"><a href="#4-ContextMenu-脚本菜单" class="headerlink" title="4. ContextMenu 脚本菜单"></a>4. <strong>ContextMenu</strong> 脚本菜单</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[ContextMenu(&quot;ContextMenu Test&quot;)]</span><br><span class="line">public void mContextMenu()</span><br><span class="line">&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<img src="/2020/09/18/unity/unity-extends/extend-contextmenu.png" class="" title="右键菜单">  
+<mip-img src="/2020/09/18/unity/unity-extends/extend-contextmenu.png" class="" title="右键菜单"></mip-img>  
 
 <h2 id="Inspector视图操作"><a href="#Inspector视图操作" class="headerlink" title="Inspector视图操作"></a><strong>Inspector</strong>视图操作</h2><p><strong>Inspector</strong> 对应每个<strong>Mono</strong>脚本</p>
 <p>假设现在有个脚本 <strong>Actor.cs</strong>,<br>这个脚本控制角色行为</p>
@@ -285,7 +33,7 @@
 <h3 id="修改-Actor-cs-调整-Inspector"><a href="#修改-Actor-cs-调整-Inspector" class="headerlink" title="修改 Actor.cs 调整 Inspector"></a>修改 <strong>Actor.cs</strong> 调整 <strong>Inspector</strong></h3><p>假定我们的 <strong>Actor.cs</strong> 如下</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">using UnityEngine;</span><br><span class="line"></span><br><span class="line">public class Actor : MonoBehaviour &#123;</span><br><span class="line"></span><br><span class="line">    public int actorId;</span><br><span class="line">    public string actorName;</span><br><span class="line">    public int weapon1Id, weapon2Id;</span><br><span class="line">    public int health;</span><br><span class="line">    void Start () &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<img src="/2020/09/18/unity/unity-extends/inspector-1.png" class="" title="显示">
+<mip-img src="/2020/09/18/unity/unity-extends/inspector-1.png" class="" title="显示"></mip-img>
 
 <h3 id="第一次修改"><a href="#第一次修改" class="headerlink" title="第一次修改"></a>第一次修改</h3><ul>
 <li>actorId和actorName 不想要显示，添加 <strong>[HideInInspector]</strong></li>
@@ -293,18 +41,18 @@
 <li>health 使用Range显示 <strong>[Range(0f, 100f)]</strong></li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">using UnityEngine;</span><br><span class="line"></span><br><span class="line">public class Actor : MonoBehaviour &#123;</span><br><span class="line">    [HideInInspector]</span><br><span class="line">    public int actorId;</span><br><span class="line">    [HideInInspector]</span><br><span class="line">    public string actorName;</span><br><span class="line"></span><br><span class="line">    [Tooltip(&quot;武器ID&quot;)]</span><br><span class="line">    [Header(&quot;左手武器&quot;)]</span><br><span class="line">    public int weapon1Id;</span><br><span class="line">    </span><br><span class="line">    [Tooltip(&quot;武器ID&quot;)]</span><br><span class="line">    [Header(&quot;右手武器&quot;)]</span><br><span class="line">    public int weapon2Id;</span><br><span class="line">    [Range(0f, 100f)]</span><br><span class="line">    [Header(&quot;血量&quot;)]</span><br><span class="line">    public int health;</span><br><span class="line">    void Start () &#123;</span><br><span class="line">        health &#x3D; 50;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<img src="/2020/09/18/unity/unity-extends/inspector-2.png" class="" title="显示">
+<mip-img src="/2020/09/18/unity/unity-extends/inspector-2.png" class="" title="显示"></mip-img>
 
 
 <h3 id="第二次修改-使用自定义-Inspector"><a href="#第二次修改-使用自定义-Inspector" class="headerlink" title="第二次修改 使用自定义 Inspector"></a>第二次修改 使用自定义 <strong>Inspector</strong></h3><p>使用自定义会完全抛弃掉Actor中默认行为</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line">using UnityEditor;</span><br><span class="line">using UnityEngine;</span><br><span class="line"></span><br><span class="line">[CustomEditor(typeof(Actor))]</span><br><span class="line">public class ActorEditor : Editor</span><br><span class="line">&#123;</span><br><span class="line">    enum WeaponID</span><br><span class="line">    &#123;</span><br><span class="line">        Sword,</span><br><span class="line">        Dagger,</span><br><span class="line">        Bow,</span><br><span class="line">        MagicBook,</span><br><span class="line">        MagicBall,</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    bool showWeapons;</span><br><span class="line">    Actor actor;</span><br><span class="line"></span><br><span class="line">    void OnEnable()</span><br><span class="line">    &#123;</span><br><span class="line">        actor &#x3D; (Actor)target;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public override void OnInspectorGUI()</span><br><span class="line">    &#123;</span><br><span class="line">        serializedObject.Update();</span><br><span class="line">        &#x2F;&#x2F;空两行</span><br><span class="line">        EditorGUILayout.Space();</span><br><span class="line">        EditorGUILayout.Space();</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F;绘制palyer的基本信息</span><br><span class="line">        EditorGUILayout.LabelField(&quot;Base Info&quot;);</span><br><span class="line"></span><br><span class="line">        showWeapons &#x3D; EditorGUILayout.Foldout(showWeapons, &quot;Weapons&quot;);</span><br><span class="line">        if (showWeapons)</span><br><span class="line">        &#123;</span><br><span class="line">            WeaponID weapon1ID &#x3D; (WeaponID)actor.weapon1Id;</span><br><span class="line">            weapon1ID &#x3D; (WeaponID)EditorGUILayout.EnumPopup(&quot;Weapon 1 ID&quot;, weapon1ID);</span><br><span class="line">            actor.weapon1Id &#x3D; (int)weapon1ID;</span><br><span class="line"></span><br><span class="line">            WeaponID weapon2ID &#x3D; (WeaponID)actor.weapon2Id;</span><br><span class="line">            weapon2ID &#x3D; (WeaponID)EditorGUILayout.EnumPopup(&quot;Weapon 2 ID&quot;, weapon2ID);</span><br><span class="line">            actor.weapon2Id &#x3D; (int)weapon2ID;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F;空三行</span><br><span class="line">        EditorGUILayout.Space();</span><br><span class="line">        EditorGUILayout.Space();</span><br><span class="line">        EditorGUILayout.Space();</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F;使用滑块绘制 Player 生命值</span><br><span class="line">        actor.health &#x3D; (int)EditorGUILayout.Slider(&quot;Health&quot;, actor.health, 0, 100);</span><br><span class="line">        &#x2F;&#x2F;根据生命值设置生命条的背景颜色</span><br><span class="line">        if (actor.health &lt; 20)</span><br><span class="line">        &#123;</span><br><span class="line">            GUI.color &#x3D; Color.red;</span><br><span class="line">        &#125;</span><br><span class="line">        else if (actor.health &gt; 80)</span><br><span class="line">        &#123;</span><br><span class="line">            GUI.color &#x3D; Color.green;</span><br><span class="line">        &#125;</span><br><span class="line">        else</span><br><span class="line">        &#123;</span><br><span class="line">            GUI.color &#x3D; Color.gray;</span><br><span class="line">        &#125;</span><br><span class="line">        &#x2F;&#x2F;指定生命值的宽高</span><br><span class="line">        Rect progressRect &#x3D; GUILayoutUtility.GetRect(50, 50);</span><br><span class="line">        &#x2F;&#x2F;绘制生命条</span><br><span class="line">        EditorGUI.ProgressBar(progressRect, actor.health &#x2F; 100.0f, &quot;Health&quot;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        serializedObject.ApplyModifiedProperties();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<img src="/2020/09/18/unity/unity-extends/inspector-3.png" class="" title="显示">
+<mip-img src="/2020/09/18/unity/unity-extends/inspector-3.png" class="" title="显示"></mip-img>
 
 <h3 id="Get-Set-在-inspector-中的使用"><a href="#Get-Set-在-inspector-中的使用" class="headerlink" title="Get/Set 在 inspector 中的使用"></a><strong>Get/Set</strong> 在 <strong>inspector</strong> 中的使用</h3><p>两种方法 </p>
 <ul>
-<li><a href="http://www.xuanyusong.com/archives/3406">使用 自定义<strong>Inspector</strong> </a></li>
-<li><a href="https://github.com/LMNRY/SetProperty">使用 自定义属性 </a></li>
+<li><a target="_blank" rel="noopener" href="http://www.xuanyusong.com/archives/3406">使用 自定义<strong>Inspector</strong> </a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/LMNRY/SetProperty">使用 自定义属性 </a></li>
 </ul>
 <h4 id="使用自定义Inspector"><a href="#使用自定义Inspector" class="headerlink" title="使用自定义Inspector"></a>使用自定义<strong>Inspector</strong></h4><p>在Actor加入Speed</p>
 <p>get/set 使用起来很方便，但是编辑时在Inspector视图中问题就来了，因为get/set的属性即使是public了.但是在Inspector视图中依然不显示。</p>
@@ -313,280 +61,36 @@
 <p>给 <strong>_speed</strong> 属性设置 <strong>[SerializeField]</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">#region get&#x2F;Set</span><br><span class="line">[SerializeField]</span><br><span class="line">private int _speed;</span><br><span class="line">public int Speed</span><br><span class="line">&#123;</span><br><span class="line">    get</span><br><span class="line">    &#123;</span><br><span class="line">        return _speed;</span><br><span class="line">    &#125;</span><br><span class="line">    set</span><br><span class="line">    &#123;</span><br><span class="line">        if (_speed &#x3D;&#x3D; value)</span><br><span class="line">            return;</span><br><span class="line">        Debug.Log(&quot;set :&quot; + value);</span><br><span class="line">        _speed &#x3D; value;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">#endregion</span><br></pre></td></tr></table></figure>
 <p>可以在 Inspector 中看到<br>如下</p>
-<img src="/2020/09/18/unity/unity-extends/inspector-getset1.png" class="" title="显示">
+<mip-img src="/2020/09/18/unity/unity-extends/inspector-getset1.png" class="" title="显示"></mip-img>
 
 <p>这里还有问题，这里修改speed,并不会调用Get/Set方法</p>
 <p>[SerializeField]可以让private 的属性在Inspector视图中显示出来。但是不会调用Get/Set。</p>
 <p>使用自定义 <strong>Inspector</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line">using UnityEditor;</span><br><span class="line">using UnityEngine;</span><br><span class="line"></span><br><span class="line">[CustomEditor(typeof(Actor))]</span><br><span class="line">public class ActorEditor : Editor</span><br><span class="line">&#123;</span><br><span class="line">    enum WeaponID</span><br><span class="line">    &#123;</span><br><span class="line">        Sword,</span><br><span class="line">        Dagger,</span><br><span class="line">        Bow,</span><br><span class="line">        MagicBook,</span><br><span class="line">        MagicBall,</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    bool showWeapons;</span><br><span class="line">    Actor actor;</span><br><span class="line"></span><br><span class="line">    void OnEnable()</span><br><span class="line">    &#123;</span><br><span class="line">        actor &#x3D; (Actor)target;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public override void OnInspectorGUI()</span><br><span class="line">    &#123;</span><br><span class="line">        serializedObject.Update();</span><br><span class="line">        &#x2F;&#x2F;空两行</span><br><span class="line">        EditorGUILayout.Space();</span><br><span class="line">        EditorGUILayout.Space();</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F;绘制palyer的基本信息</span><br><span class="line">        EditorGUILayout.LabelField(&quot;Base Info&quot;);</span><br><span class="line"></span><br><span class="line">        showWeapons &#x3D; EditorGUILayout.Foldout(showWeapons, &quot;Weapons&quot;);</span><br><span class="line">        if (showWeapons)</span><br><span class="line">        &#123;</span><br><span class="line">            WeaponID weapon1ID &#x3D; (WeaponID)actor.weapon1Id;</span><br><span class="line">            weapon1ID &#x3D; (WeaponID)EditorGUILayout.EnumPopup(&quot;Weapon 1 ID&quot;, weapon1ID);</span><br><span class="line">            actor.weapon1Id &#x3D; (int)weapon1ID;</span><br><span class="line"></span><br><span class="line">            WeaponID weapon2ID &#x3D; (WeaponID)actor.weapon2Id;</span><br><span class="line">            weapon2ID &#x3D; (WeaponID)EditorGUILayout.EnumPopup(&quot;Weapon 2 ID&quot;, weapon2ID);</span><br><span class="line">            actor.weapon2Id &#x3D; (int)weapon2ID;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F;空三行</span><br><span class="line">        EditorGUILayout.Space();</span><br><span class="line">        EditorGUILayout.Space();</span><br><span class="line">        EditorGUILayout.Space();</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F;使用滑块绘制 Player 生命值</span><br><span class="line">        actor.health &#x3D; (int)EditorGUILayout.Slider(&quot;Health&quot;, actor.health, 0, 100);</span><br><span class="line">        &#x2F;&#x2F;根据生命值设置生命条的背景颜色</span><br><span class="line">        if (actor.health &lt; 20)</span><br><span class="line">        &#123;</span><br><span class="line">            GUI.color &#x3D; Color.red;</span><br><span class="line">        &#125;</span><br><span class="line">        else if (actor.health &gt; 80)</span><br><span class="line">        &#123;</span><br><span class="line">            GUI.color &#x3D; Color.green;</span><br><span class="line">        &#125;</span><br><span class="line">        else</span><br><span class="line">        &#123;</span><br><span class="line">            GUI.color &#x3D; Color.gray;</span><br><span class="line">        &#125;</span><br><span class="line">        &#x2F;&#x2F;指定生命值的宽高</span><br><span class="line">        Rect progressRect &#x3D; GUILayoutUtility.GetRect(50, 50);</span><br><span class="line">        &#x2F;&#x2F;绘制生命条</span><br><span class="line">        EditorGUI.ProgressBar(progressRect, actor.health &#x2F; 100.0f, &quot;Health&quot;);</span><br><span class="line"></span><br><span class="line">        int speed &#x3D; EditorGUILayout.IntField(&quot;Speed&quot;, actor.Speed);</span><br><span class="line">        actor.Speed &#x3D; speed;</span><br><span class="line"></span><br><span class="line">        serializedObject.ApplyModifiedProperties();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<img src="/2020/09/18/unity/unity-extends/inspector-getset2.png" class="" title="显示">
+<mip-img src="/2020/09/18/unity/unity-extends/inspector-getset2.png" class="" title="显示"></mip-img>
 
-<img src="/2020/09/18/unity/unity-extends/inspector-getset3.png" class="" title="显示">
+<mip-img src="/2020/09/18/unity/unity-extends/inspector-getset3.png" class="" title="显示"></mip-img>
 
 <h4 id="使用-自定义属性"><a href="#使用-自定义属性" class="headerlink" title="使用 自定义属性"></a>使用 自定义属性</h4><p>待补充 TODO</p>
-<h2 id="2-Menu-菜单-1"><a href="#2-Menu-菜单-1" class="headerlink" title="2. Menu (菜单)"></a>2. <strong>Menu</strong> (菜单)</h2><p>**[MenuItem]**的基本实现：</p>
+<h2 id="2-Menu-菜单-1"><a href="#2-Menu-菜单-1" class="headerlink" title="2. Menu (菜单)"></a>2. <strong>Menu</strong> (菜单)</h2><p>[<strong>MenuItem</strong>]的基本实现：</p>
 <ul>
 <li><em>MenuItem(string path)</em></li>
 </ul>
 <p>参数：</p>
-<p><strong>Path</strong>—为你的菜单项指定菜单和名字的字符串。<strong>Path</strong>参数的格式如下：** “Root Menu/Sub Menu1/Sub Menu2/Item Name [可选的 快捷键]” **。</p>
+<p><strong>Path</strong>—为你的菜单项指定菜单和名字的字符串。<strong>Path</strong>参数的格式如下：”<strong>Root Menu/Sub Menu1/Sub Menu2/Item Name [可选的 快捷键]</strong>“ 。</p>
 <p><strong>MenuItem</strong> 属性的用法例子：</p>
-<p>[MenuItem(“Assets/Create/Create Scriptable Object”)]<br>Path参数的一些额外注意事项：</p>
+<p>[<strong>MenuItem(“Assets/Create/Create Scriptable Object”)</strong>]<br>Path参数的一些额外注意事项：</p>
 <ul>
 <li>如果首个词是已经存在的菜单名字（”<strong>Assets</strong>“, “<strong>Window</strong>“等），你的菜单项将被添加到这个菜单下（除了<strong>Component</strong>,稍后详细介绍）  </li>
 <li>你必须指定一个根菜单和一个菜单项名字  </li>
 <li>允许在所有菜单名以及菜单项名字中出现空格  </li>
 <li>可以选择在项名字加空格后的地方指定一个按键来设置快捷键（参考Unity的脚本API的 快捷键）</li>
 </ul>
-<p>这个例子代码在<strong>GameObject</strong>菜单创建了一个菜单项，在选中该项时会在场景中创建一个名为**”RedBlue GameObject”**的新的游戏对象。</p>
+<p>这个例子代码在<strong>GameObject</strong>菜单创建了一个菜单项，在选中该项时会在场景中创建一个名为”<strong>RedBlue GameObject</strong>“的新的游戏对象。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[MenuItem (&quot;GameObject&#x2F;Create RedBlue GameObject&quot;)]</span><br><span class="line">private static void CreateRedBlueGameObject ()</span><br><span class="line">&#123;    </span><br><span class="line">    new GameObject (&quot;RedBlue GameObject&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><a href="https://www.jianshu.com/p/84e986a8c7e3">特殊类别参考</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/84e986a8c7e3">特殊类别参考</a></p>
 <h2 id="3-Menu-右键菜单-1"><a href="#3-Menu-右键菜单-1" class="headerlink" title="3. Menu(右键菜单)"></a>3. <strong>Menu</strong>(右键菜单)</h2><p>同上</p>
 <h2 id="4-ContextMenu-脚本菜单-1"><a href="#4-ContextMenu-脚本菜单-1" class="headerlink" title="4. ContextMenu 脚本菜单"></a>4. <strong>ContextMenu</strong> 脚本菜单</h2><p>略</p>
 <h2 id="本例中-源码下载"><a href="#本例中-源码下载" class="headerlink" title="本例中 源码下载"></a>本例中 源码下载</h2><p><a href="InspectorTest.7z" title="源码下载">源码下载</a></p>
-
-    </div>
-
-    
-    
-    
-        
-
-  <div class="followme">
-    <p>欢迎关注我的其它发布渠道</p>
-
-    <div class="social-list">
-
-        <div class="social-item">
-          <a target="_blank" class="social-link" href="/atom.xml">
-            <span class="icon">
-              <i class="fa fa-rss"></i>
-            </span>
-
-            <span class="label">RSS</span>
-          </a>
-        </div>
-    </div>
-  </div>
-
-
-      <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/Unity/" rel="tag"># Unity</a>
-          </div>
-
-        
-
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2020/09/16/csharp/csharp-type/" rel="prev" title="CSharp Type 类型反射调用">
-      <i class="fa fa-chevron-left"></i> CSharp Type 类型反射调用
-    </a></div>
-      <div class="post-nav-item"></div>
-    </div>
-      </footer>
-    
-  </article>
-  
-  
-  
-
-
-
-          </div>
-          
-    <div class="comments" id="valine-comments"></div>
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
-
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%95%E5%AD%90"><span class="nav-number">1.</span> <span class="nav-text">引子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E6%8F%90"><span class="nav-number">2.</span> <span class="nav-text">前提</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Unity-%E5%8F%AF%E6%89%A9%E5%B1%95%E7%BC%96%E8%BE%91%E5%8C%BA%E5%9F%9F"><span class="nav-number">3.</span> <span class="nav-text">Unity 可扩展编辑区域</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Inspector-%E5%B1%9E%E6%80%A7%E8%A7%86%E5%9B%BE"><span class="nav-number">3.1.</span> <span class="nav-text">1. Inspector (属性视图)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Menu-%E8%8F%9C%E5%8D%95"><span class="nav-number">3.2.</span> <span class="nav-text">2. Menu (菜单)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Menu-%E5%8F%B3%E9%94%AE%E8%8F%9C%E5%8D%95"><span class="nav-number">3.3.</span> <span class="nav-text">3. Menu(右键菜单)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-ContextMenu-%E8%84%9A%E6%9C%AC%E8%8F%9C%E5%8D%95"><span class="nav-number">3.4.</span> <span class="nav-text">4. ContextMenu 脚本菜单</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Inspector%E8%A7%86%E5%9B%BE%E6%93%8D%E4%BD%9C"><span class="nav-number">4.</span> <span class="nav-text">Inspector视图操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Inspector-%E4%BF%AE%E6%94%B9%E6%96%B9%E5%BC%8F%E6%9C%89%E4%B8%A4%E7%A7%8D"><span class="nav-number">4.1.</span> <span class="nav-text">Inspector 修改方式有两种</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9-Actor-cs-%E8%B0%83%E6%95%B4-Inspector"><span class="nav-number">4.2.</span> <span class="nav-text">修改 Actor.cs 调整 Inspector</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E6%AC%A1%E4%BF%AE%E6%94%B9"><span class="nav-number">4.3.</span> <span class="nav-text">第一次修改</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E6%AC%A1%E4%BF%AE%E6%94%B9-%E4%BD%BF%E7%94%A8%E8%87%AA%E5%AE%9A%E4%B9%89-Inspector"><span class="nav-number">4.4.</span> <span class="nav-text">第二次修改 使用自定义 Inspector</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Get-Set-%E5%9C%A8-inspector-%E4%B8%AD%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">4.5.</span> <span class="nav-text">Get&#x2F;Set 在 inspector 中的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E8%87%AA%E5%AE%9A%E4%B9%89Inspector"><span class="nav-number">4.5.1.</span> <span class="nav-text">使用自定义Inspector</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%B1%9E%E6%80%A7"><span class="nav-number">4.5.2.</span> <span class="nav-text">使用 自定义属性</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Menu-%E8%8F%9C%E5%8D%95-1"><span class="nav-number">5.</span> <span class="nav-text">2. Menu (菜单)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Menu-%E5%8F%B3%E9%94%AE%E8%8F%9C%E5%8D%95-1"><span class="nav-number">6.</span> <span class="nav-text">3. Menu(右键菜单)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-ContextMenu-%E8%84%9A%E6%9C%AC%E8%8F%9C%E5%8D%95-1"><span class="nav-number">7.</span> <span class="nav-text">4. ContextMenu 脚本菜单</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%AC%E4%BE%8B%E4%B8%AD-%E6%BA%90%E7%A0%81%E4%B8%8B%E8%BD%BD"><span class="nav-number">8.</span> <span class="nav-text">本例中 源码下载</span></a></li></ol></div>
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">Chester.C</p>
-  <div class="site-description" itemprop="description"></div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">83</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-          
-        <span class="site-state-item-count">26</span>
-        <span class="site-state-item-name">分类</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-          
-        <span class="site-state-item-count">57</span>
-        <span class="site-state-item-name">标签</span></a>
-      </div>
-  </nav>
-</div>
-
-
-
-      </div>
-
-    </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
-
-
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
-
-        
-
-<div class="copyright">
-  
-  &copy; 
-  <span itemprop="copyrightYear">2020</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Chester.C</span>
-</div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
-  </div>
-
-        
-
-
-
-
-
-
-
-
-      </div>
-    </footer>
-  </div>
-
-  
-  <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
-
-<script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/muse.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
-
-
-<script>
-NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
-  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
-    var GUEST = ['nick', 'mail', 'link'];
-    var guest = 'nick,mail,link';
-    guest = guest.split(',').filter(item => {
-      return GUEST.includes(item);
-    });
-    new Valine({
-      el         : '#valine-comments',
-      verify     : false,
-      notify     : false,
-      appId      : 'OQBlgU8H1seTDvVrgC3Dhni0-gzGzoHsz',
-      appKey     : 'wF7D3hVD9WjlV9V52bhlymHO',
-      placeholder: "Just go go",
-      avatar     : 'mm',
-      meta       : guest,
-      pageSize   : '10' || 10,
-      visitor    : true,
-      lang       : 'zh-cn' || 'zh-cn',
-      path       : location.pathname,
-      recordIP   : false,
-      serverURLs : ''
-    });
-  }, window.Valine);
-});
-</script>
-
-</body>
-</html>
+</div></article></div><div class="pagination"><a data-type="mip" href="/2020/09/16/csharp/csharp-type/" class="next">Next >></a></div></div><div class="footer"><p>© 2017 - 2020 <a data-type="mip" href="http://blog.rcant.com">Chester.C</a> , powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/xuexb/hexo-theme-mip/" target="_blank">hexo-theme-mip</a>.</p></div><mip-fixed type="gototop"><mip-gototop></mip-gototop></mip-fixed><script src="https://c.mipcdn.com/static/v1/mip.js"></script><script src="https://c.mipcdn.com/static/v1/mip-nav-slidedown/mip-nav-slidedown.js"></script><script src="https://c.mipcdn.com/static/v1/mip-gototop/mip-gototop.js"></script><script src="https://c.mipcdn.com/static/v1/mip-fixed/mip-fixed.js"></script></body></html>

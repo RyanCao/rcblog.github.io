@@ -2,7 +2,35 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>http://blog.rcant.com/2020/09/18/unity/unity-extends/</loc>
-    <lastmod>2020-09-18</lastmod>
+    <lastmod>2020-09-19</lastmod>
+  </url>
+  <url>
+    <loc>http://blog.rcant.com/2018/09/19/android/android_adb_use/</loc>
+    <lastmod>2020-09-19</lastmod>
+  </url>
+  <url>
+    <loc>http://blog.rcant.com/2019/08/03/algorithm/dynamicprogram-algorithm/</loc>
+    <lastmod>2020-09-19</lastmod>
+  </url>
+  <url>
+    <loc>http://blog.rcant.com/2017/03/03/others/markdown-first/</loc>
+    <lastmod>2020-09-19</lastmod>
+  </url>
+  <url>
+    <loc>http://blog.rcant.com/2017/05/24/git/git-first/</loc>
+    <lastmod>2020-09-19</lastmod>
+  </url>
+  <url>
+    <loc>http://blog.rcant.com/2017/05/26/git/git-third/</loc>
+    <lastmod>2020-09-19</lastmod>
+  </url>
+  <url>
+    <loc>http://blog.rcant.com/2017/05/25/git/git-second/</loc>
+    <lastmod>2020-09-19</lastmod>
+  </url>
+  <url>
+    <loc>http://blog.rcant.com/2017/05/27/git/git-forth/</loc>
+    <lastmod>2020-09-19</lastmod>
   </url>
   <url>
     <loc>http://blog.rcant.com/2020/09/16/csharp/csharp-type/</loc>
@@ -42,10 +70,6 @@
   </url>
   <url>
     <loc>http://blog.rcant.com/2020/08/26/csharp/csharp-docfx/</loc>
-    <lastmod>2020-08-26</lastmod>
-  </url>
-  <url>
-    <loc>http://blog.rcant.com/2017/03/03/others/markdown-first/</loc>
     <lastmod>2020-08-26</lastmod>
   </url>
   <url>
@@ -137,11 +161,11 @@
     <lastmod>2020-08-07</lastmod>
   </url>
   <url>
-    <loc>http://blog.rcant.com/2017/11/03/python/python3-doctest/</loc>
+    <loc>http://blog.rcant.com/2017/11/03/python/python3-install/</loc>
     <lastmod>2020-08-07</lastmod>
   </url>
   <url>
-    <loc>http://blog.rcant.com/2017/11/03/python/python3-install/</loc>
+    <loc>http://blog.rcant.com/2017/11/03/python/python3-doctest/</loc>
     <lastmod>2020-08-07</lastmod>
   </url>
   <url>
@@ -213,27 +237,11 @@
     <lastmod>2020-08-07</lastmod>
   </url>
   <url>
-    <loc>http://blog.rcant.com/2017/05/26/git/git-third/</loc>
-    <lastmod>2020-08-07</lastmod>
-  </url>
-  <url>
     <loc>http://blog.rcant.com/2017/05/16/git/gitlab-first-time/</loc>
     <lastmod>2020-08-07</lastmod>
   </url>
   <url>
-    <loc>http://blog.rcant.com/2017/05/27/git/git-forth/</loc>
-    <lastmod>2020-08-07</lastmod>
-  </url>
-  <url>
-    <loc>http://blog.rcant.com/2017/05/25/git/git-second/</loc>
-    <lastmod>2020-08-07</lastmod>
-  </url>
-  <url>
     <loc>http://blog.rcant.com/2017/05/19/docker/docker-volume/</loc>
-    <lastmod>2020-08-07</lastmod>
-  </url>
-  <url>
-    <loc>http://blog.rcant.com/2017/05/24/git/git-first/</loc>
     <lastmod>2020-08-07</lastmod>
   </url>
   <url>
@@ -309,10 +317,6 @@
     <lastmod>2020-08-07</lastmod>
   </url>
   <url>
-    <loc>http://blog.rcant.com/2018/09/19/android/android_adb_use/</loc>
-    <lastmod>2020-08-07</lastmod>
-  </url>
-  <url>
     <loc>http://blog.rcant.com/2018/05/02/android/android_uuid_get/</loc>
     <lastmod>2020-08-07</lastmod>
   </url>
@@ -322,10 +326,6 @@
   </url>
   <url>
     <loc>http://blog.rcant.com/2019/08/03/algorithm/divideconquer-algorithm/</loc>
-    <lastmod>2020-08-07</lastmod>
-  </url>
-  <url>
-    <loc>http://blog.rcant.com/2019/08/03/algorithm/dynamicprogram-algorithm/</loc>
     <lastmod>2020-08-07</lastmod>
   </url>
   <url>
