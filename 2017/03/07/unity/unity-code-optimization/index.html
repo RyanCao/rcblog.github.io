@@ -1,6 +1,253 @@
-<!DOCTYPE html><html lang="zh-CN" mip><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title>Unity Mono托管内存优化_Devlopper in C#</title><meta name="description" content="Unity Mono托管内存优化 - Chester.C"><meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" type="text/css" href="https://c.mipcdn.com/static/v1/mip.css"><link rel="search" type="application/opensearchdescription+xml" href="http://blog.rcant.com/atom.xml" title="Chester.Cao Blog"><link rel="canonical" href="http://blog.rcant.com/2017/03/07/unity/unity-code-optimization/"/><style mip-custom>a,abbr,acronym,address,applet,big,blockquote,body,caption,cite,code,dd,del,dfn,div,dl,dt,em,fieldset,form,h1,h2,h3,h4,h5,h6,html,iframe,img,ins,kbd,label,legend,li,object,ol,p,pre,q,s,samp,small,span,strike,strong,sub,sup,table,tbody,td,tfoot,th,thead,tr,tt,ul,var{margin:0;padding:0;border:0;font-family:inherit;font-size:100%;font-weight:inherit;font-style:inherit;vertical-align:baseline;outline:0}body{line-height:1;color:#000;background:#fff}ol,ul{list-style:none}table{vertical-align:middle;border-spacing:0;border-collapse:separate}caption,td,th{font-weight:400;text-align:left;vertical-align:middle}a img{border:none}html{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}*,:after,:before{-webkit-box-sizing:inherit;-moz-box-sizing:inherit;box-sizing:inherit}button::-moz-focus-inner,input[type=button]::-moz-focus-inner,input[type=reset]::-moz-focus-inner,input[type=submit]::-moz-focus-inner{margin:0;padding:0;border:0}button,input,select{margin:0;padding:0;border:0}body{overflow-x:hidden;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:15px;color:#444;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}.mip-nav-wrapper{padding:0 10px;background-color:#323436}.navbar-brand{color:#fff!important}@media screen and (min-width:767px){.mip-nav-wrapper a{color:#fff!important}}@media screen and (max-width:767px){.mip-nav-wrapper .navbar-brand{margin-top:2px}}.navbar-brand{display:block;overflow:hidden;max-width:200px;line-height:41px;white-space:nowrap;text-overflow:ellipsis}mip-fixed[type=bottom],mip-fixed[type=top]{overflow:visible}.post{position:relative;padding:15px 10px;border-top:1px solid #fff;border-bottom:1px solid #ddd;word-wrap:break-word;background-color:#fff}h1.title,h2.title{padding:10px 0;font-size:28px}.post .meta{color:#666}.article-more a{color:#2479c2}.article-content .date{display:inline-block;margin:0 10px;font-size:14px;font-style:italic;color:#999}.article-content{line-height:1.6em;color:#444}@media print{.article-content{font-size:12pt}}.article-content .highlight,.article-content blockquote,.article-content dl,.article-content iframe,.article-content ol,.article-content p,.article-content table,.article-content ul{margin:1em 0}.article-content h1{font-size:2em}.article-content h2{font-size:1.5em}.article-content h3{font-size:1.3em}.article-content h1,.article-content h2,.article-content h3,.article-content h4,.article-content h5,.article-content h6{margin:1em 0;font-weight:700;line-height:1em}.article-content a{text-decoration:none;color:#0e83cd}.article-content a:hover{text-decoration:underline;color:#1094e8}@media print{.article-content a{text-decoration:underline;color:#444}.article-content a:after{content:" (" attr(href) ")";font-size:80%}}.article-content strong{font-weight:700}.article-content em{font-style:italic}.article-content dl,.article-content ol,.article-content ul{margin-left:20px}.article-content dl dl,.article-content dl ol,.article-content dl ul,.article-content ol dl,.article-content ol ol,.article-content ol ul,.article-content ul dl,.article-content ul ol,.article-content ul ul{margin-top:0;margin-bottom:0}.article-content ul{list-style:disc}.article-content ol{list-style:decimal}.article-content dl{list-style:square}.article-content li p{margin:0}.article-content li .highlight,.article-content li blockquote,.article-content li iframe,.article-content li table{margin:1em 0}.article-content img,.article-content video{max-width:100%}.article-content table{max-width:100%;border:1px solid #e3e3e3}.article-content table th{font-weight:700}.article-content table td,.article-content table th{padding:5px 15px}.article-content table tr:nth-child(2n){background:#eee}.article-content blockquote{position:relative;padding:0 20px;border:1px solid #e3e3e3;border-left:5px solid #ddd}.article-content .tip,.article-content .tip-error,.article-content .tip-info{position:relative;margin:1em 0;padding:1em 20px;border:1px solid #e3e3e3;border-left:5px solid #5fb878;border-top-right-radius:2px;border-bottom-right-radius:2px}.article-content .tip br:first-child,.article-content .tip-error br:first-child,.article-content .tip-info br:first-child{display:none}.article-content .tip-error:before,.article-content .tip-info:before{content:"!";position:absolute;top:16px;left:-12px;width:20px;height:20px;font-family:Dosis,"Source Sans Pro","Helvetica Neue",Arial,sans-serif;font-size:14px;font-weight:700;line-height:20px;text-align:center;color:#fff;border-radius:100%;background-color:#5fb878}.article-content .tip-info{border-left-color:#1e9fff}.article-content .tip-info:before{background-color:#1e9fff}.article-content .tip-error{border-left-color:#ff5722}.article-content .tip-error:before{background-color:#ff5722}.main{padding:72px 10px 0;max-width:1000px;margin:0 auto}@media screen and (max-width:767px){.main{padding-top:44px}}code,pre{font-family:"Source Code Pro",Monaco,Menlo,Consolas,monospace;font-size:.95em;color:#4d4d4c;background:#eee;overflow-x:auto;-webkit-overflow-scrolling:touch}code{padding:0 5px}pre{padding:10px 15px;line-height:22px}pre code{display:block;padding:0;border:none}.highlight{overflow:auto;margin:0;padding:10px 15px;color:#4d4d4c;background:#eee}.highlight table{margin:0!important;border:0}.highlight table td,.highlight table th{padding:0}.highlight figcaption{margin:-5px 0 5px;font-size:.9em;color:#999}.highlight figcaption:after,.highlight figcaption:before{content:"";display:table}.highlight figcaption:after{clear:both}.highlight figcaption a{float:right}.highlight pre{padding:0;border:none;background:0 0}.highlight .line{height:22px}pre .comment,pre .title{color:#8e908c}pre .attribute,pre .css .class,pre .css .id,pre .css .pseudo,pre .html .doctype,pre .regexp,pre .ruby .constant,pre .tag,pre .variable,pre .xml .doctype,pre .xml .pi,pre .xml .tag .title{color:#c82829}pre .built_in,pre .constant,pre .literal,pre .number,pre .params,pre .preprocessor{color:#f5871f}pre .class,pre .css .rules .attribute,pre .ruby .class .title{color:#718c00}pre .header,pre .inheritance,pre .ruby .symbol,pre .string,pre .value,pre .xml .cdata{color:#718c00}pre .css .hexcolor{color:#3e999f}pre .coffeescript .title,pre .function,pre .javascript .title,pre .perl .sub,pre .python .decorator,pre .python .title,pre .ruby .function .title,pre .ruby .title .keyword{color:#4271ae}pre .javascript .function,pre .keyword{color:#8959a8}.footer{line-height:1.8;text-align:center;padding:15px;border-top:1px solid #fff;font-size:.9em;color:#999}.footer a{color:#2479c2}.pagination{width:100%;line-height:20px;position:relative;border-top:1px solid #fff;border-bottom:1px solid #ddd;padding:20px 0;overflow:hidden}.pagination .prev{float:left}.pagination .next{float:right}.pagination a{color:#2479c2}</style><meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/atom.xml" title="Chester.Cao Blog" type="application/atom+xml">
-</head><body><mip-fixed type="top"><div class="mip-nav-wrapper"><mip-nav-slidedown data-id="bs-navbar" data-showbrand="1" data-brandname="Chester.C" data-brandhref="/" class="mip-element-sidebar container"><nav id="bs-navbar" class="navbar-collapse collapse navbar navbar-static-top"><ul class="nav navbar-nav navbar-right"><li><a data-type="mip" href="/">Home</a></li><li><a data-type="mip" href="/archives/">Archive</a></li><li><a data-type="mip" href="/categories/">menu.Categories</a></li><li><a data-type="mip" href="/tags/">menu.Tags</a></li><li class="navbar-wise-close"><span id="navbar-wise-close-btn"></span></li></ul></nav></mip-nav-slidedown></div></mip-fixed><div class="main"><div class="post-detail"><article class="post"><h1 class="title">Unity Mono托管内存优化</h1><div class="meta">2017年3月7日</div><div class="article-content"><h3 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h3><p>优化Mono的托管内存<br>Mono的托管内存的优化主要是代码的优化，以下部分是我在网上收集的资料：</p>
-<a href="#" id="more"></a>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.1.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"blog.rcant.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"slideUpIn","post_header":"slideUpIn","post_body":"slideUpIn","coll_header":"slideUpIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="引子优化Mono的托管内存Mono的托管内存的优化主要是代码的优化，以下部分是我在网上收集的资料：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Unity Mono托管内存优化">
+<meta property="og:url" content="http://blog.rcant.com/2017/03/07/unity/unity-code-optimization/index.html">
+<meta property="og:site_name" content="Chester.Cao Blog">
+<meta property="og:description" content="引子优化Mono的托管内存Mono的托管内存的优化主要是代码的优化，以下部分是我在网上收集的资料：">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2017-03-07T06:40:07.000Z">
+<meta property="article:modified_time" content="2020-08-07T02:31:56.935Z">
+<meta property="article:author" content="Chester.C">
+<meta property="article:tag" content="unity3d">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://blog.rcant.com/2017/03/07/unity/unity-code-optimization/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Unity Mono托管内存优化 | Chester.Cao Blog</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?974592ac4c5733a52af2b871678a5334";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Chester.Cao Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Chester.Cao Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Devlopper in C#</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.rcant.com/2017/03/07/unity/unity-code-optimization/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Chester.C">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chester.Cao Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Unity Mono托管内存优化
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-03-07 14:40:07" itemprop="dateCreated datePublished" datetime="2017-03-07T14:40:07+08:00">2017-03-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-08-07 10:31:56" itemprop="dateModified" datetime="2020-08-07T10:31:56+08:00">2020-08-07</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/unity3d/" itemprop="url" rel="index"><span itemprop="name">unity3d</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2017/03/07/unity/unity-code-optimization/" class="post-meta-item leancloud_visitors" data-flag-title="Unity Mono托管内存优化" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2017/03/07/unity/unity-code-optimization/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2017/03/07/unity/unity-code-optimization/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h3><p>优化Mono的托管内存<br>Mono的托管内存的优化主要是代码的优化，以下部分是我在网上收集的资料：</p>
+<a id="more"></a>
 <h3 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h3><h4 id="1-尽量不要动态的Instantiate和Destroy-Object，使用Object-Pool。看看我之前写的一篇文章就基本懂了！"><a href="#1-尽量不要动态的Instantiate和Destroy-Object，使用Object-Pool。看看我之前写的一篇文章就基本懂了！" class="headerlink" title="1.尽量不要动态的Instantiate和Destroy Object，使用Object Pool。看看我之前写的一篇文章就基本懂了！"></a>1.尽量不要动态的Instantiate和Destroy Object，使用Object Pool。看看我之前写的一篇文章就基本懂了！</h4><h4 id="2-尽量不要再Update函数中做复杂计算，如有需要，可以隔N帧计算一次。"><a href="#2-尽量不要再Update函数中做复杂计算，如有需要，可以隔N帧计算一次。" class="headerlink" title="2.尽量不要再Update函数中做复杂计算，如有需要，可以隔N帧计算一次。"></a>2.尽量不要再Update函数中做复杂计算，如有需要，可以隔N帧计算一次。</h4><h4 id="3-不要动态的产生字符串，如Debug-Log-“boo”-“hoo”-，尽量预先创建好这些字符串资源。"><a href="#3-不要动态的产生字符串，如Debug-Log-“boo”-“hoo”-，尽量预先创建好这些字符串资源。" class="headerlink" title="3.不要动态的产生字符串，如Debug.Log(“boo” + “hoo”)，尽量预先创建好这些字符串资源。"></a>3.不要动态的产生字符串，如Debug.Log(“boo” + “hoo”)，尽量预先创建好这些字符串资源。</h4><h4 id="4-Cache一些东西，在update里面尽量避免search，如GameObject-FindWithTag-“”-、GetComponent这样的调用，可以在Start中预先存起来。"><a href="#4-Cache一些东西，在update里面尽量避免search，如GameObject-FindWithTag-“”-、GetComponent这样的调用，可以在Start中预先存起来。" class="headerlink" title="4.Cache一些东西，在update里面尽量避免search，如GameObject.FindWithTag(“”)、GetComponent这样的调用，可以在Start中预先存起来。"></a>4.Cache一些东西，在update里面尽量避免search，如GameObject.FindWithTag(“”)、GetComponent这样的调用，可以在Start中预先存起来。</h4><h4 id="5-尽量减少函数调用栈，用x-x-gt-0-x-x-代替x-Mathf-Abs-x"><a href="#5-尽量减少函数调用栈，用x-x-gt-0-x-x-代替x-Mathf-Abs-x" class="headerlink" title="5.尽量减少函数调用栈，用x = (x &gt; 0 ? x : -x);代替x = Mathf.Abs(x)"></a>5.尽量减少函数调用栈，用x = (x &gt; 0 ? x : -x);代替x = Mathf.Abs(x)</h4><h4 id="6-下面的代码是几个GC“噩梦”。-String的相加操作，会频繁申请内存并释放，导致gc频繁，使用System-Text-StringBuilder代替"><a href="#6-下面的代码是几个GC“噩梦”。-String的相加操作，会频繁申请内存并释放，导致gc频繁，使用System-Text-StringBuilder代替" class="headerlink" title="6.下面的代码是几个GC“噩梦”。 String的相加操作，会频繁申请内存并释放，导致gc频繁，使用System.Text.StringBuilder代替"></a>6.下面的代码是几个GC“噩梦”。 String的相加操作，会频繁申请内存并释放，导致gc频繁，使用System.Text.StringBuilder代替</h4><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ConcatExample</span>(<span class="params">intArray: <span class="keyword">int</span>[]</span>)</span> &#123;  </span><br><span class="line">   <span class="keyword">var</span> line = intArray[<span class="number">0</span>].ToString()；  </span><br><span class="line">   <span class="keyword">for</span> (i = <span class="number">1</span>; i &lt; intArray.Length; i++) &#123;  </span><br><span class="line">                   line += <span class="string">&quot;, &quot;</span> + intArray[i].ToString();  </span><br><span class="line"></span><br><span class="line">   &#125;  </span><br><span class="line">   <span class="keyword">return</span> line;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="7-在函数中动态new-array，最好将一个array、传进函数里修改"><a href="#7-在函数中动态new-array，最好将一个array、传进函数里修改" class="headerlink" title="7.在函数中动态new array，最好将一个array、传进函数里修改"></a>7.在函数中动态new array，最好将一个array、传进函数里修改</h4><h4 id="8-Update处理可改为每5帧处理一次："><a href="#8-Update处理可改为每5帧处理一次：" class="headerlink" title="8.Update处理可改为每5帧处理一次："></a>8.Update处理可改为每5帧处理一次：</h4><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Update</span>(<span class="params"></span>)</span> &#123; DoSomeThing(); &#125; </span><br></pre></td></tr></table></figure>
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Update</span>(<span class="params"></span>)</span> &#123; <span class="keyword">if</span>(Time.frameCount % <span class="number">5</span> == <span class="number">0</span>) &#123; DoSomeThing();&#125;&#125;</span><br></pre></td></tr></table></figure>
@@ -35,4 +282,251 @@
 <h4 id="21-使用触发器。一个简单的球形触发器能引发惊人效果。你可以调用OnTriggerEnter-Exit，当进入你想要的作用范围。"><a href="#21-使用触发器。一个简单的球形触发器能引发惊人效果。你可以调用OnTriggerEnter-Exit，当进入你想要的作用范围。" class="headerlink" title="21.使用触发器。一个简单的球形触发器能引发惊人效果。你可以调用OnTriggerEnter/Exit，当进入你想要的作用范围。"></a>21.使用触发器。一个简单的球形触发器能引发惊人效果。你可以调用OnTriggerEnter/Exit，当进入你想要的作用范围。</h4><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">OnTriggerEnter</span> (<span class="params">Collider c</span>)  </span></span><br><span class="line"><span class="function"></span>&#123;  </span><br><span class="line">    <span class="keyword">if</span> (c.CompareTag(<span class="string">&quot;Player&quot;</span>))  </span><br><span class="line">    enabled = <span class="literal">true</span>;  </span><br><span class="line">&#125;  </span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">OnTriggerExit</span> (<span class="params">Collider c</span>)  </span></span><br><span class="line"><span class="function"></span>&#123;  </span><br><span class="line">    <span class="keyword">if</span> (c.CompareTag(<span class="string">&quot;Player&quot;</span>))  </span><br><span class="line">    enabled = <span class="literal">false</span>;  </span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
 
 <h4 id="22-使用协同程序。Update的问题是他在每帧都发生。很可能只需要5秒钟检查一次玩家的距离。这可以节约大量的处理周期。"><a href="#22-使用协同程序。Update的问题是他在每帧都发生。很可能只需要5秒钟检查一次玩家的距离。这可以节约大量的处理周期。" class="headerlink" title="22.使用协同程序。Update的问题是他在每帧都发生。很可能只需要5秒钟检查一次玩家的距离。这可以节约大量的处理周期。"></a>22.使用协同程序。Update的问题是他在每帧都发生。很可能只需要5秒钟检查一次玩家的距离。这可以节约大量的处理周期。</h4><hr>
-</div></article></div><div class="pagination"><a data-type="mip" href="/2017/03/19/others/android-andresguard/" class="prev"><< Prev</a><a data-type="mip" href="/2017/03/06/unity/unity-optimization/" class="next">Next >></a></div></div><div class="footer"><p>© 2017 - 2020 <a data-type="mip" href="http://blog.rcant.com">Chester.C</a> , powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/xuexb/hexo-theme-mip/" target="_blank">hexo-theme-mip</a>.</p></div><mip-fixed type="gototop"><mip-gototop></mip-gototop></mip-fixed><script src="https://c.mipcdn.com/static/v1/mip.js"></script><script src="https://c.mipcdn.com/static/v1/mip-nav-slidedown/mip-nav-slidedown.js"></script><script src="https://c.mipcdn.com/static/v1/mip-gototop/mip-gototop.js"></script><script src="https://c.mipcdn.com/static/v1/mip-fixed/mip-fixed.js"></script></body></html>
+
+    </div>
+
+    
+    
+    
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/unity3d/" rel="tag"># unity3d</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2017/03/06/unity/unity-optimization/" rel="prev" title="Unity 优化">
+      <i class="fa fa-chevron-left"></i> Unity 优化
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2017/03/19/others/android-andresguard/" rel="next" title="Android Apk 7z压缩">
+      Android Apk 7z压缩 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%95%E5%AD%90"><span class="nav-number">1.</span> <span class="nav-text">引子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%85%E5%AE%B9"><span class="nav-number">2.</span> <span class="nav-text">内容</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%B0%BD%E9%87%8F%E4%B8%8D%E8%A6%81%E5%8A%A8%E6%80%81%E7%9A%84Instantiate%E5%92%8CDestroy-Object%EF%BC%8C%E4%BD%BF%E7%94%A8Object-Pool%E3%80%82%E7%9C%8B%E7%9C%8B%E6%88%91%E4%B9%8B%E5%89%8D%E5%86%99%E7%9A%84%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0%E5%B0%B1%E5%9F%BA%E6%9C%AC%E6%87%82%E4%BA%86%EF%BC%81"><span class="nav-number">2.1.</span> <span class="nav-text">1.尽量不要动态的Instantiate和Destroy Object，使用Object Pool。看看我之前写的一篇文章就基本懂了！</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%B0%BD%E9%87%8F%E4%B8%8D%E8%A6%81%E5%86%8DUpdate%E5%87%BD%E6%95%B0%E4%B8%AD%E5%81%9A%E5%A4%8D%E6%9D%82%E8%AE%A1%E7%AE%97%EF%BC%8C%E5%A6%82%E6%9C%89%E9%9C%80%E8%A6%81%EF%BC%8C%E5%8F%AF%E4%BB%A5%E9%9A%94N%E5%B8%A7%E8%AE%A1%E7%AE%97%E4%B8%80%E6%AC%A1%E3%80%82"><span class="nav-number">2.2.</span> <span class="nav-text">2.尽量不要再Update函数中做复杂计算，如有需要，可以隔N帧计算一次。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E4%B8%8D%E8%A6%81%E5%8A%A8%E6%80%81%E7%9A%84%E4%BA%A7%E7%94%9F%E5%AD%97%E7%AC%A6%E4%B8%B2%EF%BC%8C%E5%A6%82Debug-Log-%E2%80%9Cboo%E2%80%9D-%E2%80%9Choo%E2%80%9D-%EF%BC%8C%E5%B0%BD%E9%87%8F%E9%A2%84%E5%85%88%E5%88%9B%E5%BB%BA%E5%A5%BD%E8%BF%99%E4%BA%9B%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%B5%84%E6%BA%90%E3%80%82"><span class="nav-number">2.3.</span> <span class="nav-text">3.不要动态的产生字符串，如Debug.Log(“boo” + “hoo”)，尽量预先创建好这些字符串资源。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-Cache%E4%B8%80%E4%BA%9B%E4%B8%9C%E8%A5%BF%EF%BC%8C%E5%9C%A8update%E9%87%8C%E9%9D%A2%E5%B0%BD%E9%87%8F%E9%81%BF%E5%85%8Dsearch%EF%BC%8C%E5%A6%82GameObject-FindWithTag-%E2%80%9C%E2%80%9D-%E3%80%81GetComponent%E8%BF%99%E6%A0%B7%E7%9A%84%E8%B0%83%E7%94%A8%EF%BC%8C%E5%8F%AF%E4%BB%A5%E5%9C%A8Start%E4%B8%AD%E9%A2%84%E5%85%88%E5%AD%98%E8%B5%B7%E6%9D%A5%E3%80%82"><span class="nav-number">2.4.</span> <span class="nav-text">4.Cache一些东西，在update里面尽量避免search，如GameObject.FindWithTag(“”)、GetComponent这样的调用，可以在Start中预先存起来。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-%E5%B0%BD%E9%87%8F%E5%87%8F%E5%B0%91%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%E6%A0%88%EF%BC%8C%E7%94%A8x-x-gt-0-x-x-%E4%BB%A3%E6%9B%BFx-Mathf-Abs-x"><span class="nav-number">2.5.</span> <span class="nav-text">5.尽量减少函数调用栈，用x &#x3D; (x &gt; 0 ? x : -x);代替x &#x3D; Mathf.Abs(x)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-%E4%B8%8B%E9%9D%A2%E7%9A%84%E4%BB%A3%E7%A0%81%E6%98%AF%E5%87%A0%E4%B8%AAGC%E2%80%9C%E5%99%A9%E6%A2%A6%E2%80%9D%E3%80%82-String%E7%9A%84%E7%9B%B8%E5%8A%A0%E6%93%8D%E4%BD%9C%EF%BC%8C%E4%BC%9A%E9%A2%91%E7%B9%81%E7%94%B3%E8%AF%B7%E5%86%85%E5%AD%98%E5%B9%B6%E9%87%8A%E6%94%BE%EF%BC%8C%E5%AF%BC%E8%87%B4gc%E9%A2%91%E7%B9%81%EF%BC%8C%E4%BD%BF%E7%94%A8System-Text-StringBuilder%E4%BB%A3%E6%9B%BF"><span class="nav-number">2.6.</span> <span class="nav-text">6.下面的代码是几个GC“噩梦”。 String的相加操作，会频繁申请内存并释放，导致gc频繁，使用System.Text.StringBuilder代替</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-%E5%9C%A8%E5%87%BD%E6%95%B0%E4%B8%AD%E5%8A%A8%E6%80%81new-array%EF%BC%8C%E6%9C%80%E5%A5%BD%E5%B0%86%E4%B8%80%E4%B8%AAarray%E3%80%81%E4%BC%A0%E8%BF%9B%E5%87%BD%E6%95%B0%E9%87%8C%E4%BF%AE%E6%94%B9"><span class="nav-number">2.7.</span> <span class="nav-text">7.在函数中动态new array，最好将一个array、传进函数里修改</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-Update%E5%A4%84%E7%90%86%E5%8F%AF%E6%94%B9%E4%B8%BA%E6%AF%8F5%E5%B8%A7%E5%A4%84%E7%90%86%E4%B8%80%E6%AC%A1%EF%BC%9A"><span class="nav-number">2.8.</span> <span class="nav-text">8.Update处理可改为每5帧处理一次：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-%E5%AE%9A%E6%97%B6%E9%87%8D%E5%A4%8D%E5%A4%84%E7%90%86%E7%94%A8-InvokeRepeating-%E5%87%BD%E6%95%B0%E5%AE%9E%E7%8E%B0-%E6%AF%94%E5%A6%82%EF%BC%8C%E5%90%AF%E5%8A%A80-5%E7%A7%92%E5%90%8E%E6%AF%8F%E9%9A%941%E7%A7%92%E6%89%A7%E8%A1%8C%E4%B8%80%E6%AC%A1-DoSomeThing-%E5%87%BD%E6%95%B0%EF%BC%9A"><span class="nav-number">2.9.</span> <span class="nav-text">9.定时重复处理用 InvokeRepeating 函数实现 比如，启动0.5秒后每隔1秒执行一次 DoSomeThing 函数：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-%E4%BC%98%E5%8C%96-Update-FixedUpdate-LateUpdate-%E7%AD%89%E6%AF%8F%E5%B8%A7%E5%A4%84%E7%90%86%E7%9A%84%E5%87%BD%E6%95%B0-%E5%87%BD%E6%95%B0%E9%87%8C%E9%9D%A2%E7%9A%84%E5%8F%98%E9%87%8F%E5%B0%BD%E9%87%8F%E5%9C%A8%E5%A4%B4%E9%83%A8%E5%A3%B0%E6%98%8E%E3%80%82%E6%AF%94%E5%A6%82%EF%BC%9A"><span class="nav-number">2.10.</span> <span class="nav-text">10.优化 Update, FixedUpdate, LateUpdate 等每帧处理的函数 函数里面的变量尽量在头部声明。比如：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#11-%E4%B8%BB%E5%8A%A8%E5%9B%9E%E6%94%B6%E5%9E%83%E5%9C%BE-%E7%BB%99%E6%9F%90%E4%B8%AA-GameObject-%E7%BB%91%E4%B8%8A%E4%BB%A5%E4%B8%8B%E7%9A%84%E4%BB%A3%E7%A0%81%EF%BC%9A"><span class="nav-number">2.11.</span> <span class="nav-text">11.主动回收垃圾,给某个 GameObject 绑上以下的代码：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#12-%E4%BC%98%E5%8C%96%E6%95%B0%E5%AD%A6%E8%AE%A1%E7%AE%97-%E6%AF%94%E5%A6%82-%E5%A6%82%E6%9E%9C%E5%8F%AF%E4%BB%A5%E9%81%BF%E5%85%8D%E4%BD%BF%E7%94%A8%E6%B5%AE%E7%82%B9%E5%9E%8B-float-%EF%BC%8C%E5%B0%BD%E9%87%8F%E4%BD%BF%E7%94%A8%E6%95%B4%E5%BD%A2-int-%EF%BC%8C%E5%B0%BD%E9%87%8F%E5%B0%91%E7%94%A8%E5%A4%8D%E6%9D%82%E7%9A%84%E6%95%B0%E5%AD%A6%E5%87%BD%E6%95%B0%E6%AF%94%E5%A6%82-Sin-%E5%92%8C-Cos-%E7%AD%89%E7%AD%89%E3%80%82"><span class="nav-number">2.12.</span> <span class="nav-text">12.优化数学计算,比如:如果可以避免使用浮点型(float)，尽量使用整形(int)，尽量少用复杂的数学函数比如 Sin 和 Cos 等等。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#13-%E5%87%8F%E5%B0%91%E5%9B%BA%E5%AE%9A%E5%A2%9E%E9%87%8F%E6%97%B6%E9%97%B4%EF%BC%8C%E5%B0%86%E5%9B%BA%E5%AE%9A%E5%A2%9E%E9%87%8F%E6%97%B6%E9%97%B4%E5%80%BC%E8%AE%BE%E5%AE%9A%E5%9C%A80-04-0-067%E5%8C%BA%E9%97%B4%EF%BC%88%E5%8D%B3%EF%BC%8C%E6%AF%8F%E7%A7%9215-25%E5%B8%A7%EF%BC%89%E3%80%82%E6%82%A8%E5%8F%AF%E4%BB%A5%E9%80%9A%E8%BF%87Edit-gt-Project-Settings-gt-Time%E6%9D%A5%E6%94%B9%E5%8F%98%E8%BF%99%E4%B8%AA%E5%80%BC%E3%80%82%E8%BF%99%E6%A0%B7%E5%81%9A%E9%99%8D%E4%BD%8E%E4%BA%86FixedUpdate%E5%87%BD%E6%95%B0%E8%A2%AB%E8%B0%83%E7%94%A8%E7%9A%84%E9%A2%91%E7%8E%87%E4%BB%A5%E5%8F%8A%E7%89%A9%E7%90%86%E5%BC%95%E6%93%8E%E6%89%A7%E8%A1%8C%E7%A2%B0%E6%92%9E%E6%A3%80%E6%B5%8B%E4%B8%8E%E5%88%9A%E4%BD%93%E6%9B%B4%E6%96%B0%E7%9A%84%E9%A2%91%E7%8E%87%E3%80%82%E5%A6%82%E6%9E%9C%E6%82%A8%E4%BD%BF%E7%94%A8%E4%BA%86%E8%BE%83%E4%BD%8E%E7%9A%84%E5%9B%BA%E5%AE%9A%E5%A2%9E%E9%87%8F%E6%97%B6%E9%97%B4%EF%BC%8C%E5%B9%B6%E4%B8%94%E5%9C%A8%E4%B8%BB%E8%A7%92%E8%BA%AB%E4%B8%8A%E4%BD%BF%E7%94%A8%E4%BA%86%E5%88%9A%E4%BD%93%E9%83%A8%E4%BB%B6%EF%BC%8C%E9%82%A3%E4%B9%88%E6%82%A8%E5%8F%AF%E4%BB%A5%E5%90%AF%E7%94%A8%E6%8F%92%E5%80%BC%E5%8A%9E%E6%B3%95%E6%9D%A5%E5%B9%B3%E6%BB%91%E5%88%9A%E4%BD%93%E7%BB%84%E4%BB%B6%E3%80%82"><span class="nav-number">2.13.</span> <span class="nav-text">13.减少固定增量时间，将固定增量时间值设定在0.04-0.067区间（即，每秒15-25帧）。您可以通过Edit-&gt;Project Settings-&gt;Time来改变这个值。这样做降低了FixedUpdate函数被调用的频率以及物理引擎执行碰撞检测与刚体更新的频率。如果您使用了较低的固定增量时间，并且在主角身上使用了刚体部件，那么您可以启用插值办法来平滑刚体组件。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#14-%E5%87%8F%E5%B0%91GetComponent%E7%9A%84%E8%B0%83%E7%94%A8%EF%BC%8C%E4%BD%BF%E7%94%A8-GetComponent%E6%88%96%E5%86%85%E7%BD%AE%E7%BB%84%E4%BB%B6%E8%AE%BF%E9%97%AE%E5%99%A8%E4%BC%9A%E4%BA%A7%E7%94%9F%E6%98%8E%E6%98%BE%E7%9A%84%E5%BC%80%E9%94%80%E3%80%82%E6%82%A8%E5%8F%AF%E4%BB%A5%E9%80%9A%E8%BF%87%E4%B8%80%E6%AC%A1%E8%8E%B7%E5%8F%96%E7%BB%84%E4%BB%B6%E7%9A%84%E5%BC%95%E7%94%A8%E6%9D%A5%E9%81%BF%E5%85%8D%E5%BC%80%E9%94%80%EF%BC%8C%E5%B9%B6%E5%B0%86%E8%AF%A5%E5%BC%95%E7%94%A8%E5%88%86%E9%85%8D%E7%BB%99%E4%B8%80%E4%B8%AA%E5%8F%98%E9%87%8F%EF%BC%88%E6%9C%89%E6%97%B6%E7%A7%B0%E4%B8%BA%E2%80%9D%E7%BC%93%E5%AD%98%E2%80%9D%E7%9A%84%E5%BC%95%E7%94%A8%EF%BC%89%E3%80%82%E4%BE%8B%E5%A6%82%EF%BC%8C%E5%A6%82%E6%9E%9C%E6%82%A8%E4%BD%BF%E7%94%A8%E5%A6%82%E4%B8%8B%E7%9A%84%E4%BB%A3%E7%A0%81%EF%BC%9A"><span class="nav-number">2.14.</span> <span class="nav-text">14.减少GetComponent的调用，使用 GetComponent或内置组件访问器会产生明显的开销。您可以通过一次获取组件的引用来避免开销，并将该引用分配给一个变量（有时称为”缓存”的引用）。例如，如果您使用如下的代码：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#15-%E9%81%BF%E5%85%8D%E5%88%86%E9%85%8D%E5%86%85%E5%AD%98%EF%BC%8C%E6%82%A8%E5%BA%94%E8%AF%A5%E9%81%BF%E5%85%8D%E5%88%86%E9%85%8D%E6%96%B0%E5%AF%B9%E8%B1%A1%EF%BC%8C%E9%99%A4%E9%9D%9E%E4%BD%A0%E7%9C%9F%E7%9A%84%E9%9C%80%E8%A6%81%EF%BC%8C%E5%9B%A0%E4%B8%BA%E4%BB%96%E4%BB%AC%E4%B8%8D%E5%86%8D%E5%9C%A8%E4%BD%BF%E7%94%A8%E6%97%B6%EF%BC%8C%E4%BC%9A%E5%A2%9E%E5%8A%A0%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%BC%80%E9%94%80%E3%80%82%E6%82%A8%E5%8F%AF%E4%BB%A5%E7%BB%8F%E5%B8%B8%E9%87%8D%E5%A4%8D%E4%BD%BF%E7%94%A8%E6%95%B0%E7%BB%84%E5%92%8C%E5%85%B6%E4%BB%96%E5%AF%B9%E8%B1%A1%EF%BC%8C%E8%80%8C%E4%B8%8D%E6%98%AF%E5%88%86%E9%85%8D%E6%96%B0%E7%9A%84%E6%95%B0%E7%BB%84%E6%88%96%E5%AF%B9%E8%B1%A1%E3%80%82%E8%BF%99%E6%A0%B7%E5%81%9A%E5%A5%BD%E5%A4%84%E5%88%99%E6%98%AF%E5%B0%BD%E9%87%8F%E5%87%8F%E5%B0%91%E5%9E%83%E5%9C%BE%E7%9A%84%E5%9B%9E%E6%94%B6%E5%B7%A5%E4%BD%9C%E3%80%82%E5%90%8C%E6%97%B6%EF%BC%8C%E5%9C%A8%E6%9F%90%E4%BA%9B%E5%8F%AF%E8%83%BD%E7%9A%84%E6%83%85%E5%86%B5%E4%B8%8B%EF%BC%8C%E6%82%A8%E4%B9%9F%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8%E7%BB%93%E6%9E%84%EF%BC%88struct%EF%BC%89%E6%9D%A5%E4%BB%A3%E6%9B%BF%E7%B1%BB%EF%BC%88class%EF%BC%89%E3%80%82%E8%BF%99%E6%98%AF%E5%9B%A0%E4%B8%BA%EF%BC%8C%E7%BB%93%E6%9E%84%E5%8F%98%E9%87%8F%E4%B8%BB%E8%A6%81%E5%AD%98%E6%94%BE%E5%9C%A8%E6%A0%88%E5%8C%BA%E8%80%8C%E9%9D%9E%E5%A0%86%E5%8C%BA%E3%80%82%E5%9B%A0%E4%B8%BA%E6%A0%88%E7%9A%84%E5%88%86%E9%85%8D%E8%BE%83%E5%BF%AB%EF%BC%8C%E5%B9%B6%E4%B8%94%E4%B8%8D%E8%B0%83%E7%94%A8%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%93%8D%E4%BD%9C%EF%BC%8C%E6%89%80%E4%BB%A5%E5%BD%93%E7%BB%93%E6%9E%84%E5%8F%98%E9%87%8F%E6%AF%94%E8%BE%83%E5%B0%8F%E6%97%B6%E5%8F%AF%E4%BB%A5%E6%8F%90%E5%8D%87%E7%A8%8B%E5%BA%8F%E7%9A%84%E8%BF%90%E8%A1%8C%E6%80%A7%E8%83%BD%E3%80%82%E4%BD%86%E6%98%AF%E5%BD%93%E7%BB%93%E6%9E%84%E4%BD%93%E8%BE%83%E5%A4%A7%E6%97%B6%EF%BC%8C%E8%99%BD%E7%84%B6%E5%AE%83%E4%BB%8D%E5%8F%AF%E9%81%BF%E5%85%8D%E5%88%86%E9%85%8D-%E5%9B%9E%E6%94%B6%E7%9A%84%E5%BC%80%E9%94%80%EF%BC%8C%E8%80%8C%E5%AE%83%E7%94%B1%E4%BA%8E%E2%80%9D%E4%BC%A0%E5%80%BC%E2%80%9D%E6%93%8D%E4%BD%9C%E4%B9%9F%E4%BC%9A%E5%AF%BC%E8%87%B4%E5%8D%95%E7%8B%AC%E7%9A%84%E5%BC%80%E9%94%80%EF%BC%8C%E5%AE%9E%E9%99%85%E4%B8%8A%E5%AE%83%E5%8F%AF%E8%83%BD%E6%AF%94%E7%AD%89%E6%95%88%E5%AF%B9%E8%B1%A1%E7%B1%BB%E7%9A%84%E6%95%88%E7%8E%87%E8%BF%98%E8%A6%81%E4%BD%8E%E3%80%82"><span class="nav-number">2.15.</span> <span class="nav-text">15.避免分配内存，您应该避免分配新对象，除非你真的需要，因为他们不再在使用时，会增加垃圾回收系统的开销。您可以经常重复使用数组和其他对象，而不是分配新的数组或对象。这样做好处则是尽量减少垃圾的回收工作。同时，在某些可能的情况下，您也可以使用结构（struct）来代替类（class）。这是因为，结构变量主要存放在栈区而非堆区。因为栈的分配较快，并且不调用垃圾回收操作，所以当结构变量比较小时可以提升程序的运行性能。但是当结构体较大时，虽然它仍可避免分配&#x2F;回收的开销，而它由于”传值”操作也会导致单独的开销，实际上它可能比等效对象类的效率还要低。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#16-%E4%BD%BF%E7%94%A8%E5%86%85%E7%BD%AE%E6%95%B0%E7%BB%84-%E5%86%85%E7%BD%AE%E6%95%B0%E7%BB%84%E6%98%AF%E9%9D%9E%E5%B8%B8%E5%BF%AB%E7%9A%84%E3%80%82ArrayList%E6%88%96Array%E7%B1%BB%E5%BE%88%E5%AE%B9%E6%98%93%E4%BD%BF%E7%94%A8%EF%BC%8C%E4%BD%A0%E8%83%BD%E8%BD%BB%E6%98%93%E6%B7%BB%E5%8A%A0%E5%85%83%E4%BB%B6%E3%80%82%E4%BD%86%E6%98%AF%E4%BB%96%E4%BB%AC%E6%9C%89%E5%AE%8C%E5%85%A8%E4%B8%8D%E5%90%8C%E7%9A%84%E9%80%9F%E5%BA%A6%E3%80%82-%E5%86%85%E7%BD%AE%E6%95%B0%E7%BB%84%E6%9C%89%E5%9B%BA%E5%AE%9A%E9%95%BF%E5%BA%A6%EF%BC%8C%E5%B9%B6%E4%B8%94%E5%A4%A7%E5%A4%9A%E6%97%B6%E5%80%99%E4%BD%A0%E4%BC%9A%E4%BA%8B%E5%85%88%E7%9F%A5%E9%81%93%E6%9C%80%E5%A4%A7%E9%95%BF%E5%BA%A6%E7%84%B6%E5%90%8E%E5%A1%AB%E5%85%85%E5%AE%83%E3%80%82%E5%86%85%E7%BD%AE%E6%95%B0%E7%BB%84%E6%9C%80%E5%A5%BD%E7%9A%84%E4%B8%80%E7%82%B9%E6%98%AF%E4%BB%96%E4%BB%AC%E7%9B%B4%E6%8E%A5%E5%B5%8C%E5%85%A5%E7%BB%93%E6%9E%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%9C%A8%E4%B8%80%E4%B8%AA%E7%B4%A7%E5%AF%86%E7%9A%84%E7%BC%93%E5%AD%98%E9%87%8C%EF%BC%8C%E8%80%8C%E4%B8%8D%E9%9C%80%E8%A6%81%E4%BB%BB%E4%BD%95%E9%A2%9D%E5%A4%96-%E7%B1%BB%E5%9E%8B%E4%BF%A1%E6%81%AF%E6%88%96%E5%85%B6%E4%BB%96%E5%BC%80%E9%94%80%E3%80%82%E5%9B%A0%E6%AD%A4%EF%BC%8C%E5%9C%A8%E7%BC%93%E5%AD%98%E4%B8%AD%E9%81%8D%E5%8E%86%E5%AE%83%E6%98%AF%E9%9D%9E%E5%B8%B8%E5%AE%B9%E6%98%93%E7%9A%84%EF%BC%8C%E5%9B%A0%E4%B8%BA%E6%AF%8F%E4%B8%AA%E5%85%83%E7%B4%A0%E9%83%BD%E6%98%AF%E5%AF%B9%E9%BD%90%E7%9A%84%E3%80%82"><span class="nav-number">2.16.</span> <span class="nav-text">16.使用内置数组,内置数组是非常快的。ArrayList或Array类很容易使用，你能轻易添加元件。但是他们有完全不同的速度。 内置数组有固定长度，并且大多时候你会事先知道最大长度然后填充它。内置数组最好的一点是他们直接嵌入结构数据类型在一个紧密的缓存里，而不需要任何额外 类型信息或其他开销。因此，在缓存中遍历它是非常容易的，因为每个元素都是对齐的。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#17-%E4%BD%BF%E7%94%A8%E9%9D%99%E6%80%81%E7%B1%BB%E5%9E%8B"><span class="nav-number">2.17.</span> <span class="nav-text">17.使用静态类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#18-%E4%BD%BF%E7%94%A8-pragma-strict"><span class="nav-number">2.18.</span> <span class="nav-text">18.使用#pragma strict</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#19-%E7%BC%93%E5%AD%98%E7%BB%84%E4%BB%B6%E6%9F%A5%E6%89%BE"><span class="nav-number">2.19.</span> <span class="nav-text">19.缓存组件查找</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#20-%E5%A6%82%E6%9E%9C%E6%B2%A1%E6%9C%89%E5%BF%85%E8%A6%81%E4%B8%8D%E8%A6%81%E8%B0%83%E7%94%A8%E5%87%BD%E6%95%B0"><span class="nav-number">2.20.</span> <span class="nav-text">20.如果没有必要不要调用函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#21-%E4%BD%BF%E7%94%A8%E8%A7%A6%E5%8F%91%E5%99%A8%E3%80%82%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E7%90%83%E5%BD%A2%E8%A7%A6%E5%8F%91%E5%99%A8%E8%83%BD%E5%BC%95%E5%8F%91%E6%83%8A%E4%BA%BA%E6%95%88%E6%9E%9C%E3%80%82%E4%BD%A0%E5%8F%AF%E4%BB%A5%E8%B0%83%E7%94%A8OnTriggerEnter-Exit%EF%BC%8C%E5%BD%93%E8%BF%9B%E5%85%A5%E4%BD%A0%E6%83%B3%E8%A6%81%E7%9A%84%E4%BD%9C%E7%94%A8%E8%8C%83%E5%9B%B4%E3%80%82"><span class="nav-number">2.21.</span> <span class="nav-text">21.使用触发器。一个简单的球形触发器能引发惊人效果。你可以调用OnTriggerEnter&#x2F;Exit，当进入你想要的作用范围。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#22-%E4%BD%BF%E7%94%A8%E5%8D%8F%E5%90%8C%E7%A8%8B%E5%BA%8F%E3%80%82Update%E7%9A%84%E9%97%AE%E9%A2%98%E6%98%AF%E4%BB%96%E5%9C%A8%E6%AF%8F%E5%B8%A7%E9%83%BD%E5%8F%91%E7%94%9F%E3%80%82%E5%BE%88%E5%8F%AF%E8%83%BD%E5%8F%AA%E9%9C%80%E8%A6%815%E7%A7%92%E9%92%9F%E6%A3%80%E6%9F%A5%E4%B8%80%E6%AC%A1%E7%8E%A9%E5%AE%B6%E7%9A%84%E8%B7%9D%E7%A6%BB%E3%80%82%E8%BF%99%E5%8F%AF%E4%BB%A5%E8%8A%82%E7%BA%A6%E5%A4%A7%E9%87%8F%E7%9A%84%E5%A4%84%E7%90%86%E5%91%A8%E6%9C%9F%E3%80%82"><span class="nav-number">2.22.</span> <span class="nav-text">22.使用协同程序。Update的问题是他在每帧都发生。很可能只需要5秒钟检查一次玩家的距离。这可以节约大量的处理周期。</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Chester.C</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">26</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">57</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chester.C</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'OQBlgU8H1seTDvVrgC3Dhni0-gzGzoHsz',
+      appKey     : 'wF7D3hVD9WjlV9V52bhlymHO',
+      placeholder: "Just go go",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : 'zh-cn' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>
