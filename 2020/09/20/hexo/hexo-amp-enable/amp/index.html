@@ -32,7 +32,7 @@
 			    "@id":"http://blog.rcant.com/2020/09/20/hexo/hexo-amp-enable/"
 			},
 			"datePublished": "2020-09-20T02:39:17.000Z",
-			"dateModified": "2020-09-21T06:10:12.536Z",
+			"dateModified": "2020-09-21T06:47:10.015Z",
 			
 			"image": {
 				"@type": "ImageObject",
@@ -1608,7 +1608,7 @@ amp-twitter {
 <p>&#x6253;&#x5F00; <strong>themes/next/layout/_partials/head/</strong> &#x6587;&#x4EF6;&#x5939;&#x4E2D;&#x7684; <strong>head.swig</strong> &#x6587;&#x4EF6;&#x3002;</p>
 <figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi themes/next/layout/_partials/head/head.swig</span><br></pre></td></tr></tbody></table></figure>
 <p>&#x5728;&#x6587;&#x4EF6;&#x4E2D;&#x6DFB;&#x52A0;&#x5982;&#x4E0B;&#x5185;&#x5BB9;&#x3002;</p>
-<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">{%- if is_post() and config.generator_amp %}</span><br><span class="line">  &lt;link rel=&quot;amphtml&quot; href=&quot;./amp/&quot; /&gt;</span><br><span class="line">{%- endif %}</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">{%- if isPostHelper() and config.generator_amp %}</span><br><span class="line">  &lt;link rel=&quot;amphtml&quot; href=&quot;./amp/&quot; /&gt;</span><br><span class="line">{%- endif %}</span><br></pre></td></tr></tbody></table></figure>
 <p>&#x4FEE;&#x6539;&#x7AD9;&#x70B9;&#x914D;&#x7F6E;<br>&#x6253;&#x5F00;&#x7AD9;&#x70B9;&#x914D;&#x7F6E;&#x6587;&#x4EF6; <strong>_config.yml</strong> &#xFF0C;&#x52A0;&#x5165;&#x4EE5;&#x4E0B;&#x5185;&#x5BB9;&#x3002;</p>
 <figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">generator_amp:</span><br><span class="line">  templateDir:  amp-template</span><br><span class="line">  assetDistDir: amp-dist</span><br><span class="line">  logo:</span><br><span class="line">    path:   sample/sample-logo.png</span><br><span class="line">    width:  600</span><br><span class="line">    height: 60</span><br><span class="line">  substituteTitleImage:</span><br><span class="line">    path:   sample/sample-substituteTitleImage.png</span><br><span class="line">    width:  1024</span><br><span class="line">    height: 800</span><br><span class="line">  warningLog: false   # To display warning, please set true.</span><br></pre></td></tr></tbody></table></figure>
 

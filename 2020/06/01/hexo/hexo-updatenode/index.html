@@ -9,6 +9,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
   <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="amphtml" href="./amp/index.html">
 
 <link rel="stylesheet" href="/css/main.css">
 
@@ -263,7 +264,7 @@
 <h2 id="升级错误记录"><a href="#升级错误记录" class="headerlink" title="升级错误记录"></a>升级错误记录</h2><h3 id="node-升级14-以后，hexo-部署失败了"><a href="#node-升级14-以后，hexo-部署失败了" class="headerlink" title="node 升级14 以后，hexo 部署失败了"></a>node 升级14 以后，hexo 部署失败了</h3><p>报错如下</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$ hexo d</span><br><span class="line">INFO  Deploying: git</span><br><span class="line">INFO  Clearing .deploy_git folder...</span><br><span class="line">INFO  Copying files from public folder...</span><br><span class="line">FATAL Something&#39;s wrong. Maybe you can find the solution here: https:&#x2F;&#x2F;hexo.io&#x2F;docs&#x2F;troubleshooting.html</span><br><span class="line">TypeError [ERR_INVALID_ARG_TYPE]: The &quot;mode&quot; argument must be integer. Received an instance of Object</span><br><span class="line">    at copyFile (fs.js:1924:10)</span><br><span class="line">    at tryCatcher (E:\projects\hexo\rcantblog_hexo\blog\node_modules\hexo-fs\node_modules\bluebird\js\release\util.js:16:23)</span><br><span class="line">    at ret (eval at makeNodePromisifiedEval (C:\Users\cqs\AppData\Roaming\npm\node_modules\hexo\node_modules\bluebird\js\release\promisify.js:184:12), &lt;anonymous&gt;:13:39)</span><br><span class="line">    at E:\projects\hexo\rcantblog_hexo\blog\node_modules\hexo-fs\lib\fs.js:144:39</span><br><span class="line">    at tryCatcher (E:\projects\hexo\rcantblog_hexo\blog\node_modules\hexo-fs\node_modules\bluebird\js\release\util.js:16:23)</span><br><span class="line">    at Promise._settlePromiseFromHandler (E:\projects\hexo\rcantblog_hexo\blog\node_modules\hexo-fs\node_modules\bluebird\js\release\promise.js:517:31)</span><br><span class="line">    at Promise._settlePromise (E:\projects\hexo\rcantblog_hexo\blog\node_modules\hexo-fs\node_modules\bluebird\js\release\promise.js:574:18)</span><br></pre></td></tr></table></figure>
 
-<p>google了下发现是hexo不支持最新node14+，issue见此，解决方案两种：降低node版本或者升级最新<a href="mailto:&#104;&#101;&#120;&#x6f;&#x40;&#x34;&#46;&#x32;&#x2e;&#x31;">&#104;&#101;&#120;&#x6f;&#x40;&#x34;&#46;&#x32;&#x2e;&#x31;</a>+。</p>
+<p>google了下发现是hexo不支持最新node14+，issue见此，解决方案两种：降低node版本或者升级最新<a href="mailto:&#104;&#x65;&#120;&#111;&#64;&#x34;&#x2e;&#x32;&#46;&#49;">&#104;&#x65;&#120;&#111;&#64;&#x34;&#x2e;&#x32;&#46;&#49;</a>+。</p>
 <p>我尝试了升级hexo到4.2.1发现并没有什么卵用，照样报相同的错，所以选择了降低node版本到稳定版：</p>
 <p>直接到官网下载最新稳定版：<a target="_blank" rel="noopener" href="https://nodejs.org/en/download/">https://nodejs.org/en/download/</a></p>
 <p>然后重新执行 hexo clean &amp;&amp; hexo deploy 打包命令就好了。</p>
