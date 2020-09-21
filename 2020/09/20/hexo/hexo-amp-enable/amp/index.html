@@ -32,7 +32,7 @@
 			    "@id":"http://blog.rcant.com/2020/09/20/hexo/hexo-amp-enable/"
 			},
 			"datePublished": "2020-09-20T02:39:17.000Z",
-			"dateModified": "2020-09-21T06:47:10.015Z",
+			"dateModified": "2020-09-21T07:40:17.329Z",
 			
 			"image": {
 				"@type": "ImageObject",
@@ -1608,17 +1608,32 @@ amp-twitter {
 <p>&#x6253;&#x5F00; <strong>themes/next/layout/_partials/head/</strong> &#x6587;&#x4EF6;&#x5939;&#x4E2D;&#x7684; <strong>head.swig</strong> &#x6587;&#x4EF6;&#x3002;</p>
 <figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi themes/next/layout/_partials/head/head.swig</span><br></pre></td></tr></tbody></table></figure>
 <p>&#x5728;&#x6587;&#x4EF6;&#x4E2D;&#x6DFB;&#x52A0;&#x5982;&#x4E0B;&#x5185;&#x5BB9;&#x3002;</p>
-<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">{%- if isPostHelper() and config.generator_amp %}</span><br><span class="line">  &lt;link rel=&quot;amphtml&quot; href=&quot;./amp/&quot; /&gt;</span><br><span class="line">{%- endif %}</span><br></pre></td></tr></tbody></table></figure>
-<p>&#x4FEE;&#x6539;&#x7AD9;&#x70B9;&#x914D;&#x7F6E;<br>&#x6253;&#x5F00;&#x7AD9;&#x70B9;&#x914D;&#x7F6E;&#x6587;&#x4EF6; <strong>_config.yml</strong> &#xFF0C;&#x52A0;&#x5165;&#x4EE5;&#x4E0B;&#x5185;&#x5BB9;&#x3002;</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">{%- if is_post() and config.generator_amp %}</span><br><span class="line">  &lt;link rel=&quot;amphtml&quot; href=&quot;./amp/&quot; /&gt;</span><br><span class="line">{%- endif %}</span><br></pre></td></tr></tbody></table></figure>
+<h4 id="&#x6CE8;&#x610F;-&#x8FD9;&#x4E2A;&#x7248;&#x672C;&#x4E2D;&#x6709;&#x4E2A;bug"><a href="#&#x6CE8;&#x610F;-&#x8FD9;&#x4E2A;&#x7248;&#x672C;&#x4E2D;&#x6709;&#x4E2A;bug" class="headerlink" title="&#x6CE8;&#x610F; &#x8FD9;&#x4E2A;&#x7248;&#x672C;&#x4E2D;&#x6709;&#x4E2A;bug"></a>&#x6CE8;&#x610F; &#x8FD9;&#x4E2A;&#x7248;&#x672C;&#x4E2D;&#x6709;&#x4E2A;bug</h4><p>&#x5229;&#x7528; <strong>hexo s</strong> &#x672C;&#x5730;&#x6D4B;&#x8BD5;&#x7684;&#x65F6;&#x5019;&#xFF0C; <strong>is_post()</strong> &#x5224;&#x65AD;&#x6CA1;&#x95EE;&#x9898;&#xFF0C;&#x53EA;&#x6709;&#x5728; <strong>Post</strong> <strong>Render</strong> &#x7684;&#x65F6;&#x5019;&#x624D;&#x4F1A;&#x8FD4;&#x56DE;True</p>
+<p>&#x4F46;&#x662F; <strong>hexo g</strong> &#x6216;&#x8005; <strong>hexo d</strong> &#xFF0C;&#x6240;&#x6709;&#x60C5;&#x51B5;&#x8FD4;&#x56DE;&#x7684;&#x90FD;&#x662F; <strong>False</strong></p>
+<p><strong>Bug</strong> &#x662F;&#x7531;&#x4E8E; <strong>Next Theme</strong>  &#x5BF9; <strong>Head</strong> &#x4F7F;&#x7528;&#x4E86;&#x7F13;&#x5B58;&#x673A;&#x5236;. &#x53EA;&#x4F1A;&#x751F;&#x6210;&#x4E00;&#x6B21; <strong>Head</strong> &#x540E;&#x9762;&#x6240;&#x6709;&#x7684;&#x6587;&#x7AE0;&#x91CD;&#x7528;&#x8FD9;&#x4E2A;&#x7F13;&#x5B58;&#xFF0C;&#x5BFC;&#x81F4;&#x6240;&#x6709;&#x60C5;&#x51B5;&#x8FD4;&#x56DE;&#x7684;&#x90FD;&#x662F; <strong>False</strong></p>
+<ul>
+<li><a href="https://github.com/hexojs/hexo/issues/2503">&#x53C2;&#x8003;1</a>  </li>
+<li><a href="https://github.com/hexojs/hexo/issues/3483">&#x53C2;&#x8003;2</a></li>
+</ul>
+<p>&#x4FEE;&#x6539;&#x65B9;&#x6CD5;</p>
+<p>&#x6253;&#x5F00; <strong>themes/next/layout/_layout.swig</strong> &#x6587;&#x4EF6;&#x3002;</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi themes/next/layout/_layout.swig</span><br></pre></td></tr></tbody></table></figure>
+
+<p>&#x5C06;&#x8FD9;&#x6BB5;&#x4FEE;&#x6539;&#x6389;</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">{{ partial(&apos;_partials/head/head.swig&apos;, {}, {cache: theme.cache.enable}) }}</span><br></pre></td></tr></tbody></table></figure>
+<p>&#x4FEE;&#x6539;&#x4E3A;&#x4E0B;&#x9762;&#x8FD9;&#x6BB5; &#x4E0D;&#x5BB9;&#x8BB8;&#x751F;&#x6210;&#x7F13;&#x5B58;</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">{{ partial(&apos;_partials/head/head.swig&apos;, {}) }}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="&#x4FEE;&#x6539;&#x7AD9;&#x70B9;&#x914D;&#x7F6E;"><a href="#&#x4FEE;&#x6539;&#x7AD9;&#x70B9;&#x914D;&#x7F6E;" class="headerlink" title="&#x4FEE;&#x6539;&#x7AD9;&#x70B9;&#x914D;&#x7F6E;"></a>&#x4FEE;&#x6539;&#x7AD9;&#x70B9;&#x914D;&#x7F6E;</h3><p>&#x6253;&#x5F00;&#x7AD9;&#x70B9;&#x914D;&#x7F6E;&#x6587;&#x4EF6; <strong>_config.yml</strong> &#xFF0C;&#x52A0;&#x5165;&#x4EE5;&#x4E0B;&#x5185;&#x5BB9;&#x3002;</p>
 <figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">generator_amp:</span><br><span class="line">  templateDir:  amp-template</span><br><span class="line">  assetDistDir: amp-dist</span><br><span class="line">  logo:</span><br><span class="line">    path:   sample/sample-logo.png</span><br><span class="line">    width:  600</span><br><span class="line">    height: 60</span><br><span class="line">  substituteTitleImage:</span><br><span class="line">    path:   sample/sample-substituteTitleImage.png</span><br><span class="line">    width:  1024</span><br><span class="line">    height: 800</span><br><span class="line">  warningLog: false   # To display warning, please set true.</span><br></pre></td></tr></tbody></table></figure>
 
-<p>&#x90E8;&#x7F72;</p>
-<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g -d</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="&#x90E8;&#x7F72;"><a href="#&#x90E8;&#x7F72;" class="headerlink" title="&#x90E8;&#x7F72;"></a>&#x90E8;&#x7F72;</h3><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g -d</span><br></pre></td></tr></tbody></table></figure>
 
-<p>&#x67E5;&#x770B;&#x6548;&#x679C;<br>&#x5728;&#x6211;&#x7684;&#x6BCF;&#x7BC7;&#x6587;&#x7AE0;&#x5730;&#x5740;&#x540E;&#x52A0;&#x4E0A;./amp/ &#x5373;&#x53EF;&#x770B;&#x5230;&#x6548;&#x679C;&#xFF0C;&#x4EE5;&#x672C;&#x6587;&#x4E3A;&#x4F8B;&#x3002;</p>
+<h3 id="&#x67E5;&#x770B;&#x6548;&#x679C;"><a href="#&#x67E5;&#x770B;&#x6548;&#x679C;" class="headerlink" title="&#x67E5;&#x770B;&#x6548;&#x679C;"></a>&#x67E5;&#x770B;&#x6548;&#x679C;</h3><p>&#x5728;&#x6211;&#x7684;&#x6BCF;&#x7BC7;&#x6587;&#x7AE0;&#x5730;&#x5740;&#x540E;&#x52A0;&#x4E0A;./amp/ &#x5373;&#x53EF;&#x770B;&#x5230;&#x6548;&#x679C;&#xFF0C;&#x4EE5;&#x672C;&#x6587;&#x4E3A;&#x4F8B;&#x3002;</p>
 <div class="amp-img-wrapper"><amp-img src="/2020/09/20/hexo/hexo-amp-enable/1.png" width="1114" height="892" layout="responsive"></amp-img></div>  
 
-<p>Google &#x7684; AMP &#x6D4B;&#x8BD5;<br>&#x53EF;&#x4EE5;&#x4F7F;&#x7528; Google &#x7684; AMP &#x6D4B;&#x8BD5;&#x6765;&#x6D4B;&#x8BD5;&#x4F60;&#x7684; AMP &#x7F51;&#x9875;&#x7684;&#x6709;&#x6548;&#x6027;&#x3002;&#x7136;&#x540E;&#x4F60;&#x5C31;&#x80FD;&#x653E;&#x5FC3;&#x5730;&#x5C06;&#x7F51;&#x9875;&#x63D0;&#x4EA4;&#x7ED9; Google &#x548C;&#x767E;&#x5EA6;&#x4E86;&#x3002;</p>
+<h3 id="Google-&#x7684;-AMP-&#x6D4B;&#x8BD5;"><a href="#Google-&#x7684;-AMP-&#x6D4B;&#x8BD5;" class="headerlink" title="Google &#x7684; AMP &#x6D4B;&#x8BD5;"></a>Google &#x7684; AMP &#x6D4B;&#x8BD5;</h3><p>&#x53EF;&#x4EE5;&#x4F7F;&#x7528; Google &#x7684; AMP &#x6D4B;&#x8BD5;&#x6765;&#x6D4B;&#x8BD5;&#x4F60;&#x7684; AMP &#x7F51;&#x9875;&#x7684;&#x6709;&#x6548;&#x6027;&#x3002;&#x7136;&#x540E;&#x4F60;&#x5C31;&#x80FD;&#x653E;&#x5FC3;&#x5730;&#x5C06;&#x7F51;&#x9875;&#x63D0;&#x4EA4;&#x7ED9; Google &#x548C;&#x767E;&#x5EA6;&#x4E86;&#x3002;</p>
   
 
 <p>&#x76F8;&#x5173;&#x6587;&#x7AE0;:</p>
