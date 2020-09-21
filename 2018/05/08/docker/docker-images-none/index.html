@@ -29,7 +29,7 @@
 <meta property="og:description" content="引子">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2018-05-08T03:39:17.000Z">
-<meta property="article:modified_time" content="2020-08-07T02:31:56.887Z">
+<meta property="article:modified_time" content="2020-09-21T10:03:09.827Z">
 <meta property="article:author" content="Chester.C">
 <meta property="article:tag" content="docker">
 <meta name="twitter:card" content="summary">
@@ -145,6 +145,11 @@
     <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
 
   </li>
+        <li class="menu-item menu-item-topics">
+
+    <a href="/topics/" rel="section"><i class="fa fa-fw fa-pencil"></i>系列</a>
+
+  </li>
   </ul>
 </nav>
 
@@ -203,7 +208,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-07 10:31:56" itemprop="dateModified" datetime="2020-08-07T10:31:56+08:00">2020-08-07</time>
+                <time title="修改时间：2020-09-21 18:03:09" itemprop="dateModified" datetime="2020-09-21T18:03:09+08:00">2020-09-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -251,6 +256,19 @@
 
 <p>由于平时一直使用docker build 命令才生成一个镜像，有时候由于代码跟新频繁就会产生很多的none的image，最近想着清除一下。<br>于是就写了以下脚本：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker ps -a | grep &quot;Exited&quot; | awk &#39;&#123;print $1 &#125;&#39;|xargs docker stop</span><br><span class="line">docker ps -a | grep &quot;Exited&quot; | awk &#39;&#123;print $1 &#125;&#39;|xargs docker rm</span><br><span class="line">docker images -a|grep none|awk &#39;&#123;print $3 &#125;&#39;|xargs docker rmi</span><br></pre></td></tr></table></figure>
+
+<h2 id="Docker系列"><a href="#Docker系列" class="headerlink" title="Docker系列"></a>Docker系列</h2><ul>
+<li><a href="/2017/05/18/docker/docker-first/" title="Docker 安装">Docker 安装</a>  </li>
+<li><a href="/2017/05/18/docker/docker-gitlab/" title="Docker安装Gitlab">Docker安装Gitlab</a>  </li>
+<li><a href="/2018/05/08/docker/docker-images-none/" title="Docker删除 none Images">Docker删除 none Images</a>  </li>
+<li><a href="/2017/05/18/docker/docker-compose-first/" title="Docker-compose 学习">Docker-compose 学习</a>  </li>
+<li><a href="/2017/05/18/docker/docker-machine/" title="Docker Machine 介绍">Docker Machine 介绍</a>  </li>
+<li><a href="/2017/05/19/docker/docker-volume/" title="Docker Volume 介绍">Docker Volume 介绍</a>  </li>
+<li><a href="/2017/05/22/docker/docker-centos-up/" title="Docker在centos上升级">Docker在centos上升级</a>  </li>
+<li><a href="/2017/11/10/docker/docker-problems/" title="Docker 问题收集">Docker 问题收集</a>  
+</li>
+</ul>
+
     </div>
 
     
@@ -353,7 +371,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%95%E5%AD%90"><span class="nav-number">1.</span> <span class="nav-text">引子</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%95%E5%AD%90"><span class="nav-number">1.</span> <span class="nav-text">引子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker%E7%B3%BB%E5%88%97"><span class="nav-number">2.</span> <span class="nav-text">Docker系列</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -367,7 +385,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">84</span>
+          <span class="site-state-item-count">85</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -380,7 +398,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">57</span>
+        <span class="site-state-item-count">58</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
