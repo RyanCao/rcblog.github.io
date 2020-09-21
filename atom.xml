@@ -6,7 +6,7 @@
   <link href="http://blog.rcant.com/atom.xml" rel="self"/>
   
   <link href="http://blog.rcant.com/"/>
-  <updated>2020-09-19T09:35:47.278Z</updated>
+  <updated>2020-09-21T06:02:49.269Z</updated>
   <id>http://blog.rcant.com/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Hexo Amp 支持</title>
+    <link href="http://blog.rcant.com/2020/09/20/hexo/hexo-amp-enable/"/>
+    <id>http://blog.rcant.com/2020/09/20/hexo/hexo-amp-enable/</id>
+    <published>2020-09-20T02:39:17.000Z</published>
+    <updated>2020-09-21T06:02:49.269Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h2><p>Google 的 AMP，能够显著加快网站的移动访问。</p><a id="more"></a><h2 id="AMP-简介"><a href="#AMP-简介" class="headerlink" title="AMP 简介"></a>AMP 简介</h2><blockquote><p>Accelerated Mobile Pages（简称 AMP，意为 “加速移动页面”）是 Google 带领开发的开源项目，目的是为提升移动设备对网站的访问速度。AMP 也可指其派生的标准和库等项目成果。AMP 在 HTML 等广泛使用的网络技术基础上进行改良，它的核心称作 AMP HTML，是 HTML 的一种。服务于技术预览期结束后的 2016 年 2 月正式发布。</p></blockquote><h2 id="Hexo-博客启用方式"><a href="#Hexo-博客启用方式" class="headerlink" title="Hexo 博客启用方式"></a>Hexo 博客启用方式</h2><p>本站采用 NexT 主题，就以此作为演示。</p><h3 id="安装-hexo-generator-amp-插件"><a href="#安装-hexo-generator-amp-插件" class="headerlink" title="安装 hexo-generator-amp 插件"></a>安装 hexo-generator-amp 插件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-generator-amp --save</span><br></pre></td></tr></table></figure><p>如果不成功，加个 sudo 再试一下。</p><h3 id="修改主题"><a href="#修改主题" class="headerlink" title="修改主题"></a>修改主题</h3><p>本文使用的是 NexT 主题 v7.8.0。</p><p>打开 <strong>themes/next/layout/_partials/head/</strong> 文件夹中的 <strong>head.swig</strong> 文件。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi themes&#x2F;next&#x2F;layout&#x2F;_partials&#x2F;head&#x2F;head.swig</span><br></pre></td></tr></table></figure><p>在文件中添加如下内容。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;% if is_post() and config.generator_amp %&#125;</span><br><span class="line">  &lt;link rel&#x3D;&quot;amphtml&quot; href&#x3D;&quot;.&#x2F;amp&#x2F;&quot; &#x2F;&gt;</span><br><span class="line">&#123;% endif %&#125;</span><br></pre></td></tr></table></figure><p>修改站点配置<br>打开站点配置文件 <strong>_config.yml</strong> ，加入以下内容。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">generator_amp:</span><br><span class="line">  templateDir:  amp-template</span><br><span class="line">  assetDistDir: amp-dist</span><br><span class="line">  logo:</span><br><span class="line">    path:   sample&#x2F;sample-logo.png</span><br><span class="line">    width:  600</span><br><span class="line">    height: 60</span><br><span class="line">  substituteTitleImage:</span><br><span class="line">    path:   sample&#x2F;sample-substituteTitleImage.png</span><br><span class="line">    width:  1024</span><br><span class="line">    height: 800</span><br><span class="line">  warningLog: false   # To display warning, please set true.</span><br></pre></td></tr></table></figure><p>部署</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g -d</span><br></pre></td></tr></table></figure><p>查看效果<br>在我的每篇文章地址后加上./amp/ 即可看到效果，以本文为例。</p><p>Google 的 AMP 测试<br>可以使用 Google 的 AMP 测试来测试你的 AMP 网页的有效性。然后你就能放心地将网页提交给 Google 和百度了。</p><p>相关文章:</p><p><a href="https://www.iszy.cc/2018/08/26/hexo-enable-amp/">本站已全面启用 AMP</a></p>]]></content>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;起因&quot;&gt;&lt;a href=&quot;#起因&quot; class=&quot;headerlink&quot; title=&quot;起因&quot;&gt;&lt;/a&gt;起因&lt;/h2&gt;&lt;p&gt;Google 的 AMP，能够显著加快网站的移动访问。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="hexo" scheme="http://blog.rcant.com/categories/hexo/"/>
+    
+    
+    <category term="hexo" scheme="http://blog.rcant.com/tags/hexo/"/>
+    
+  </entry>
   
   <entry>
     <title>Unity 编辑器扩展</title>
@@ -453,29 +474,6 @@
     <category term="分治" scheme="http://blog.rcant.com/tags/%E5%88%86%E6%B2%BB/"/>
     
     <category term="算法" scheme="http://blog.rcant.com/tags/%E7%AE%97%E6%B3%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Genetic Algorithm 使用</title>
-    <link href="http://blog.rcant.com/2019/08/01/algorithm/genetic-algorithm-use/"/>
-    <id>http://blog.rcant.com/2019/08/01/algorithm/genetic-algorithm-use/</id>
-    <published>2019-08-01T06:40:07.000Z</published>
-    <updated>2020-08-07T02:31:56.876Z</updated>
-    
-    <content type="html"><![CDATA[<p>遗传算法</p><a id="more"></a><h2 id="1-什么是遗传算法"><a href="#1-什么是遗传算法" class="headerlink" title="1. 什么是遗传算法"></a>1. 什么是遗传算法</h2><p>是模拟达尔文生物进化论的自然选择和遗传学机理的生物进化过程的计算模型，是一种通过模拟自然进化过程搜索最优解的方法。</p><p>是一类借鉴生物界的进化规律（适者生存，优胜劣汰遗传机制）演化而来的随机化搜索方法。</p><h2 id="2-遗传算法基本运算过程"><a href="#2-遗传算法基本运算过程" class="headerlink" title="2. 遗传算法基本运算过程"></a>2. 遗传算法基本运算过程</h2><h3 id="a-初始化：设置进化代数计数器t-0，设置最大进化代数T，随机生成M个个体作为初始群体P-0-。"><a href="#a-初始化：设置进化代数计数器t-0，设置最大进化代数T，随机生成M个个体作为初始群体P-0-。" class="headerlink" title="a)初始化：设置进化代数计数器t=0，设置最大进化代数T，随机生成M个个体作为初始群体P(0)。"></a>a)初始化：设置进化代数计数器t=0，设置最大进化代数T，随机生成M个个体作为初始群体P(0)。</h3><h3 id="b-个体评价：计算群体P-t-中各个个体的适应度。"><a href="#b-个体评价：计算群体P-t-中各个个体的适应度。" class="headerlink" title="b)个体评价：计算群体P(t)中各个个体的适应度。"></a>b)个体评价：计算群体P(t)中各个个体的适应度。</h3><h3 id="c-选择运算：将选择算子作用于群体。选择的目的是把优化的个体直接遗传到下一代或通过配对交叉产生新的个体再遗传到下一代。选择操作是建立在群体中个体的适应度评估基础上的。"><a href="#c-选择运算：将选择算子作用于群体。选择的目的是把优化的个体直接遗传到下一代或通过配对交叉产生新的个体再遗传到下一代。选择操作是建立在群体中个体的适应度评估基础上的。" class="headerlink" title="c)选择运算：将选择算子作用于群体。选择的目的是把优化的个体直接遗传到下一代或通过配对交叉产生新的个体再遗传到下一代。选择操作是建立在群体中个体的适应度评估基础上的。"></a>c)选择运算：将选择算子作用于群体。选择的目的是把优化的个体直接遗传到下一代或通过配对交叉产生新的个体再遗传到下一代。选择操作是建立在群体中个体的适应度评估基础上的。</h3><h3 id="d-交叉运算：将交叉算子作用于群体。遗传算法中起核心作用的就是交叉算子。"><a href="#d-交叉运算：将交叉算子作用于群体。遗传算法中起核心作用的就是交叉算子。" class="headerlink" title="d)交叉运算：将交叉算子作用于群体。遗传算法中起核心作用的就是交叉算子。"></a>d)交叉运算：将交叉算子作用于群体。遗传算法中起核心作用的就是交叉算子。</h3><h3 id="e-变异运算：将变异算子作用于群体。即是对群体中的个体串的某些基因座上的基因值作变动。群体P-t-经过选择、交叉、变异运算之后得到下一代群体P-t-1-。"><a href="#e-变异运算：将变异算子作用于群体。即是对群体中的个体串的某些基因座上的基因值作变动。群体P-t-经过选择、交叉、变异运算之后得到下一代群体P-t-1-。" class="headerlink" title="e)变异运算：将变异算子作用于群体。即是对群体中的个体串的某些基因座上的基因值作变动。群体P(t)经过选择、交叉、变异运算之后得到下一代群体P(t+1)。"></a>e)变异运算：将变异算子作用于群体。即是对群体中的个体串的某些基因座上的基因值作变动。群体P(t)经过选择、交叉、变异运算之后得到下一代群体P(t+1)。</h3><h3 id="f-终止条件判断：若t-T-则以进化过程中所得到的具有最大适应度个体作为最优解输出，终止计算。"><a href="#f-终止条件判断：若t-T-则以进化过程中所得到的具有最大适应度个体作为最优解输出，终止计算。" class="headerlink" title="f)终止条件判断：若t=T,则以进化过程中所得到的具有最大适应度个体作为最优解输出，终止计算。"></a>f)终止条件判断：若t=T,则以进化过程中所得到的具有最大适应度个体作为最优解输出，终止计算。</h3><h2 id="3-连接ADB客户端"><a href="#3-连接ADB客户端" class="headerlink" title="3. 连接ADB客户端"></a>3. 连接ADB客户端</h2><h2 id="4-模拟器开启Root权限"><a href="#4-模拟器开启Root权限" class="headerlink" title="4. 模拟器开启Root权限"></a>4. 模拟器开启Root权限</h2><h2 id="5-可能出现的问题"><a href="#5-可能出现的问题" class="headerlink" title="5. 可能出现的问题"></a>5. 可能出现的问题</h2><h2 id="6-使用adb-shell调试"><a href="#6-使用adb-shell调试" class="headerlink" title="6. 使用adb shell调试"></a>6. 使用adb shell调试</h2><h2 id="7-用GDB调试程序，dump内存"><a href="#7-用GDB调试程序，dump内存" class="headerlink" title="7. 用GDB调试程序，dump内存"></a>7. 用GDB调试程序，dump内存</h2><h2 id="8-gdb-dump-破解源码"><a href="#8-gdb-dump-破解源码" class="headerlink" title="8. gdb dump 破解源码"></a>8. gdb dump 破解源码</h2>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;遗传算法&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="algorithm" scheme="http://blog.rcant.com/categories/algorithm/"/>
-    
-    
-    <category term="genetic" scheme="http://blog.rcant.com/tags/genetic/"/>
-    
-    <category term="algorithm" scheme="http://blog.rcant.com/tags/algorithm/"/>
     
   </entry>
   

@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://blog.rcant.com/2020/09/20/hexo/hexo-amp-enable/</loc>
+    <lastmod>2020-09-21</lastmod>
+  </url>
+  <url>
     <loc>http://blog.rcant.com/2020/09/18/unity/unity-extends/</loc>
     <lastmod>2020-09-19</lastmod>
   </url>
