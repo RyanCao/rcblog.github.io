@@ -32,13 +32,13 @@
 			    "@id":"http://blog.rcant.com/2020/09/20/hexo/hexo-amp-enable/"
 			},
 			"datePublished": "2020-09-20T02:39:17.000Z",
-			"dateModified": "2020-09-21T06:02:49.269Z",
+			"dateModified": "2020-09-21T06:10:12.536Z",
 			
 			"image": {
 				"@type": "ImageObject",
-				"url": "\amp-dist\sample\sample-substituteTitleImage.png",
-				"width" : "1024",
-				"height" : "800"
+				"url": "http://blog.rcant.com\2020\09\20\hexo\hexo-amp-enable\1.png",
+				"width" : "1114",
+				"height" : "892"
 			},
 			
 			"author": {
@@ -1608,7 +1608,7 @@ amp-twitter {
 <p>&#x6253;&#x5F00; <strong>themes/next/layout/_partials/head/</strong> &#x6587;&#x4EF6;&#x5939;&#x4E2D;&#x7684; <strong>head.swig</strong> &#x6587;&#x4EF6;&#x3002;</p>
 <figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi themes/next/layout/_partials/head/head.swig</span><br></pre></td></tr></tbody></table></figure>
 <p>&#x5728;&#x6587;&#x4EF6;&#x4E2D;&#x6DFB;&#x52A0;&#x5982;&#x4E0B;&#x5185;&#x5BB9;&#x3002;</p>
-<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">{% if is_post() and config.generator_amp %}</span><br><span class="line">  &lt;link rel=&quot;amphtml&quot; href=&quot;./amp/&quot; /&gt;</span><br><span class="line">{% endif %}</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">{%- if is_post() and config.generator_amp %}</span><br><span class="line">  &lt;link rel=&quot;amphtml&quot; href=&quot;./amp/&quot; /&gt;</span><br><span class="line">{%- endif %}</span><br></pre></td></tr></tbody></table></figure>
 <p>&#x4FEE;&#x6539;&#x7AD9;&#x70B9;&#x914D;&#x7F6E;<br>&#x6253;&#x5F00;&#x7AD9;&#x70B9;&#x914D;&#x7F6E;&#x6587;&#x4EF6; <strong>_config.yml</strong> &#xFF0C;&#x52A0;&#x5165;&#x4EE5;&#x4E0B;&#x5185;&#x5BB9;&#x3002;</p>
 <figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">generator_amp:</span><br><span class="line">  templateDir:  amp-template</span><br><span class="line">  assetDistDir: amp-dist</span><br><span class="line">  logo:</span><br><span class="line">    path:   sample/sample-logo.png</span><br><span class="line">    width:  600</span><br><span class="line">    height: 60</span><br><span class="line">  substituteTitleImage:</span><br><span class="line">    path:   sample/sample-substituteTitleImage.png</span><br><span class="line">    width:  1024</span><br><span class="line">    height: 800</span><br><span class="line">  warningLog: false   # To display warning, please set true.</span><br></pre></td></tr></tbody></table></figure>
 
@@ -1616,7 +1616,11 @@ amp-twitter {
 <figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g -d</span><br></pre></td></tr></tbody></table></figure>
 
 <p>&#x67E5;&#x770B;&#x6548;&#x679C;<br>&#x5728;&#x6211;&#x7684;&#x6BCF;&#x7BC7;&#x6587;&#x7AE0;&#x5730;&#x5740;&#x540E;&#x52A0;&#x4E0A;./amp/ &#x5373;&#x53EF;&#x770B;&#x5230;&#x6548;&#x679C;&#xFF0C;&#x4EE5;&#x672C;&#x6587;&#x4E3A;&#x4F8B;&#x3002;</p>
+<div class="amp-img-wrapper"><amp-img src="/2020/09/20/hexo/hexo-amp-enable/1.png" width="1114" height="892" layout="responsive"></amp-img></div>  
+
 <p>Google &#x7684; AMP &#x6D4B;&#x8BD5;<br>&#x53EF;&#x4EE5;&#x4F7F;&#x7528; Google &#x7684; AMP &#x6D4B;&#x8BD5;&#x6765;&#x6D4B;&#x8BD5;&#x4F60;&#x7684; AMP &#x7F51;&#x9875;&#x7684;&#x6709;&#x6548;&#x6027;&#x3002;&#x7136;&#x540E;&#x4F60;&#x5C31;&#x80FD;&#x653E;&#x5FC3;&#x5730;&#x5C06;&#x7F51;&#x9875;&#x63D0;&#x4EA4;&#x7ED9; Google &#x548C;&#x767E;&#x5EA6;&#x4E86;&#x3002;</p>
+  
+
 <p>&#x76F8;&#x5173;&#x6587;&#x7AE0;:</p>
 <p><a href="https://www.iszy.cc/2018/08/26/hexo-enable-amp/">&#x672C;&#x7AD9;&#x5DF2;&#x5168;&#x9762;&#x542F;&#x7528; AMP</a></p>
 
