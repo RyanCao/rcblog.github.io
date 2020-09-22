@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://blog.rcant.com/2019/08/03/algorithm/divideconquer-algorithm/</loc>
+    <lastmod>2020-09-22</lastmod>
+  </url>
+  <url>
+    <loc>http://blog.rcant.com/2019/08/03/algorithm/algorithm-readme/</loc>
+    <lastmod>2020-09-22</lastmod>
+  </url>
+  <url>
     <loc>http://blog.rcant.com/2019/08/03/algorithm/greedy-algorithm/</loc>
     <lastmod>2020-09-21</lastmod>
   </url>
@@ -50,14 +58,6 @@
   </url>
   <url>
     <loc>http://blog.rcant.com/2019/08/03/algorithm/dynamicprogram-algorithm/</loc>
-    <lastmod>2020-09-21</lastmod>
-  </url>
-  <url>
-    <loc>http://blog.rcant.com/2019/08/03/algorithm/divideconquer-algorithm/</loc>
-    <lastmod>2020-09-21</lastmod>
-  </url>
-  <url>
-    <loc>http://blog.rcant.com/2019/08/03/algorithm/algorithm-readme/</loc>
     <lastmod>2020-09-21</lastmod>
   </url>
   <url>
@@ -225,11 +225,11 @@
     <lastmod>2020-08-07</lastmod>
   </url>
   <url>
-    <loc>http://blog.rcant.com/2019/02/13/python/python3-code/</loc>
+    <loc>http://blog.rcant.com/2017/11/03/python/python3-doctest/</loc>
     <lastmod>2020-08-07</lastmod>
   </url>
   <url>
-    <loc>http://blog.rcant.com/2017/11/03/python/python3-doctest/</loc>
+    <loc>http://blog.rcant.com/2019/02/13/python/python3-code/</loc>
     <lastmod>2020-08-07</lastmod>
   </url>
   <url>
@@ -293,19 +293,19 @@
     <lastmod>2020-08-07</lastmod>
   </url>
   <url>
-    <loc>http://blog.rcant.com/2017/11/14/django/django-nginx/</loc>
-    <lastmod>2020-08-07</lastmod>
-  </url>
-  <url>
     <loc>http://blog.rcant.com/2018/05/07/django/django-nginx-problem/</loc>
     <lastmod>2020-08-07</lastmod>
   </url>
   <url>
-    <loc>http://blog.rcant.com/2017/11/21/django/django-databases/</loc>
+    <loc>http://blog.rcant.com/2017/11/14/django/django-nginx/</loc>
     <lastmod>2020-08-07</lastmod>
   </url>
   <url>
     <loc>http://blog.rcant.com/2017/11/11/django/django-first/</loc>
+    <lastmod>2020-08-07</lastmod>
+  </url>
+  <url>
+    <loc>http://blog.rcant.com/2017/11/21/django/django-databases/</loc>
     <lastmod>2020-08-07</lastmod>
   </url>
   <url>
@@ -321,19 +321,19 @@
     <lastmod>2020-08-07</lastmod>
   </url>
   <url>
-    <loc>http://blog.rcant.com/2017/11/22/centos/centos-kernel-upgrade/</loc>
-    <lastmod>2020-08-07</lastmod>
-  </url>
-  <url>
     <loc>http://blog.rcant.com/2017/10/24/centos/centos-repos-change/</loc>
     <lastmod>2020-08-07</lastmod>
   </url>
   <url>
-    <loc>http://blog.rcant.com/2018/09/20/centos/centos-ShadowSocks/</loc>
+    <loc>http://blog.rcant.com/2017/11/22/centos/centos-kernel-upgrade/</loc>
     <lastmod>2020-08-07</lastmod>
   </url>
   <url>
     <loc>http://blog.rcant.com/2019/04/01/centos/centos-change-rootpasswd/</loc>
+    <lastmod>2020-08-07</lastmod>
+  </url>
+  <url>
+    <loc>http://blog.rcant.com/2018/09/20/centos/centos-ShadowSocks/</loc>
     <lastmod>2020-08-07</lastmod>
   </url>
   <url>

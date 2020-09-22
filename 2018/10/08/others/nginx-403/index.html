@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.1.1">
+<meta name="generator" content="Hexo 4.2.1">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -14,7 +14,7 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
@@ -125,30 +125,30 @@
 
 
 <nav class="site-nav">
-  <ul id="menu" class="menu">
+  <ul id="menu" class="main-menu menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
 
   </li>
         <li class="menu-item menu-item-topics">
 
-    <a href="/topics/" rel="section"><i class="fa fa-fw fa-pencil"></i>系列</a>
+    <a href="/topics/" rel="section"><i class="fa fa-pencil fa-fw"></i>topics</a>
 
   </li>
   </ul>
@@ -198,7 +198,7 @@
         <div class="post-meta">
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
+                <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
 
@@ -206,14 +206,14 @@
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
+                  <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
                 <time title="修改时间：2020-08-07 10:31:56" itemprop="dateModified" datetime="2020-08-07T10:31:56+08:00">2020-08-07</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
+                <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -233,7 +233,7 @@
   <span class="post-meta-item">
     
       <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
+        <i class="far fa-comment"></i>
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
@@ -379,7 +379,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8BNginx%E6%97%A5%E5%BF%97"><span class="nav-number">1.</span> <span class="nav-text">查看Nginx日志</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%92%E6%9F%A5%E6%96%B9%E5%BC%8F"><span class="nav-number">2.</span> <span class="nav-text">排查方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E7%94%B1%E4%BA%8E%E5%90%AF%E5%8A%A8%E7%94%A8%E6%88%B7%E5%92%8Cnginx%E5%B7%A5%E4%BD%9C%E7%94%A8%E6%88%B7%E4%B8%8D%E4%B8%80%E8%87%B4%E6%89%80%E8%87%B4"><span class="nav-number">2.1.</span> <span class="nav-text">一、由于启动用户和nginx工作用户不一致所致</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8Bnginx%E7%9A%84%E5%90%AF%E5%8A%A8%E7%94%A8%E6%88%B7%EF%BC%8C%E5%8F%91%E7%8E%B0%E6%98%AFnobody%EF%BC%8C%E8%80%8C%E4%B8%BA%E6%98%AF%E7%94%A8root%E5%90%AF%E5%8A%A8%E7%9A%84"><span class="nav-number">2.1.1.</span> <span class="nav-text">查看nginx的启动用户，发现是nobody，而为是用root启动的</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B0%86nginx-config%E7%9A%84user%E6%94%B9%E4%B8%BA%E5%92%8C%E5%90%AF%E5%8A%A8%E7%94%A8%E6%88%B7%E4%B8%80%E8%87%B4"><span class="nav-number">2.1.2.</span> <span class="nav-text">将nginx.config的user改为和启动用户一致</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E6%9D%83%E9%99%90%E9%97%AE%E9%A2%98"><span class="nav-number">2.2.</span> <span class="nav-text">二、权限问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E3%80%81-SELinux%E8%AE%BE%E7%BD%AE%E4%B8%BA%E5%BC%80%E5%90%AF%E7%8A%B6%E6%80%81%EF%BC%88enabled%EF%BC%89%E7%9A%84%E5%8E%9F%E5%9B%A0"><span class="nav-number">2.3.</span> <span class="nav-text">三、 SELinux设置为开启状态（enabled）的原因</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E5%BD%93%E5%89%8Dselinux%E7%9A%84%E7%8A%B6%E6%80%81"><span class="nav-number">2.3.1.</span> <span class="nav-text">查看当前selinux的状态</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B0%86SELINUX-enforcing-%E4%BF%AE%E6%94%B9%E4%B8%BA-SELINUX-disabled-%E7%8A%B6%E6%80%81%E3%80%82"><span class="nav-number">2.3.2.</span> <span class="nav-text">将SELINUX&#x3D;enforcing 修改为 SELINUX&#x3D;disabled 状态。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%87%8D%E5%90%AF%E7%94%9F%E6%95%88"><span class="nav-number">2.3.3.</span> <span class="nav-text">重启生效</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#查看Nginx日志"><span class="nav-number">1.</span> <span class="nav-text">查看Nginx日志</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#排查方式"><span class="nav-number">2.</span> <span class="nav-text">排查方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、由于启动用户和nginx工作用户不一致所致"><span class="nav-number">2.1.</span> <span class="nav-text">一、由于启动用户和nginx工作用户不一致所致</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#查看nginx的启动用户，发现是nobody，而为是用root启动的"><span class="nav-number">2.1.1.</span> <span class="nav-text">查看nginx的启动用户，发现是nobody，而为是用root启动的</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#将nginx-config的user改为和启动用户一致"><span class="nav-number">2.1.2.</span> <span class="nav-text">将nginx.config的user改为和启动用户一致</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、权限问题"><span class="nav-number">2.2.</span> <span class="nav-text">二、权限问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、-SELinux设置为开启状态（enabled）的原因"><span class="nav-number">2.3.</span> <span class="nav-text">三、 SELinux设置为开启状态（enabled）的原因</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#查看当前selinux的状态"><span class="nav-number">2.3.1.</span> <span class="nav-text">查看当前selinux的状态</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#将SELINUX-enforcing-修改为-SELINUX-disabled-状态。"><span class="nav-number">2.3.2.</span> <span class="nav-text">将SELINUX&#x3D;enforcing 修改为 SELINUX&#x3D;disabled 状态。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#重启生效"><span class="nav-number">2.3.3.</span> <span class="nav-text">重启生效</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -435,7 +435,7 @@
   &copy; 
   <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
-    <i class="fa fa-user"></i>
+    <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Chester.C</span>
 </div>

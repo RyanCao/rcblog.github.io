@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.1.1">
+<meta name="generator" content="Hexo 4.2.1">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -14,7 +14,7 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
@@ -124,30 +124,30 @@
 
 
 <nav class="site-nav">
-  <ul id="menu" class="menu">
+  <ul id="menu" class="main-menu menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
 
   </li>
         <li class="menu-item menu-item-topics">
 
-    <a href="/topics/" rel="section"><i class="fa fa-fw fa-pencil"></i>系列</a>
+    <a href="/topics/" rel="section"><i class="fa fa-pencil fa-fw"></i>topics</a>
 
   </li>
   </ul>
@@ -197,7 +197,7 @@
         <div class="post-meta">
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
+                <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
 
@@ -205,14 +205,14 @@
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
+                  <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
                 <time title="修改时间：2020-08-07 10:31:56" itemprop="dateModified" datetime="2020-08-07T10:31:56+08:00">2020-08-07</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
+                <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -232,7 +232,7 @@
   <span class="post-meta-item">
     
       <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
+        <i class="far fa-comment"></i>
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
@@ -299,9 +299,9 @@
 <p>对于包含动画的这类物体，我们无法全部使用静态批处理，但其中如果有不动的部分，可以把这部分标识成“Static”。</p>
 <p>一些讨论：</p>
 <ul>
-<li><a target="_blank" rel="noopener" href="http://answers.unity3d.com/questions/593206/how-static-batching-works.html">How static batching works</a></li>
-<li><a target="_blank" rel="noopener" href="http://forum.unity3d.com/threads/static-batching-use-a-ton-of-memory.102800/">Static batching use a ton of memory?</a></li>
-<li><a target="_blank" rel="noopener" href="http://gamedev.stackexchange.com/questions/45433/unity3d-draw-call-optimization-static-batching-vs-manually-draw-mesh-with-mate">Unity3D draw call optimization</a></li>
+<li><a href="http://answers.unity3d.com/questions/593206/how-static-batching-works.html" target="_blank" rel="noopener">How static batching works</a></li>
+<li><a href="http://forum.unity3d.com/threads/static-batching-use-a-ton-of-memory.102800/" target="_blank" rel="noopener">Static batching use a ton of memory?</a></li>
+<li><a href="http://gamedev.stackexchange.com/questions/45433/unity3d-draw-call-optimization-static-batching-vs-manually-draw-mesh-with-mate" target="_blank" rel="noopener">Unity3D draw call optimization</a></li>
 </ul>
 <h4 id="合并纹理（Atlas）"><a href="#合并纹理（Atlas）" class="headerlink" title="合并纹理（Atlas）"></a>合并纹理（Atlas）</h4><p>虽然批处理是个很好的方式，但很容易就打破它的规定。例如，场景中的物体都使用Diffuse材质，但它们可能会使用不同的纹理。因此，尽可能把多张小纹理合并到一张大纹理（Atlas）中是一个好主意。</p>
 <h4 id="利用网格的顶点数据"><a href="#利用网格的顶点数据" class="headerlink" title="利用网格的顶点数据"></a>利用网格的顶点数据</h4><p>但有时，除了纹理不同外，还有对于不同的物体，它们在材质上还有一些微小的参数变化，例如颜色不同、某些浮点参数不同。但铁定律是，不管是动态批处理还是静态批处理，它们的前提都是要使用同一个材质。是同一个，而不是同一种，也就是说它们指向的材质必须是同一个实体。这意味着，只要我们调整了参数，就会影响到所有使用这个材质的对象。那么想要微小的调整怎么办呢？由于Unity中的规定非常死，那么我们只好想些“歪门邪道”，其中一种就是使用网格的顶点数据（最常见的就是顶点颜色数据）。</p>
@@ -322,11 +322,11 @@
 <p>通过上面的LOD Group面板，我们可以选择需要控制的模型以及距离设置。下面展示了油桶从一个完整网格到简化网格，最后完全被剔除的例子：</p>
 <h3 id="使用遮挡剔除（Occlusion-culling）技术"><a href="#使用遮挡剔除（Occlusion-culling）技术" class="headerlink" title="使用遮挡剔除（Occlusion culling）技术"></a>使用遮挡剔除（Occlusion culling）技术</h3><p>遮挡剔除是用来消除躲在其他物件后面看不到的物件，这代表资源不会浪费在计算那些看不到的顶点上，进而提升性能。关于遮挡剔除，Unity Taiwan有一个系列文章大家可以看看（需翻墙）：</p>
 <ul>
-<li><p><a target="_blank" rel="noopener" href="http://unitytaiwan.blogspot.tw/2013/12/unity-43-occlusion-culling.html">Unity 4.3 关于Occlusion Culling : 基本篇</a></p>
+<li><p><a href="http://unitytaiwan.blogspot.tw/2013/12/unity-43-occlusion-culling.html" target="_blank" rel="noopener">Unity 4.3 关于Occlusion Culling : 基本篇</a></p>
 </li>
-<li><p><a target="_blank" rel="noopener" href="http://unitytaiwan.blogspot.com/2013/12/unity-43-occlusion-culling_26.html">Unity 4.3 关于Occlusion Culling : 最佳做法</a></p>
+<li><p><a href="http://unitytaiwan.blogspot.com/2013/12/unity-43-occlusion-culling_26.html" target="_blank" rel="noopener">Unity 4.3 关于Occlusion Culling : 最佳做法</a></p>
 </li>
-<li><p><a target="_blank" rel="noopener" href="http://unitytaiwan.blogspot.tw/2014/01/unity-43-occlusion-culling.html">Unity 4.3 关于Occlusion Culling : 错误诊断</a></p>
+<li><p><a href="http://unitytaiwan.blogspot.tw/2014/01/unity-43-occlusion-culling.html" target="_blank" rel="noopener">Unity 4.3 关于Occlusion Culling : 错误诊断</a></p>
 </li>
 </ul>
 <p>具体的内容大家可以自行查找。</p>
@@ -463,7 +463,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%95%E5%AD%90"><span class="nav-number">1.</span> <span class="nav-text">引子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BD%B1%E5%93%8D%E6%80%A7%E8%83%BD%E7%9A%84%E5%9B%A0%E7%B4%A0"><span class="nav-number">2.</span> <span class="nav-text">影响性能的因素</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CPU"><span class="nav-number">2.1.</span> <span class="nav-text">CPU</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A1%B6%E7%82%B9%E5%A4%84%E7%90%86"><span class="nav-number">2.2.</span> <span class="nav-text">顶点处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%83%8F%E7%B4%A0%EF%BC%88Fragment%EF%BC%89%E5%A4%84%E7%90%86-%E3%80%90GPU%E3%80%91"><span class="nav-number">2.3.</span> <span class="nav-text">像素（Fragment）处理 【GPU】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%A6%E5%AE%BD"><span class="nav-number">2.4.</span> <span class="nav-text">带宽</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CPU-1"><span class="nav-number">3.</span> <span class="nav-text">CPU</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%8F%E5%B0%91Draw-Calls"><span class="nav-number">3.1.</span> <span class="nav-text">减少Draw Calls</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%89%B9%E5%A4%84%E7%90%86%EF%BC%88Batching%EF%BC%89"><span class="nav-number">3.1.1.</span> <span class="nav-text">批处理（Batching）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%90%88%E5%B9%B6%E7%BA%B9%E7%90%86%EF%BC%88Atlas%EF%BC%89"><span class="nav-number">3.1.2.</span> <span class="nav-text">合并纹理（Atlas）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%A9%E7%94%A8%E7%BD%91%E6%A0%BC%E7%9A%84%E9%A1%B6%E7%82%B9%E6%95%B0%E6%8D%AE"><span class="nav-number">3.1.3.</span> <span class="nav-text">利用网格的顶点数据</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%B6%E7%82%B9%E4%BC%98%E5%8C%96"><span class="nav-number">4.</span> <span class="nav-text">顶点优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%98%E5%8C%96%E5%87%A0%E4%BD%95%E4%BD%93"><span class="nav-number">4.1.</span> <span class="nav-text">优化几何体</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8LOD%EF%BC%88Level-of-detail%EF%BC%89%E6%8A%80%E6%9C%AF"><span class="nav-number">4.2.</span> <span class="nav-text">使用LOD（Level of detail）技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E9%81%AE%E6%8C%A1%E5%89%94%E9%99%A4%EF%BC%88Occlusion-culling%EF%BC%89%E6%8A%80%E6%9C%AF"><span class="nav-number">4.3.</span> <span class="nav-text">使用遮挡剔除（Occlusion culling）技术</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GPU"><span class="nav-number">5.</span> <span class="nav-text">GPU</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%83%8F%E7%B4%A0%E4%BC%98%E5%8C%96"><span class="nav-number">5.1.</span> <span class="nav-text">像素优化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8E%A7%E5%88%B6%E7%BB%98%E5%88%B6%E9%A1%BA%E5%BA%8F"><span class="nav-number">5.1.1.</span> <span class="nav-text">控制绘制顺序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%97%B6%E5%88%BB%E8%AD%A6%E6%83%95%E9%80%8F%E6%98%8E%E7%89%A9%E4%BD%93"><span class="nav-number">5.1.2.</span> <span class="nav-text">时刻警惕透明物体</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%87%8F%E5%B0%91%E5%AE%9E%E6%97%B6%E5%85%89%E7%85%A7"><span class="nav-number">5.1.3.</span> <span class="nav-text">减少实时光照</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8Lightmaps"><span class="nav-number">5.1.4.</span> <span class="nav-text">使用Lightmaps</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8God-Rays"><span class="nav-number">5.1.5.</span> <span class="nav-text">使用God Rays</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%A6%E5%AE%BD%E4%BC%98%E5%8C%96"><span class="nav-number">6.</span> <span class="nav-text">带宽优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%8F%E5%B0%91%E7%BA%B9%E7%90%86%E5%A4%A7%E5%B0%8F"><span class="nav-number">6.1.</span> <span class="nav-text">减少纹理大小</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A9%E7%94%A8%E7%BC%A9%E6%94%BE"><span class="nav-number">6.2.</span> <span class="nav-text">利用缩放</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#引子"><span class="nav-number">1.</span> <span class="nav-text">引子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#影响性能的因素"><span class="nav-number">2.</span> <span class="nav-text">影响性能的因素</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CPU"><span class="nav-number">2.1.</span> <span class="nav-text">CPU</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#顶点处理"><span class="nav-number">2.2.</span> <span class="nav-text">顶点处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#像素（Fragment）处理-【GPU】"><span class="nav-number">2.3.</span> <span class="nav-text">像素（Fragment）处理 【GPU】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#带宽"><span class="nav-number">2.4.</span> <span class="nav-text">带宽</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CPU-1"><span class="nav-number">3.</span> <span class="nav-text">CPU</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#减少Draw-Calls"><span class="nav-number">3.1.</span> <span class="nav-text">减少Draw Calls</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#批处理（Batching）"><span class="nav-number">3.1.1.</span> <span class="nav-text">批处理（Batching）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#合并纹理（Atlas）"><span class="nav-number">3.1.2.</span> <span class="nav-text">合并纹理（Atlas）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#利用网格的顶点数据"><span class="nav-number">3.1.3.</span> <span class="nav-text">利用网格的顶点数据</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#顶点优化"><span class="nav-number">4.</span> <span class="nav-text">顶点优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#优化几何体"><span class="nav-number">4.1.</span> <span class="nav-text">优化几何体</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用LOD（Level-of-detail）技术"><span class="nav-number">4.2.</span> <span class="nav-text">使用LOD（Level of detail）技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用遮挡剔除（Occlusion-culling）技术"><span class="nav-number">4.3.</span> <span class="nav-text">使用遮挡剔除（Occlusion culling）技术</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GPU"><span class="nav-number">5.</span> <span class="nav-text">GPU</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#像素优化"><span class="nav-number">5.1.</span> <span class="nav-text">像素优化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#控制绘制顺序"><span class="nav-number">5.1.1.</span> <span class="nav-text">控制绘制顺序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#时刻警惕透明物体"><span class="nav-number">5.1.2.</span> <span class="nav-text">时刻警惕透明物体</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#减少实时光照"><span class="nav-number">5.1.3.</span> <span class="nav-text">减少实时光照</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用Lightmaps"><span class="nav-number">5.1.4.</span> <span class="nav-text">使用Lightmaps</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用God-Rays"><span class="nav-number">5.1.5.</span> <span class="nav-text">使用God Rays</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#带宽优化"><span class="nav-number">6.</span> <span class="nav-text">带宽优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#减少纹理大小"><span class="nav-number">6.1.</span> <span class="nav-text">减少纹理大小</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#利用缩放"><span class="nav-number">6.2.</span> <span class="nav-text">利用缩放</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -519,7 +519,7 @@
   &copy; 
   <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
-    <i class="fa fa-user"></i>
+    <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Chester.C</span>
 </div>

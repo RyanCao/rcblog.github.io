@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.1.1">
+<meta name="generator" content="Hexo 4.2.1">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -14,7 +14,7 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
@@ -124,30 +124,30 @@
 
 
 <nav class="site-nav">
-  <ul id="menu" class="menu">
+  <ul id="menu" class="main-menu menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
 
   </li>
         <li class="menu-item menu-item-topics">
 
-    <a href="/topics/" rel="section"><i class="fa fa-fw fa-pencil"></i>系列</a>
+    <a href="/topics/" rel="section"><i class="fa fa-pencil fa-fw"></i>topics</a>
 
   </li>
   </ul>
@@ -197,7 +197,7 @@
         <div class="post-meta">
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
+                <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
 
@@ -205,14 +205,14 @@
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
+                  <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
                 <time title="修改时间：2020-09-21 18:09:35" itemprop="dateModified" datetime="2020-09-21T18:09:35+08:00">2020-09-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
+                <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -232,7 +232,7 @@
   <span class="post-meta-item">
     
       <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
+        <i class="far fa-comment"></i>
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
@@ -256,11 +256,11 @@
 <h2 id="配置环境"><a href="#配置环境" class="headerlink" title="配置环境"></a>配置环境</h2><p>Node<br>Git</p>
 <a id="more"></a>
 
-<h2 id="开始配置"><a href="#开始配置" class="headerlink" title="开始配置"></a>开始配置</h2><h3 id="Node安装"><a href="#Node安装" class="headerlink" title="Node安装"></a>Node安装</h3><h4 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h4><p>官网下载<br><a target="_blank" rel="noopener" href="https://nodejs.org/en/">https://nodejs.org/en/</a><br>我用的是v6.10<br>安装完使用 node -v 验证下</p>
+<h2 id="开始配置"><a href="#开始配置" class="headerlink" title="开始配置"></a>开始配置</h2><h3 id="Node安装"><a href="#Node安装" class="headerlink" title="Node安装"></a>Node安装</h3><h4 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h4><p>官网下载<br><a href="https://nodejs.org/en/" target="_blank" rel="noopener">https://nodejs.org/en/</a><br>我用的是v6.10<br>安装完使用 node -v 验证下</p>
 <h4 id="Mac"><a href="#Mac" class="headerlink" title="Mac"></a>Mac</h4><ol>
 <li>安装 homebrew</li>
 </ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/bin/ruby -e <span class="string">&quot;<span class="subst">$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)</span>&quot;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/bin/ruby -e <span class="string">"<span class="variable">$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)</span>"</span></span><br></pre></td></tr></table></figure>
 
 <ol start="2">
 <li>brew 升级</li>
@@ -289,7 +289,7 @@
 
 <h2 id="博客初始化"><a href="#博客初始化" class="headerlink" title="博客初始化"></a>博客初始化</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cd $work</span><br><span class="line">mkdir blog</span><br><span class="line">hexo init</span><br><span class="line">hexo generate (hexo g 简写)</span><br><span class="line">hexo server(hexo s简写)</span><br></pre></td></tr></table></figure>
 
-<p>完成后 浏览器输入<a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000</a> </p>
+<p>完成后 浏览器输入<a href="http://localhost:4000/" target="_blank" rel="noopener">http://localhost:4000</a> </p>
 <h2 id="使用github委托"><a href="#使用github委托" class="headerlink" title="使用github委托"></a>使用github委托</h2><p>1.需要在github上注册帐号<br>2.如果你的github用户名为${your_name},仓库名必须为${your_name}.github.io<br>3.配置_config.yml建立github 和hexo网站的关联</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi _config.xml</span><br></pre></td></tr></table></figure>
 
@@ -303,24 +303,24 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo deploy(hexo d 简写)</span><br></pre></td></tr></table></figure>
 
 
-<p>发布完以后可以到<a target="_blank" rel="noopener" href="https://your_name.github.io/">地址</a>访问</p>
+<p>发布完以后可以到<a href="https://your_name.github.io/" target="_blank" rel="noopener">地址</a>访问</p>
 <h2 id="hexo-部署相关"><a href="#hexo-部署相关" class="headerlink" title="hexo 部署相关"></a>hexo 部署相关</h2><p>以后每次部署都可以按这个来</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo generate</span><br><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
 
 <p>列出常用的 hexo 命令</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">hexo new <span class="string">&quot;postName&quot;</span> <span class="comment">#新建文章</span></span><br><span class="line">hexo new page <span class="string">&quot;pageName&quot;</span> <span class="comment">#新建页面</span></span><br><span class="line">hexo generate <span class="comment">#生成静态页面至public目录</span></span><br><span class="line">hexo server <span class="comment">#开启预览访问端口（默认端口4000，&#x27;ctrl + c&#x27;关闭server）</span></span><br><span class="line">hexo deploy <span class="comment">#将.deploy目录部署到GitHub</span></span><br><span class="line">hexo <span class="built_in">help</span>  <span class="comment">#查看帮助</span></span><br><span class="line">hexo version  <span class="comment">#查看Hexo的版本</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">hexo new <span class="string">"postName"</span> <span class="comment">#新建文章</span></span><br><span class="line">hexo new page <span class="string">"pageName"</span> <span class="comment">#新建页面</span></span><br><span class="line">hexo generate <span class="comment">#生成静态页面至public目录</span></span><br><span class="line">hexo server <span class="comment">#开启预览访问端口（默认端口4000，'ctrl + c'关闭server）</span></span><br><span class="line">hexo deploy <span class="comment">#将.deploy目录部署到GitHub</span></span><br><span class="line">hexo <span class="built_in">help</span>  <span class="comment">#查看帮助</span></span><br><span class="line">hexo version  <span class="comment">#查看Hexo的版本</span></span><br></pre></td></tr></table></figure>
 
 <p>一些不错的主题列表</p>
-<p>　<a target="_blank" rel="noopener" href="https://github.com/daisygao/hexo-themes-cover">Cover</a> - A chic theme with facebook-like cover photo<br>　<a target="_blank" rel="noopener" href="https://github.com/henryhuang/oishi">Oishi</a> - A white theme based on Landscape plus and Writing.<br>　<a target="_blank" rel="noopener" href="https://github.com/hardywu/hexo-theme-sidebar">Sidebar</a> - Another theme based on Light with a simple sidebar<br>　<a target="_blank" rel="noopener" href="https://github.com/SuperKieran/TKL">TKL</a> - A responsive design theme for Hexo.<br>　<a target="_blank" rel="noopener" href="https://github.com/levonlin/Tinnypp">Tinnypp</a> - A clean, simple theme based on Tinny<br>　<a target="_blank" rel="noopener" href="https://github.com/yunlzheng/hexo-themes-writing">Writing</a> - A small and simple hexo theme based on Light<br>　<a target="_blank" rel="noopener" href="https://github.com/litten/hexo-theme-yilia">Yilia</a> - Responsive and simple style 优雅简洁响应式主题，我用得就是这个。<br>　<a target="_blank" rel="noopener" href="https://github.com/Voidly/pacman">Pacman voidy</a> - A theme with dynamic tagcloud and dynamic snow</p>
+<p>　<a href="https://github.com/daisygao/hexo-themes-cover" target="_blank" rel="noopener">Cover</a> - A chic theme with facebook-like cover photo<br>　<a href="https://github.com/henryhuang/oishi" target="_blank" rel="noopener">Oishi</a> - A white theme based on Landscape plus and Writing.<br>　<a href="https://github.com/hardywu/hexo-theme-sidebar" target="_blank" rel="noopener">Sidebar</a> - Another theme based on Light with a simple sidebar<br>　<a href="https://github.com/SuperKieran/TKL" target="_blank" rel="noopener">TKL</a> - A responsive design theme for Hexo.<br>　<a href="https://github.com/levonlin/Tinnypp" target="_blank" rel="noopener">Tinnypp</a> - A clean, simple theme based on Tinny<br>　<a href="https://github.com/yunlzheng/hexo-themes-writing" target="_blank" rel="noopener">Writing</a> - A small and simple hexo theme based on Light<br>　<a href="https://github.com/litten/hexo-theme-yilia" target="_blank" rel="noopener">Yilia</a> - Responsive and simple style 优雅简洁响应式主题，我用得就是这个。<br>　<a href="https://github.com/Voidly/pacman" target="_blank" rel="noopener">Pacman voidy</a> - A theme with dynamic tagcloud and dynamic snow</p>
 <h2 id="使用其他域名委托"><a href="#使用其他域名委托" class="headerlink" title="使用其他域名委托"></a>使用其他域名委托</h2><p>可能你有自己的域名<br>这里可以使用 CNAME 指向</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> <span class="built_in">source</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;www.yourdomain.com&#x27;</span>&gt;CNAME</span><br><span class="line"><span class="comment">#重新发布 </span></span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> <span class="built_in">source</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">'www.yourdomain.com'</span>&gt;CNAME</span><br><span class="line"><span class="comment">#重新发布 </span></span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
 
-<h2 id="hexo插件"><a href="#hexo插件" class="headerlink" title="hexo插件"></a>hexo插件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">npm install --save hexo-filter-flowchart #流程图插件</span><br><span class="line">npm install --save hexo-generator-amp 	#amp</span><br><span class="line">npm install --save hexo-generator-mip 	#mip</span><br><span class="line">npm install --save hexo-generator-feed 	#mip</span><br><span class="line">npm install --save hexo-generator-baidu-sitemap 	#mip</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="hexo插件"><a href="#hexo插件" class="headerlink" title="hexo插件"></a>hexo插件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">npm install --save hexo-filter-flowchart #流程图插件</span><br><span class="line">npm install --save hexo-generator-amp 	#amp</span><br><span class="line">npm install --save hexo-generator-mip 	#mip</span><br><span class="line">npm install --save hexo-generator-feed 	#mip</span><br><span class="line">npm install --save hexo-generator-baidu-sitemap 	#mip</span><br></pre></td></tr></table></figure>
 
 <p>修改域名委托<br>我是万网的</p>
 <p>添加新的解析记录</p>
 <p>记录类型为 <strong>CNAME</strong><br>主机记录为 <strong>www</strong>，如果是子域名这里修改为子域名, <strong>blog.yourdomain.com</strong> ，这里则填写 <strong>blog</strong><br>记录值为 <strong>${your_name}.github.io</strong></p>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="http://www.jianshu.com/p/834d7cc0668d">http://www.jianshu.com/p/834d7cc0668d</a><br><a target="_blank" rel="noopener" href="http://leopardpan.github.io/">http://leopardpan.github.io/</a></p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="http://www.jianshu.com/p/834d7cc0668d" target="_blank" rel="noopener">http://www.jianshu.com/p/834d7cc0668d</a><br><a href="http://leopardpan.github.io/" target="_blank" rel="noopener">http://leopardpan.github.io/</a></p>
 <h2 id="Hexo博客系列"><a href="#Hexo博客系列" class="headerlink" title="Hexo博客系列"></a>Hexo博客系列</h2><ul>
 <li><a href="/2017/03/01/hexo/hexo-firstblog/" title="Hexo博客搭建">Hexo博客搭建</a>  </li>
 <li><a href="/2017/03/01/hexo/hexo-secordblog/" title="Hexo更换博客样式">Hexo更换博客样式</a>  </li>
@@ -429,7 +429,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B5%B7%E5%9B%A0"><span class="nav-number">1.</span> <span class="nav-text">起因</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83"><span class="nav-number">2.</span> <span class="nav-text">配置环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E5%A7%8B%E9%85%8D%E7%BD%AE"><span class="nav-number">3.</span> <span class="nav-text">开始配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Node%E5%AE%89%E8%A3%85"><span class="nav-number">3.1.</span> <span class="nav-text">Node安装</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Windows"><span class="nav-number">3.1.1.</span> <span class="nav-text">Windows</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Mac"><span class="nav-number">3.1.2.</span> <span class="nav-text">Mac</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85hexo"><span class="nav-number">3.2.</span> <span class="nav-text">安装hexo</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%9A%E5%AE%A2%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-number">4.</span> <span class="nav-text">博客初始化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8github%E5%A7%94%E6%89%98"><span class="nav-number">5.</span> <span class="nav-text">使用github委托</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hexo-%E9%83%A8%E7%BD%B2%E7%9B%B8%E5%85%B3"><span class="nav-number">6.</span> <span class="nav-text">hexo 部署相关</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E5%85%B6%E4%BB%96%E5%9F%9F%E5%90%8D%E5%A7%94%E6%89%98"><span class="nav-number">7.</span> <span class="nav-text">使用其他域名委托</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hexo%E6%8F%92%E4%BB%B6"><span class="nav-number">8.</span> <span class="nav-text">hexo插件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">9.</span> <span class="nav-text">参考</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo%E5%8D%9A%E5%AE%A2%E7%B3%BB%E5%88%97"><span class="nav-number">10.</span> <span class="nav-text">Hexo博客系列</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#起因"><span class="nav-number">1.</span> <span class="nav-text">起因</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置环境"><span class="nav-number">2.</span> <span class="nav-text">配置环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开始配置"><span class="nav-number">3.</span> <span class="nav-text">开始配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Node安装"><span class="nav-number">3.1.</span> <span class="nav-text">Node安装</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Windows"><span class="nav-number">3.1.1.</span> <span class="nav-text">Windows</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Mac"><span class="nav-number">3.1.2.</span> <span class="nav-text">Mac</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装hexo"><span class="nav-number">3.2.</span> <span class="nav-text">安装hexo</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#博客初始化"><span class="nav-number">4.</span> <span class="nav-text">博客初始化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用github委托"><span class="nav-number">5.</span> <span class="nav-text">使用github委托</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hexo-部署相关"><span class="nav-number">6.</span> <span class="nav-text">hexo 部署相关</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用其他域名委托"><span class="nav-number">7.</span> <span class="nav-text">使用其他域名委托</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hexo插件"><span class="nav-number">8.</span> <span class="nav-text">hexo插件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">9.</span> <span class="nav-text">参考</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo博客系列"><span class="nav-number">10.</span> <span class="nav-text">Hexo博客系列</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -485,7 +485,7 @@
   &copy; 
   <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
-    <i class="fa fa-user"></i>
+    <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Chester.C</span>
 </div>

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.1.1">
+<meta name="generator" content="Hexo 4.2.1">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -14,7 +14,7 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
@@ -125,30 +125,30 @@
 
 
 <nav class="site-nav">
-  <ul id="menu" class="menu">
+  <ul id="menu" class="main-menu menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
 
   </li>
         <li class="menu-item menu-item-topics">
 
-    <a href="/topics/" rel="section"><i class="fa fa-fw fa-pencil"></i>系列</a>
+    <a href="/topics/" rel="section"><i class="fa fa-pencil fa-fw"></i>topics</a>
 
   </li>
   </ul>
@@ -198,7 +198,7 @@
         <div class="post-meta">
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
+                <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
 
@@ -206,14 +206,14 @@
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
+                  <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
                 <time title="修改时间：2020-08-07 10:31:56" itemprop="dateModified" datetime="2020-08-07T10:31:56+08:00">2020-08-07</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
+                <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -233,7 +233,7 @@
   <span class="post-meta-item">
     
       <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
+        <i class="far fa-comment"></i>
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
@@ -277,7 +277,7 @@
 <li><p>【规则1-5】命名空间名、类名、接口名、非私有字段名、枚举名及枚举值名、方法名采用 大驼峰式命名法 ，即每一个单词的首字母都大写。</p>
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">Car</span> &#123;&#125; <span class="comment">//命名空间名</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">SendManager</span>; <span class="comment">//类名</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title">IState</span>; <span class="comment">//接口名</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">string</span> FirstName; <span class="comment">//非私有字段名</span></span><br><span class="line"><span class="keyword">enum</span> CarDriveType &#123;FrontWheelDrive, RearWheelDrive, FourWheelDrive&#125;<span class="comment">//枚举名及枚举值名</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">SendMessage</span>(<span class="params"><span class="keyword">string</span> message</span>)</span> &#123;&#125; <span class="comment">//方法名</span></span><br></pre></td></tr></table></figure></li>
 <li><p>【规则1-6】私有字段名、方法参数名、局部变量名采用 小驼峰式命名法 ，即第一个单词首字母小写，其余单词首字母大写。</p>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">string</span> mFirstName; <span class="comment">//私有字段名</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">FindByFirstName</span>(<span class="params"><span class="keyword">string</span> firstName</span>)</span> &#123; <span class="comment">//方法参数名</span></span><br><span class="line">    <span class="keyword">string</span> firstName; <span class="comment">//局部变量名</span></span><br><span class="line">&#125; </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">string</span> mFirstName; <span class="comment">//私有字段名</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">FindByFirstName</span>(<span class="params"><span class="keyword">string</span> firstName</span>)</span> &#123; <span class="comment">//方法参数名</span></span><br><span class="line">    <span class="keyword">string</span> firstName; <span class="comment">//局部变量名</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>###（3.2）特殊规则：</p>
 </li>
 <li><p>【规则2-1】接口的命名要以“I”开头。</p>
@@ -332,7 +332,7 @@
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 文件名称：UserInput.cs</span></span><br><span class="line"><span class="comment">// 功能描述：玩家输入按键的定义</span></span><br><span class="line"><span class="comment">// 编写作者：张三</span></span><br><span class="line"><span class="comment">// 编写日期：2017.7.16</span></span><br><span class="line"><span class="comment">// 修改记录：</span></span><br><span class="line"><span class="comment">//      R1:</span></span><br><span class="line"><span class="comment">//          修改作者：李四</span></span><br><span class="line"><span class="comment">//          修改日期：2017.7.17</span></span><br><span class="line"><span class="comment">//          修改理由：使玩家可以自定义输入按键</span></span><br><span class="line"></span><br><span class="line">Using System;</span><br></pre></td></tr></table></figure>
 
 <p>【规则4-2】方法注释，采用 /// 形式自动产生XML标签格式的注释。包括方法功能，参数含义，返回内容。</p>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> 设置场景的名字.</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;returns&gt;</span><span class="doctag">&lt;c&gt;</span>true<span class="doctag">&lt;/c&gt;</span>, 场景名字设置成功, <span class="doctag">&lt;c&gt;</span>false<span class="doctag">&lt;/c&gt;</span> 场景名字设置失败.<span class="doctag">&lt;/returns&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;sceneName&quot;&gt;</span>场景名字.<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">bool</span> <span class="title">SetSceneName</span>(<span class="params"><span class="keyword">string</span> sceneName</span>) </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> 设置场景的名字.</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;returns&gt;</span><span class="doctag">&lt;c&gt;</span>true<span class="doctag">&lt;/c&gt;</span>, 场景名字设置成功, <span class="doctag">&lt;c&gt;</span>false<span class="doctag">&lt;/c&gt;</span> 场景名字设置失败.<span class="doctag">&lt;/returns&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name="sceneName"&gt;</span>场景名字.<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">bool</span> <span class="title">SetSceneName</span>(<span class="params"><span class="keyword">string</span> sceneName</span>) </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>【规则4-3】类变量注释，采用 /// 形式自动产生XML标签格式的注释变量含义。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;&#x2F; &lt;summary&gt;</span><br><span class="line">&#x2F;&#x2F;&#x2F; 场景的名字</span><br><span class="line">&#x2F;&#x2F;&#x2F; &lt;&#x2F;summary&gt;</span><br><span class="line">private string mSceneName;</span><br></pre></td></tr></table></figure>
 <p>【规则4-4】局部变量注释，在变量声明语句的后面注释，与前后行变量声明的注释左对齐，注释与代码间以Tab隔开。</p>
@@ -443,7 +443,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%95%E5%AD%90"><span class="nav-number">1.</span> <span class="nav-text">引子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E8%A7%84%E8%8C%83%E7%9B%AE%E7%9A%84%EF%BC%9A"><span class="nav-number">2.</span> <span class="nav-text">1.规范目的：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E8%A7%84%E8%8C%83%E8%AF%B4%E6%98%8E%EF%BC%9A"><span class="nav-number">3.</span> <span class="nav-text">2.规范说明：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83%EF%BC%9A"><span class="nav-number">4.</span> <span class="nav-text">3.命名规范：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%883-1%EF%BC%89%E5%9F%BA%E6%9C%AC%E8%A7%84%E5%88%99%EF%BC%88%E5%AF%B9%E4%BA%8E%E7%B1%BB%E3%80%81%E5%AD%97%E6%AE%B5%E3%80%81%E6%96%B9%E6%B3%95%E3%80%81%E5%8F%82%E6%95%B0%E3%80%81%E5%8F%98%E9%87%8F%EF%BC%89%EF%BC%9A"><span class="nav-number">4.1.</span> <span class="nav-text">（3.1）基本规则（对于类、字段、方法、参数、变量）：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E7%BC%96%E7%A0%81%E8%A7%84%E8%8C%83%EF%BC%9A"><span class="nav-number">4.2.</span> <span class="nav-text">4.编码规范：</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#引子"><span class="nav-number">1.</span> <span class="nav-text">引子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-规范目的："><span class="nav-number">2.</span> <span class="nav-text">1.规范目的：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-规范说明："><span class="nav-number">3.</span> <span class="nav-text">2.规范说明：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-命名规范："><span class="nav-number">4.</span> <span class="nav-text">3.命名规范：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#（3-1）基本规则（对于类、字段、方法、参数、变量）："><span class="nav-number">4.1.</span> <span class="nav-text">（3.1）基本规则（对于类、字段、方法、参数、变量）：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-编码规范："><span class="nav-number">4.2.</span> <span class="nav-text">4.编码规范：</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -499,7 +499,7 @@
   &copy; 
   <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
-    <i class="fa fa-user"></i>
+    <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Chester.C</span>
 </div>

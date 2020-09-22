@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.1.1">
+<meta name="generator" content="Hexo 4.2.1">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -14,7 +14,7 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
@@ -125,30 +125,30 @@
 
 
 <nav class="site-nav">
-  <ul id="menu" class="menu">
+  <ul id="menu" class="main-menu menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
 
   </li>
         <li class="menu-item menu-item-topics">
 
-    <a href="/topics/" rel="section"><i class="fa fa-fw fa-pencil"></i>系列</a>
+    <a href="/topics/" rel="section"><i class="fa fa-pencil fa-fw"></i>topics</a>
 
   </li>
   </ul>
@@ -198,7 +198,7 @@
         <div class="post-meta">
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
+                <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
 
@@ -206,14 +206,14 @@
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
+                  <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
                 <time title="修改时间：2020-08-07 10:31:56" itemprop="dateModified" datetime="2020-08-07T10:31:56+08:00">2020-08-07</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
+                <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -233,7 +233,7 @@
   <span class="post-meta-item">
     
       <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
+        <i class="far fa-comment"></i>
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
@@ -255,11 +255,11 @@
       
         <h2 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h2><p>Surface Shader </p>
 <a id="more"></a>
-<h2 id="最简单的SurfaceShader"><a href="#最简单的SurfaceShader" class="headerlink" title="最简单的SurfaceShader"></a>最简单的SurfaceShader</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">Shader &quot;Custom&#x2F;T_3_0&quot; &#123;</span><br><span class="line"></span><br><span class="line">    Properties &#123;</span><br><span class="line">        _MainTex (&quot;Base (RGB)&quot;, 2D) &#x3D; &quot;white&quot; &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    SubShader &#123;</span><br><span class="line">        CGPROGRAM</span><br><span class="line">        #pragma surface surf Lambert</span><br><span class="line"></span><br><span class="line">        sampler2D _MainTex;</span><br><span class="line"></span><br><span class="line">        struct Input &#123;</span><br><span class="line">            float2 uv_MainTex;</span><br><span class="line">        &#125; ;</span><br><span class="line"></span><br><span class="line">        void surf (Input IN, inout SurfaceOutput o) &#123;</span><br><span class="line">            half4 c &#x3D; tex2D (_MainTex, IN.uv_MainTex);</span><br><span class="line">            o.Albedo &#x3D; c.rgb;</span><br><span class="line">            o.Alpha &#x3D; c.a;</span><br><span class="line">        &#125;</span><br><span class="line">        ENDCG</span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">表面处理函数从顶点处理函数（这里自动顶点处理）接收参数Input IN,输出SurfaceOutput o至光照模型（这里是Lambert）。</span><br><span class="line">这里我们就做了三件事：</span><br><span class="line"></span><br><span class="line">1. 通过uv取得了贴图对应uv的颜色c</span><br><span class="line">2. 把c.rgb赋给o.Albedo</span><br><span class="line">3. 把c.a赋给o.Alpha</span><br><span class="line"></span><br><span class="line">这就完成了。之后让任一物体使用该Shader,则不管加什么光都能正确显示。真的很简单！</span><br><span class="line"></span><br><span class="line">## 表面处理函数surf的输入及输出</span><br><span class="line"></span><br><span class="line">### 输入</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="最简单的SurfaceShader"><a href="#最简单的SurfaceShader" class="headerlink" title="最简单的SurfaceShader"></a>最简单的SurfaceShader</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">Shader &quot;Custom&#x2F;T_3_0&quot; &#123;</span><br><span class="line"></span><br><span class="line">    Properties &#123;</span><br><span class="line">        _MainTex (&quot;Base (RGB)&quot;, 2D) &#x3D; &quot;white&quot; &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    SubShader &#123;</span><br><span class="line">        CGPROGRAM</span><br><span class="line">        #pragma surface surf Lambert</span><br><span class="line"></span><br><span class="line">        sampler2D _MainTex;</span><br><span class="line"></span><br><span class="line">        struct Input &#123;</span><br><span class="line">            float2 uv_MainTex;</span><br><span class="line">        &#125; ;</span><br><span class="line"></span><br><span class="line">        void surf (Input IN, inout SurfaceOutput o) &#123;</span><br><span class="line">            half4 c &#x3D; tex2D (_MainTex, IN.uv_MainTex);</span><br><span class="line">            o.Albedo &#x3D; c.rgb;</span><br><span class="line">            o.Alpha &#x3D; c.a;</span><br><span class="line">        &#125;</span><br><span class="line">        ENDCG</span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">表面处理函数从顶点处理函数（这里自动顶点处理）接收参数Input IN,输出SurfaceOutput o至光照模型（这里是Lambert）。</span><br><span class="line">这里我们就做了三件事：</span><br><span class="line"></span><br><span class="line">1. 通过uv取得了贴图对应uv的颜色c</span><br><span class="line">2. 把c.rgb赋给o.Albedo</span><br><span class="line">3. 把c.a赋给o.Alpha</span><br><span class="line"></span><br><span class="line">这就完成了。之后让任一物体使用该Shader,则不管加什么光都能正确显示。真的很简单！</span><br><span class="line"></span><br><span class="line">## 表面处理函数surf的输入及输出</span><br><span class="line"></span><br><span class="line">### 输入</span><br></pre></td></tr></table></figure>
 <p>struct Input {<br>    float2 uv_MainTex;<br>    float3 viewDir;<br>    float4 anyName:COLOR;<br>    float4 screenPos;<br>    float3 worldPos;<br>    float3 worldRefl;<br>} ;</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">uv_MainTex: uv</span><br><span class="line">viewDir: 入视角</span><br><span class="line">screenPos:裁剪空间位置</span><br><span class="line">worldPos:世界空间位置</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### 输出</span><br><span class="line"></span><br><span class="line">&#96;&#96;&#96; </span><br><span class="line">struct SurfaceOutput &#123;</span><br><span class="line">    half3 Albedo;</span><br><span class="line">    half3 Normal;</span><br><span class="line">    half3 Emission;</span><br><span class="line">    half Specular;</span><br><span class="line">    half Gloss;</span><br><span class="line">    half Alpha;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p>Albedo:漫反射颜色<br>Normal: 法线<br>Emission：自发光颜色<br>Specular:镜面反射系数<br>Gloss：<br>Alpha:透明值</p>
-<p><a target="_blank" rel="noopener" href="http://docs.unity3d.com/Documentation/Components/SL-SurfaceShaders.html">参考</a></p>
+<p><a href="http://docs.unity3d.com/Documentation/Components/SL-SurfaceShaders.html" target="_blank" rel="noopener">参考</a></p>
 <h2 id="Surface-Shader参数"><a href="#Surface-Shader参数" class="headerlink" title="Surface Shader参数"></a>Surface Shader参数</h2><p>Surface Shader可以通过加参数实现额外的控制，例如加顶点处理函数，alpha混合等。<br>注意：<br>如果使用的光照模型是Unity自带的Lambert或者BlinnPhong：<br>alpha混合，alpha混合等功能必须使用Surface Shader参数。</p>
 <h3 id="alpha混合"><a href="#alpha混合" class="headerlink" title="alpha混合"></a>alpha混合</h3><p>直接加参数Alpha即可</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#pragma surface surf BlinnPhong alpha</span><br></pre></td></tr></table></figure>
@@ -272,7 +272,7 @@
 <h3 id="finalcolor"><a href="#finalcolor" class="headerlink" title="finalcolor"></a>finalcolor</h3><p>finalcolor:ColorFunction<br>对颜色输出作最后的更改</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">Shader &quot;Example&#x2F;Tint Final Color&quot; &#123;</span><br><span class="line">    Properties &#123;</span><br><span class="line">      _MainTex (&quot;Texture&quot;, 2D) &#x3D; &quot;white&quot; &#123;&#125;</span><br><span class="line">      _ColorTint (&quot;Tint&quot;, Color) &#x3D; (1.0, 0.6, 0.6, 1.0)</span><br><span class="line">    &#125;</span><br><span class="line">    SubShader &#123;</span><br><span class="line">      CGPROGRAM</span><br><span class="line">      #pragma surface surf Lambert finalcolor:mycolor</span><br><span class="line">      struct Input &#123;</span><br><span class="line">          float2 uv_MainTex;</span><br><span class="line">      &#125;;</span><br><span class="line">      fixed4 _ColorTint;</span><br><span class="line">      void mycolor (Input IN, SurfaceOutput o, inout fixed4 color)</span><br><span class="line">      &#123;</span><br><span class="line">&#x2F;&#x2F;在这里对最后输出的颜色color进行修改</span><br><span class="line">          color *&#x3D; _ColorTint;</span><br><span class="line">      &#125;</span><br><span class="line">      sampler2D _MainTex;</span><br><span class="line">      void surf (Input IN, inout SurfaceOutput o) &#123;</span><br><span class="line">           o.Albedo &#x3D; tex2D (_MainTex, IN.uv_MainTex).rgb;</span><br><span class="line">      &#125;</span><br><span class="line">      ENDCG</span><br><span class="line">    &#125; </span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
 
-<p><a target="_blank" rel="noopener" href="http://docs.unity3d.com/Documentation/Components/SL-SurfaceShaders.html">更多的参数请参考文档</a></p>
+<p><a href="http://docs.unity3d.com/Documentation/Components/SL-SurfaceShaders.html" target="_blank" rel="noopener">更多的参数请参考文档</a></p>
 
     </div>
 
@@ -377,7 +377,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%95%E5%AD%90"><span class="nav-number">1.</span> <span class="nav-text">引子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E7%AE%80%E5%8D%95%E7%9A%84SurfaceShader"><span class="nav-number">2.</span> <span class="nav-text">最简单的SurfaceShader</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Surface-Shader%E5%8F%82%E6%95%B0"><span class="nav-number">3.</span> <span class="nav-text">Surface Shader参数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#alpha%E6%B7%B7%E5%90%88"><span class="nav-number">3.1.</span> <span class="nav-text">alpha混合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#alphatest"><span class="nav-number">3.2.</span> <span class="nav-text">alphatest</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A1%B6%E7%82%B9%E5%87%BD%E6%95%B0"><span class="nav-number">3.3.</span> <span class="nav-text">顶点函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#finalcolor"><span class="nav-number">3.4.</span> <span class="nav-text">finalcolor</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#引子"><span class="nav-number">1.</span> <span class="nav-text">引子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最简单的SurfaceShader"><span class="nav-number">2.</span> <span class="nav-text">最简单的SurfaceShader</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Surface-Shader参数"><span class="nav-number">3.</span> <span class="nav-text">Surface Shader参数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#alpha混合"><span class="nav-number">3.1.</span> <span class="nav-text">alpha混合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#alphatest"><span class="nav-number">3.2.</span> <span class="nav-text">alphatest</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#顶点函数"><span class="nav-number">3.3.</span> <span class="nav-text">顶点函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#finalcolor"><span class="nav-number">3.4.</span> <span class="nav-text">finalcolor</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -433,7 +433,7 @@
   &copy; 
   <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
-    <i class="fa fa-user"></i>
+    <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Chester.C</span>
 </div>

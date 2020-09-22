@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.1.1">
+<meta name="generator" content="Hexo 4.2.1">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -14,7 +14,7 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
@@ -124,30 +124,30 @@
 
 
 <nav class="site-nav">
-  <ul id="menu" class="menu">
+  <ul id="menu" class="main-menu menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
 
   </li>
         <li class="menu-item menu-item-topics">
 
-    <a href="/topics/" rel="section"><i class="fa fa-fw fa-pencil"></i>系列</a>
+    <a href="/topics/" rel="section"><i class="fa fa-pencil fa-fw"></i>topics</a>
 
   </li>
   </ul>
@@ -197,7 +197,7 @@
         <div class="post-meta">
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
+                <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
 
@@ -205,14 +205,14 @@
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
+                  <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
                 <time title="修改时间：2020-09-21 18:02:50" itemprop="dateModified" datetime="2020-09-21T18:02:50+08:00">2020-09-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
+                <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -232,7 +232,7 @@
   <span class="post-meta-item">
     
       <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
+        <i class="far fa-comment"></i>
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
@@ -264,7 +264,7 @@
 <p>容器和 VM（虚拟机）的主要区别是，容器提供了基于进程的隔离，而虚拟机提供了资源的完全隔离。虚拟机可能需要一分钟来启动，而容器只需要一秒钟或更短。容器使用宿主操作系统的内核，而虚拟机使用独立的内核。</p>
 <p>Docker 的局限性之一是，它只能用在 64 位的操作系统上。</p>
 <h2 id="Docker-的一些理解"><a href="#Docker-的一些理解" class="headerlink" title="Docker  的一些理解"></a>Docker  的一些理解</h2><p>Docker 的镜像文件【images】是不能修改的，只读的<br>Docker 的架构是镜像叠加，所以镜像文件尽量不要有冗余操作<br>Docker 的容器是一个可读的镜像，是在镜像之上又架了一层可写的镜像，这个镜像经过修改，可以作为镜像出现<br>Docker 最让我觉得很好的地方是很多环境搭建变得简单了，然后也比较简洁</p>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum install docker</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install docker</span><br></pre></td></tr></table></figure>
 
 <h2 id="启动Docker服务"><a href="#启动Docker服务" class="headerlink" title="启动Docker服务"></a>启动Docker服务</h2><p>旧语法</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">service docker start 				&#x2F;&#x2F;启动Docker</span><br><span class="line">chkconfig docker on 				&#x2F;&#x2F; 配置开机启动</span><br></pre></td></tr></table></figure>
@@ -272,9 +272,9 @@
 <p>新语法</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl start docker.service 		&#x2F;&#x2F;启动Docker</span><br><span class="line">systemctl enable docker.service 	&#x2F;&#x2F; 配置开机启动</span><br></pre></td></tr></table></figure>
 
-<h2 id="下载Centos镜像文件"><a href="#下载Centos镜像文件" class="headerlink" title="下载Centos镜像文件"></a>下载Centos镜像文件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker pull centos  		&#x2F;&#x2F;获取centos镜像</span><br><span class="line">docker images  				&#x2F;&#x2F;查看镜像列表</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="下载Centos镜像文件"><a href="#下载Centos镜像文件" class="headerlink" title="下载Centos镜像文件"></a>下载Centos镜像文件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker pull centos  		&#x2F;&#x2F;获取centos镜像</span><br><span class="line">docker images  				&#x2F;&#x2F;查看镜像列表</span><br></pre></td></tr></table></figure>
 
-<h2 id="运行一个Docker容器"><a href="#运行一个Docker容器" class="headerlink" title="运行一个Docker容器"></a>运行一个Docker容器</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -i -t centos &#x2F;bin&#x2F;bash </span><br></pre></td></tr></table></figure>
+<h2 id="运行一个Docker容器"><a href="#运行一个Docker容器" class="headerlink" title="运行一个Docker容器"></a>运行一个Docker容器</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -i -t centos &#x2F;bin&#x2F;bash</span><br></pre></td></tr></table></figure>
 
 <p>运行一个Docker容器，使用-i 捕获输入输出，-t 分配一个终端挥着控制台<br>断开容器的连接，输入exit</p>
 <h2 id="查看当前正在运行的容器列表"><a href="#查看当前正在运行的容器列表" class="headerlink" title="查看当前正在运行的容器列表"></a>查看当前正在运行的容器列表</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps</span><br></pre></td></tr></table></figure>
@@ -363,12 +363,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2017/05/18/docker/docker-machine/" rel="prev" title="Docker Machine 介绍">
-      <i class="fa fa-chevron-left"></i> Docker Machine 介绍
+    <a href="/2017/05/18/docker/docker-gitlab/" rel="prev" title="Docker安装Gitlab">
+      <i class="fa fa-chevron-left"></i> Docker安装Gitlab
     </a></div>
       <div class="post-nav-item">
-    <a href="/2017/05/18/docker/docker-gitlab/" rel="next" title="Docker安装Gitlab">
-      Docker安装Gitlab <i class="fa fa-chevron-right"></i>
+    <a href="/2017/05/18/docker/docker-compose-first/" rel="next" title="Docker-compose 学习">
+      Docker-compose 学习 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -429,7 +429,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%95%E5%AD%90"><span class="nav-number">1.</span> <span class="nav-text">引子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%BB%E8%80%85"><span class="nav-number">2.</span> <span class="nav-text">读者</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83"><span class="nav-number">3.</span> <span class="nav-text">环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker-%E6%98%AF%E4%BB%80%E4%B9%88-%EF%BC%9F"><span class="nav-number">4.</span> <span class="nav-text">Docker 是什么 ？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker-%E7%9A%84%E4%B8%80%E4%BA%9B%E7%90%86%E8%A7%A3"><span class="nav-number">5.</span> <span class="nav-text">Docker  的一些理解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-number">6.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8Docker%E6%9C%8D%E5%8A%A1"><span class="nav-number">7.</span> <span class="nav-text">启动Docker服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BDCentos%E9%95%9C%E5%83%8F%E6%96%87%E4%BB%B6"><span class="nav-number">8.</span> <span class="nav-text">下载Centos镜像文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%90%E8%A1%8C%E4%B8%80%E4%B8%AADocker%E5%AE%B9%E5%99%A8"><span class="nav-number">9.</span> <span class="nav-text">运行一个Docker容器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E5%BD%93%E5%89%8D%E6%AD%A3%E5%9C%A8%E8%BF%90%E8%A1%8C%E7%9A%84%E5%AE%B9%E5%99%A8%E5%88%97%E8%A1%A8"><span class="nav-number">10.</span> <span class="nav-text">查看当前正在运行的容器列表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9B%E5%85%A5%E5%BD%93%E5%89%8D%E6%AD%A3%E5%9C%A8%E8%BF%90%E8%A1%8C%E7%9A%84%E5%AE%B9%E5%99%A8"><span class="nav-number">11.</span> <span class="nav-text">进入当前正在运行的容器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#exec-%E5%91%BD%E4%BB%A4"><span class="nav-number">11.1.</span> <span class="nav-text">exec 命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#attach-%E5%91%BD%E4%BB%A4"><span class="nav-number">11.2.</span> <span class="nav-text">attach 命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nsenter-%E5%91%BD%E4%BB%A4"><span class="nav-number">11.3.</span> <span class="nav-text">nsenter 命令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%9D"><span class="nav-number">11.3.1.</span> <span class="nav-text">安裝</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8"><span class="nav-number">11.3.2.</span> <span class="nav-text">使用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9B%B4%E6%8D%A2Docker%E5%9B%BD%E5%86%85%E6%BA%90"><span class="nav-number">12.</span> <span class="nav-text">更换Docker国内源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%8E%E7%BB%AD%E9%9C%80%E8%A6%81%E6%8F%90%E9%AB%98%E7%9A%84%E5%9C%B0%E6%96%B9"><span class="nav-number">13.</span> <span class="nav-text">后续需要提高的地方</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker%E7%B3%BB%E5%88%97"><span class="nav-number">14.</span> <span class="nav-text">Docker系列</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#引子"><span class="nav-number">1.</span> <span class="nav-text">引子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#读者"><span class="nav-number">2.</span> <span class="nav-text">读者</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#环境"><span class="nav-number">3.</span> <span class="nav-text">环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker-是什么-？"><span class="nav-number">4.</span> <span class="nav-text">Docker 是什么 ？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker-的一些理解"><span class="nav-number">5.</span> <span class="nav-text">Docker  的一些理解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">6.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启动Docker服务"><span class="nav-number">7.</span> <span class="nav-text">启动Docker服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#下载Centos镜像文件"><span class="nav-number">8.</span> <span class="nav-text">下载Centos镜像文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运行一个Docker容器"><span class="nav-number">9.</span> <span class="nav-text">运行一个Docker容器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看当前正在运行的容器列表"><span class="nav-number">10.</span> <span class="nav-text">查看当前正在运行的容器列表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进入当前正在运行的容器"><span class="nav-number">11.</span> <span class="nav-text">进入当前正在运行的容器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#exec-命令"><span class="nav-number">11.1.</span> <span class="nav-text">exec 命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#attach-命令"><span class="nav-number">11.2.</span> <span class="nav-text">attach 命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nsenter-命令"><span class="nav-number">11.3.</span> <span class="nav-text">nsenter 命令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#安裝"><span class="nav-number">11.3.1.</span> <span class="nav-text">安裝</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用"><span class="nav-number">11.3.2.</span> <span class="nav-text">使用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更换Docker国内源"><span class="nav-number">12.</span> <span class="nav-text">更换Docker国内源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后续需要提高的地方"><span class="nav-number">13.</span> <span class="nav-text">后续需要提高的地方</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker系列"><span class="nav-number">14.</span> <span class="nav-text">Docker系列</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -485,7 +485,7 @@
   &copy; 
   <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
-    <i class="fa fa-user"></i>
+    <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Chester.C</span>
 </div>

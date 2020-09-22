@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.1.1">
+<meta name="generator" content="Hexo 4.2.1">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -14,7 +14,7 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
@@ -124,30 +124,30 @@
 
 
 <nav class="site-nav">
-  <ul id="menu" class="menu">
+  <ul id="menu" class="main-menu menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
 
   </li>
         <li class="menu-item menu-item-topics">
 
-    <a href="/topics/" rel="section"><i class="fa fa-fw fa-pencil"></i>系列</a>
+    <a href="/topics/" rel="section"><i class="fa fa-pencil fa-fw"></i>topics</a>
 
   </li>
   </ul>
@@ -197,7 +197,7 @@
         <div class="post-meta">
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
+                <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
 
@@ -205,14 +205,14 @@
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
+                  <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
                 <time title="修改时间：2020-08-07 10:31:56" itemprop="dateModified" datetime="2020-08-07T10:31:56+08:00">2020-08-07</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
+                <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -232,7 +232,7 @@
   <span class="post-meta-item">
     
       <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
+        <i class="far fa-comment"></i>
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
@@ -275,7 +275,7 @@
 <h2 id="修改grub默认的内核版本"><a href="#修改grub默认的内核版本" class="headerlink" title="修改grub默认的内核版本"></a>修改grub默认的内核版本</h2><p>centos7内核升级完毕后，还需要我们修改内核的启动顺序，使用如下命令：</p>
 <h3 id="查看系统上的所有可以内核："><a href="#查看系统上的所有可以内核：" class="headerlink" title="查看系统上的所有可以内核："></a>查看系统上的所有可以内核：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># sudo awk -F\&#39; &#39;$1&#x3D;&#x3D;&quot;menuentry &quot; &#123;print i++ &quot; : &quot; $2&#125;&#39; &#x2F;etc&#x2F;grub2.cfg</span><br><span class="line">0 : CentOS Linux (5.2.10-1.el7.elrepo.x86_64) 7 (Core)</span><br><span class="line">1 : CentOS Linux (3.10.0-957.27.2.el7.x86_64) 7 (Core)</span><br><span class="line">2 : CentOS Linux (0-rescue-ba4b6c04d1c84a009510755e7d3aa0cd) 7 (Core)</span><br></pre></td></tr></table></figure>
 <h3 id="设置grub2"><a href="#设置grub2" class="headerlink" title="设置grub2"></a>设置grub2</h3><h4 id="1-通过-grub2-set-default-0-命令设置："><a href="#1-通过-grub2-set-default-0-命令设置：" class="headerlink" title="1. 通过 grub2-set-default 0 命令设置："></a>1. 通过 grub2-set-default 0 命令设置：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo grub2-set-default 0</span><br></pre></td></tr></table></figure>
-<h4 id="2-编辑-etc-default-grub-文件"><a href="#2-编辑-etc-default-grub-文件" class="headerlink" title="2.  编辑 /etc/default/grub 文件"></a>2.  编辑 /etc/default/grub 文件</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vim &#x2F;etc&#x2F;default&#x2F;grub</span><br><span class="line"></span><br><span class="line">GRUB_DEFAULT&#x3D;0</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="2-编辑-etc-default-grub-文件"><a href="#2-编辑-etc-default-grub-文件" class="headerlink" title="2.  编辑 /etc/default/grub 文件"></a>2.  编辑 /etc/default/grub 文件</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vim &#x2F;etc&#x2F;default&#x2F;grub</span><br><span class="line"></span><br><span class="line">GRUB_DEFAULT&#x3D;0</span><br></pre></td></tr></table></figure>
 <h4 id="生成-grub-配置文件并重启"><a href="#生成-grub-配置文件并重启" class="headerlink" title="生成 grub 配置文件并重启"></a>生成 grub 配置文件并重启</h4><p>接下来还需要运行grub2-mkconfig 命令来重新创建内核配置，如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">grub2-mkconfig -o &#x2F;boot&#x2F;grub2&#x2F;grub.cfg</span><br><span class="line">reboot</span><br></pre></td></tr></table></figure>
 
@@ -384,7 +384,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%95%E5%AD%90"><span class="nav-number">1.</span> <span class="nav-text">引子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E7%9A%84%E6%9F%A5%E7%9C%8B%E5%86%85%E6%A0%B8%E4%BF%A1%E6%81%AF%E7%9A%84%E5%91%BD%E4%BB%A4"><span class="nav-number">2.</span> <span class="nav-text">常用的查看内核信息的命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9B%B4%E6%96%B0%E5%86%85%E6%A0%B8"><span class="nav-number">3.</span> <span class="nav-text">更新内核</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85elrepo%E7%9A%84yum%E6%BA%90"><span class="nav-number">4.</span> <span class="nav-text">安装elrepo的yum源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E5%8F%AF%E7%94%A8%E7%9A%84%E7%B3%BB%E7%BB%9F%E5%86%85%E6%A0%B8%E5%8C%85"><span class="nav-number">5.</span> <span class="nav-text">查看可用的系统内核包:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%87%E7%BA%A7%E5%86%85%E6%A0%B8"><span class="nav-number">6.</span> <span class="nav-text">升级内核</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9grub%E9%BB%98%E8%AE%A4%E7%9A%84%E5%86%85%E6%A0%B8%E7%89%88%E6%9C%AC"><span class="nav-number">7.</span> <span class="nav-text">修改grub默认的内核版本</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E7%B3%BB%E7%BB%9F%E4%B8%8A%E7%9A%84%E6%89%80%E6%9C%89%E5%8F%AF%E4%BB%A5%E5%86%85%E6%A0%B8%EF%BC%9A"><span class="nav-number">7.1.</span> <span class="nav-text">查看系统上的所有可以内核：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AEgrub2"><span class="nav-number">7.2.</span> <span class="nav-text">设置grub2</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E9%80%9A%E8%BF%87-grub2-set-default-0-%E5%91%BD%E4%BB%A4%E8%AE%BE%E7%BD%AE%EF%BC%9A"><span class="nav-number">7.2.1.</span> <span class="nav-text">1. 通过 grub2-set-default 0 命令设置：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E7%BC%96%E8%BE%91-etc-default-grub-%E6%96%87%E4%BB%B6"><span class="nav-number">7.2.2.</span> <span class="nav-text">2.  编辑 &#x2F;etc&#x2F;default&#x2F;grub 文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%94%9F%E6%88%90-grub-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%B9%B6%E9%87%8D%E5%90%AF"><span class="nav-number">7.2.3.</span> <span class="nav-text">生成 grub 配置文件并重启</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%87%8D%E5%90%AF%E7%B3%BB%E7%BB%9F%E5%B9%B6%E6%9F%A5%E7%9C%8B%E7%B3%BB%E7%BB%9F%E5%86%85%E6%A0%B8"><span class="nav-number">8.</span> <span class="nav-text">重启系统并查看系统内核</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#引子"><span class="nav-number">1.</span> <span class="nav-text">引子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用的查看内核信息的命令"><span class="nav-number">2.</span> <span class="nav-text">常用的查看内核信息的命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更新内核"><span class="nav-number">3.</span> <span class="nav-text">更新内核</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装elrepo的yum源"><span class="nav-number">4.</span> <span class="nav-text">安装elrepo的yum源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看可用的系统内核包"><span class="nav-number">5.</span> <span class="nav-text">查看可用的系统内核包:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#升级内核"><span class="nav-number">6.</span> <span class="nav-text">升级内核</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改grub默认的内核版本"><span class="nav-number">7.</span> <span class="nav-text">修改grub默认的内核版本</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#查看系统上的所有可以内核："><span class="nav-number">7.1.</span> <span class="nav-text">查看系统上的所有可以内核：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置grub2"><span class="nav-number">7.2.</span> <span class="nav-text">设置grub2</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-通过-grub2-set-default-0-命令设置："><span class="nav-number">7.2.1.</span> <span class="nav-text">1. 通过 grub2-set-default 0 命令设置：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-编辑-etc-default-grub-文件"><span class="nav-number">7.2.2.</span> <span class="nav-text">2.  编辑 &#x2F;etc&#x2F;default&#x2F;grub 文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#生成-grub-配置文件并重启"><span class="nav-number">7.2.3.</span> <span class="nav-text">生成 grub 配置文件并重启</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重启系统并查看系统内核"><span class="nav-number">8.</span> <span class="nav-text">重启系统并查看系统内核</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -440,7 +440,7 @@
   &copy; 
   <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
-    <i class="fa fa-user"></i>
+    <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Chester.C</span>
 </div>

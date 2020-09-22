@@ -1602,7 +1602,7 @@ amp-twitter {
 <ol>
 <li>The IMEI: &#x4EC5;&#x4EC5;&#x53EA;&#x5BF9;Android&#x624B;&#x673A;&#x6709;&#x6548;:</li>
 </ol>
-<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">TelephonyManager TelephonyMgr = (TelephonyManager)getSystemService(TELEPHONY_SERVICE); </span><br><span class="line">String szImei = TelephonyMgr.getDeviceId(); </span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">TelephonyManager TelephonyMgr = (TelephonyManager)getSystemService(TELEPHONY_SERVICE); </span><br><span class="line">String szImei = TelephonyMgr.getDeviceId();</span><br></pre></td></tr></tbody></table></figure>
 
 <p>&#x91C7;&#x7528;&#x6B64;&#x79CD;&#x65B9;&#x6CD5;&#xFF0C;&#x9700;&#x8981;&#x5728;AndroidManifest.xml&#x4E2D;&#x52A0;&#x5165;&#x4E00;&#x4E2A;&#x8BB8;&#x53EF;&#xFF1A;android.permission.READ_PHONE_STATE&#xFF0C;&#x5E76;&#x4E14;&#x7528;&#x6237;&#x5E94;&#x5F53;&#x5141;&#x8BB8;&#x5B89;&#x88C5;&#x6B64;&#x5E94;&#x7528;&#x3002;&#x4F5C;&#x4E3A;&#x624B;&#x673A;&#x6765;&#x8BB2;&#xFF0C;IMEI&#x662F;&#x552F;&#x4E00;&#x7684;&#xFF0C;&#x5B83;&#x5E94;&#x8BE5;&#x7C7B;&#x4F3C;&#x4E8E; 359881030314356&#xFF08;&#x9664;&#x975E;&#x4F60;&#x6709;&#x4E00;&#x4E2A;&#x6CA1;&#x6709;&#x91CF;&#x4EA7;&#x7684;&#x624B;&#x673A;&#xFF08;&#x6C34;&#x8D27;&#xFF09;&#x5B83;&#x53EF;&#x80FD;&#x6709;&#x65E0;&#x6548;&#x7684;IMEI&#xFF0C;&#x5982;&#xFF1A;0000000000000&#xFF09;&#x3002;</p>
 <ol start="2">
