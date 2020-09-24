@@ -161,11 +161,11 @@
     <lastmod>2020-08-07</lastmod>
   </url>
   <url>
-    <loc>http://blog.rcant.com/2017/03/06/unity/unity-optimization/</loc>
+    <loc>http://blog.rcant.com/2017/12/05/unity/unity-vector/</loc>
     <lastmod>2020-08-07</lastmod>
   </url>
   <url>
-    <loc>http://blog.rcant.com/2017/12/05/unity/unity-vector/</loc>
+    <loc>http://blog.rcant.com/2017/03/06/unity/unity-optimization/</loc>
     <lastmod>2020-08-07</lastmod>
   </url>
   <url>
@@ -177,11 +177,11 @@
     <lastmod>2020-08-07</lastmod>
   </url>
   <url>
-    <loc>http://blog.rcant.com/2017/05/30/unity/shader-third-surface/</loc>
+    <loc>http://blog.rcant.com/2017/03/03/unity/unity-3daudio-one/</loc>
     <lastmod>2020-08-07</lastmod>
   </url>
   <url>
-    <loc>http://blog.rcant.com/2017/03/03/unity/unity-3daudio-one/</loc>
+    <loc>http://blog.rcant.com/2017/05/30/unity/shader-third-surface/</loc>
     <lastmod>2020-08-07</lastmod>
   </url>
   <url>
@@ -217,15 +217,11 @@
     <lastmod>2020-08-07</lastmod>
   </url>
   <url>
-    <loc>http://blog.rcant.com/2019/02/13/python/python3-string/</loc>
-    <lastmod>2020-08-07</lastmod>
-  </url>
-  <url>
     <loc>http://blog.rcant.com/2017/11/24/python/python3-record/</loc>
     <lastmod>2020-08-07</lastmod>
   </url>
   <url>
-    <loc>http://blog.rcant.com/2017/11/03/python/python3-pip/</loc>
+    <loc>http://blog.rcant.com/2019/02/13/python/python3-string/</loc>
     <lastmod>2020-08-07</lastmod>
   </url>
   <url>
@@ -233,11 +229,11 @@
     <lastmod>2020-08-07</lastmod>
   </url>
   <url>
-    <loc>http://blog.rcant.com/2017/11/03/python/python3-doctest/</loc>
+    <loc>http://blog.rcant.com/2017/11/03/python/python3-pip/</loc>
     <lastmod>2020-08-07</lastmod>
   </url>
   <url>
-    <loc>http://blog.rcant.com/2019/02/13/python/python3-code/</loc>
+    <loc>http://blog.rcant.com/2017/11/03/python/python3-doctest/</loc>
     <lastmod>2020-08-07</lastmod>
   </url>
   <url>
@@ -245,15 +241,19 @@
     <lastmod>2020-08-07</lastmod>
   </url>
   <url>
+    <loc>http://blog.rcant.com/2019/02/13/python/python3-code/</loc>
+    <lastmod>2020-08-07</lastmod>
+  </url>
+  <url>
     <loc>http://blog.rcant.com/2017/11/30/postgresql/sql-readme/</loc>
     <lastmod>2020-08-07</lastmod>
   </url>
   <url>
-    <loc>http://blog.rcant.com/2017/11/23/postgresql/postgresql-first/</loc>
+    <loc>http://blog.rcant.com/2018/08/19/php/php_mysql/</loc>
     <lastmod>2020-08-07</lastmod>
   </url>
   <url>
-    <loc>http://blog.rcant.com/2018/08/19/php/php_mysql/</loc>
+    <loc>http://blog.rcant.com/2017/11/23/postgresql/postgresql-first/</loc>
     <lastmod>2020-08-07</lastmod>
   </url>
   <url>
@@ -309,15 +309,11 @@
     <lastmod>2020-08-07</lastmod>
   </url>
   <url>
-    <loc>http://blog.rcant.com/2017/11/21/django/django-databases/</loc>
-    <lastmod>2020-08-07</lastmod>
-  </url>
-  <url>
     <loc>http://blog.rcant.com/2017/11/11/django/django-first/</loc>
     <lastmod>2020-08-07</lastmod>
   </url>
   <url>
-    <loc>http://blog.rcant.com/2017/12/14/django/django-admin-problem/</loc>
+    <loc>http://blog.rcant.com/2017/11/21/django/django-databases/</loc>
     <lastmod>2020-08-07</lastmod>
   </url>
   <url>
@@ -325,15 +321,19 @@
     <lastmod>2020-08-07</lastmod>
   </url>
   <url>
+    <loc>http://blog.rcant.com/2017/12/14/django/django-admin-problem/</loc>
+    <lastmod>2020-08-07</lastmod>
+  </url>
+  <url>
     <loc>http://blog.rcant.com/2017/12/06/centos/new-centos-start/</loc>
     <lastmod>2020-08-07</lastmod>
   </url>
   <url>
-    <loc>http://blog.rcant.com/2017/11/22/centos/centos-kernel-upgrade/</loc>
+    <loc>http://blog.rcant.com/2017/10/24/centos/centos-repos-change/</loc>
     <lastmod>2020-08-07</lastmod>
   </url>
   <url>
-    <loc>http://blog.rcant.com/2017/10/24/centos/centos-repos-change/</loc>
+    <loc>http://blog.rcant.com/2017/11/22/centos/centos-kernel-upgrade/</loc>
     <lastmod>2020-08-07</lastmod>
   </url>
   <url>
