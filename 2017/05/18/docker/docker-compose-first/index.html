@@ -389,8 +389,8 @@ dns_search: example.com<br>dns_search:</li>
       <i class="fa fa-chevron-left"></i> Docker 安装
     </a></div>
       <div class="post-nav-item">
-    <a href="/2017/05/18/docker/docker-gitlab/" rel="next" title="Docker安装Gitlab">
-      Docker安装Gitlab <i class="fa fa-chevron-right"></i>
+    <a href="/2017/05/19/docker/docker-volume/" rel="next" title="Docker Volume">
+      Docker Volume <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -465,7 +465,7 @@ dns_search: example.com<br>dns_search:</li>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">85</span>
+          <span class="site-state-item-count">86</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -584,7 +584,22 @@ dns_search: example.com<br>dns_search:</li>
 
 
 
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
 
+
+  
 
   
 

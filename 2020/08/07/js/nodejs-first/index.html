@@ -313,12 +313,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/07/20/java/guli/guli-1/" rel="prev" title="谷力商城学习">
-      <i class="fa fa-chevron-left"></i> 谷力商城学习
+    <a href="/2020/08/07/osx/os-brew/" rel="prev" title="MacOS 安装HomeBrew">
+      <i class="fa fa-chevron-left"></i> MacOS 安装HomeBrew
     </a></div>
       <div class="post-nav-item">
-    <a href="/2020/08/07/osx/os-brew/" rel="next" title="MacOS 安装HomeBrew">
-      MacOS 安装HomeBrew <i class="fa fa-chevron-right"></i>
+    <a href="/2020/08/26/csharp/csharp-docfx/" rel="next" title="CSharp ApiDoc 自动生成API文档">
+      CSharp ApiDoc 自动生成API文档 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -393,7 +393,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">85</span>
+          <span class="site-state-item-count">86</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -512,7 +512,22 @@
 
 
 
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
 
+
+  
 
   
 

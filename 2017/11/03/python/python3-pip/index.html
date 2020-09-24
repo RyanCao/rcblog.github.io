@@ -298,8 +298,8 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2017/10/24/centos/centos-repos-change/" rel="prev" title="centos 更换镜像源">
-      <i class="fa fa-chevron-left"></i> centos 更换镜像源
+    <a href="/2017/11/03/python/python3-doctest/" rel="prev" title="python3 Doc 测试">
+      <i class="fa fa-chevron-left"></i> python3 Doc 测试
     </a></div>
       <div class="post-nav-item">
     <a href="/2017/11/03/python/python3-install/" rel="next" title="python3 安装">
@@ -378,7 +378,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">85</span>
+          <span class="site-state-item-count">86</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -497,7 +497,22 @@
 
 
 
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
 
+
+  
 
   
 

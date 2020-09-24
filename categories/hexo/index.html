@@ -190,6 +190,26 @@
 
       <div class="post-meta">
         <time itemprop="dateCreated"
+              datetime="2020-09-24T10:39:17+08:00"
+              content="2020-09-24">
+          09-24
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/2020/09/24/hexo/hexo-markdown-extends/" itemprop="url">
+            <span itemprop="name">Hexo MarkDown 扩展</span>
+          </a>
+      </div>
+
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <div class="post-meta">
+        <time itemprop="dateCreated"
               datetime="2020-09-20T10:39:17+08:00"
               content="2020-09-20">
           09-20
@@ -339,7 +359,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">85</span>
+          <span class="site-state-item-count">86</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -458,7 +478,22 @@
 
 
 
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
 
+
+  
 
   
 

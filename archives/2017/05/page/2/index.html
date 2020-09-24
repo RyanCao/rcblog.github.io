@@ -176,7 +176,7 @@
     <div class="posts-collapse">
       <div class="collection-title">
         
-        <span class="collection-header">很好! 目前共计 85 篇日志。 继续努力。</span>
+        <span class="collection-header">很好! 目前共计 86 篇日志。 继续努力。</span>
       </div>
 
       
@@ -196,8 +196,8 @@
       </div>
 
       <div class="post-title">
-          <a class="post-title-link" href="/2017/05/18/docker/docker-compose-first/" itemprop="url">
-            <span itemprop="name">Docker-compose 学习</span>
+          <a class="post-title-link" href="/2017/05/18/docker/docker-first/" itemprop="url">
+            <span itemprop="name">Docker 安装</span>
           </a>
       </div>
 
@@ -216,8 +216,8 @@
       </div>
 
       <div class="post-title">
-          <a class="post-title-link" href="/2017/05/18/docker/docker-first/" itemprop="url">
-            <span itemprop="name">Docker 安装</span>
+          <a class="post-title-link" href="/2017/05/18/docker/docker-gitlab/" itemprop="url">
+            <span itemprop="name">Docker安装Gitlab</span>
           </a>
       </div>
 
@@ -399,7 +399,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">85</span>
+          <span class="site-state-item-count">86</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -518,7 +518,22 @@
 
 
 
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
 
+
+  
 
   
 

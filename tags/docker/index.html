@@ -300,26 +300,6 @@
       </div>
 
       <div class="post-title">
-          <a class="post-title-link" href="/2017/05/18/docker/docker-gitlab/" itemprop="url">
-            <span itemprop="name">Docker安装Gitlab</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2017-05-18T14:40:07+08:00"
-              content="2017-05-18">
-          05-18
-        </time>
-      </div>
-
-      <div class="post-title">
           <a class="post-title-link" href="/2017/05/18/docker/docker-compose-first/" itemprop="url">
             <span itemprop="name">Docker-compose 学习</span>
           </a>
@@ -342,6 +322,26 @@
       <div class="post-title">
           <a class="post-title-link" href="/2017/05/18/docker/docker-first/" itemprop="url">
             <span itemprop="name">Docker 安装</span>
+          </a>
+      </div>
+
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <div class="post-meta">
+        <time itemprop="dateCreated"
+              datetime="2017-05-18T14:40:07+08:00"
+              content="2017-05-18">
+          05-18
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/2017/05/18/docker/docker-gitlab/" itemprop="url">
+            <span itemprop="name">Docker安装Gitlab</span>
           </a>
       </div>
 
@@ -439,7 +439,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">85</span>
+          <span class="site-state-item-count">86</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -558,7 +558,22 @@
 
 
 
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
 
+
+  
 
   
 

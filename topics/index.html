@@ -29,7 +29,7 @@
 <meta property="og:description" content="Docker系列 Docker 安装   Docker安装Gitlab   Docker删除 none Images   Docker-compose 学习   Docker Machine 介绍   Docker Volume 介绍   Docker在centos上升级   Docker 问题收集      Git 学习系列 Git 学习文档 [一]   Git 学习文档 [二]   Git">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-05-19T06:36:36.000Z">
-<meta property="article:modified_time" content="2020-09-21T10:33:07.790Z">
+<meta property="article:modified_time" content="2020-09-24T09:26:50.187Z">
 <meta property="article:author" content="Chester.C">
 <meta name="twitter:card" content="summary">
 
@@ -225,7 +225,6 @@
 <li><a href="/2019/08/03/algorithm/dynamicprogram-algorithm/" title="动态规划算法">动态规划算法</a>  </li>
 <li><a href="/2019/08/01/algorithm/genetic-algorithm-use/" title="遗传算法">遗传算法</a>  
 
-
 </li>
 </ul>
 <h2 id="Hexo博客系列"><a href="#Hexo博客系列" class="headerlink" title="Hexo博客系列"></a>Hexo博客系列</h2><ul>
@@ -233,7 +232,8 @@
 <li><a href="/2017/03/01/hexo/hexo-secordblog/" title="Hexo更换博客样式">Hexo更换博客样式</a>  </li>
 <li><a href="/2020/06/01/hexo/hexo-updatenode/" title="Hexo升级Node版本">Hexo升级Node版本</a>  </li>
 <li><a href="/2020/09/20/hexo/hexo-amp-enable/" title="Hexo AMP 支持">Hexo AMP 支持</a>  </li>
-<li><a href="/2017/03/03/others/markdown-first/" title="MarkDown语法">MarkDown语法</a> 
+<li><a href="/2017/03/03/others/markdown-first/" title="MarkDown语法">MarkDown语法</a></li>
+<li><a href="/2020/09/24/hexo/hexo-markdown-extends/" title="Hexo-MarkDown扩展">Hexo-MarkDown扩展</a>  
 </li>
 </ul>
 
@@ -311,7 +311,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">85</span>
+          <span class="site-state-item-count">86</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -430,7 +430,22 @@
 
 
 
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
 
+
+  
 
   
 
