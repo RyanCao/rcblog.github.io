@@ -254,35 +254,21 @@
 
       
         <h2 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h2><a id="more"></a>
-
 <h2 id="CentOS-yum-软件包仓库"><a href="#CentOS-yum-软件包仓库" class="headerlink" title="CentOS yum 软件包仓库"></a>CentOS yum 软件包仓库</h2><h3 id="备份默认源"><a href="#备份默认源" class="headerlink" title="备份默认源"></a>备份默认源</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@user ~]# mv &#x2F;etc&#x2F;yum.repos.d&#x2F;CentOS-Base.repo &#x2F;etc&#x2F;yum.repos.d&#x2F;CentOS-Base.repo.b</span><br></pre></td></tr></table></figure>
 <h3 id="使用阿里云镜像"><a href="#使用阿里云镜像" class="headerlink" title="使用阿里云镜像"></a>使用阿里云镜像</h3><h4 id="CentOS-5"><a href="#CentOS-5" class="headerlink" title="CentOS 5"></a>CentOS 5</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -o &#x2F;etc&#x2F;yum.repos.d&#x2F;CentOS-Base.repo http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;repo&#x2F;Centos-5.repo</span><br></pre></td></tr></table></figure>
-
 <h4 id="CentOS-6"><a href="#CentOS-6" class="headerlink" title="CentOS 6"></a>CentOS 6</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -o &#x2F;etc&#x2F;yum.repos.d&#x2F;CentOS-Base.repo http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;repo&#x2F;Centos-6.repo</span><br></pre></td></tr></table></figure>
-
 <h4 id="CentOS-7"><a href="#CentOS-7" class="headerlink" title="CentOS 7"></a>CentOS 7</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -o &#x2F;etc&#x2F;yum.repos.d&#x2F;CentOS-Base.repo http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;repo&#x2F;Centos-7.repo</span><br></pre></td></tr></table></figure>
-
 <h3 id="生成对应的缓存"><a href="#生成对应的缓存" class="headerlink" title="生成对应的缓存"></a>生成对应的缓存</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum clean all</span><br><span class="line">yum makecache</span><br></pre></td></tr></table></figure>
-
-<h2 id="DockerCe-更换镜像源"><a href="#DockerCe-更换镜像源" class="headerlink" title="DockerCe 更换镜像源"></a>DockerCe 更换镜像源</h2><p>配置docker-ce软件仓库</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum-config-manager \</span><br><span class="line">    --add-repo \</span><br><span class="line">    https:&#x2F;&#x2F;download.docker.com&#x2F;linux&#x2F;centos&#x2F;docker-ce.repo</span><br></pre></td></tr></table></figure>
-
+<h2 id="DockerCe-更换镜像源"><a href="#DockerCe-更换镜像源" class="headerlink" title="DockerCe 更换镜像源"></a>DockerCe 更换镜像源</h2><p>配置docker-ce软件仓库<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum-config-manager \</span><br><span class="line">    --add-repo \</span><br><span class="line">    https:&#x2F;&#x2F;download.docker.com&#x2F;linux&#x2F;centos&#x2F;docker-ce.repo</span><br></pre></td></tr></table></figure></p>
 <p>更换阿里云 </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cd &#x2F;etc&#x2F;yum.repos.d&#x2F;</span><br><span class="line"></span><br><span class="line">vim docker-ce.repo </span><br><span class="line"># 按ecs进行非编辑模式</span><br><span class="line">:%s&#x2F;https:\&#x2F;\&#x2F;download.docker.com&#x2F;https:\&#x2F;\&#x2F;mirrors.aliyun.com\&#x2F;docker-ce&#x2F;g</span><br></pre></td></tr></table></figure>
-
 <h2 id="DockerHub-仓库"><a href="#DockerHub-仓库" class="headerlink" title="DockerHub 仓库"></a>DockerHub 仓库</h2><h3 id="配置Docker-镜像加速"><a href="#配置Docker-镜像加速" class="headerlink" title="配置Docker 镜像加速"></a>配置Docker 镜像加速</h3><h4 id="国内加速站点"><a href="#国内加速站点" class="headerlink" title="国内加速站点"></a>国内加速站点</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;registry.docker-cn.com</span><br><span class="line">http:&#x2F;&#x2F;hub-mirror.c.163.com</span><br><span class="line">https:&#x2F;&#x2F;3laho3y3.mirror.aliyuncs.com</span><br><span class="line">http:&#x2F;&#x2F;f1361db2.m.daocloud.io</span><br><span class="line">https:&#x2F;&#x2F;mirror.ccs.tencentyun.com</span><br></pre></td></tr></table></figure>
-
 <h4 id="使用命令来配置加速站点"><a href="#使用命令来配置加速站点" class="headerlink" title="使用命令来配置加速站点"></a>使用命令来配置加速站点</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p &#x2F;etc&#x2F;docker</span><br><span class="line">sudo tee &#x2F;etc&#x2F;docker&#x2F;daemon.json &lt;&lt;-&#39;EOF&#39;</span><br><span class="line">&#123;</span><br><span class="line">  &quot;registry-mirrors&quot;: [&quot;&lt;your accelerate address&gt;&quot;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="使用脚本来配置加速站点"><a href="#使用脚本来配置加速站点" class="headerlink" title="使用脚本来配置加速站点"></a>使用脚本来配置加速站点</h4><p>该脚本可以将 –registry-mirror 加入到你的 Docker 配置文件 /etc/docker/daemon.json 中。适用于 Ubuntu14.04、Debian、CentOS6 、CentOS7、Fedora、Arch Linux、openSUSE Leap 42.1，其他版本可能有细微不同。更多详情请访问文档。</p>
+<h4 id="使用脚本来配置加速站点"><a href="#使用脚本来配置加速站点" class="headerlink" title="使用脚本来配置加速站点"></a>使用脚本来配置加速站点</h4><p>该脚本可以将 —registry-mirror 加入到你的 Docker 配置文件 /etc/docker/daemon.json 中。适用于 Ubuntu14.04、Debian、CentOS6 、CentOS7、Fedora、Arch Linux、openSUSE Leap 42.1，其他版本可能有细微不同。更多详情请访问文档。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -sSL https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;wss434631143&#x2F;xiaoshujiang&#x2F;master&#x2F;articles&#x2F;Docker&#x2F;shell&#x2F;set_mirror.sh | sh -s &lt;your accelerate address&gt;</span><br></pre></td></tr></table></figure>
-
 <h4 id="通过修改启动脚本配置加速站点"><a href="#通过修改启动脚本配置加速站点" class="headerlink" title="通过修改启动脚本配置加速站点"></a>通过修改启动脚本配置加速站点</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 直接修改 &#x2F;usr&#x2F;lib&#x2F;systemd&#x2F;system&#x2F;docker.service 启动脚本</span><br><span class="line">vim &#x2F;usr&#x2F;lib&#x2F;systemd&#x2F;system&#x2F;docker.service </span><br><span class="line"># 在dockerd后面加参数</span><br><span class="line">ExecStart&#x3D;&#x2F;usr&#x2F;bin&#x2F;dockerd --registry-mirror&#x3D;&lt;your accelerate address&gt;</span><br></pre></td></tr></table></figure>
-
 <p>以上操作后重启一下 Docker</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl daemon-reload</span><br><span class="line">sudo systemctl restart docker</span><br></pre></td></tr></table></figure>
-
-
 <h2 id="pip-软件包仓库"><a href="#pip-软件包仓库" class="headerlink" title="pip 软件包仓库"></a>pip 软件包仓库</h2><h3 id="pip改用阿里云镜像源"><a href="#pip改用阿里云镜像源" class="headerlink" title="pip改用阿里云镜像源"></a>pip改用阿里云镜像源</h3><p>vim ~/.pip/pip.conf</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[global]</span><br><span class="line">trusted-host &#x3D;  mirrors.aliyun.com</span><br><span class="line">index-url &#x3D; http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;pypi&#x2F;simple</span><br></pre></td></tr></table></figure>
 <h3 id="直接使用命令安装"><a href="#直接使用命令安装" class="headerlink" title="直接使用命令安装"></a>直接使用命令安装</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install --trusted-host mirrors.aliyun.com -i http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;pypi&#x2F;simple -r requirements.txt</span><br></pre></td></tr></table></figure>
@@ -403,7 +389,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">86</span>
+          <span class="site-state-item-count">87</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -416,7 +402,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">58</span>
+        <span class="site-state-item-count">59</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

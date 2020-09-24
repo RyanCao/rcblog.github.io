@@ -255,23 +255,18 @@
       
         <h2 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h2><p>centos7 默认内核是 3.10.0 有点老，升级下</p>
 <a id="more"></a>
-
 <h2 id="常用的查看内核信息的命令"><a href="#常用的查看内核信息的命令" class="headerlink" title="常用的查看内核信息的命令"></a>常用的查看内核信息的命令</h2><p>uname</p>
 <p>打印指定的系统信息。不带参数时，默认使用 -s 参数。<br>参数：<br>-a, –all：按照下面的顺序打印所有信息，如果 -p 和 -i 未知时排除掉。<br>-s, –kernel-name：打印内核名字，一般就是 Linux。<br>-n, –nodename：打印网络节点的主机名。<br>-r, –kernel-release：打印内核发行版的版本。常用。3.10.0-514.26.2.el7.x86_64<br>-v, –kernel-version：打印内核的版本。#1 SMP Tue Jul 4 15:04:05 UTC 2017<br>-m, –machine：打印机器硬件名。<br>-p, –processor：打印处理器名字或“unknown”。<br>-i, –hardware-platform：打印硬件平台或“unknown”。<br>-o, –operating-system：打印操作系统。<br>–help：显示这个帮助并退出。<br>–version：显示这版本信息并退出。</p>
 <p>示例：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># uname -r</span><br><span class="line">3.10.0-957.27.2.el7.x86_64</span><br><span class="line"># uname -a</span><br><span class="line">Linux localhost.localdomain 3.10.0-957.27.2.el7.x86_64 #1 SMP Mon Jul 29 17:46:05 UTC 2019 x86_64 x86_64 x86_64 GNU&#x2F;Linux</span><br><span class="line"># cat &#x2F;etc&#x2F;redhat-release </span><br><span class="line">CentOS Linux release 7.6.1810 (Core)</span><br></pre></td></tr></table></figure>
 <h2 id="更新内核"><a href="#更新内核" class="headerlink" title="更新内核"></a>更新内核</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y update</span><br></pre></td></tr></table></figure>
-
 <h2 id="安装elrepo的yum源"><a href="#安装elrepo的yum源" class="headerlink" title="安装elrepo的yum源"></a>安装elrepo的yum源</h2><p>升级内核需要使用elrepo的yum源，在安装yum源之前还需要我们导入elrepo的key，如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rpm –import https:&#x2F;&#x2F;www.elrepo.org&#x2F;RPM-GPG-KEY-elrepo.org</span><br><span class="line"></span><br><span class="line">rpm -Uvh http:&#x2F;&#x2F;www.elrepo.org&#x2F;elrepo-release-7.0-2.el7.elrepo.noarch.rpm</span><br></pre></td></tr></table></figure>
 <p>elrepo的key安装完毕后，我们下面开始正式升级内核。</p>
 <h2 id="查看可用的系统内核包"><a href="#查看可用的系统内核包" class="headerlink" title="查看可用的系统内核包:"></a>查看可用的系统内核包:</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum --disablerepo&#x3D;&quot;*&quot; --enablerepo&#x3D;&quot;elrepo-kernel&quot; list available</span><br></pre></td></tr></table></figure>
-
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"># yum --disablerepo&#x3D;&quot;*&quot; --enablerepo&#x3D;&quot;elrepo-kernel&quot; list available</span><br><span class="line">Loaded plugins: fastestmirror</span><br><span class="line">Loading mirror speeds from cached hostfile</span><br><span class="line"> * elrepo-kernel: hkg.mirror.rackspace.com</span><br><span class="line">Available Packages</span><br><span class="line">kernel-lt.x86_64                      4.4.190-1.el7.elrepo     elrepo-kernel</span><br><span class="line">kernel-lt-devel.x86_64                4.4.190-1.el7.elrepo     elrepo-kernel</span><br><span class="line">kernel-lt-doc.noarch                  4.4.190-1.el7.elrepo     elrepo-kernel</span><br><span class="line">kernel-lt-headers.x86_64              4.4.190-1.el7.elrepo     elrepo-kernel</span><br><span class="line">kernel-lt-tools.x86_64                4.4.190-1.el7.elrepo     elrepo-kernel</span><br><span class="line">kernel-lt-tools-libs.x86_64           4.4.190-1.el7.elrepo     elrepo-kernel</span><br><span class="line">kernel-lt-tools-libs-devel.x86_64     4.4.190-1.el7.elrepo     elrepo-kernel</span><br><span class="line">kernel-ml-devel.x86_64                5.2.10-1.el7.elrepo      elrepo-kernel</span><br><span class="line">kernel-ml-doc.noarch                  5.2.10-1.el7.elrepo      elrepo-kernel</span><br><span class="line">kernel-ml-headers.x86_64              5.2.10-1.el7.elrepo      elrepo-kernel</span><br><span class="line">kernel-ml-tools.x86_64                5.2.10-1.el7.elrepo      elrepo-kernel</span><br><span class="line">kernel-ml-tools-libs.x86_64           5.2.10-1.el7.elrepo      elrepo-kernel</span><br><span class="line">kernel-ml-tools-libs-devel.x86_64     5.2.10-1.el7.elrepo      elrepo-kernel</span><br><span class="line">perf.x86_64                           5.2.10-1.el7.elrepo      elrepo-kernel</span><br><span class="line">python-perf.x86_64                    5.2.10-1.el7.elrepo      elrepo-kernel</span><br></pre></td></tr></table></figure>
 <p>通过上图，我们可以很明显的看出目前最新的内核版本为5.2.10。可用的版本为 4.4 ,5.2</p>
-<h2 id="升级内核"><a href="#升级内核" class="headerlink" title="升级内核"></a>升级内核</h2><p>安装最新的主线稳定内核，使用如下命令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y –enablerepo&#x3D;elrepo-kernel install kernel-ml</span><br></pre></td></tr></table></figure>
-
+<h2 id="升级内核"><a href="#升级内核" class="headerlink" title="升级内核"></a>升级内核</h2><p>安装最新的主线稳定内核，使用如下命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y –enablerepo&#x3D;elrepo-kernel install kernel-ml</span><br></pre></td></tr></table></figure></p>
 <p>centos7内核升级完毕后，不会立即生效，还需要我们修改grub默认的内核版本。</p>
 <h2 id="修改grub默认的内核版本"><a href="#修改grub默认的内核版本" class="headerlink" title="修改grub默认的内核版本"></a>修改grub默认的内核版本</h2><p>centos7内核升级完毕后，还需要我们修改内核的启动顺序，使用如下命令：</p>
 <h3 id="查看系统上的所有可以内核："><a href="#查看系统上的所有可以内核：" class="headerlink" title="查看系统上的所有可以内核："></a>查看系统上的所有可以内核：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># sudo awk -F\&#39; &#39;$1&#x3D;&#x3D;&quot;menuentry &quot; &#123;print i++ &quot; : &quot; $2&#125;&#39; &#x2F;etc&#x2F;grub2.cfg</span><br><span class="line">0 : CentOS Linux (5.2.10-1.el7.elrepo.x86_64) 7 (Core)</span><br><span class="line">1 : CentOS Linux (3.10.0-957.27.2.el7.x86_64) 7 (Core)</span><br><span class="line">2 : CentOS Linux (0-rescue-ba4b6c04d1c84a009510755e7d3aa0cd) 7 (Core)</span><br></pre></td></tr></table></figure>
@@ -279,7 +274,6 @@
 <h4 id="2-编辑-etc-default-grub-文件"><a href="#2-编辑-etc-default-grub-文件" class="headerlink" title="2.  编辑 /etc/default/grub 文件"></a>2.  编辑 /etc/default/grub 文件</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vim &#x2F;etc&#x2F;default&#x2F;grub</span><br><span class="line"></span><br><span class="line">GRUB_DEFAULT&#x3D;0</span><br></pre></td></tr></table></figure>
 <h4 id="生成-grub-配置文件并重启"><a href="#生成-grub-配置文件并重启" class="headerlink" title="生成 grub 配置文件并重启"></a>生成 grub 配置文件并重启</h4><p>接下来还需要运行grub2-mkconfig 命令来重新创建内核配置，如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">grub2-mkconfig -o &#x2F;boot&#x2F;grub2&#x2F;grub.cfg</span><br><span class="line">reboot</span><br></pre></td></tr></table></figure>
-
 <h2 id="重启系统并查看系统内核"><a href="#重启系统并查看系统内核" class="headerlink" title="重启系统并查看系统内核"></a>重启系统并查看系统内核</h2><p>系统启动完毕后，我们来查看内核版本，如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># uname -r</span><br><span class="line">5.2.10-1.el7.elrepo.x86_64</span><br></pre></td></tr></table></figure>
 
@@ -399,7 +393,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">86</span>
+          <span class="site-state-item-count">87</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -412,7 +406,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">58</span>
+        <span class="site-state-item-count">59</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

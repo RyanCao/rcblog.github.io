@@ -267,16 +267,12 @@
         <p>数据结构-跳表</p>
 <p>SkipList</p>
 <a id="more"></a>
-
 <h2 id="跳表的原理"><a href="#跳表的原理" class="headerlink" title="跳表的原理"></a>跳表的原理</h2><h3 id="什么是跳表"><a href="#什么是跳表" class="headerlink" title="什么是跳表"></a>什么是跳表</h3><p>链表，相信大家都不陌生，维护一个有序的链表是一件非常简单的事情，我们都知道，在一个有序的链表里面，查询跟插入的算法复杂度都是O(n)。</p>
 <img src="/2020/09/01/datastruct/datastruct-skiplist/linkedlist-1.png" class="" title="进入编辑模式">
-
 <p>对上述有序列表建立一层索引<br>这样 就可以加速查询效率和 插入效率<br>比如查找 11，不加索引的需要查找 6次<br>加了一层索引以后，只需要查找 4次<br>查找速度为 O(n/2) +1</p>
 <img src="/2020/09/01/datastruct/datastruct-skiplist/linkedlist-2.png" class="" title="进入编辑模式">
-
 <p>如果再加一层索引 就变成是 O(n/4) + 2</p>
 <img src="/2020/09/01/datastruct/datastruct-skiplist/linkedlist-3.png" class="" title="进入编辑模式">
-
 <p>跳表就是这样的一种数据结构，结点是跳过一部分的，<br>从而加快了查询的速度。跳表跟红黑树又有什么差别呢？</p>
 <p>既然两者的算法复杂度差不多，为什么Redis要使用跳表而不使用红黑树呢？<br>跳表相对于红黑树，主要有这几个优点：</p>
 <ol>
@@ -287,32 +283,18 @@
 <h3 id="跳表查询元素"><a href="#跳表查询元素" class="headerlink" title="跳表查询元素"></a>跳表查询元素</h3><p>假如我们要查询11，那么我们从最上层出发，<br>发现下一个是5，再下一个是13，已经大于11，所以进入下一层，<br>下一层的一个是9，查找下一个，下一个又是13，再次进入下一层。<br>最终找到11。</p>
 <p>最终 一定查找会进入最底层</p>
 <img src="/2020/09/01/datastruct/datastruct-skiplist/skip-find.png" class="" title="进入编辑模式">
-
 <h3 id="跳表插入元素"><a href="#跳表插入元素" class="headerlink" title="跳表插入元素"></a>跳表插入元素</h3><p>插入</p>
 <p>插入的时候，首先要进行查询，然后从最底层开始，插入被插入的元素。<br>然后看看从下而上，是否需要逐层插入。</p>
 <p>这里不需要完全平衡</p>
 <p>最底层往上获取一个随机值[0,1]，判断小于0.5不插入结束，<br>否则将元素插入到当前层，并向上找一层，获取随机值[0,1]判断是否小于0.5<br>来确定当前层是否需要插入，除非到到最上层了，否则继续向上找上一层</p>
 <p>插入 8</p>
-<p>查询插入位置</p>
-<img src="/2020/09/01/datastruct/datastruct-skiplist/skip-insert1.png" class="" title="进入编辑模式">
-<p>底层插入，判断其上一层是否需要插入</p>
-<img src="/2020/09/01/datastruct/datastruct-skiplist/skip-insert2.png" class="" title="进入编辑模式">
-<p>继续判断直到条件不成立，或者到达最大层</p>
-<img src="/2020/09/01/datastruct/datastruct-skiplist/skip-insert3.png" class="" title="进入编辑模式">
-
+<p>查询插入位置<br><img src="/2020/09/01/datastruct/datastruct-skiplist/skip-insert1.png" class="" title="进入编辑模式"><br>底层插入，判断其上一层是否需要插入<br><img src="/2020/09/01/datastruct/datastruct-skiplist/skip-insert2.png" class="" title="进入编辑模式"><br>继续判断直到条件不成立，或者到达最大层<br><img src="/2020/09/01/datastruct/datastruct-skiplist/skip-insert3.png" class="" title="进入编辑模式"></p>
 <h3 id="跳表删除元素"><a href="#跳表删除元素" class="headerlink" title="跳表删除元素"></a>跳表删除元素</h3><p>首先需要查询最底层，然后对其他层做相同操作<br>删除需要删除每一层的对应节点</p>
-<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>设计图</p>
-<img src="/2020/09/01/datastruct/datastruct-skiplist/skip-yanhua.png" class="" title="设计图">
-
-
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>设计图<br><img src="/2020/09/01/datastruct/datastruct-skiplist/skip-yanhua.png" class="" title="设计图"></p>
 <h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">static void Main(string[] args)</span><br><span class="line">&#123;</span><br><span class="line">    TestSkipList();</span><br><span class="line">&#125;</span><br><span class="line">static void TestSkipList()</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F;测试 调表结构</span><br><span class="line">    SkipList&lt;string, int&gt; skipList &#x3D; new DataStructLib.SkipList&lt;string, int&gt;();</span><br><span class="line">    skipList.Add(&quot;1&quot;, 32);</span><br><span class="line">    Console.WriteLine(skipList);</span><br><span class="line">    skipList.Add(&quot;2&quot;, 12);</span><br><span class="line">    Console.WriteLine(skipList);</span><br><span class="line">    skipList.Add(&quot;4&quot;, 36);</span><br><span class="line">    Console.WriteLine(skipList);</span><br><span class="line">    skipList.Add(&quot;22&quot;, 3222);</span><br><span class="line">    Console.WriteLine(skipList);</span><br><span class="line">    skipList.Add(&quot;12&quot;, 1122);</span><br><span class="line">    Console.WriteLine(skipList);</span><br><span class="line">    skipList.Add(&quot;6&quot;, 31);</span><br><span class="line">    Console.WriteLine(skipList);</span><br><span class="line">    skipList.Remove(&quot;12&quot;);</span><br><span class="line">    Console.WriteLine(skipList);</span><br><span class="line">    skipList.Remove(&quot;6&quot;);</span><br><span class="line">    Console.WriteLine(skipList);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><a href="SkipList.cs" title="源码下载">点击下载</a></p>
-<p>测试图1</p>
-<img src="/2020/09/01/datastruct/datastruct-skiplist/skip-test.png" class="" title="测试">
-
-<p>测试图2</p>
-<img src="/2020/09/01/datastruct/datastruct-skiplist/skip-test2.png" class="" title="测试">
-
+<p>测试图1<br><img src="/2020/09/01/datastruct/datastruct-skiplist/skip-test.png" class="" title="测试"></p>
+<p>测试图2<br><img src="/2020/09/01/datastruct/datastruct-skiplist/skip-test2.png" class="" title="测试"></p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>总结：</p>
 <ol>
 <li>跳表一定是一个有序表，否则就没有意义</li>
@@ -438,7 +420,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">86</span>
+          <span class="site-state-item-count">87</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -451,7 +433,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">58</span>
+        <span class="site-state-item-count">59</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

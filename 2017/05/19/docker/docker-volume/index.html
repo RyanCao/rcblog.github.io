@@ -257,7 +257,6 @@
         <h2 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h2><p>关于Docker Volume 介绍</p>
 <p>本文主要介绍了Docker Volume的原理以及使用方式，是Docker入门教程的延伸。<br>通过从数据的共享、数据容器、备份、权限以及删除Volume五方面深入介绍了Volume的工作原理，从实战中帮助读者了解Volume。</p>
 <a id="more"></a>
-
 <h2 id="读者"><a href="#读者" class="headerlink" title="读者"></a>读者</h2><p>没接触过Docker的运维人员，半运维人员，对Docker感兴趣的同学</p>
 <h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><ul>
 <li>Centos 7</li>
@@ -278,24 +277,19 @@
 <p>为了能够保存（持久化）数据以及共享容器间的数据， <strong>Docker</strong> 提出了 <strong>Volume</strong> 的概念。简单来说， <strong>Volume</strong> 就是目录或者文件，它可以绕过默认的联合文件系统，而以正常的文件或者目录的形式存在于宿主机上。 类似于可移动的U盘。</p>
 </blockquote>
 <h2 id="Docker-Volume-的一些简单命令"><a href="#Docker-Volume-的一些简单命令" class="headerlink" title="Docker Volume 的一些简单命令"></a>Docker Volume 的一些简单命令</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker volume create  		# Create a Volume</span><br><span class="line">docker volume inspect		# Display detailed info on one or more volumes</span><br><span class="line">docker volume ls			# List Volumes</span><br><span class="line">docker volume rm			# Remove one or more volumes</span><br></pre></td></tr></table></figure>
-
 <h3 id="创建一个数据卷"><a href="#创建一个数据卷" class="headerlink" title="创建一个数据卷"></a>创建一个数据卷</h3><p>在用 docker run 命令的时候，使用 -v 标记来创建一个数据卷并挂载到容器里。在一次 run 中多次使用可以挂载多个数据卷。</p>
 <p>下面创建一个名为 web 的容器，并加载一个数据卷到容器的 /webapp 目录。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -P --name web -v &#x2F;webapp training&#x2F;webapp python app.py</span><br></pre></td></tr></table></figure>
-
-<p>*注意：也可以在 <strong>Dockerfile</strong> 中使用 <strong>VOLUME</strong> 来添加一个或者多个新的卷到由该镜像创建的任意容器。</p>
+<p><em>注意：也可以在 <strong>Dockerfile</strong> 中使用 <em>*VOLUME</em></em> 来添加一个或者多个新的卷到由该镜像创建的任意容器。</p>
 <h3 id="删除数据卷"><a href="#删除数据卷" class="headerlink" title="删除数据卷"></a>删除数据卷</h3><p>数据卷是被设计用来持久化数据的，它的生命周期独立于容器，Docker不会在容器被删除后自动删除数据卷，并且也不存在垃圾回收这样的机制来处理没有任何容器引用的数据卷。如果需要在删除容器的同时移除数据卷。可以在删除容器的时候使用 <strong>docker rm -v</strong> 这个命令。无主的数据卷可能会占据很多空间，要清理会很麻烦。Docker官方正在试图解决这个问题，相关工作的进度可以查看这个PR。</p>
 <h3 id="挂载一个主机目录作为数据卷"><a href="#挂载一个主机目录作为数据卷" class="headerlink" title="挂载一个主机目录作为数据卷"></a>挂载一个主机目录作为数据卷</h3><p>使用 -v 标记也可以指定挂载一个本地主机的目录到容器中去。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo docker run -d -P --name web -v &#x2F;src&#x2F;webapp:&#x2F;opt&#x2F;webapp training&#x2F;webapp python app.py</span><br></pre></td></tr></table></figure>
-
 <p>上面的命令加载主机的 /src/webapp 目录到容器的 /opt/webapp 目录。这个功能在进行测试的时候十分方便，比如用户可以放置一些程序到本地目录中，来查看容器是否正常工作。本地目录的路径必须是绝对路径，如果目录不存在 Docker 会自动为你创建它。</p>
 <p>*注意：Dockerfile 中不支持这种用法，这是因为 Dockerfile 是为了移植和分享用的。然而，不同操作系统的路径格式不一样，所以目前还不能支持。</p>
 <p>Docker 挂载数据卷的默认权限是读写，用户也可以通过 :ro 指定为只读。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo docker run -d -P --name web -v &#x2F;src&#x2F;webapp:&#x2F;opt&#x2F;webapp:ro training&#x2F;webapp python app.py</span><br></pre></td></tr></table></figure>
-
 <p>加了 :ro 之后，就挂载为只读了</p>
 <h3 id="查看数据卷的具体信息"><a href="#查看数据卷的具体信息" class="headerlink" title="查看数据卷的具体信息"></a>查看数据卷的具体信息</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker inspect web 					&#x2F;&#x2F;web 是一个容器名</span><br><span class="line">docker volume inspect web-volume 	&#x2F;&#x2F;web-volume 是一个容器下的数据卷</span><br></pre></td></tr></table></figure>
-
 <p>在输出的内容中找到其中和数据卷相关的部分，可以看到所有的数据卷都是创建在主机的 <strong>/var/lib/docker/volumes/</strong> 下面的</p>
 <h2 id="更多"><a href="#更多" class="headerlink" title="更多"></a>更多</h2><p>待完善。。。</p>
 <h2 id="Docker系列"><a href="#Docker系列" class="headerlink" title="Docker系列"></a>Docker系列</h2><ul>
@@ -427,7 +421,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">86</span>
+          <span class="site-state-item-count">87</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -440,7 +434,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">58</span>
+        <span class="site-state-item-count">59</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

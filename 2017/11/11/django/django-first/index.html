@@ -255,7 +255,6 @@
       
         <h2 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h2><p>接触Python两天以后，偶然看见Django，试着了解了一下</p>
 <a id="more"></a>
-
 <h2 id="Django-介绍"><a href="#Django-介绍" class="headerlink" title="Django 介绍"></a>Django 介绍</h2><p>Django ( /ˈdʒæŋɡoʊ/ jang-goh )是个用Python写成的，免费而且开放原始码的Web应用程式框架。他是个Web框架-就是一堆零件的组成，可以帮助你轻松快速的开发网站。</p>
 <p>这么说吧，当你盖一个网站的时候，你总是需要一些很类似的零件：使用者登入（注册、登入、登出），网站后台，表单，档案上传等等。</p>
 <p>幸运的世界上有很多人很久以前就帮你注意到这件事，Web 开发者盖一个新的网站的时候总是面对着一样的问题，所以他们合作开发了框架使你可以直接拥有你会用到的零件（Django 就是其中之一）。</p>
@@ -276,49 +275,27 @@
 <h4 id="虚拟环境"><a href="#虚拟环境" class="headerlink" title="虚拟环境"></a>虚拟环境</h4><p>在我们安装Django 之前，我们会让妳安装一个超有用的工具，这可以让你电脑中的coding 环境保持干净。也可以跳过这个步骤，但是我们高度建议你不要- 用最好的安装方式起手可以节省你未来碰到许多麻烦的时间！</p>
 <p>所以我们来创建一个虚拟环境(virtual environment)吧（也拼做virtualenv）。这会将你的Python/Django独立为一个专案形态，表示你在一个网站专案所做的任何改变都不会影响到你同时在进行的其他网站专案，超干净的对吧！</p>
 <p>你所需要做的事就是找到一个目录去创建这个virtualenv；举例而言，你的家目录( /home)，在Windows环境下会是C:\Users\Name\（Name会是你目前登入的使用者名称）。</p>
-<p>在这个教程中我们会在你的家目录下使用一个新目录djangogirls：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir djangogirls</span><br><span class="line">cd djangogirls</span><br></pre></td></tr></table></figure>
-<p>我们会将会创建一个虚拟环境叫做myvenv。这个指令基本的格式如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -m venv myvenv</span><br></pre></td></tr></table></figure>
-
-<h5 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h5><p>创建一个新的virtualenv，你需要打开终端机（我们已经在前面一些章节中告诉过你了-记得吗？），并且执行C:\Python\python -m venv venv。这会看起来像这样</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\Name\djangogirls&gt; C:\Python34\python -m venv myvenv</span><br></pre></td></tr></table></figure>
-<p>C:\Python34\python是你之前安装Python的路径，而myvenv则是你的virtualenv的名称。你可以取自己喜欢的名称，不过必须要是小写并且没有其他空白。保持名称简短是好主意-因为你将会常常提起它！</p>
-<h5 id="Linux-and-OS-X"><a href="#Linux-and-OS-X" class="headerlink" title="Linux and OS X"></a>Linux and OS X</h5><p>在Linux与Mac系统创建一个virtualenv就是很简单的执行一下python3 -m venv myvenv。看起来像这样：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~&#x2F;djangogirls$ python3 -m venv myvenv</span><br></pre></td></tr></table></figure>
-<p>myvenv则你的virtualenv名称。你可以取自己喜欢的名称，不过必须要是小写并且没有其他空白。保持名称简短是好主意-因为你将会常常提起它！</p>
+<p>在这个教程中我们会在你的家目录下使用一个新目录djangogirls：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir djangogirls</span><br><span class="line">cd djangogirls</span><br></pre></td></tr></table></figure><br>我们会将会创建一个虚拟环境叫做myvenv。这个指令基本的格式如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -m venv myvenv</span><br></pre></td></tr></table></figure></p>
+<h5 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h5><p>创建一个新的virtualenv，你需要打开终端机（我们已经在前面一些章节中告诉过你了-记得吗？），并且执行C:\Python\python -m venv venv。这会看起来像这样<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\Name\djangogirls&gt; C:\Python34\python -m venv myvenv</span><br></pre></td></tr></table></figure><br>C:\Python34\python是你之前安装Python的路径，而myvenv则是你的virtualenv的名称。你可以取自己喜欢的名称，不过必须要是小写并且没有其他空白。保持名称简短是好主意-因为你将会常常提起它！</p>
+<h5 id="Linux-and-OS-X"><a href="#Linux-and-OS-X" class="headerlink" title="Linux and OS X"></a>Linux and OS X</h5><p>在Linux与Mac系统创建一个virtualenv就是很简单的执行一下python3 -m venv myvenv。看起来像这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~&#x2F;djangogirls$ python3 -m venv myvenv</span><br></pre></td></tr></table></figure><br>myvenv则你的virtualenv名称。你可以取自己喜欢的名称，不过必须要是小写并且没有其他空白。保持名称简短是好主意-因为你将会常常提起它！</p>
 <p>小提示:在Ubuntu 14.04下初始化虚拟环境目前会给你以下的错误讯息：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Error: Command &#39;[&#39;&#x2F;home&#x2F;eddie&#x2F;Slask&#x2F;tmp&#x2F;venv&#x2F;bin&#x2F;python3&#39;, &#39;-Im&#39;, &#39;ensurepip&#39;, &#39;--upgrade&#39;, &#39;--default-pip&#39;]&#39; returned non-zero exit status 1</span><br></pre></td></tr></table></figure>
-
 <p>将指令改为virtualenv可以避免掉这个问题</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">~&#x2F;djangogirls$ sudo apt-get install python-virtualenv</span><br><span class="line">~&#x2F;djangogirls$ virtualenv myvenv</span><br></pre></td></tr></table></figure>
-
-
 <h5 id="在虚拟环境下工作"><a href="#在虚拟环境下工作" class="headerlink" title="在虚拟环境下工作"></a>在虚拟环境下工作</h5><p>以上的指令会创建一个叫做myvenv的目录（或是你自己决定的任何名称），里面就是我们的虚拟环境。我们现在想要做的就是把这个虚拟环境执行起来：</p>
-<p>在Windows 上</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\Name\djangogirls&gt; myvenv\Scripts\activate</span><br></pre></td></tr></table></figure>
-
-<p>或者 在OS X 与Linux 上:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~&#x2F;djangogirls$ source myvenv&#x2F;bin&#x2F;activate</span><br></pre></td></tr></table></figure>
-
+<p>在Windows 上<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\Name\djangogirls&gt; myvenv\Scripts\activate</span><br></pre></td></tr></table></figure></p>
+<p>或者 在OS X 与Linux 上:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~&#x2F;djangogirls$ source myvenv&#x2F;bin&#x2F;activate</span><br></pre></td></tr></table></figure></p>
 <p>记得，如果你取了自己喜欢的名称，就把指令中的myvenv代换掉！</p>
 <p>小提示:有时候你系统中或许不支援source指令，在这个状况下你可以使用以下方式：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~&#x2F;djangogirls$ . myvenv&#x2F;bin&#x2F;activate</span><br></pre></td></tr></table></figure>
-
 <p>当你看到你的终端机的命令提示字元看起来像是下面这样的时候，你就知道你现在是在virtualenv中：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(myvenv) C:\Users\Name\djangogirls&gt;</span><br></pre></td></tr></table></figure>
-
 <p>或这样:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(myvenv) ~&#x2F;djangogirls$</span><br></pre></td></tr></table></figure>
-
 <p>(myvenv) 总是会出现！</p>
 <p>当你在虚拟环境下工作时，python会自动切换到目前所使用的版本，所以你就可以用python而不需要再输入python3。</p>
 <p>好了，我们已经有了所有相关的套件了，我们终于可以安装Django 了！</p>
-<h4 id="安装Django"><a href="#安装Django" class="headerlink" title="安装Django"></a>安装Django</h4><p>现在你应该已经启动了你的virtualenv，你可以用pip来安装Django。在终端机底下，执行pip install django==1.6.6（注意噢，我们是使用双等号：==）。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(myvenv) ~$ pip install django&#x3D;&#x3D;1.6.6</span><br><span class="line">Downloading&#x2F;unpacking django&#x3D;&#x3D;1.6.6</span><br><span class="line">Installing collected packages: django</span><br><span class="line">Successfully installed django</span><br><span class="line">Cleaning up...</span><br></pre></td></tr></table></figure>
-<p>如果当你在Ubuntu 12.04下呼叫pip时出现错误讯息，请执行</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -m pip install -U --force-reinstall pip</span><br></pre></td></tr></table></figure>
-<p>去修复这个pip在virtualenv下的安装问题。</p>
+<h4 id="安装Django"><a href="#安装Django" class="headerlink" title="安装Django"></a>安装Django</h4><p>现在你应该已经启动了你的virtualenv，你可以用pip来安装Django。在终端机底下，执行pip install django==1.6.6（注意噢，我们是使用双等号：==）。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(myvenv) ~$ pip install django&#x3D;&#x3D;1.6.6</span><br><span class="line">Downloading&#x2F;unpacking django&#x3D;&#x3D;1.6.6</span><br><span class="line">Installing collected packages: django</span><br><span class="line">Successfully installed django</span><br><span class="line">Cleaning up...</span><br></pre></td></tr></table></figure><br>如果当你在Ubuntu 12.04下呼叫pip时出现错误讯息，请执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -m pip install -U --force-reinstall pip</span><br></pre></td></tr></table></figure><br>去修复这个pip在virtualenv下的安装问题。</p>
 <p>这就是全部了！你现在（终于）准备好去创建一个Django 应用程式！</p>
 <p>但在这之前，你需要一个好的软体让你可以好好写程式…</p>
 
@@ -438,7 +415,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">86</span>
+          <span class="site-state-item-count">87</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -451,7 +428,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">58</span>
+        <span class="site-state-item-count">59</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

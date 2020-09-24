@@ -255,20 +255,14 @@
       
         <h2 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h2><p>之前写的一些东西时间有点久了，想升级一下Django版本</p>
 <a id="more"></a>
-
 <h3 id="升级Django"><a href="#升级Django" class="headerlink" title="升级Django"></a>升级Django</h3><p>requestments.txt</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Django&gt;&#x3D;2.0,&lt;3.0</span><br><span class="line">mysqlclient</span><br><span class="line">psycopg2</span><br><span class="line">djangorestframework</span><br><span class="line">markdown</span><br><span class="line">django-filter</span><br><span class="line">django-allauth</span><br><span class="line">django-bootstrap3</span><br></pre></td></tr></table></figure>
-
-<p>执行命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install -r requestments.txt</span><br></pre></td></tr></table></figure>
-
+<p>执行命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install -r requestments.txt</span><br></pre></td></tr></table></figure></p>
 <h3 id="尝试运行-runserver"><a href="#尝试运行-runserver" class="headerlink" title="尝试运行 runserver"></a>尝试运行 runserver</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.&#x2F;manage.py runserver localhost:5000</span><br></pre></td></tr></table></figure>
-
 <p>发现以下问题</p>
 <h4 id="1-外键关联语法错误"><a href="#1-外键关联语法错误" class="headerlink" title="1. 外键关联语法错误"></a>1. 外键关联语法错误</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">  File &quot;E:\projects\python\dweb\web\smanager\models.py&quot;, line 50, in Employee</span><br><span class="line">    user &#x3D; models.OneToOneField(User)</span><br><span class="line">TypeError: __init__() missing 1 required positional argument: &#39;on_delete&#39;</span><br></pre></td></tr></table></figure>
-
 <p>原因：</p>
-<p>在django2.0后，定义外键和一对一关系的时候需要加on_delete选项，此参数为了避免两个表里的数据不一致问题，不然会报错：<br>TypeError: <strong>init</strong>() missing 1 required positional argument: ‘on_delete’<br>举例说明：<br>user=models.OneToOneField(User)<br>owner=models.ForeignKey(UserProfile)<br>需要改成：<br>user=models.OneToOneField(User,on_delete=models.CASCADE) –在老版本这个参数（models.CASCADE）是默认值<br>owner=models.ForeignKey(UserProfile,on_delete=models.CASCADE) –在老版本这个参数（models.CASCADE）是默认值<br>参数说明：<br>on_delete有CASCADE、PROTECT、SET_NULL、SET_DEFAULT、SET()五个可选择的值<br>CASCADE：此值设置，是级联删除。<br>PROTECT：此值设置，是会报完整性错误。<br>SET_NULL：此值设置，会把外键设置为null，前提是允许为null。<br>SET_DEFAULT：此值设置，会把设置为外键的默认值。<br>SET()：此值设置，会调用外面的值，可以是一个函数。<br>一般情况下使用CASCADE就可以了。</p>
+<p>在django2.0后，定义外键和一对一关系的时候需要加on<em>delete选项，此参数为了避免两个表里的数据不一致问题，不然会报错：<br>TypeError: <em>_init</em></em>() missing 1 required positional argument: ‘on_delete’<br>举例说明：<br>user=models.OneToOneField(User)<br>owner=models.ForeignKey(UserProfile)<br>需要改成：<br>user=models.OneToOneField(User,on_delete=models.CASCADE) —在老版本这个参数（models.CASCADE）是默认值<br>owner=models.ForeignKey(UserProfile,on_delete=models.CASCADE) —在老版本这个参数（models.CASCADE）是默认值<br>参数说明：<br>on_delete有CASCADE、PROTECT、SET_NULL、SET_DEFAULT、SET()五个可选择的值<br>CASCADE：此值设置，是级联删除。<br>PROTECT：此值设置，是会报完整性错误。<br>SET_NULL：此值设置，会把外键设置为null，前提是允许为null。<br>SET_DEFAULT：此值设置，会把设置为外键的默认值。<br>SET()：此值设置，会调用外面的值，可以是一个函数。<br>一般情况下使用CASCADE就可以了。</p>
 <p>修改：</p>
 <p>即在外键值的后面加上 on_delete=models.CASCADE</p>
 <h4 id="2-引入包名错误"><a href="#2-引入包名错误" class="headerlink" title="2. 引入包名错误"></a>2. 引入包名错误</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">  File &quot;&lt;frozen importlib._bootstrap&gt;&quot;, line 994, in _gcd_import</span><br><span class="line">  File &quot;&lt;frozen importlib._bootstrap&gt;&quot;, line 971, in _find_and_load</span><br><span class="line">  File &quot;&lt;frozen importlib._bootstrap&gt;&quot;, line 955, in _find_and_load_unlocked</span><br><span class="line">  File &quot;&lt;frozen importlib._bootstrap&gt;&quot;, line 665, in _load_unlocked</span><br><span class="line">  File &quot;&lt;frozen importlib._bootstrap_external&gt;&quot;, line 678, in exec_module</span><br><span class="line">  File &quot;&lt;frozen importlib._bootstrap&gt;&quot;, line 219, in _call_with_frames_removed</span><br><span class="line">  File &quot;E:\projects\python\dweb\web\smonitor\urls.py&quot;, line 21, in &lt;module&gt;</span><br><span class="line">    from smanager import views as sm_views</span><br><span class="line">  File &quot;E:\projects\python\dweb\web\smanager\views.py&quot;, line 7, in &lt;module&gt;</span><br><span class="line">    from django.core.urlresolvers import reverse</span><br><span class="line">ModuleNotFoundError: No module named &#39;django.core.urlresolvers&#39;</span><br></pre></td></tr></table></figure>
@@ -276,9 +270,8 @@
 <p>django.core.urlresolvers 在 Django2中被修改，可以找 django.urls </p>
 <p>修改 ：<br>from django.core.urlresolvers import reverse -&gt; from django.urls import reverse</p>
 <h4 id="3-启动服务之前需要首先运行python-manage-py-migrate"><a href="#3-启动服务之前需要首先运行python-manage-py-migrate" class="headerlink" title="3. 启动服务之前需要首先运行python manage.py migrate"></a>3. 启动服务之前需要首先运行python manage.py migrate</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">You have 14 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): admin, auth, contenttypes, sessions.</span><br><span class="line">Run &#39;python manage.py migrate&#39; to apply them.</span><br></pre></td></tr></table></figure>
-
 <h4 id="4-运行时错误"><a href="#4-运行时错误" class="headerlink" title="4. 运行时错误"></a>4. 运行时错误</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Internal Server Error: &#x2F;</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File &quot;D:\apps\python36\lib\site-packages\django\core\handlers\exception.py&quot;, line 34, in inner</span><br><span class="line">    response &#x3D; get_response(request)</span><br><span class="line">  File &quot;D:\apps\python36\lib\site-packages\django\core\handlers\base.py&quot;, line 126, in _get_response</span><br><span class="line">    response &#x3D; self.process_exception_by_middleware(e, request)</span><br><span class="line">  File &quot;D:\apps\python36\lib\site-packages\django\core\handlers\base.py&quot;, line 124, in _get_response</span><br><span class="line">    response &#x3D; wrapped_callback(request, *callback_args, **callback_kwargs)</span><br><span class="line">  File &quot;E:\projects\python\dweb\web\smanager\views.py&quot;, line 27, in index</span><br><span class="line">    if request.user.is_authenticated() &#x3D;&#x3D; False :</span><br><span class="line">TypeError: &#39;bool&#39; object is not callable</span><br></pre></td></tr></table></figure>
-<p>方法修改成属性  request.user.is_authenticated() –&gt; request.user.is_authenticated</p>
+<p>方法修改成属性  request.user.is_authenticated() —&gt; request.user.is_authenticated</p>
 <p>‘WSGIRequest’ object has no attribute ‘session’，这个问题是因为settings中middleware的定义参数变了，得把MIDDLEWARE_ClASSES改成MIDDLEWARE。</p>
 <h4 id="5"><a href="#5" class="headerlink" title="5."></a>5.</h4><p>其他注意事项</p>
 <p>MIDDLEWARE:<br>新版本中 中间件的key值 由 MIDDLEWARE_CLASSES 变更为 MIDDLEWARE</p>
@@ -401,7 +394,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">86</span>
+          <span class="site-state-item-count">87</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -414,7 +407,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">58</span>
+        <span class="site-state-item-count">59</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

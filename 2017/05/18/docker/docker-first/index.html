@@ -255,7 +255,6 @@
       
         <h2 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h2><p>首次接触Docker<br>第一次知道Docker是从Kali的课堂上知道的，现在发现它很不错，值得学习</p>
 <a id="more"></a>
-
 <h2 id="读者"><a href="#读者" class="headerlink" title="读者"></a>读者</h2><p>没接触过Docker的运维人员，半运维人员，对Docker感兴趣的同学</p>
 <h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><ul>
 <li>Centos 7</li>
@@ -266,49 +265,32 @@
 <p>Docker 的局限性之一是，它只能用在 64 位的操作系统上。</p>
 <h2 id="Docker-的一些理解"><a href="#Docker-的一些理解" class="headerlink" title="Docker  的一些理解"></a>Docker  的一些理解</h2><p>Docker 的镜像文件【images】是不能修改的，只读的<br>Docker 的架构是镜像叠加，所以镜像文件尽量不要有冗余操作<br>Docker 的容器是一个可读的镜像，是在镜像之上又架了一层可写的镜像，这个镜像经过修改，可以作为镜像出现<br>Docker 最让我觉得很好的地方是很多环境搭建变得简单了，然后也比较简洁</p>
 <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install docker</span><br></pre></td></tr></table></figure>
-
-<h2 id="启动Docker服务"><a href="#启动Docker服务" class="headerlink" title="启动Docker服务"></a>启动Docker服务</h2><p>旧语法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">service docker start 				&#x2F;&#x2F;启动Docker</span><br><span class="line">chkconfig docker on 				&#x2F;&#x2F; 配置开机启动</span><br></pre></td></tr></table></figure>
-
-<p>新语法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl start docker.service 		&#x2F;&#x2F;启动Docker</span><br><span class="line">systemctl enable docker.service 	&#x2F;&#x2F; 配置开机启动</span><br></pre></td></tr></table></figure>
-
+<h2 id="启动Docker服务"><a href="#启动Docker服务" class="headerlink" title="启动Docker服务"></a>启动Docker服务</h2><p>旧语法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">service docker start 				&#x2F;&#x2F;启动Docker</span><br><span class="line">chkconfig docker on 				&#x2F;&#x2F; 配置开机启动</span><br></pre></td></tr></table></figure></p>
+<p>新语法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl start docker.service 		&#x2F;&#x2F;启动Docker</span><br><span class="line">systemctl enable docker.service 	&#x2F;&#x2F; 配置开机启动</span><br></pre></td></tr></table></figure></p>
 <h2 id="下载Centos镜像文件"><a href="#下载Centos镜像文件" class="headerlink" title="下载Centos镜像文件"></a>下载Centos镜像文件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker pull centos  		&#x2F;&#x2F;获取centos镜像</span><br><span class="line">docker images  				&#x2F;&#x2F;查看镜像列表</span><br></pre></td></tr></table></figure>
-
 <h2 id="运行一个Docker容器"><a href="#运行一个Docker容器" class="headerlink" title="运行一个Docker容器"></a>运行一个Docker容器</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -i -t centos &#x2F;bin&#x2F;bash</span><br></pre></td></tr></table></figure>
-
 <p>运行一个Docker容器，使用-i 捕获输入输出，-t 分配一个终端挥着控制台<br>断开容器的连接，输入exit</p>
 <h2 id="查看当前正在运行的容器列表"><a href="#查看当前正在运行的容器列表" class="headerlink" title="查看当前正在运行的容器列表"></a>查看当前正在运行的容器列表</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps</span><br></pre></td></tr></table></figure>
-
 <h2 id="进入当前正在运行的容器"><a href="#进入当前正在运行的容器" class="headerlink" title="进入当前正在运行的容器"></a>进入当前正在运行的容器</h2><h3 id="exec-命令"><a href="#exec-命令" class="headerlink" title="exec 命令"></a>exec 命令</h3><p>docker exec 是Docker內建的命令。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ sudo docker run -idt ubuntu</span><br><span class="line">243c32535da7d142fb0e6df616a3c3ada0b8ab417937c853a9e1c251f499f550</span><br><span class="line">$ sudo docker ps</span><br><span class="line">CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES</span><br><span class="line">243c32535da7        ubuntu:latest       &quot;&#x2F;bin&#x2F;bash&quot;         18 seconds ago      Up 17 seconds                           nostalgic_hypatia</span><br><span class="line">$sudo docker exec -it nostalgic_hypatia bash</span><br><span class="line">root@243c32535da7:&#x2F;#</span><br></pre></td></tr></table></figure>
-
 <h3 id="attach-命令"><a href="#attach-命令" class="headerlink" title="attach 命令"></a>attach 命令</h3><p>docker attach 亦是Docker內建的命令。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ sudo docker run -idt ubuntu</span><br><span class="line">243c32535da7d142fb0e6df616a3c3ada0b8ab417937c853a9e1c251f499f550</span><br><span class="line">$ sudo docker ps</span><br><span class="line">CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES</span><br><span class="line">243c32535da7        ubuntu:latest       &quot;&#x2F;bin&#x2F;bash&quot;         18 seconds ago      Up 17 seconds                           nostalgic_hypatia</span><br><span class="line">$sudo docker attach nostalgic_hypatia</span><br><span class="line">root@243c32535da7:&#x2F;#</span><br></pre></td></tr></table></figure>
-
 <p>按下 ctrl + P 然後 ctrl + Q 跳離容器，讓它繼續在背景執行。<br>但是使用 attach 命令有時候並不方便。當多個窗口同時 attach 到同一個容器的時候，所有窗口都會同步顯示。當某個窗口因命令阻塞時,其他窗口也無法執行操作了。</p>
 <h3 id="nsenter-命令"><a href="#nsenter-命令" class="headerlink" title="nsenter 命令"></a>nsenter 命令</h3><h4 id="安裝"><a href="#安裝" class="headerlink" title="安裝"></a>安裝</h4><p>nsenter 工具已含括在 util-linux 2.23 後的版本內。 如果系統中 util-linux 包沒有該命令，可以按照下面的方法從原始碼安裝。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ cd &#x2F;tmp; curl https:&#x2F;&#x2F;www.kernel.org&#x2F;pub&#x2F;linux&#x2F;utils&#x2F;util-linux&#x2F;v2.24&#x2F;util-linux-2.24.tar.gz | tar -zxf-; cd util-linux-2.24;</span><br><span class="line">$ .&#x2F;configure --without-ncurses</span><br><span class="line">$ make nsenter &amp;&amp; sudo cp nsenter &#x2F;usr&#x2F;local&#x2F;bin</span><br></pre></td></tr></table></figure>
-
 <h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><p>nsenter 可以存取另一個程式的命名空間。nsenter 要正常工作需要有 root 權限。 很不幸，Ubuntu 14.4 仍然使用的是 util-linux 2.20。安裝最新版本的 util-linux（2.24）版，請按照以下步驟：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ wget https:&#x2F;&#x2F;www.kernel.org&#x2F;pub&#x2F;linux&#x2F;utils&#x2F;util-linux&#x2F;v2.24&#x2F;util-linux-2.24.tar.gz; tar xzvf util-linux-2.24.tar.gz</span><br><span class="line">$ cd util-linux-2.24</span><br><span class="line">$ .&#x2F;configure --without-ncurses &amp;&amp; make nsenter</span><br><span class="line">$ sudo cp nsenter &#x2F;usr&#x2F;local&#x2F;bin</span><br></pre></td></tr></table></figure>
-
 <p>為了連接到容器，你還需要找到容器的第一個程式的 PID，可以透過下面的命令取得。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PID&#x3D;$(docker inspect --format &quot;&#123;&#123; .State.Pid &#125;&#125;&quot; &lt;container&gt;)</span><br></pre></td></tr></table></figure>
 <p>透過這個 PID，就可以連接到這個容器：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ nsenter --target $PID --mount --uts --ipc --net --pid</span><br></pre></td></tr></table></figure>
-
 <p>下面給出一個完整的例子。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ sudo docker run -idt ubuntu</span><br><span class="line">243c32535da7d142fb0e6df616a3c3ada0b8ab417937c853a9e1c251f499f550</span><br><span class="line">$ sudo docker ps</span><br><span class="line">CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES</span><br><span class="line">243c32535da7        ubuntu:latest       &quot;&#x2F;bin&#x2F;bash&quot;         18 seconds ago      Up 17 seconds                           nostalgic_hypatia</span><br><span class="line">$ PID&#x3D;$(docker-pid 243c32535da7)</span><br><span class="line">10981</span><br><span class="line">$ sudo nsenter --target 10981 --mount --uts --ipc --net --pid</span><br><span class="line">root@243c32535da7:&#x2F;#</span><br></pre></td></tr></table></figure>
-
 <p>更簡單的，建議大家下載 .bashrc_docker，並將內容放到 .bashrc 中。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ wget -P ~ https:&#x2F;&#x2F;github.com&#x2F;yeasy&#x2F;docker_practice&#x2F;raw&#x2F;master&#x2F;_local&#x2F;.bashrc_docker;</span><br><span class="line">$ echo &quot;[ -f ~&#x2F;.bashrc_docker ] &amp;&amp; . ~&#x2F;.bashrc_docker&quot; &gt;&gt; ~&#x2F;.bashrc; source ~&#x2F;.bashrc</span><br></pre></td></tr></table></figure>
-
 <p>這個檔案中定義了很多方便使用 Docker 的命令，例如 docker-pid 可以取得某個容器的 PID；而 docker-enter 可以進入容器或直接在容器內執行命令。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ echo $(docker-pid &lt;container&gt;)</span><br><span class="line">$ docker-enter &lt;container&gt; ls</span><br></pre></td></tr></table></figure>
-
 <h2 id="更换Docker国内源"><a href="#更换Docker国内源" class="headerlink" title="更换Docker国内源"></a>更换Docker国内源</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -sSL https:&#x2F;&#x2F;get.daocloud.io&#x2F;daotools&#x2F;set_mirror.sh | sh -s http:&#x2F;&#x2F;43049fd0.m.daocloud.io</span><br></pre></td></tr></table></figure>
-
 <h2 id="后续需要提高的地方"><a href="#后续需要提高的地方" class="headerlink" title="后续需要提高的地方"></a>后续需要提高的地方</h2><ul>
 <li>Docker 更换源</li>
 <li>Docker 制作高品质的镜像文件</li>
@@ -444,7 +426,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">86</span>
+          <span class="site-state-item-count">87</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -457,7 +439,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">58</span>
+        <span class="site-state-item-count">59</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

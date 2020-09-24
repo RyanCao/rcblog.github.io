@@ -255,25 +255,19 @@
       
         <h2 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h2><p>电脑重装系统 重新装的新的Node，无法使用Hexo</p>
 <a id="more"></a>
-
 <h2 id="配置环境"><a href="#配置环境" class="headerlink" title="配置环境"></a>配置环境</h2><ul>
 <li>Node v12.18</li>
 <li>Git</li>
 </ul>
 <h2 id="node-设置环境变量"><a href="#node-设置环境变量" class="headerlink" title="node 设置环境变量"></a>node 设置环境变量</h2><p>重装Node的时候最好卸载掉旧版本文件，防止冲突</p>
 <h2 id="npm更换淘宝镜像"><a href="#npm更换淘宝镜像" class="headerlink" title="npm更换淘宝镜像"></a>npm更换淘宝镜像</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm config set registry https://registry.npm.taobao.org</span><br></pre></td></tr></table></figure>
-
 <h2 id="npm-安装-grunt-cli-hexo"><a href="#npm-安装-grunt-cli-hexo" class="headerlink" title="npm  安装 grunt-cli hexo"></a>npm  安装 grunt-cli hexo</h2><h3 id="安装-grunt-cli"><a href="#安装-grunt-cli" class="headerlink" title="安装 grunt-cli"></a>安装 grunt-cli</h3><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g grunt-cli</span><br></pre></td></tr></table></figure>
-
 <h3 id="安装-hexo"><a href="#安装-hexo" class="headerlink" title="安装 hexo"></a>安装 hexo</h3><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo</span><br></pre></td></tr></table></figure>
-
 <p>查看信息</p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">$ hexo -v</span><br><span class="line">hexo-cli: 3.1.0</span><br><span class="line">os: Windows_NT 10.0.18363 win32 x64</span><br><span class="line">node: 12.18.0</span><br><span class="line">v8: 7.8.279.23-node.37</span><br><span class="line">uv: 1.37.0</span><br><span class="line">zlib: 1.2.11</span><br><span class="line">brotli: 1.0.7</span><br><span class="line">ares: 1.16.0</span><br><span class="line">modules: 72</span><br><span class="line">nghttp2: 1.41.0</span><br><span class="line">napi: 6</span><br><span class="line">llhttp: 2.0.4</span><br><span class="line">http_parser: 2.9.3</span><br><span class="line">openssl: 1.1.1g</span><br><span class="line">cldr: 37.0</span><br><span class="line">icu: 67.1</span><br><span class="line">tz: 2019c</span><br><span class="line">unicode: 13.0</span><br></pre></td></tr></table></figure>
-
 <h2 id="升级错误记录"><a href="#升级错误记录" class="headerlink" title="升级错误记录"></a>升级错误记录</h2><h3 id="node-升级14-以后，hexo-部署失败了"><a href="#node-升级14-以后，hexo-部署失败了" class="headerlink" title="node 升级14 以后，hexo 部署失败了"></a>node 升级14 以后，hexo 部署失败了</h3><p>报错如下</p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$ hexo d</span><br><span class="line">INFO  Deploying: git</span><br><span class="line">INFO  Clearing .deploy_git folder...</span><br><span class="line">INFO  Copying files from public folder...</span><br><span class="line">FATAL Something's wrong. Maybe you can find the solution here: https://hexo.io/docs/troubleshooting.html</span><br><span class="line">TypeError [ERR<span class="emphasis">_INVALID_</span>ARG_TYPE]: The "mode" argument must be integer. Received an instance of Object</span><br><span class="line"><span class="code">    at copyFile (fs.js:1924:10)</span></span><br><span class="line"><span class="code">    at tryCatcher (E:\projects\hexo\rcantblog_hexo\blog\node_modules\hexo-fs\node_modules\bluebird\js\release\util.js:16:23)</span></span><br><span class="line"><span class="code">    at ret (eval at makeNodePromisifiedEval (C:\Users\cqs\AppData\Roaming\npm\node_modules\hexo\node_modules\bluebird\js\release\promisify.js:184:12), &lt;anonymous&gt;:13:39)</span></span><br><span class="line"><span class="code">    at E:\projects\hexo\rcantblog_hexo\blog\node_modules\hexo-fs\lib\fs.js:144:39</span></span><br><span class="line"><span class="code">    at tryCatcher (E:\projects\hexo\rcantblog_hexo\blog\node_modules\hexo-fs\node_modules\bluebird\js\release\util.js:16:23)</span></span><br><span class="line"><span class="code">    at Promise._settlePromiseFromHandler (E:\projects\hexo\rcantblog_hexo\blog\node_modules\hexo-fs\node_modules\bluebird\js\release\promise.js:517:31)</span></span><br><span class="line"><span class="code">    at Promise._settlePromise (E:\projects\hexo\rcantblog_hexo\blog\node_modules\hexo-fs\node_modules\bluebird\js\release\promise.js:574:18)</span></span><br></pre></td></tr></table></figure>
-
-<p>google了下发现是hexo不支持最新node14+，issue见此，解决方案两种：降低node版本或者升级最新<a href="mailto:&#x68;&#101;&#120;&#x6f;&#64;&#x34;&#x2e;&#50;&#x2e;&#49;">&#x68;&#101;&#120;&#x6f;&#64;&#x34;&#x2e;&#50;&#x2e;&#49;</a>+。</p>
+<p>google了下发现是hexo不支持最新node14+，issue见此，解决方案两种：降低node版本或者升级最新hexo@4.2.1+。</p>
 <p>我尝试了升级hexo到4.2.1发现并没有什么卵用，照样报相同的错，所以选择了降低node版本到稳定版：</p>
 <p>直接到官网下载最新稳定版：<a href="https://nodejs.org/en/download/" target="_blank" rel="noopener">https://nodejs.org/en/download/</a></p>
 <p>然后重新执行 hexo clean &amp;&amp; hexo deploy 打包命令就好了。</p>
@@ -404,7 +398,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">86</span>
+          <span class="site-state-item-count">87</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -417,7 +411,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">58</span>
+        <span class="site-state-item-count">59</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

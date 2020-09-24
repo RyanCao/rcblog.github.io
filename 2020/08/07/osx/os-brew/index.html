@@ -252,27 +252,19 @@
         <h2 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h2><p>安装HomeBrew，Mac用的少，记录下，以免忘记</p>
 <a id="more"></a>
 <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><h3 id="方式1-简单的脚本安装brew-网络正常访问raw-githubusercontent-com"><a href="#方式1-简单的脚本安装brew-网络正常访问raw-githubusercontent-com" class="headerlink" title="方式1. 简单的脚本安装brew [网络正常访问raw.githubusercontent.com]"></a>方式1. 简单的脚本安装brew [网络正常访问raw.githubusercontent.com]</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;bin&#x2F;bash -c &quot;$(curl -fsSL https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;Homebrew&#x2F;install&#x2F;master&#x2F;install.sh)&quot;</span><br></pre></td></tr></table></figure>
-
 <h3 id="方式2-ruby-shell-网络正常访问raw-githubusercontent-com"><a href="#方式2-ruby-shell-网络正常访问raw-githubusercontent-com" class="headerlink" title="方式2. ruby shell [网络正常访问raw.githubusercontent.com]"></a>方式2. ruby shell [网络正常访问raw.githubusercontent.com]</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;usr&#x2F;bin&#x2F;ruby -e &quot;$(curl -fsSL https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;Homebrew&#x2F;install&#x2F;master&#x2F;install)&quot;</span><br></pre></td></tr></table></figure>
-
 <blockquote>
 <p>由于网络资源的原因，国内使用上面的方式很慢，经常失败，解决办法以下两种</p>
 </blockquote>
 <h3 id="方式3-替换镜像源"><a href="#方式3-替换镜像源" class="headerlink" title="方式3. 替换镜像源"></a>方式3. 替换镜像源</h3><h3 id="方式4-使用全局代理-挂VPN"><a href="#方式4-使用全局代理-挂VPN" class="headerlink" title="方式4. 使用全局代理(挂VPN)"></a>方式4. 使用全局代理(挂VPN)</h3><h2 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h2><h3 id="1-如果出现错误"><a href="#1-如果出现错误" class="headerlink" title="1. 如果出现错误"></a>1. 如果出现错误</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Cloning into &#39;&#x2F;usr&#x2F;local&#x2F;Homebrew&#x2F;Library&#x2F;Taps&#x2F;homebrew&#x2F;homebrew-core&#39;...</span><br><span class="line"></span><br><span class="line">fatal: unable to access &#39;https:&#x2F;&#x2F;github.com&#x2F;Homebrew&#x2F;homebrew-core&#x2F;&#39;: LibreSSL SSL_connect: SSL_ERROR_SYSCALL in connection to github.com:443 </span><br><span class="line"></span><br><span class="line">Error: Failure while executing: git clone https:&#x2F;&#x2F;github.com&#x2F;Homebrew&#x2F;homebrew-core &#x2F;usr&#x2F;local&#x2F;Homebrew&#x2F;Library&#x2F;Taps&#x2F;homebrew&#x2F;homebrew-core --depth&#x3D;1</span><br><span class="line"></span><br><span class="line">Error: Failure while executing: &#x2F;usr&#x2F;local&#x2F;bin&#x2F;brew tap homebrew&#x2F;core</span><br><span class="line"></span><br><span class="line">Failed during: &#x2F;usr&#x2F;local&#x2F;bin&#x2F;brew update --force</span><br></pre></td></tr></table></figure>
-
 <p>可以手动下载国内仓库</p>
 <h4 id="安装brew："><a href="#安装brew：" class="headerlink" title="安装brew："></a>安装brew：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p &#x2F;usr&#x2F;local&#x2F;Homebrew&#x2F;Library&#x2F;Taps&#x2F;homebrew</span><br><span class="line">git clone git:&#x2F;&#x2F;mirrors.ustc.edu.cn&#x2F;homebrew-core.git &#x2F;usr&#x2F;local&#x2F;Homebrew&#x2F;Library&#x2F;Taps&#x2F;homebrew&#x2F;homebrew-core --depth&#x3D;1</span><br></pre></td></tr></table></figure>
-
 <h4 id="安装brew-cask："><a href="#安装brew-cask：" class="headerlink" title="安装brew cask："></a>安装brew cask：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone git:&#x2F;&#x2F;mirrors.ustc.edu.cn&#x2F;homebrew-cask.git &#x2F;usr&#x2F;local&#x2F;Homebrew&#x2F;Library&#x2F;Taps&#x2F;homebrew&#x2F;homebrew-cask --depth&#x3D;1</span><br></pre></td></tr></table></figure>
-
 <h3 id="2-如果出现错误-raw-githubusercontent-com-无法访问"><a href="#2-如果出现错误-raw-githubusercontent-com-无法访问" class="headerlink" title="2. 如果出现错误 raw.githubusercontent.com 无法访问"></a>2. 如果出现错误 raw.githubusercontent.com 无法访问</h3><p>可以去网站 <a href="https://www.ipaddress.com/" target="_blank" rel="noopener">https://www.ipaddress.com/</a> 查询raw.githubusercontent.com 地址<br>如下图所示</p>
 <img src="/2020/08/07/osx/os-brew/ipfound.png" class="" title="Ip查找">
-
 <p>修改hosts, 添加</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">199.232.68.133 raw.githubusercontent.com</span><br></pre></td></tr></table></figure>
-
 <h2 id="替换brew镜像源"><a href="#替换brew镜像源" class="headerlink" title="替换brew镜像源"></a>替换brew镜像源</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">cd &quot;$(brew --repo)&quot;</span><br><span class="line">git remote set-url origin https:&#x2F;&#x2F;mirrors.ustc.edu.cn&#x2F;brew.git</span><br><span class="line">cd &quot;$(brew --repo)&#x2F;Library&#x2F;Taps&#x2F;homebrew&#x2F;homebrew-core&quot;</span><br><span class="line">git remote set-url origin https:&#x2F;&#x2F;mirrors.ustc.edu.cn&#x2F;homebrew-core.git</span><br><span class="line">cd &quot;$(brew --repo)&#x2F;Library&#x2F;Taps&#x2F;homebrew&#x2F;homebrew-cask&quot;</span><br><span class="line">git remote set-url origin https:&#x2F;&#x2F;mirrors.ustc.edu.cn&#x2F;homebrew-cask.git</span><br></pre></td></tr></table></figure>
-
 <h2 id="卸载brew"><a href="#卸载brew" class="headerlink" title="卸载brew"></a>卸载brew</h2><h3 id="ruby"><a href="#ruby" class="headerlink" title="ruby"></a>ruby</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ruby -e &quot;$(curl -fsSL https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;Homebrew&#x2F;install&#x2F;master&#x2F;uninstall)&quot;</span><br></pre></td></tr></table></figure>
 <h3 id="shell"><a href="#shell" class="headerlink" title="shell"></a>shell</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;bin&#x2F;bash -c &quot;$(curl -fsSL https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;Homebrew&#x2F;install&#x2F;master&#x2F;uninstall.sh)&quot;</span><br></pre></td></tr></table></figure>
     </div>
@@ -391,7 +383,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">86</span>
+          <span class="site-state-item-count">87</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -404,7 +396,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">58</span>
+        <span class="site-state-item-count">59</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

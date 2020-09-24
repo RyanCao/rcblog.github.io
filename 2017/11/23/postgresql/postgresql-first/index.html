@@ -255,7 +255,6 @@
       
         <h2 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h2><p>Postgresql 数据库<br>想学习下这个数据库有什么特别的东西</p>
 <a id="more"></a>
-
 <h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><ul>
 <li>centos7</li>
 <li>postgresql 10</li>
@@ -265,19 +264,15 @@
 <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>我是使用的Docker安装的，非常简单的命令</p>
 <p>创建 docker-compose.xml 文件，键入下面内容</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">version: &#39;3&#39;</span><br><span class="line"></span><br><span class="line">services:</span><br><span class="line">  db:</span><br><span class="line">    image: postgres</span><br><span class="line">    container_name: ps01</span><br></pre></td></tr></table></figure>
-
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
-
 <p>这样就产生了一个容器 ps01</p>
 <h2 id="首次使用"><a href="#首次使用" class="headerlink" title="首次使用"></a>首次使用</h2><p>开始 找了很多网上的资料想知道，怎么进postgresql命令行，结果怎么都不知道</p>
 <p>最后还是：</p>
 <p>进容器里面看</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it ps01 bash</span><br></pre></td></tr></table></figure>
-
 <p>偶然官网发现使用postgresql 默认用户名为 postgres </p>
 <p>键入命令行</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">psql -U postgres</span><br></pre></td></tr></table></figure>
-
 <p>这样就直接进入 sql命令行了，这个是本地操作，估计本地是不需要输入用户密码的</p>
 <p>接着我就下载了一个远程链接的软件，想远程连上数据库</p>
 <p>不填密码，就不让链接</p>
@@ -286,7 +281,6 @@
 <p>可以重新设置，后台进入容器，调出SQL命令行</p>
 <p>键入命令,设置用户 postgres 用户名密码</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER USER postgres WITH PASSWORD &#39;postgres&#39;;</span><br></pre></td></tr></table></figure>
-
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\q</span><br></pre></td></tr></table></figure>
 <p>退出Sql命令行</p>
 <p>注意：</p>
@@ -298,17 +292,11 @@
 <h2 id="关于和Django使用的事"><a href="#关于和Django使用的事" class="headerlink" title="关于和Django使用的事"></a>关于和Django使用的事</h2><p>我的Django 开始使用的是 Sqlite 数据库</p>
 <h3 id="导出原先的sqlite-数据库信息"><a href="#导出原先的sqlite-数据库信息" class="headerlink" title="导出原先的sqlite 数据库信息"></a>导出原先的sqlite 数据库信息</h3><p>进入Django 后台操作</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.&#x2F;manage.py dumpdata &gt; dump.json</span><br></pre></td></tr></table></figure>
-
 <h3 id="修改数据库驱动为Postgresql"><a href="#修改数据库驱动为Postgresql" class="headerlink" title="修改数据库驱动为Postgresql"></a>修改数据库驱动为Postgresql</h3><p>xx/setting.py</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line">DATABASES &#x3D; &#123;</span><br><span class="line">    &#39;default&#39;: &#123;</span><br><span class="line">        &#39;ENGINE&#39;: &#39;django.db.backends.sqlite3&#39;,</span><br><span class="line">        &#39;NAME&#39;: os.path.join(BASE_DIR, &#39;db.sqlite3&#39;),</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line">DATABASES &#x3D; &#123;</span><br><span class="line">    &#39;default&#39;: &#123;</span><br><span class="line">        &#39;ENGINE&#39;: &#39;django.db.backends.postgresql&#39;,</span><br><span class="line">        &#39;NAME&#39;: &#39;testdb&#39;,</span><br><span class="line">        &#39;USER&#39;: &#39;postgres&#39;,</span><br><span class="line">        &#39;PASSWORD&#39;: &#39;postgres&#39;,</span><br><span class="line">        &#39;HOST&#39;: &#39;db&#39;,</span><br><span class="line">        &#39;POST&#39;: 5432,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="Postgresql-创建需要的数据库"><a href="#Postgresql-创建需要的数据库" class="headerlink" title="Postgresql 创建需要的数据库"></a>Postgresql 创建需要的数据库</h3><p>sql 进入命令行操作</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">create database testdb;</span><br><span class="line">\q</span><br></pre></td></tr></table></figure>
-
+<h3 id="Postgresql-创建需要的数据库"><a href="#Postgresql-创建需要的数据库" class="headerlink" title="Postgresql 创建需要的数据库"></a>Postgresql 创建需要的数据库</h3><p>sql 进入命令行操作<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">create database testdb;</span><br><span class="line">\q</span><br></pre></td></tr></table></figure></p>
 <h3 id="Django-创建需要用到的表格文件"><a href="#Django-创建需要用到的表格文件" class="headerlink" title="Django 创建需要用到的表格文件"></a>Django 创建需要用到的表格文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 1. 创建更改的文件</span><br><span class="line">.&#x2F;manage.py makemigrations</span><br><span class="line"># 2. 将生成的py文件应用到数据库</span><br><span class="line">.&#x2F;manage.py migrate</span><br></pre></td></tr></table></figure>
-
 <h3 id="导入原先导出好的数据文件"><a href="#导入原先导出好的数据文件" class="headerlink" title="导入原先导出好的数据文件"></a>导入原先导出好的数据文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.&#x2F;manage.py loaddata dump.json</span><br></pre></td></tr></table></figure>
-
 <h2 id="继续研究发现-通过docker-compose-可以配置用户名密码等设置"><a href="#继续研究发现-通过docker-compose-可以配置用户名密码等设置" class="headerlink" title="继续研究发现 通过docker-compose 可以配置用户名密码等设置"></a>继续研究发现 通过docker-compose 可以配置用户名密码等设置</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">version: &#39;3&#39;</span><br><span class="line"></span><br><span class="line">services:</span><br><span class="line">  db:</span><br><span class="line">    image: postgres</span><br><span class="line">    container_name: ps01</span><br><span class="line">    environment:</span><br><span class="line">      POSTGRES_USER:postgres</span><br><span class="line">      POSTGRES_PASSWORD:example</span><br><span class="line">    expose:</span><br><span class="line">      - &quot;5432&quot;</span><br><span class="line">    ports:</span><br><span class="line">      - &quot;5432:5432&quot;</span><br></pre></td></tr></table></figure>
 
     </div>
@@ -427,7 +415,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">86</span>
+          <span class="site-state-item-count">87</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -440,7 +428,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">58</span>
+        <span class="site-state-item-count">59</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

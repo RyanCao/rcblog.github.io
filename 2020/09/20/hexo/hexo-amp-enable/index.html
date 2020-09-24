@@ -259,21 +259,17 @@
       
         <h2 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h2><p>Google 的 AMP，能够显著加快网站的移动访问。</p>
 <a id="more"></a>
-
 <h2 id="AMP-简介"><a href="#AMP-简介" class="headerlink" title="AMP 简介"></a>AMP 简介</h2><blockquote>
 <p>Accelerated Mobile Pages（简称 AMP，意为 “加速移动页面”）是 Google 带领开发的开源项目，目的是为提升移动设备对网站的访问速度。AMP 也可指其派生的标准和库等项目成果。AMP 在 HTML 等广泛使用的网络技术基础上进行改良，它的核心称作 AMP HTML，是 HTML 的一种。服务于技术预览期结束后的 2016 年 2 月正式发布。</p>
 </blockquote>
 <h2 id="Hexo-博客启用方式"><a href="#Hexo-博客启用方式" class="headerlink" title="Hexo 博客启用方式"></a>Hexo 博客启用方式</h2><p>本站采用 NexT 主题，就以此作为演示。</p>
 <h3 id="安装-hexo-generator-amp-插件"><a href="#安装-hexo-generator-amp-插件" class="headerlink" title="安装 hexo-generator-amp 插件"></a>安装 hexo-generator-amp 插件</h3><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-generator-amp --save</span><br></pre></td></tr></table></figure>
-
 <p>如果不成功，加个 sudo 再试一下。</p>
 <h3 id="修改主题"><a href="#修改主题" class="headerlink" title="修改主题"></a>修改主题</h3><p>本文使用的是 NexT 主题 v7.8.0。</p>
 <p>打开 <strong>themes/next/layout/_partials/head/</strong> 文件夹中的 <strong>head.swig</strong> 文件。</p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi themes/next/layout/_partials/head/head.swig</span><br></pre></td></tr></table></figure>
-
 <p>在文件中添加如下内容。</p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;%- if is<span class="emphasis">_post() and config.generator_</span>amp %&#125;</span><br><span class="line">  <span class="xml"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"amphtml"</span> <span class="attr">href</span>=<span class="string">"./amp/"</span> /&gt;</span></span></span><br><span class="line">&#123;%- endif %&#125;</span><br></pre></td></tr></table></figure>
-
 <h4 id="注意-这个版本中有个bug"><a href="#注意-这个版本中有个bug" class="headerlink" title="注意 这个版本中有个bug"></a>注意 这个版本中有个bug</h4><p>利用 <strong>hexo s</strong> 本地测试的时候， <strong>is_post()</strong> 判断没问题，只有在 <strong>Post</strong> <strong>Render</strong> 的时候才会返回True</p>
 <p>但是 <strong>hexo g</strong> 或者 <strong>hexo d</strong> ，所有情况返回的都是 <strong>False</strong></p>
 <p><strong>Bug</strong> 是由于 <strong>Next Theme</strong>  对 <strong>Head</strong> 使用了缓存机制. 只会生成一次 <strong>Head</strong> 后面所有的文章重用这个缓存，导致所有情况返回的都是 <strong>False</strong></p>
@@ -284,30 +280,22 @@
 <p>修改方法</p>
 <p>打开 <strong>themes/next/layout/_layout.swig</strong> 文件。</p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi themes/next/layout/_layout.swig</span><br></pre></td></tr></table></figure>
-
 <p>将这段修改掉</p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123; partial('_partials/head/head.swig', &#123;&#125;, &#123;cache: theme.cache.enable&#125;) &#125;&#125;</span><br></pre></td></tr></table></figure>
-
 <p>修改为下面这段 不容许生成缓存</p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123; partial('_partials/head/head.swig', &#123;&#125;) &#125;&#125;</span><br></pre></td></tr></table></figure>
-
 <h3 id="修改站点配置"><a href="#修改站点配置" class="headerlink" title="修改站点配置"></a>修改站点配置</h3><p>打开站点配置文件 <strong>_config.yml</strong> ，加入以下内容。</p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">generator_amp:</span><br><span class="line">  templateDir:  amp-template</span><br><span class="line">  assetDistDir: amp-dist</span><br><span class="line">  logo:</span><br><span class="line"><span class="code">    path:   sample/sample-logo.png</span></span><br><span class="line"><span class="code">    width:  600</span></span><br><span class="line"><span class="code">    height: 60</span></span><br><span class="line">  substituteTitleImage:</span><br><span class="line"><span class="code">    path:   sample/sample-substituteTitleImage.png</span></span><br><span class="line"><span class="code">    width:  1024</span></span><br><span class="line"><span class="code">    height: 800</span></span><br><span class="line">  warningLog: false   # To display warning, please set true.</span><br></pre></td></tr></table></figure>
-
 <h3 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h3><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g -d</span><br></pre></td></tr></table></figure>
-
 <h3 id="查看效果"><a href="#查看效果" class="headerlink" title="查看效果"></a>查看效果</h3><p>在我的每篇文章地址后加上./amp/ 即可看到效果，以本文为例。</p>
 <img src="/2020/09/20/hexo/hexo-amp-enable/1.png" class="" title="amp页面">  
-
 <h3 id="Google-的-AMP-测试"><a href="#Google-的-AMP-测试" class="headerlink" title="Google 的 AMP 测试"></a>Google 的 AMP 测试</h3><blockquote>
 <p>可以使用 Google 的 AMP 测试来测试你的 AMP 网页的有效性。然后你就能放心地将网页提交给 Google 和百度了。</p>
 </blockquote>
 <p>Hexo 页面上显示有Amp链接</p>
 <img src="/2020/09/20/hexo/hexo-amp-enable/2.png" class="" title="amp测试页面">  
-
 <p>Amp页面</p>
 <img src="/2020/09/20/hexo/hexo-amp-enable/3.png" class="" title="amp测试页面">  
-
 <h2 id="AMP-提交搜索引擎"><a href="#AMP-提交搜索引擎" class="headerlink" title="AMP 提交搜索引擎"></a>AMP 提交搜索引擎</h2><h3 id="AMP-SiteMap"><a href="#AMP-SiteMap" class="headerlink" title="AMP SiteMap"></a>AMP SiteMap</h3><p>SiteMap 支持AMP</p>
 <h3 id="提交给百度"><a href="#提交给百度" class="headerlink" title="提交给百度"></a>提交给百度</h3><ul>
 <li>进入<a href="https://ziyuan.baidu.com/site/index#/" target="_blank" rel="noopener">百度资源搜索平台</a></li>
@@ -445,7 +433,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">86</span>
+          <span class="site-state-item-count">87</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -458,7 +446,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">58</span>
+        <span class="site-state-item-count">59</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

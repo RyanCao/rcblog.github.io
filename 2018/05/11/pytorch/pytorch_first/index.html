@@ -255,7 +255,6 @@
       
         <p>深度学习库，自己了解下</p>
 <a id="more"></a>
-
 <p><a href="https://pytorch.org/" target="_blank" rel="noopener">官网</a></p>
 <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><h3 id="Windows-安装"><a href="#Windows-安装" class="headerlink" title="Windows 安装"></a>Windows 安装</h3><p>我试了几次 pip3 安装<br>我的版本</p>
 <ul>
@@ -265,14 +264,10 @@
 <li>未安装CUDA</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip3 install http:&#x2F;&#x2F;download.pytorch.org&#x2F;whl&#x2F;cu80&#x2F;torch-0.4.0-cp36-cp36m-win_amd64.whl </span><br><span class="line">pip3 install torchvision</span><br></pre></td></tr></table></figure>
-
-<p>装完以后 都不能 import torch<br>python 下导入</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import torch</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File &quot;tensor01.py&quot;, line 5, in &lt;module&gt;</span><br><span class="line">    import torch</span><br><span class="line">  File &quot;d:\app\python36\lib\site-packages\torch\__init__.py&quot;, line 78, in &lt;modul</span><br><span class="line">e&gt;</span><br><span class="line">    from torch._C import *</span><br><span class="line">ImportError: DLL load failed: 找不到指定的模块。</span><br></pre></td></tr></table></figure>
-
+<p>装完以后 都不能 import torch<br>python 下导入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import torch</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File &quot;tensor01.py&quot;, line 5, in &lt;module&gt;</span><br><span class="line">    import torch</span><br><span class="line">  File &quot;d:\app\python36\lib\site-packages\torch\__init__.py&quot;, line 78, in &lt;modul</span><br><span class="line">e&gt;</span><br><span class="line">    from torch._C import *</span><br><span class="line">ImportError: DLL load failed: 找不到指定的模块。</span><br></pre></td></tr></table></figure></p>
 <p>最后不得不放弃了，不知道是什么DLL找不到</p>
 <h3 id="Docker-安装"><a href="#Docker-安装" class="headerlink" title="Docker 安装"></a>Docker 安装</h3><p>前面省略Docker 安装步聚</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull pytorch&#x2F;pytorch</span><br></pre></td></tr></table></figure>
-
 <h3 id="Linux-Mac-未曾试过"><a href="#Linux-Mac-未曾试过" class="headerlink" title="Linux/Mac 未曾试过"></a>Linux/Mac 未曾试过</h3><p>不知道能否成功</p>
 <h2 id="学习基础"><a href="#学习基础" class="headerlink" title="学习基础"></a>学习基础</h2>
     </div>
@@ -391,7 +386,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">86</span>
+          <span class="site-state-item-count">87</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -404,7 +399,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">58</span>
+        <span class="site-state-item-count">59</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

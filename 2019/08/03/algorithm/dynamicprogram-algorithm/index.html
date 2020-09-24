@@ -258,7 +258,6 @@
       
         <p>动态规划算法是通过拆分问题，定义问题状态和状态之间的关系，使得问题能够以递推（或者说分治）的方式去解决。<br>动态规划算法的基本思想与分治法类似，也是将待求解的问题分解为若干个子问题（阶段），按顺序求解子阶段，前一子问题的解，为后一子问题的求解提供了有用的信息。在求解任一子问题时，列出各种可能的局部解，通过决策保留那些有可能达到最优的局部解，丢弃其他局部解。依次解决各子问题，最后一个子问题就是初始问题的解。</p>
 <a id="more"></a>
-
 <h2 id="算法基本思想-理念"><a href="#算法基本思想-理念" class="headerlink" title="算法基本思想 理念"></a>算法基本思想 理念</h2><p>动态规划算法通常用于求解具有某种最优性质的问题。在这类问题中，可能会有许多可行解。每一个解都对应于一个值，我们希望找到具有最优值的解。</p>
 <p>动态规划算法与分治法类似，其基本思想也是将待求解问题分解成若干个子问题，先求解子问题，然后从这些子问题的解得到原问题的解。</p>
 <p>与分治法不同的是，<span style="color:blue;">适合于用动态规划求解的问题，经分解得到子问题往往不是互相独立的</span>。若用分治法来解这类问题，则分解得到的子问题数目太多，有些子问题被重复计算了很多次。如果我们能够<span style="color:red;">保存已解决的子问题的答案，而在需要时再找出已求得的答案，这样就可以避免大量的重复计算，节省时间</span>。我们可以用一个表来记录所有已解的子问题的答案。不管该子问题以后是否被用到，只要它被计算过，就将其结果填入表中。这就是动态规划法的基本思路。</p>
@@ -305,27 +304,33 @@
 <p>2.无后效性将各阶段按照一定的次序排列好之后，对于某个给定的阶段状态，它以前各阶段的状态无法直接影响它未来的决策，而只能通过当前的这个状态。换句话说，每个状态都是过去历史的一个完整总结。这就是无后向性，又称为无后效性。</p>
 <p>3.子问题的重叠性 动态规划将原来具有指数级时间复杂度的搜索算法改进成了具有多项式时间复杂度的算法。其中的关键在于解决冗余，这是动态规划算法的根本目的。动态规划实质上是一种以空间换时间的技术，它在实现的过程中，不得不存储产生过程中的各种状态，所以它的空间复杂度要大于其它的算法。（<span style="color:blue;">该性质并不是动态规划适用的必要条件，但是如果没有这条性质，动态规划算法同其他算法相比就不具备优势</span>）</p>
 <h2 id="算法的一般解题思路"><a href="#算法的一般解题思路" class="headerlink" title="算法的一般解题思路"></a>算法的一般解题思路</h2><p>动态规划所处理的问题是一个多阶段决策问题，一般由初始状态开始，通过对中间阶段决策的选择，达到结束状态。这些决策形成了一个决策序列，同时确定了完成整个过程的一条活动路线(通常是求最优的活动路线)。如图所示。动态规划的设计都有着一定的模式，一般要经历以下几个步骤。</p>
-<p>    初始状态→│决策１│→│决策２│→…→│决策ｎ│→结束状态</p>
-<p>                      图1 动态规划决策过程示意图</p>
-<p>    (1)划分阶段：按照问题的时间或空间特征，把问题分为若干个阶段。在划分阶段时，注意划分后的阶段一定要是有序的或者是可排序的，否则问题就无法求解。</p>
-<p>    (2)确定状态和状态变量：将问题发展到各个阶段时所处于的各种客观情况用不同的状态表示出来。当然，状态的选择要满足无后效性。</p>
-<p>    (3)确定决策并写出状态转移方程：因为决策和状态转移有着天然的联系，状态转移就是根据上一阶段的状态和决策来导出本阶段的状态。所以如果确定了决策，状态转移方程也就可写出。但事实上常常是反过来做，根据相邻两个阶段的状态之间的关系来确定决策方法和状态转移方程。</p>
-<p>    (4)寻找边界条件：给出的状态转移方程是一个递推式，需要一个递推的终止条件或边界条件。</p>
-<p>    一般，只要解决问题的阶段、状态和状态转移决策确定了，就可以写出状态转移方程（包括边界条件）。</p>
-<p>实际应用中可以按以下几个简化的步骤进行设计：</p>
-<p>    （1）分析最优解的性质，并刻画其结构特征。</p>
-<p>    （2）递归的定义最优解。</p>
-<p>    （3）以自底向上或自顶向下的记忆化方式（备忘录法）计算出最优值</p>
-<p>    （4）根据计算最优值时得到的信息，构造问题的最优解</p>
-<h2 id="算法执行逻辑"><a href="#算法执行逻辑" class="headerlink" title="算法执行逻辑"></a>算法执行逻辑</h2><h2 id="算法例子"><a href="#算法例子" class="headerlink" title="算法例子"></a>算法例子</h2><h3 id="斐波那契数列"><a href="#斐波那契数列" class="headerlink" title="斐波那契数列"></a>斐波那契数列</h3><p>默认递归实现</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">def Fibonacci(n):</span><br><span class="line">    if n &#x3D;&#x3D; 0:</span><br><span class="line">        return 1</span><br><span class="line">    elif n &#x3D;&#x3D; 1:</span><br><span class="line">        return 1</span><br><span class="line">    else:</span><br><span class="line">        return Fibonacci(n-1) + Fibonacci(n-2)</span><br></pre></td></tr></table></figure>
+<pre><code>初始状态→│决策１│→│决策２│→…→│决策ｎ│→结束状态
 
+                  图1 动态规划决策过程示意图
+
+(1)划分阶段：按照问题的时间或空间特征，把问题分为若干个阶段。在划分阶段时，注意划分后的阶段一定要是有序的或者是可排序的，否则问题就无法求解。
+
+(2)确定状态和状态变量：将问题发展到各个阶段时所处于的各种客观情况用不同的状态表示出来。当然，状态的选择要满足无后效性。
+
+(3)确定决策并写出状态转移方程：因为决策和状态转移有着天然的联系，状态转移就是根据上一阶段的状态和决策来导出本阶段的状态。所以如果确定了决策，状态转移方程也就可写出。但事实上常常是反过来做，根据相邻两个阶段的状态之间的关系来确定决策方法和状态转移方程。
+
+(4)寻找边界条件：给出的状态转移方程是一个递推式，需要一个递推的终止条件或边界条件。
+
+一般，只要解决问题的阶段、状态和状态转移决策确定了，就可以写出状态转移方程（包括边界条件）。
+</code></pre><p>实际应用中可以按以下几个简化的步骤进行设计：</p>
+<pre><code>（1）分析最优解的性质，并刻画其结构特征。
+
+（2）递归的定义最优解。
+
+（3）以自底向上或自顶向下的记忆化方式（备忘录法）计算出最优值
+
+（4）根据计算最优值时得到的信息，构造问题的最优解
+</code></pre><h2 id="算法执行逻辑"><a href="#算法执行逻辑" class="headerlink" title="算法执行逻辑"></a>算法执行逻辑</h2><h2 id="算法例子"><a href="#算法例子" class="headerlink" title="算法例子"></a>算法例子</h2><h3 id="斐波那契数列"><a href="#斐波那契数列" class="headerlink" title="斐波那契数列"></a>斐波那契数列</h3><p>默认递归实现</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">def Fibonacci(n):</span><br><span class="line">    if n &#x3D;&#x3D; 0:</span><br><span class="line">        return 1</span><br><span class="line">    elif n &#x3D;&#x3D; 1:</span><br><span class="line">        return 1</span><br><span class="line">    else:</span><br><span class="line">        return Fibonacci(n-1) + Fibonacci(n-2)</span><br></pre></td></tr></table></figure>
 <p>使用动态递归实现</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">def Fibonacci(n):</span><br><span class="line">    if n &#x3D;&#x3D; 0:</span><br><span class="line">        return 1</span><br><span class="line">    elif n &#x3D;&#x3D; 1:</span><br><span class="line">        return 1</span><br><span class="line">    else:</span><br><span class="line">        result &#x3D; &#123;0:1,1:1&#125;</span><br><span class="line">        for i in range(n-1):</span><br><span class="line">            result[i+2] &#x3D; result[i+1] + result[i];</span><br><span class="line">        return result[n]</span><br></pre></td></tr></table></figure>
-
 <p>使用了一个dict 存取每个状态<br>也可以只存上一个状态减少内存消耗</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">def Fibonacci(n):</span><br><span class="line">    if n &#x3D;&#x3D; 0:</span><br><span class="line">        return 1</span><br><span class="line">    elif n &#x3D;&#x3D; 1:</span><br><span class="line">        return 1</span><br><span class="line">    else:</span><br><span class="line">        pred &#x3D; 1</span><br><span class="line">        curr &#x3D; 1</span><br><span class="line">        for i in range(n-1):</span><br><span class="line">            pred,curr &#x3D; curr,pred+curr</span><br><span class="line">        return curr</span><br></pre></td></tr></table></figure>
-
 <h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://blog.csdn.net/zw6161080123/article/details/80639932" target="_blank" rel="noopener">https://blog.csdn.net/zw6161080123/article/details/80639932</a></p>
 <h2 id="算法系列"><a href="#算法系列" class="headerlink" title="算法系列"></a>算法系列</h2><ul>
 <li><a href="/2019/08/03/algorithm/algorithm-readme/" title="算法目录">算法目录</a>  </li>
@@ -455,7 +460,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">86</span>
+          <span class="site-state-item-count">87</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -468,7 +473,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">58</span>
+        <span class="site-state-item-count">59</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

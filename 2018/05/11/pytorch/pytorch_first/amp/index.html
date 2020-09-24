@@ -1596,7 +1596,6 @@ amp-twitter {
 			    	<!-- content -->
 			  		<p>&#x6DF1;&#x5EA6;&#x5B66;&#x4E60;&#x5E93;&#xFF0C;&#x81EA;&#x5DF1;&#x4E86;&#x89E3;&#x4E0B;</p>
 <a id="more"></a>
-
 <p><a href="https://pytorch.org/" target="_blank" rel="noopener">&#x5B98;&#x7F51;</a></p>
 <h2 id="&#x5B89;&#x88C5;"><a href="#&#x5B89;&#x88C5;" class="headerlink" title="&#x5B89;&#x88C5;"></a>&#x5B89;&#x88C5;</h2><h3 id="Windows-&#x5B89;&#x88C5;"><a href="#Windows-&#x5B89;&#x88C5;" class="headerlink" title="Windows &#x5B89;&#x88C5;"></a>Windows &#x5B89;&#x88C5;</h3><p>&#x6211;&#x8BD5;&#x4E86;&#x51E0;&#x6B21; pip3 &#x5B89;&#x88C5;<br>&#x6211;&#x7684;&#x7248;&#x672C;</p>
 <ul>
@@ -1606,14 +1605,10 @@ amp-twitter {
 <li>&#x672A;&#x5B89;&#x88C5;CUDA</li>
 </ul>
 <figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip3 install http://download.pytorch.org/whl/cu80/torch-0.4.0-cp36-cp36m-win_amd64.whl </span><br><span class="line">pip3 install torchvision</span><br></pre></td></tr></tbody></table></figure>
-
-<p>&#x88C5;&#x5B8C;&#x4EE5;&#x540E; &#x90FD;&#x4E0D;&#x80FD; import torch<br>python &#x4E0B;&#x5BFC;&#x5165;</p>
-<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import torch</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File &quot;tensor01.py&quot;, line 5, in &lt;module&gt;</span><br><span class="line">    import torch</span><br><span class="line">  File &quot;d:\app\python36\lib\site-packages\torch\__init__.py&quot;, line 78, in &lt;modul</span><br><span class="line">e&gt;</span><br><span class="line">    from torch._C import *</span><br><span class="line">ImportError: DLL load failed: &#x627E;&#x4E0D;&#x5230;&#x6307;&#x5B9A;&#x7684;&#x6A21;&#x5757;&#x3002;</span><br></pre></td></tr></tbody></table></figure>
-
+<p>&#x88C5;&#x5B8C;&#x4EE5;&#x540E; &#x90FD;&#x4E0D;&#x80FD; import torch<br>python &#x4E0B;&#x5BFC;&#x5165;<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import torch</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File &quot;tensor01.py&quot;, line 5, in &lt;module&gt;</span><br><span class="line">    import torch</span><br><span class="line">  File &quot;d:\app\python36\lib\site-packages\torch\__init__.py&quot;, line 78, in &lt;modul</span><br><span class="line">e&gt;</span><br><span class="line">    from torch._C import *</span><br><span class="line">ImportError: DLL load failed: &#x627E;&#x4E0D;&#x5230;&#x6307;&#x5B9A;&#x7684;&#x6A21;&#x5757;&#x3002;</span><br></pre></td></tr></tbody></table></figure>
 <p>&#x6700;&#x540E;&#x4E0D;&#x5F97;&#x4E0D;&#x653E;&#x5F03;&#x4E86;&#xFF0C;&#x4E0D;&#x77E5;&#x9053;&#x662F;&#x4EC0;&#x4E48;DLL&#x627E;&#x4E0D;&#x5230;</p>
 <h3 id="Docker-&#x5B89;&#x88C5;"><a href="#Docker-&#x5B89;&#x88C5;" class="headerlink" title="Docker &#x5B89;&#x88C5;"></a>Docker &#x5B89;&#x88C5;</h3><p>&#x524D;&#x9762;&#x7701;&#x7565;Docker &#x5B89;&#x88C5;&#x6B65;&#x805A;</p>
 <figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull pytorch/pytorch</span><br></pre></td></tr></tbody></table></figure>
-
 <h3 id="Linux-Mac-&#x672A;&#x66FE;&#x8BD5;&#x8FC7;"><a href="#Linux-Mac-&#x672A;&#x66FE;&#x8BD5;&#x8FC7;" class="headerlink" title="Linux/Mac &#x672A;&#x66FE;&#x8BD5;&#x8FC7;"></a>Linux/Mac &#x672A;&#x66FE;&#x8BD5;&#x8FC7;</h3><p>&#x4E0D;&#x77E5;&#x9053;&#x80FD;&#x5426;&#x6210;&#x529F;</p>
 <h2 id="&#x5B66;&#x4E60;&#x57FA;&#x7840;"><a href="#&#x5B66;&#x4E60;&#x57FA;&#x7840;" class="headerlink" title="&#x5B66;&#x4E60;&#x57FA;&#x7840;"></a>&#x5B66;&#x4E60;&#x57FA;&#x7840;</h2>
 			  		

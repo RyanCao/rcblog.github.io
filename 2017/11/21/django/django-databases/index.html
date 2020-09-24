@@ -253,9 +253,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h2><p>Django 数据库设置</p>
-<a id="more"></a>
-
+        <h2 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h2><p>Django 数据库设置<br><a id="more"></a></p>
 <h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><ul>
 <li>centos7</li>
 <li>Django 1.11</li>
@@ -264,16 +262,11 @@
 <h2 id="Sqlite-3"><a href="#Sqlite-3" class="headerlink" title="Sqlite 3"></a>Sqlite 3</h2><p>Django 原生支持</p>
 <p>修改setting.py</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">DATABASES &#x3D; &#123;</span><br><span class="line">    &#39;default&#39;: &#123;</span><br><span class="line">        &#39;ENGINE&#39;: &#39;django.db.backends.sqlite3&#39;,</span><br><span class="line">        &#39;NAME&#39;: os.path.join(BASE_DIR, &#39;db.sqlite3&#39;),</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <h2 id="Postgresql"><a href="#Postgresql" class="headerlink" title="Postgresql"></a>Postgresql</h2><p>安装依赖包和数据库软件</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo yum install python-devel postgresql-devel</span><br><span class="line">$ pip install psycopg2</span><br></pre></td></tr></table></figure>
-
-<p>修改setting.py</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">DATABASES &#x3D; &#123;</span><br><span class="line">    &#39;default&#39;: &#123;</span><br><span class="line">        &#39;ENGINE&#39;: &#39;django.db.backends.postgresql&#39;,</span><br><span class="line">        &#39;NAME&#39;: &#39;testdb&#39;,</span><br><span class="line">        &#39;USER&#39;: &#39;postgres&#39;,</span><br><span class="line">        &#39;PASSWORD&#39;:&#39;postgres&#39;</span><br><span class="line">        &#39;HOST&#39;: &#39;db&#39;,</span><br><span class="line">        &#39;PORT&#39;: &#39;5432&#39;,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<p>修改setting.py<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">DATABASES &#x3D; &#123;</span><br><span class="line">    &#39;default&#39;: &#123;</span><br><span class="line">        &#39;ENGINE&#39;: &#39;django.db.backends.postgresql&#39;,</span><br><span class="line">        &#39;NAME&#39;: &#39;testdb&#39;,</span><br><span class="line">        &#39;USER&#39;: &#39;postgres&#39;,</span><br><span class="line">        &#39;PASSWORD&#39;:&#39;postgres&#39;</span><br><span class="line">        &#39;HOST&#39;: &#39;db&#39;,</span><br><span class="line">        &#39;PORT&#39;: &#39;5432&#39;,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>测试</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">python manage.py shell</span><br><span class="line">&gt;&gt;&gt; from  django.db import connection</span><br><span class="line">&gt;&gt;&gt; cursor &#x3D; connection.cursor</span><br></pre></td></tr></table></figure>
-
 <p>参考 Postgresql-first 那篇文字</p>
 
     </div>
@@ -392,7 +385,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">86</span>
+          <span class="site-state-item-count">87</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -405,7 +398,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">58</span>
+        <span class="site-state-item-count">59</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

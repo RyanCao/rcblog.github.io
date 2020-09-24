@@ -25,7 +25,7 @@
 			"@type": "BlogPosting",
 			"headline": "Django 数据库设置",
 			
-			"description": "&lt;h2 id=&#34;引子&#34;&gt;&lt;a href=&#34;#引子&#34; class=&#34;headerlink&#34; title=&#34;引子&#34;&gt;&lt;/a&gt;引子&lt;/h2&gt;&lt;p&gt;Django 数据库设置&lt;/p&gt;",
+			"description": "&lt;h2 id=&#34;引子&#34;&gt;&lt;a href=&#34;#引子&#34; class=&#34;headerlink&#34; title=&#34;引子&#34;&gt;&lt;/a&gt;引子&lt;/h2&gt;&lt;p&gt;Django 数据库设置&lt;br&gt;",
 			
 			"mainEntityOfPage":{
 			    "@type":"WebPage",
@@ -1594,9 +1594,7 @@ amp-twitter {
 			    	
 			    	
 			    	<!-- content -->
-			  		<h2 id="&#x5F15;&#x5B50;"><a href="#&#x5F15;&#x5B50;" class="headerlink" title="&#x5F15;&#x5B50;"></a>&#x5F15;&#x5B50;</h2><p>Django &#x6570;&#x636E;&#x5E93;&#x8BBE;&#x7F6E;</p>
-<a id="more"></a>
-
+			  		<h2 id="&#x5F15;&#x5B50;"><a href="#&#x5F15;&#x5B50;" class="headerlink" title="&#x5F15;&#x5B50;"></a>&#x5F15;&#x5B50;</h2><p>Django &#x6570;&#x636E;&#x5E93;&#x8BBE;&#x7F6E;<br><a id="more"></a></p>
 <h2 id="&#x73AF;&#x5883;"><a href="#&#x73AF;&#x5883;" class="headerlink" title="&#x73AF;&#x5883;"></a>&#x73AF;&#x5883;</h2><ul>
 <li>centos7</li>
 <li>Django 1.11</li>
@@ -1605,16 +1603,11 @@ amp-twitter {
 <h2 id="Sqlite-3"><a href="#Sqlite-3" class="headerlink" title="Sqlite 3"></a>Sqlite 3</h2><p>Django &#x539F;&#x751F;&#x652F;&#x6301;</p>
 <p>&#x4FEE;&#x6539;setting.py</p>
 <figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">DATABASES = {</span><br><span class="line">    &apos;default&apos;: {</span><br><span class="line">        &apos;ENGINE&apos;: &apos;django.db.backends.sqlite3&apos;,</span><br><span class="line">        &apos;NAME&apos;: os.path.join(BASE_DIR, &apos;db.sqlite3&apos;),</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
 <h2 id="Postgresql"><a href="#Postgresql" class="headerlink" title="Postgresql"></a>Postgresql</h2><p>&#x5B89;&#x88C5;&#x4F9D;&#x8D56;&#x5305;&#x548C;&#x6570;&#x636E;&#x5E93;&#x8F6F;&#x4EF6;</p>
 <figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo yum install python-devel postgresql-devel</span><br><span class="line">$ pip install psycopg2</span><br></pre></td></tr></tbody></table></figure>
-
-<p>&#x4FEE;&#x6539;setting.py</p>
-<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">DATABASES = {</span><br><span class="line">    &apos;default&apos;: {</span><br><span class="line">        &apos;ENGINE&apos;: &apos;django.db.backends.postgresql&apos;,</span><br><span class="line">        &apos;NAME&apos;: &apos;testdb&apos;,</span><br><span class="line">        &apos;USER&apos;: &apos;postgres&apos;,</span><br><span class="line">        &apos;PASSWORD&apos;:&apos;postgres&apos;</span><br><span class="line">        &apos;HOST&apos;: &apos;db&apos;,</span><br><span class="line">        &apos;PORT&apos;: &apos;5432&apos;,</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
+<p>&#x4FEE;&#x6539;setting.py<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">DATABASES = {</span><br><span class="line">    &apos;default&apos;: {</span><br><span class="line">        &apos;ENGINE&apos;: &apos;django.db.backends.postgresql&apos;,</span><br><span class="line">        &apos;NAME&apos;: &apos;testdb&apos;,</span><br><span class="line">        &apos;USER&apos;: &apos;postgres&apos;,</span><br><span class="line">        &apos;PASSWORD&apos;:&apos;postgres&apos;</span><br><span class="line">        &apos;HOST&apos;: &apos;db&apos;,</span><br><span class="line">        &apos;PORT&apos;: &apos;5432&apos;,</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 <p>&#x6D4B;&#x8BD5;</p>
 <figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">python manage.py shell</span><br><span class="line">&gt;&gt;&gt; from  django.db import connection</span><br><span class="line">&gt;&gt;&gt; cursor = connection.cursor</span><br></pre></td></tr></tbody></table></figure>
-
 <p>&#x53C2;&#x8003; Postgresql-first &#x90A3;&#x7BC7;&#x6587;&#x5B57;</p>
 
 			  		

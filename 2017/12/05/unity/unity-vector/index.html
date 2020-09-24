@@ -255,7 +255,6 @@
       
         <h2 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h2><p>记录学习 Vector向量 数学知识<br>巩固下</p>
 <a id="more"></a>
-
 <h2 id="向量操作"><a href="#向量操作" class="headerlink" title="向量操作"></a>向量操作</h2><h3 id="2D-向量"><a href="#2D-向量" class="headerlink" title="2D 向量"></a>2D 向量</h3><p>对2D向量的操作一般有：旋转，缩放，移动，两个向量之间的夹角（A-&gt;B夹角和B-&gt;A夹角相同），两个向量夹角的有符号夹角(A向量到B向量的夹角和 B向量到A向量的夹角不同)<br>一条线段绕原点旋转，已经线段绕目标点旋转操作</p>
 <p>最简单的是向量的移动</p>
 <ul>
@@ -264,13 +263,11 @@
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Vector2 v1 = <span class="keyword">new</span> Vector2(<span class="number">0</span>,<span class="number">1</span>);</span><br><span class="line">Vector2 v2 = <span class="keyword">new</span> Vector2(<span class="number">1</span>,<span class="number">0</span>);</span><br><span class="line">Vector2 v3 = v1+v2;</span><br></pre></td></tr></table></figure>
 <p>向量的移动可以理解为物理学上的两个方向的作用力，求他们的合力<br>也可以理解为一个人从(0,0)向A方向移动了n个距离，接着又在B方向移动了m距离，求最终这个人的位置</p>
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Vector2 aDir = A.normarl();</span><br><span class="line">Vector2 bDir = B.Normal();</span><br><span class="line">Vector2 endPos= aDir*n + bDir*m;</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>向量缩放</li>
 </ul>
 <p>求单位向量就是一个向量的缩放运算<br>单位向量上移动了N个距离也是一个缩放运算</p>
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Vector2 aDir = A.normarl();</span><br><span class="line">Vector2 bDir = B.Normal();</span><br><span class="line">Vector2 endPos= aDir*n + bDir*m;</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>向量的旋转<br>求A向量旋转 θ 角度</li>
 </ul>
@@ -392,7 +389,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">86</span>
+          <span class="site-state-item-count">87</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -405,7 +402,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">58</span>
+        <span class="site-state-item-count">59</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

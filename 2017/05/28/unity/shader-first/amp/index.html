@@ -1598,8 +1598,6 @@ amp-twitter {
 			  		<h2 id="&#x5F15;&#x5B50;"><a href="#&#x5F15;&#x5B50;" class="headerlink" title="&#x5F15;&#x5B50;"></a>&#x5F15;&#x5B50;</h2><p>Shader &#x7B80;&#x5355;&#x4ECB;&#x7ECD;</p>
 <p>&#x4E3B;&#x8981;&#x8BB2;&#x4E00;&#x4E9B;&#x6982;&#x5FF5;&#x7684;&#x4E1C;&#x897F;&#xFF0C;&#x548C;&#x57FA;&#x672C;&#x6784;&#x9020;&#xFF0C;&#x662F;&#x57FA;&#x7840;&#x77E5;&#x8BC6;</p>
 <a id="more"></a>
-
-
 <h2 id="&#x52A8;&#x673A;"><a href="#&#x52A8;&#x673A;" class="headerlink" title="&#x52A8;&#x673A;"></a>&#x52A8;&#x673A;</h2><p>&#x5982;&#x679C;&#x4F60;&#x662F;&#x521A;&#x521A;&#x63A5;&#x89E6;Shader&#x7F16;&#x7A0B;&#x7684;&#x65B0;&#x624B;&#xFF0C;&#x4F60;&#x53EF;&#x80FD;&#x4E0D;&#x77E5;&#x9053;&#x4ECE;&#x4F55;&#x5F00;&#x59CB;&#x8E0F;&#x51FA;Shader&#x7F16;&#x7A0B;&#x7684;&#x7B2C;&#x4E00;&#x6B65;&#x3002;&#x672C;&#x6559;&#x7A0B;&#x5C06;&#x5E26;&#x4F60;&#x4E00;&#x6B65;&#x6B65;&#x5B8C;&#x6210;&#x4E00;&#x4E2A;&#x8868;&#x9762;&#x7740;&#x8272;&#x5668;(Surface Shader)&#x548C;&#x7247;&#x6BB5;&#x7740;&#x8272;&#x5668;(Fragment Shader)&#x3002;&#x672C;&#x6559;&#x7A0B;&#x4E5F;&#x5C06;&#x4ECB;&#x7ECD;&#x5728;Unity3D Shader&#x7F16;&#x7A0B;&#x4E2D;&#x6240;&#x4F7F;&#x7528;&#x7684;&#x4E00;&#x4E9B;&#x51FD;&#x6570;&#x548C;&#x53D8;&#x91CF;&#xFF0C;&#x8FD9;&#x4E9B;&#x5185;&#x5BB9;&#x53EF;&#x80FD;&#x548C;&#x4F60;&#x5728;&#x7F51;&#x4E0A;&#x770B;&#x5230;&#x7684;&#x4E0D;&#x4E00;&#x6837;&#x54E6;&#xFF01;</p>
 <p>&#x5982;&#x679C;&#x4F60;&#x6EE1;&#x8DB3;&#x4E0B;&#x9762;&#x7684;&#x6761;&#x4EF6;&#xFF0C;&#x6211;&#x89C9;&#x5F97;&#x4F60;&#x5E94;&#x8BE5;&#x770B;&#x770B;&#x8FD9;&#x7BC7;&#x6587;&#x7AE0;&#xFF1A;</p>
 <ul>
@@ -1620,14 +1618,12 @@ amp-twitter {
 </blockquote>
 <h2 id="&#x4E00;&#x4E2A;&#x81EA;&#x52A8;&#x751F;&#x6210;&#x7684;-Surface-Shader"><a href="#&#x4E00;&#x4E2A;&#x81EA;&#x52A8;&#x751F;&#x6210;&#x7684;-Surface-Shader" class="headerlink" title="&#x4E00;&#x4E2A;&#x81EA;&#x52A8;&#x751F;&#x6210;&#x7684; Surface Shader"></a>&#x4E00;&#x4E2A;&#x81EA;&#x52A8;&#x751F;&#x6210;&#x7684; Surface Shader</h2><p>&#x8FD9;&#x662F;&#x4F7F;&#x7528;Unity &#x65B0;&#x5EFA;SurfaceShader &#x81EA;&#x52A8;&#x751F;&#x6210;&#x7684;</p>
 <figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">Shader &quot;Custom/NewSurfaceShader&quot; {</span><br><span class="line">	Properties {</span><br><span class="line">		_Color (&quot;Color&quot;, Color) = (1,1,1,1)</span><br><span class="line">		_MainTex (&quot;Albedo (RGB)&quot;, 2D) = &quot;white&quot; {}</span><br><span class="line">		_Glossiness (&quot;Smoothness&quot;, Range(0,1)) = 0.5</span><br><span class="line">		_Metallic (&quot;Metallic&quot;, Range(0,1)) = 0.0</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	SubShader {</span><br><span class="line">		Tags { &quot;RenderType&quot;=&quot;Opaque&quot; }</span><br><span class="line">		LOD 200</span><br><span class="line">		</span><br><span class="line">		CGPROGRAM</span><br><span class="line">		// Physically based Standard lighting model, and enable shadows on all light types</span><br><span class="line">		#pragma surface surf Standard fullforwardshadows</span><br><span class="line"></span><br><span class="line">		// Use shader model 3.0 target, to get nicer looking lighting</span><br><span class="line">		#pragma target 3.0</span><br><span class="line"></span><br><span class="line">		sampler2D _MainTex;</span><br><span class="line"></span><br><span class="line">		struct Input {</span><br><span class="line">			float2 uv_MainTex;</span><br><span class="line">		};</span><br><span class="line"></span><br><span class="line">		half _Glossiness;</span><br><span class="line">		half _Metallic;</span><br><span class="line">		fixed4 _Color;</span><br><span class="line"></span><br><span class="line">		void surf (Input IN, inout SurfaceOutputStandard o) {</span><br><span class="line">			// Albedo comes from a texture tinted by color</span><br><span class="line">			fixed4 c = tex2D (_MainTex, IN.uv_MainTex) * _Color;</span><br><span class="line">			o.Albedo = c.rgb;</span><br><span class="line">			// Metallic and smoothness come from slider variables</span><br><span class="line">			o.Metallic = _Metallic;</span><br><span class="line">			o.Smoothness = _Glossiness;</span><br><span class="line">			o.Alpha = c.a;</span><br><span class="line">		}</span><br><span class="line">		ENDCG</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	FallBack &quot;Diffuse&quot;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
 <ul>
 <li>Properties &#x4EE3;&#x8868;&#x7684;&#x662F;&#x5C5E;&#x6027;&#x503C;&#x5B9A;&#x4E49;</li>
 <li>SubShader Unity&#x4E2D;&#x7684;&#x6BCF;&#x4E00;&#x4E2A;&#x7740;&#x8272;&#x5668;&#x90FD;&#x5305;&#x542B;&#x4E00;&#x4E2A;subshader&#x7684;&#x5217;&#x8868;  &#x5F53;Unity&#x9700;&#x8981;&#x663E;&#x793A;&#x4E00;&#x4E2A;&#x7F51;&#x683C;&#x65F6;&#xFF0C;&#x5B83;&#x80FD;&#x53D1;&#x73B0;&#x4F7F;&#x7528;&#x7684;&#x7740;&#x8272;&#x5668;&#xFF0C;&#x5E76;&#x63D0;&#x53D6;&#x7B2C;&#x4E00;&#x4E2A;&#x80FD;&#x8FD0;&#x884C;&#x5728;&#x5F53;&#x524D;&#x7528;&#x6237;&#x7684;&#x663E;&#x793A;&#x5361;&#x4E0A;&#x7684;&#x5B50;&#x7740;&#x8272;&#x5668;&#x3002;</li>
 <li>FallBack &#x5982;&#x679C;&#x4E0D;&#x53EF;&#x7528;&#x5219;&#x56DE;&#x8C03;</li>
 </ul>
 <h2 id="Properties-&#x4ECB;&#x7ECD;"><a href="#Properties-&#x4ECB;&#x7ECD;" class="headerlink" title="Properties &#x4ECB;&#x7ECD;"></a>Properties &#x4ECB;&#x7ECD;</h2><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// properties for a water shader</span><br><span class="line">Properties</span><br><span class="line">{</span><br><span class="line">    _WaveScale (&quot;Wave scale&quot;, Range (0.02,0.15)) = 0.07 // sliders</span><br><span class="line">    _ReflDistort (&quot;Reflection distort&quot;, Range (0,1.5)) = 0.5</span><br><span class="line">    _RefrDistort (&quot;Refraction distort&quot;, Range (0,1.5)) = 0.4</span><br><span class="line">    _RefrColor (&quot;Refraction color&quot;, Color) = (.34, .85, .92, 1) // color</span><br><span class="line">    _ReflectionTex (&quot;Environment Reflection&quot;, 2D) = &quot;&quot; {} // textures</span><br><span class="line">    _RefractionTex (&quot;Environment Refraction&quot;, 2D) = &quot;&quot; {}</span><br><span class="line">    _Fresnel (&quot;Fresnel (A) &quot;, 2D) = &quot;&quot; {}</span><br><span class="line">    _BumpMap (&quot;Bumpmap (RGB) &quot;, 2D) = &quot;&quot; {}</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
 <h2 id="SubShader-&#x4ECB;&#x7ECD;"><a href="#SubShader-&#x4ECB;&#x7ECD;" class="headerlink" title="SubShader &#x4ECB;&#x7ECD;"></a>SubShader &#x4ECB;&#x7ECD;</h2><h3 id="&#x4E00;&#x3001;SubShader-Tags"><a href="#&#x4E00;&#x3001;SubShader-Tags" class="headerlink" title="&#x4E00;&#x3001;SubShader Tags"></a>&#x4E00;&#x3001;SubShader Tags</h3><p>Subshaders&#x4F7F;&#x7528;&#x6807;&#x7B7E;&#x6765;&#x544A;&#x8BC9;&#x5F15;&#x64CE;&#x5982;&#x4F55;&#x4EE5;&#x53CA;&#x4F55;&#x65F6;&#x5C06;&#x5176;&#x6E32;&#x67D3;&#x3002;</p>
 <p>&#x8BED;&#x6CD5;&#xFF1A;</p>
 <figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Tags { &quot;TagName1&quot; = &quot;Value1&quot; &quot;TagName2&quot; = &quot;Value2&quot; }</span><br></pre></td></tr></tbody></table></figure>
@@ -1635,96 +1631,103 @@ amp-twitter {
 <h4 id="1-Queue-&#x6807;&#x7B7E;&#x3002;"><a href="#1-Queue-&#x6807;&#x7B7E;&#x3002;" class="headerlink" title="1. Queue &#x6807;&#x7B7E;&#x3002;"></a>1. Queue &#x6807;&#x7B7E;&#x3002;</h4><blockquote>
 <p>&#x5B9A;&#x4E49;&#x6E32;&#x67D3;&#x987A;&#x5E8F;</p>
 </blockquote>
+<div class="table-container">
 <div class="table-wrapper"><table>
 <thead>
 <tr>
 <th>QueueTag</th>
-<th align="center">Value</th>
-<th align="center">&#x8BF4;&#x660E;</th>
+<th class="table-align-center">Value</th>
+<th class="table-align-center">&#x8BF4;&#x660E;</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>Background</td>
-<td align="center">1000</td>
-<td align="center">&#x6BD4;&#x5982;&#x7528;&#x4E8E;&#x5929;&#x7A7A;&#x76D2;&#x3002;</td>
+<td class="table-align-center">1000</td>
+<td class="table-align-center">&#x6BD4;&#x5982;&#x7528;&#x4E8E;&#x5929;&#x7A7A;&#x76D2;&#x3002;</td>
 </tr>
 <tr>
 <td>Geometry</td>
-<td align="center">2000</td>
-<td align="center">&#x5927;&#x90E8;&#x5206;&#x7269;&#x4F53;&#x5728;&#x8FD9;&#x4E2A;&#x961F;&#x5217;&#x3002;&#x4E0D;&#x900F;&#x660E;&#x7684;&#x7269;&#x4F53;&#x4E5F;&#x5728;&#x8FD9;&#x91CC;&#x3002;&#x8FD9;&#x4E2A;&#x961F;&#x5217;&#x5185;&#x90E8;&#x7684;&#x7269;&#x4F53;&#x7684;&#x6E32;&#x67D3;&#x987A;&#x5E8F;&#x4F1A;&#x6709;&#x8FDB;&#x4E00;&#x6B65;&#x7684;&#x4F18;&#x5316;&#xFF08;&#x5E94;&#x8BE5;&#x662F;&#x4ECE;&#x8FD1;&#x5230;&#x8FDC;&#xFF0C;early-z test&#x53EF;&#x4EE5;&#x5254;&#x9664;&#x4E0D;&#x9700;&#x7ECF;&#x8FC7;FS&#x5904;&#x7406;&#x7684;&#x7247;&#x5143;&#xFF09;&#x3002;&#x5176;&#x4ED6;&#x961F;&#x5217;&#x7684;&#x7269;&#x4F53;&#x90FD;&#x662F;&#x6309;&#x7A7A;&#x95F4;&#x4F4D;&#x7F6E;&#x7684;&#x4ECE;&#x8FDC;&#x5230;&#x8FD1;&#x8FDB;&#x884C;&#x6E32;&#x67D3;&#x3002;</td>
+<td class="table-align-center">2000</td>
+<td class="table-align-center">&#x5927;&#x90E8;&#x5206;&#x7269;&#x4F53;&#x5728;&#x8FD9;&#x4E2A;&#x961F;&#x5217;&#x3002;&#x4E0D;&#x900F;&#x660E;&#x7684;&#x7269;&#x4F53;&#x4E5F;&#x5728;&#x8FD9;&#x91CC;&#x3002;&#x8FD9;&#x4E2A;&#x961F;&#x5217;&#x5185;&#x90E8;&#x7684;&#x7269;&#x4F53;&#x7684;&#x6E32;&#x67D3;&#x987A;&#x5E8F;&#x4F1A;&#x6709;&#x8FDB;&#x4E00;&#x6B65;&#x7684;&#x4F18;&#x5316;&#xFF08;&#x5E94;&#x8BE5;&#x662F;&#x4ECE;&#x8FD1;&#x5230;&#x8FDC;&#xFF0C;early-z test&#x53EF;&#x4EE5;&#x5254;&#x9664;&#x4E0D;&#x9700;&#x7ECF;&#x8FC7;FS&#x5904;&#x7406;&#x7684;&#x7247;&#x5143;&#xFF09;&#x3002;&#x5176;&#x4ED6;&#x961F;&#x5217;&#x7684;&#x7269;&#x4F53;&#x90FD;&#x662F;&#x6309;&#x7A7A;&#x95F4;&#x4F4D;&#x7F6E;&#x7684;&#x4ECE;&#x8FDC;&#x5230;&#x8FD1;&#x8FDB;&#x884C;&#x6E32;&#x67D3;&#x3002;</td>
 </tr>
 <tr>
 <td>AlphaTest</td>
-<td align="center">2450</td>
-<td align="center">&#x5DF2;&#x8FDB;&#x884C;AlphaTest&#x7684;&#x7269;&#x4F53;&#x5728;&#x8FD9;&#x4E2A;&#x961F;&#x5217;&#x3002;</td>
+<td class="table-align-center">2450</td>
+<td class="table-align-center">&#x5DF2;&#x8FDB;&#x884C;AlphaTest&#x7684;&#x7269;&#x4F53;&#x5728;&#x8FD9;&#x4E2A;&#x961F;&#x5217;&#x3002;</td>
 </tr>
 <tr>
 <td>Transparent</td>
-<td align="center">3000</td>
-<td align="center">&#x900F;&#x660E;&#x7269;&#x4F53;&#x3002;</td>
+<td class="table-align-center">3000</td>
+<td class="table-align-center">&#x900F;&#x660E;&#x7269;&#x4F53;&#x3002;</td>
 </tr>
 <tr>
 <td>Overlay</td>
-<td align="center">4000</td>
-<td align="center">&#x6BD4;&#x5982;&#x955C;&#x5934;&#x5149;&#x6655;&#x3002;</td>
+<td class="table-align-center">4000</td>
+<td class="table-align-center">&#x6BD4;&#x5982;&#x955C;&#x5934;&#x5149;&#x6655;&#x3002;</td>
 </tr>
 <tr>
 <td>&#x81EA;&#x5B9A;&#x4E49;</td>
-<td align="center">Geometry+10</td>
-<td align="center"></td>
+<td class="table-align-center">Geometry+10</td>
 </tr>
-</tbody></table></div>
+</tbody>
+</table></div>
+</div>
 <h4 id="2-RenderType-&#x6807;&#x7B7E;&#x3002;"><a href="#2-RenderType-&#x6807;&#x7B7E;&#x3002;" class="headerlink" title="2. RenderType &#x6807;&#x7B7E;&#x3002;"></a>2. RenderType &#x6807;&#x7B7E;&#x3002;</h4><blockquote>
 <p>Unity&#x53EF;&#x4EE5;&#x8FD0;&#x884C;&#x65F6;&#x66FF;&#x6362;&#x7B26;&#x5408;&#x7279;&#x5B9A;RenderType&#x7684;&#x6240;&#x6709;Shader&#x3002;Camera.RenderWithShader&#x6216;&#x8005;Camera.SetReplacementShader&#x914D;&#x5408;&#x4F7F;&#x7528;&#x3002;</p>
 </blockquote>
+<div class="table-container">
 <div class="table-wrapper"><table>
 <thead>
 <tr>
 <th>RenderTypeTag</th>
-<th align="center">&#x8BF4;&#x660E;</th>
+<th class="table-align-center">&#x8BF4;&#x660E;</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>Opaque</td>
-<td align="center">&#x7EDD;&#x5927;&#x90E8;&#x5206;&#x4E0D;&#x900F;&#x660E;&#x7684;&#x7269;&#x4F53;&#x90FD;&#x4F7F;&#x7528;&#x8FD9;&#x4E2A;</td>
+<td class="table-align-center">&#x7EDD;&#x5927;&#x90E8;&#x5206;&#x4E0D;&#x900F;&#x660E;&#x7684;&#x7269;&#x4F53;&#x90FD;&#x4F7F;&#x7528;&#x8FD9;&#x4E2A;</td>
 </tr>
 <tr>
 <td>Transparent</td>
-<td align="center">&#x7EDD;&#x5927;&#x90E8;&#x5206;&#x900F;&#x660E;&#x7684;&#x7269;&#x4F53;&#x3001;&#x5305;&#x62EC;&#x7C92;&#x5B50;&#x7279;&#x6548;&#x90FD;&#x4F7F;&#x7528;&#x8FD9;&#x4E2A;</td>
+<td class="table-align-center">&#x7EDD;&#x5927;&#x90E8;&#x5206;&#x900F;&#x660E;&#x7684;&#x7269;&#x4F53;&#x3001;&#x5305;&#x62EC;&#x7C92;&#x5B50;&#x7279;&#x6548;&#x90FD;&#x4F7F;&#x7528;&#x8FD9;&#x4E2A;</td>
 </tr>
 <tr>
 <td>TransparentCutout</td>
-<td align="center">&#x8499;&#x76AE;&#x900F;&#x660E;&#x7740;&#x8272;&#x5668;masked transparency shaders &#xFF08;Transparent Cutout&#xFF0C;&#x4E24;&#x4E2A;&#x901A;&#x9053;&#x7684;&#x690D;&#x88AB;&#x7740;&#x8272;&#x5668;&#xFF09;</td>
+<td class="table-align-center">&#x8499;&#x76AE;&#x900F;&#x660E;&#x7740;&#x8272;&#x5668;masked transparency shaders &#xFF08;Transparent Cutout&#xFF0C;&#x4E24;&#x4E2A;&#x901A;&#x9053;&#x7684;&#x690D;&#x88AB;&#x7740;&#x8272;&#x5668;&#xFF09;</td>
 </tr>
 <tr>
 <td>Background</td>
-<td align="center">&#x5929;&#x7A7A;&#x76D2;&#x90FD;&#x4F7F;&#x7528;&#x8FD9;&#x4E2A;</td>
+<td class="table-align-center">&#x5929;&#x7A7A;&#x76D2;&#x90FD;&#x4F7F;&#x7528;&#x8FD9;&#x4E2A;</td>
 </tr>
 <tr>
 <td>Overlay</td>
-<td align="center">GUI&#x3001;&#x955C;&#x5934;&#x5149;&#x6655;&#x90FD;&#x4F7F;&#x7528;&#x8FD9;&#x4E2A; &#x95EA;&#x5149;&#x7740;&#x8272;&#x5668;&#x3002;</td>
+<td class="table-align-center">GUI&#x3001;&#x955C;&#x5934;&#x5149;&#x6655;&#x90FD;&#x4F7F;&#x7528;&#x8FD9;&#x4E2A; &#x95EA;&#x5149;&#x7740;&#x8272;&#x5668;&#x3002;</td>
 </tr>
 <tr>
 <td>TreeOpaque</td>
-<td align="center">&#x5730;&#x5F62;&#x5F15;&#x64CE;&#x4E2D;&#x7684;&#x6811;&#x76AE;&#x3002;</td>
+<td class="table-align-center">&#x5730;&#x5F62;&#x5F15;&#x64CE;&#x4E2D;&#x7684;&#x6811;&#x76AE;&#x3002;</td>
 </tr>
 <tr>
 <td>TreeTransparentCutout</td>
-<td align="center">terrain engine tree leaves</td>
+<td class="table-align-center">terrain engine tree leaves</td>
 </tr>
 <tr>
 <td>TreeBillboard</td>
-<td align="center">terrain engine billboarded trees. Grass: terrain</td>
+<td class="table-align-center">terrain engine billboarded trees. Grass: terrain</td>
 </tr>
 <tr>
 <td>GrassBillboard</td>
-<td align="center">terrain engine billboarded grass.</td>
+<td class="table-align-center">terrain engine billboarded grass.</td>
 </tr>
 <tr>
 <td>&#x81EA;&#x5B9A;&#x4E49;</td>
-<td align="center">&#x53C2;&#x8003;Rendering with Replaced Shaders</td>
+<td class="table-align-center">&#x53C2;&#x8003;Rendering with Replaced Shaders</td>
 </tr>
-</tbody></table></div>
+</tbody>
+</table></div>
+</div>
 <h4 id="3-ForceNoShadowCasting"><a href="#3-ForceNoShadowCasting" class="headerlink" title="3. ForceNoShadowCasting"></a>3. ForceNoShadowCasting</h4><blockquote>
 <p>&#x503C;&#x4E3A;true&#x65F6;&#xFF0C;&#x8868;&#x793A;&#x4E0D;&#x63A5;&#x53D7;&#x9634;&#x5F71;&#x3002; </p>
 </blockquote>
@@ -1734,26 +1737,30 @@ amp-twitter {
 <h4 id="5-DisableBatching-tag"><a href="#5-DisableBatching-tag" class="headerlink" title="5. DisableBatching tag"></a>5. DisableBatching tag</h4><blockquote>
 <p>&#x7981;&#x7528;&#x6279;&#x5904;&#x7406;</p>
 </blockquote>
+<div class="table-container">
 <div class="table-wrapper"><table>
 <thead>
 <tr>
 <th>DisableBatchingTag</th>
-<th align="center">&#x8BF4;&#x660E;</th>
+<th class="table-align-center">&#x8BF4;&#x660E;</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>True</td>
-<td align="center">&#x59CB;&#x7EC8;&#x7981;&#x7528;&#x6B64;&#x7740;&#x8272;&#x5668;&#x7684;&#x6279;&#x5904;&#x7406;</td>
+<td class="table-align-center">&#x59CB;&#x7EC8;&#x7981;&#x7528;&#x6B64;&#x7740;&#x8272;&#x5668;&#x7684;&#x6279;&#x5904;&#x7406;</td>
 </tr>
 <tr>
 <td>False</td>
-<td align="center">&#x4E0D;&#x7981;&#x7528;&#x6279;&#x5904;&#x7406;;&#x8FD9;&#x662F;&#x9ED8;&#x8BA4;&#x503C;</td>
+<td class="table-align-center">&#x4E0D;&#x7981;&#x7528;&#x6279;&#x5904;&#x7406;;&#x8FD9;&#x662F;&#x9ED8;&#x8BA4;&#x503C;</td>
 </tr>
 <tr>
 <td>LODFading</td>
-<td align="center">&#x5F53;LOD&#x8870;&#x51CF;&#x6D3B;&#x52A8;&#x65F6;&#x7981;&#x7528;&#x6279;&#x5904;&#x7406;;&#x4E3B;&#x8981;&#x7528;&#x4E8E;&#x6811;</td>
+<td class="table-align-center">&#x5F53;LOD&#x8870;&#x51CF;&#x6D3B;&#x52A8;&#x65F6;&#x7981;&#x7528;&#x6279;&#x5904;&#x7406;;&#x4E3B;&#x8981;&#x7528;&#x4E8E;&#x6811;</td>
 </tr>
-</tbody></table></div>
+</tbody>
+</table></div>
+</div>
 <h4 id="6-CanUseSpriteAtlas"><a href="#6-CanUseSpriteAtlas" class="headerlink" title="6. CanUseSpriteAtlas"></a>6. CanUseSpriteAtlas</h4><blockquote>
 <p>&#x53EF;&#x4EE5;&#x4F7F;&#x7528;Sprite&#x56FE;&#x96C6;<br>&#x5982;&#x679C;shader&#x7528;&#x4E8E;sprite&#xFF0C;&#x5219;&#x5C06;CanUseSpriteAtlas&#x6807;&#x8BB0;&#x8BBE;&#x7F6E;&#x4E3A;&#x201C;False&#x201D;&#xFF0C;&#x5E76;&#x4E14;&#x5F53;&#x5B83;&#x4EEC;&#x6253;&#x5305;&#x5230;&#x5730;&#x56FE;&#x96C6;&#x65F6;&#x4E0D;&#x4F1A;&#x5DE5;&#x4F5C;&#xFF08;&#x8BF7;&#x53C2;&#x9605;Sprite Packer&#xFF09;&#x3002;</p>
 </blockquote>
@@ -1762,40 +1769,43 @@ amp-twitter {
 </blockquote>
 <p>&#x53C2;&#x8003;<a href="https://docs.unity3d.com/Manual/SL-SubShaderTags.html" target="_blank" rel="noopener">Unity&#x5B98;&#x65B9;&#x6587;&#x6863;</a></p>
 <h3 id="&#x4E8C;&#x3001;Pass&#x7684;Tag"><a href="#&#x4E8C;&#x3001;Pass&#x7684;Tag" class="headerlink" title="&#x4E8C;&#x3001;Pass&#x7684;Tag"></a>&#x4E8C;&#x3001;Pass&#x7684;Tag</h3><p>&#x6700;&#x91CD;&#x8981;Tag&#x662F; LightMode&#xFF0C;&#x6307;&#x5B9A; Pass &#x548C; Unity &#x7684;&#x54EA;&#x4E00;&#x79CD;&#x6E32;&#x67D3;&#x8DEF;&#x5F84;&#xFF08; Rendering Path &#xFF09;&#x642D;&#x914D;&#x4F7F;&#x7528;&#x3002;&#x9664;&#x6700;&#x91CD;&#x8981;&#x7684;ForwardBase&#x3001;ForwardAdd&#x5916;&#xFF0C;&#x8FD9;&#x91CC;&#x9700;&#x989D;&#x5916;&#x63D0;&#x9192;&#x7684;Tag&#x53D6;&#x503C;&#x53EF;&#x5305;&#x62EC;&#xFF1A; </p>
+<div class="table-container">
 <div class="table-wrapper"><table>
 <thead>
 <tr>
 <th>LightModeTag</th>
-<th align="center">&#x8BF4;&#x660E;</th>
+<th class="table-align-center">&#x8BF4;&#x660E;</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>ForwardBase</td>
-<td align="center">XXX</td>
+<td class="table-align-center">XXX</td>
 </tr>
 <tr>
 <td>ForwardAdd</td>
-<td align="center">XXX</td>
+<td class="table-align-center">XXX</td>
 </tr>
 <tr>
 <td>Always</td>
-<td align="center">&#x6C38;&#x8FDC;&#x90FD;&#x6E32;&#x67D3;&#xFF0C;&#x4F46;&#x4E0D;&#x5904;&#x7406;&#x5149;&#x7167;</td>
+<td class="table-align-center">&#x6C38;&#x8FDC;&#x90FD;&#x6E32;&#x67D3;&#xFF0C;&#x4F46;&#x4E0D;&#x5904;&#x7406;&#x5149;&#x7167;</td>
 </tr>
 <tr>
 <td>ShadowCaster</td>
-<td align="center">&#x7528;&#x4E8E;&#x6E32;&#x67D3;&#x4EA7;&#x751F;&#x9634;&#x5F71;&#x7684;&#x7269;&#x4F53;</td>
+<td class="table-align-center">&#x7528;&#x4E8E;&#x6E32;&#x67D3;&#x4EA7;&#x751F;&#x9634;&#x5F71;&#x7684;&#x7269;&#x4F53;</td>
 </tr>
 <tr>
 <td>ShadowCollector</td>
-<td align="center">&#x7528;&#x4E8E;&#x6536;&#x96C6;&#x7269;&#x4F53;&#x9634;&#x5F71;&#x5230;&#x5C4F;&#x5E55;&#x5750;&#x6807;Buff&#x91CC;</td>
+<td class="table-align-center">&#x7528;&#x4E8E;&#x6536;&#x96C6;&#x7269;&#x4F53;&#x9634;&#x5F71;&#x5230;&#x5C4F;&#x5E55;&#x5750;&#x6807;Buff&#x91CC;</td>
 </tr>
-</tbody></table></div>
+</tbody>
+</table></div>
+</div>
 <h3 id="&#x4E09;&#x3001;Shader-LOD"><a href="#&#x4E09;&#x3001;Shader-LOD" class="headerlink" title="&#x4E09;&#x3001;Shader LOD"></a>&#x4E09;&#x3001;Shader LOD</h3><ul>
 <li>&#x8FD9;&#x4E2A;&#x662F;&#x53E6;&#x5916;&#x4E00;&#x79CD;&#x63A7;&#x5236;&#x7EC6;&#x8282;&#x7EA7;&#x522B;&#x7684;&#x6280;&#x672F; </li>
 <li>&#x5728;&#x4E00;&#x4E2A;Shader&#x5F53;&#x4E2D;&#xFF0C;&#x53EF;&#x4EE5;&#x7ED9;&#x4E0D;&#x540C;&#x7684;subshader&#x6307;&#x5B9A;&#x4E0D;&#x540C;&#x7684;LOD&#x5C5E;&#x6027;&#xFF0C;&#x4F8B;&#x5982;&#xFF1A;</li>
 </ul>
 <figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">SubShader {</span><br><span class="line">    LOD 200</span><br><span class="line">    Pass {</span><br><span class="line">//insert shader pass here</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">SubShader {</span><br><span class="line">            LOD 100</span><br><span class="line">    Pass {</span><br><span class="line">//insert shader pass here</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">SubShader {</span><br><span class="line">            LOD 0</span><br><span class="line">    Pass {</span><br><span class="line">//insert shader pass here</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
 <p>&#x8BF4;&#x660E;&#xFF1A; Shader LOD &#x5C31;&#x662F;&#x8BA9;&#x6211;&#x4EEC;&#x8BBE;&#x7F6E;&#x4E00;&#x4E2A;&#x6570;&#x503C;&#xFF0C;&#x8FD9;&#x4E2A;&#x6570;&#x503C;&#x51B3;&#x5B9A;&#x4E86;&#x6211;&#x4EEC;&#x80FD;&#x7528;&#x4EC0;&#x4E48;&#x6837;&#x7684;Shader&#x3002;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;Shader.maximumLOD&#x6216;&#x8005;Shader.globalMaximumLOD &#x8BBE;&#x5B9A;&#x5141;&#x8BB8;&#x7684;&#x6700;&#x5927;LOD&#xFF0C;&#x5F53;&#x8BBE;&#x5B9A;&#x7684;LOD&#x5C0F;&#x4E8E;SubShader&#x6240;&#x6307;&#x5B9A;&#x7684;LOD&#x65F6;&#xFF0C;&#x8FD9;&#x4E2A;SubShader&#x5C06;&#x4E0D;&#x53EF;&#x7528;&#x3002;&#x901A;&#x8FC7;LOD&#xFF0C;&#x6211;&#x4EEC;&#x5C31;&#x53EF;&#x4EE5;&#x4E3A;&#x67D0;&#x4E2A;&#x6750;&#x8D28;&#x5199;&#x4E00;&#x7EC4;SubShader&#xFF0C;&#x6307;&#x5B9A;&#x4E0D;&#x540C;&#x7684;LOD&#xFF0C;LOD&#x8D8A;&#x5927;&#x5219;&#x6E32;&#x67D3;&#x6548;&#x679C;&#x8D8A;&#x597D;&#xFF0C;&#x5F53;&#x7136;&#x5BF9;&#x786C;&#x4EF6;&#x7684;&#x8981;&#x6C42;&#x4E5F;&#x53EF;&#x80FD;&#x8D8A;&#x9AD8;&#xFF0C;&#x7136;&#x540E;&#x6839;&#x636E;&#x4E0D;&#x540C;&#x7684;&#x7EC8;&#x7AEF;&#x786C;&#x4EF6;&#x914D;&#x7F6E;&#x6765;&#x8BBE;&#x7F6E; globalMaximumLOD&#x6765;&#x8FBE;&#x5230;&#x517C;&#x987E;&#x6027;&#x80FD;&#x7684;&#x6700;&#x4F73;&#x663E;&#x793A;&#x6548;&#x679C;&#x3002;</p>
 <h3 id="&#x56DB;&#x3001;CG&#x7A0B;&#x5E8F;"><a href="#&#x56DB;&#x3001;CG&#x7A0B;&#x5E8F;" class="headerlink" title="&#x56DB;&#x3001;CG&#x7A0B;&#x5E8F;"></a>&#x56DB;&#x3001;CG&#x7A0B;&#x5E8F;</h3><h4 id="&#x89E3;&#x91CA;"><a href="#&#x89E3;&#x91CA;" class="headerlink" title="&#x89E3;&#x91CA;"></a>&#x89E3;&#x91CA;</h4><h5 id="1-CGPROGRAM&#x548C;ENDCG&#x4E4B;&#x95F4;&#x5B58;&#x653E;&#x7684;&#x5C31;&#x662F;CG&#x7A0B;&#x5E8F;&#x3002;"><a href="#1-CGPROGRAM&#x548C;ENDCG&#x4E4B;&#x95F4;&#x5B58;&#x653E;&#x7684;&#x5C31;&#x662F;CG&#x7A0B;&#x5E8F;&#x3002;" class="headerlink" title="1. CGPROGRAM&#x548C;ENDCG&#x4E4B;&#x95F4;&#x5B58;&#x653E;&#x7684;&#x5C31;&#x662F;CG&#x7A0B;&#x5E8F;&#x3002;"></a>1. CGPROGRAM&#x548C;ENDCG&#x4E4B;&#x95F4;&#x5B58;&#x653E;&#x7684;&#x5C31;&#x662F;CG&#x7A0B;&#x5E8F;&#x3002;</h5><h5 id="2-&#x9884;&#x7F16;&#x8BD1;&#x5934;&#xFF1A;-pragma-surface-surf-Standard-fullforwardshadows"><a href="#2-&#x9884;&#x7F16;&#x8BD1;&#x5934;&#xFF1A;-pragma-surface-surf-Standard-fullforwardshadows" class="headerlink" title="2. &#x9884;&#x7F16;&#x8BD1;&#x5934;&#xFF1A;#pragma surface surf Standard fullforwardshadows"></a>2. &#x9884;&#x7F16;&#x8BD1;&#x5934;&#xFF1A;#pragma surface surf Standard fullforwardshadows</h5><blockquote>
 <p>surface&#x8868;&#x793A;&#x8FD9;&#x662F;&#x4E00;&#x4E2A;Surface Shader&#xFF0C;surf&#x8868;&#x793A;&#x8868;&#x9762;&#x51FD;&#x6570;&#x7684;&#x540D;&#x5B57;&#xFF0C;Standard&#x8868;&#x793A;&#x4F7F;&#x7528;Standard&#x7684;&#x5149;&#x7167;&#x6A21;&#x578B;&#xFF0C;fullforwardshadows&#x662F;&#x9634;&#x5F71;&#x7C7B;&#x578B;</p>
@@ -1809,7 +1819,6 @@ amp-twitter {
 <h4 id="&#x5173;&#x4E8E;&#x5149;&#x7167;&#x6A21;&#x578B;&#x7684;&#x4EE3;&#x7801;"><a href="#&#x5173;&#x4E8E;&#x5149;&#x7167;&#x6A21;&#x578B;&#x7684;&#x4EE3;&#x7801;" class="headerlink" title="&#x5173;&#x4E8E;&#x5149;&#x7167;&#x6A21;&#x578B;&#x7684;&#x4EE3;&#x7801;"></a>&#x5173;&#x4E8E;&#x5149;&#x7167;&#x6A21;&#x578B;&#x7684;&#x4EE3;&#x7801;</h4><p>&#x53EF;&#x4EE5;&#x5728;<br>Unity/Editor/Data/CGIncludes/UnityPBSLighting.cginc<br>Unity/Editor/Data/CGIncludes/Lighting.cginc<br>&#x4E0B;&#x627E;&#x5230;&#x5F88;&#x591A;&#x5149;&#x7167;&#x6A21;&#x578B;&#x7684;&#x4EE3;&#x7801;<br>&#x51FD;&#x6570;&#x524D;&#x7F00;&#x662F;Lighting&#x7684;</p>
 <p>&#x4F8B;&#x5982;&#x4E0B;&#x9762;&#x8FD9;&#x79CD;</p>
 <figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">inline half4 LightingStandard (SurfaceOutputStandard s, half3 viewDir, UnityGI gi)</span><br><span class="line">{</span><br><span class="line">	s.Normal = normalize(s.Normal);</span><br><span class="line"></span><br><span class="line">	half oneMinusReflectivity;</span><br><span class="line">	half3 specColor;</span><br><span class="line">	s.Albedo = DiffuseAndSpecularFromMetallic (s.Albedo, s.Metallic, /*out*/ specColor, /*out*/ oneMinusReflectivity);</span><br><span class="line"></span><br><span class="line">	// shader relies on pre-multiply alpha-blend (_SrcBlend = One, _DstBlend = OneMinusSrcAlpha)</span><br><span class="line">	// this is necessary to handle transparency in physically correct way - only diffuse component gets affected by alpha</span><br><span class="line">	half outputAlpha;</span><br><span class="line">	s.Albedo = PreMultiplyAlpha (s.Albedo, s.Alpha, oneMinusReflectivity, /*out*/ outputAlpha);</span><br><span class="line"></span><br><span class="line">	half4 c = UNITY_BRDF_PBS (s.Albedo, specColor, oneMinusReflectivity, s.Smoothness, s.Normal, viewDir, gi.light, gi.indirect);</span><br><span class="line">	c.rgb += UNITY_BRDF_GI (s.Albedo, specColor, oneMinusReflectivity, s.Smoothness, s.Normal, viewDir, s.Occlusion, gi);</span><br><span class="line">	c.a = outputAlpha;</span><br><span class="line">	return c;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">inline half4 LightingStandard_Deferred (SurfaceOutputStandard s, half3 viewDir, UnityGI gi, out half4 outDiffuseOcclusion, out half4 outSpecSmoothness, out half4 outNormal)</span><br><span class="line">{</span><br><span class="line">	half oneMinusReflectivity;</span><br><span class="line">	half3 specColor;</span><br><span class="line">	s.Albedo = DiffuseAndSpecularFromMetallic (s.Albedo, s.Metallic, /*out*/ specColor, /*out*/ oneMinusReflectivity);</span><br><span class="line"></span><br><span class="line">	half4 c = UNITY_BRDF_PBS (s.Albedo, specColor, oneMinusReflectivity, s.Smoothness, s.Normal, viewDir, gi.light, gi.indirect);</span><br><span class="line">	c.rgb += UNITY_BRDF_GI (s.Albedo, specColor, oneMinusReflectivity, s.Smoothness, s.Normal, viewDir, s.Occlusion, gi);</span><br><span class="line"></span><br><span class="line">	outDiffuseOcclusion = half4(s.Albedo, s.Occlusion);</span><br><span class="line">	outSpecSmoothness = half4(specColor, s.Smoothness);</span><br><span class="line">	outNormal = half4(s.Normal * 0.5 + 0.5, 1);</span><br><span class="line">	half4 emission = half4(s.Emission + c.rgb, 1);</span><br><span class="line">	return emission;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
 <p>surf &#x51FD;&#x6570;&#x7684;&#x8F93;&#x51FA;&#x7ED3;&#x679C; &#x662F; SurfaceOutputStandard &#x7C7B;&#x578B;</p>
 <p>LightingStandard &#x51FD;&#x6570;&#x8F93;&#x5165;&#x53C2;&#x6570;&#x4E3A; SurfaceOutputStandard &#x7C7B;&#x578B;</p>
 <p>&#x6240;&#x4EE5;&#x8981;&#x6CE8;&#x610F;&#x4F60;&#x9009;&#x62E9;&#x7684; &#x5173;&#x7167;&#x6A21;&#x578B;&#x9700;&#x8981; &#x90A3;&#x4E9B;&#x53C2;&#x6570;&#xFF0C;&#x5BF9;&#x54EA;&#x4E9B;&#x53C2;&#x6570;&#x505A;&#x51FA;&#x4FEE;&#x6539;&#x4F1A;&#x6BD4;&#x8F83;&#x597D;</p>

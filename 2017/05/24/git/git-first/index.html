@@ -255,58 +255,45 @@
       
         <h2 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h2><p>Git 学习文档</p>
 <a id="more"></a>
-
 <h2 id="Git-介绍"><a href="#Git-介绍" class="headerlink" title="Git 介绍"></a>Git 介绍</h2><ul>
 <li>版本控制系统</li>
 <li>分布式</li>
 </ul>
 <h2 id="Git-安装"><a href="#Git-安装" class="headerlink" title="Git 安装"></a>Git 安装</h2><h3 id="linux-系统"><a href="#linux-系统" class="headerlink" title="linux 系统"></a>linux 系统</h3><p>Linux系统自带的软件包 没有不能装git的了吧</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ yum install git</span><br></pre></td></tr></table></figure>
-
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ apt-get install git</span><br></pre></td></tr></table></figure>
-
 <h3 id="Macos"><a href="#Macos" class="headerlink" title="Macos"></a>Macos</h3><p>通过 homebrew 安装</p>
 <h3 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h3><p>直接下载软件包安装</p>
 <h3 id="配置-用户名和邮件地址"><a href="#配置-用户名和邮件地址" class="headerlink" title="配置 用户名和邮件地址"></a>配置 用户名和邮件地址</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global user.name &quot;Your Name&quot;</span><br><span class="line">$ git config --global user.email &quot;email.example.com&quot;</span><br></pre></td></tr></table></figure>
-
 <h2 id="版本库-工作区-暂存区"><a href="#版本库-工作区-暂存区" class="headerlink" title="版本库 工作区 暂存区"></a>版本库 工作区 暂存区</h2><ul>
 <li>创建文件夹</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir learngit</span><br><span class="line">$ cd learngit</span><br><span class="line">$ pwd</span><br><span class="line">&#x2F;Users&#x2F;ryan&#x2F;learngit</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>初始化仓库</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git init</span><br><span class="line">Initialized empty Git repository in &#x2F;Users&#x2F;ryan&#x2F;learngit&#x2F;.git&#x2F;</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>查看当前状态</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br><span class="line"># On branch master</span><br><span class="line">nothing to commit (working directory clean)</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>添加一个文件</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vi readme.md</span><br></pre></td></tr></table></figure>
-<p>写入内容</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Git</span><br></pre></td></tr></table></figure>
-
+<p>写入内容<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Git</span><br></pre></td></tr></table></figure></p>
 <ul>
 <li>第二次查看当前状态</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br><span class="line"># On branch master</span><br><span class="line"># Untracked files:</span><br><span class="line">#   (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)</span><br><span class="line">#</span><br><span class="line">#       readme.md</span><br><span class="line">no changes added to commit (use &quot;git add&quot; and&#x2F;or &quot;git commit -a&quot;)</span><br></pre></td></tr></table></figure>
-
-
 <ul>
 <li>git add 将文件添加到仓库</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git add readme.md</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>第三次查看当前状态</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br><span class="line"># On branch master</span><br><span class="line"># Changes to be committed:</span><br><span class="line">#   (use &quot;git reset HEAD &lt;file&gt;...&quot; to unstage)</span><br><span class="line">#</span><br><span class="line">#       new file:   readme.md</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>将文件提交到仓库[git commit]</li>
 </ul>
@@ -316,7 +303,6 @@
 <li>第四次查看当前状态</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br><span class="line"># On branch master</span><br><span class="line">nothing to commit (working directory clean)</span><br></pre></td></tr></table></figure>
-
 <p>这个地方需要解释一下</p>
 <p>Git 有以下几个概念，要将他们搞清楚<br>Git 基本就能顺畅的使用了</p>
 <ul>
@@ -341,105 +327,102 @@
 <li>默认不用任何参数的话，git log 会按提交时间列出所有的更新，最近的更新排在最上面。看到了吗，每次更新都有一个 SHA-1 校验和、作者的名字和电子邮件地址、提交时间，最后缩进一个段落显示提交说明。</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git log</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>我们常用 -p 选项展开显示每次提交的内容差异，用 -2 则仅显示最近的两次更新：</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git log -p -2</span><br></pre></td></tr></table></figure>
-
 <ul>
-<li>git log –stat，仅显示简要的增改行数统计：</li>
+<li>git log —stat，仅显示简要的增改行数统计：</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git log --stat</span><br></pre></td></tr></table></figure>
-
 <ul>
-<li>git log –pretty=oneline  将每个提交放在一行显示 , 还可以用 short，full 和 fuller</li>
+<li>git log —pretty=oneline  将每个提交放在一行显示 , 还可以用 short，full 和 fuller</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git log --pretty&#x3D;oneline</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>最有意思的是 format，可以定制要显示的记录格式，这样的输出便于后期编程提取分析，像这样：</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git log --pretty&#x3D;format:&quot;%h - %an, %ar : %s&quot;</span><br></pre></td></tr></table></figure>
 <p>定制语法</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
 <th>选项</th>
-<th align="center">说明</th>
+<th style="text-align:center">说明</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>%H</td>
-<td align="center">提交对象（commit）的完整哈希字串</td>
+<td style="text-align:center">提交对象（commit）的完整哈希字串</td>
 </tr>
 <tr>
 <td>%h</td>
-<td align="center">提交对象的简短哈希字串</td>
+<td style="text-align:center">提交对象的简短哈希字串</td>
 </tr>
 <tr>
 <td>%T</td>
-<td align="center">树对象（tree）的完整哈希字串</td>
+<td style="text-align:center">树对象（tree）的完整哈希字串</td>
 </tr>
 <tr>
 <td>%t</td>
-<td align="center">树对象的简短哈希字串</td>
+<td style="text-align:center">树对象的简短哈希字串</td>
 </tr>
 <tr>
 <td>%P</td>
-<td align="center">父对象（parent）的完整哈希字串</td>
+<td style="text-align:center">父对象（parent）的完整哈希字串</td>
 </tr>
 <tr>
 <td>%p</td>
-<td align="center">父对象的简短哈希字串</td>
+<td style="text-align:center">父对象的简短哈希字串</td>
 </tr>
 <tr>
 <td>%an</td>
-<td align="center">作者（author）的名字</td>
+<td style="text-align:center">作者（author）的名字</td>
 </tr>
 <tr>
 <td>%ae</td>
-<td align="center">作者的电子邮件地址</td>
+<td style="text-align:center">作者的电子邮件地址</td>
 </tr>
 <tr>
 <td>%ad</td>
-<td align="center">作者修订日期（可以用 -date= 选项定制格式）</td>
+<td style="text-align:center">作者修订日期（可以用 -date= 选项定制格式）</td>
 </tr>
 <tr>
 <td>%ar</td>
-<td align="center">作者修订日期，按多久以前的方式显示</td>
+<td style="text-align:center">作者修订日期，按多久以前的方式显示</td>
 </tr>
 <tr>
 <td>%cn</td>
-<td align="center">提交者(committer)的名字</td>
+<td style="text-align:center">提交者(committer)的名字</td>
 </tr>
 <tr>
 <td>%ce</td>
-<td align="center">提交者的电子邮件地址</td>
+<td style="text-align:center">提交者的电子邮件地址</td>
 </tr>
 <tr>
 <td>%cd</td>
-<td align="center">提交日期</td>
+<td style="text-align:center">提交日期</td>
 </tr>
 <tr>
 <td>%cr</td>
-<td align="center">提交日期，按多久以前的方式显示</td>
+<td style="text-align:center">提交日期，按多久以前的方式显示</td>
 </tr>
 <tr>
 <td>%s</td>
-<td align="center">提交说明</td>
+<td style="text-align:center">提交说明</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p>还有图形化的工具可用</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gitk</span><br></pre></td></tr></table></figure>
-
-
 <h2 id="Git-学习系列"><a href="#Git-学习系列" class="headerlink" title="Git 学习系列"></a>Git 学习系列</h2><ul>
 <li><a href="/2017/05/24/git/git-first/" title="Git 学习文档 [一]">Git 学习文档 [一]</a>  </li>
 <li><a href="/2017/05/25/git/git-second/" title="Git 学习文档 [二]">Git 学习文档 [二]</a>  </li>
 <li><a href="/2017/05/26/git/git-third/" title="Git 学习文档 [三]">Git 学习文档 [三]</a>  </li>
 <li><a href="/2017/05/27/git/git-forth/" title="Git 学习文档 [四]">Git 学习文档 [四]</a>  
-
 </li>
 </ul>
 <hr>
@@ -561,7 +544,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">86</span>
+          <span class="site-state-item-count">87</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -574,7 +557,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">58</span>
+        <span class="site-state-item-count">59</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

@@ -1596,7 +1596,6 @@ amp-twitter {
 			    	<!-- content -->
 			  		<h2 id="&#x5F15;&#x5B50;"><a href="#&#x5F15;&#x5B50;" class="headerlink" title="&#x5F15;&#x5B50;"></a>&#x5F15;&#x5B50;</h2><p>&#x8BB0;&#x5F55;&#x5B66;&#x4E60; Vector&#x5411;&#x91CF; &#x6570;&#x5B66;&#x77E5;&#x8BC6;<br>&#x5DE9;&#x56FA;&#x4E0B;</p>
 <a id="more"></a>
-
 <h2 id="&#x5411;&#x91CF;&#x64CD;&#x4F5C;"><a href="#&#x5411;&#x91CF;&#x64CD;&#x4F5C;" class="headerlink" title="&#x5411;&#x91CF;&#x64CD;&#x4F5C;"></a>&#x5411;&#x91CF;&#x64CD;&#x4F5C;</h2><h3 id="2D-&#x5411;&#x91CF;"><a href="#2D-&#x5411;&#x91CF;" class="headerlink" title="2D &#x5411;&#x91CF;"></a>2D &#x5411;&#x91CF;</h3><p>&#x5BF9;2D&#x5411;&#x91CF;&#x7684;&#x64CD;&#x4F5C;&#x4E00;&#x822C;&#x6709;&#xFF1A;&#x65CB;&#x8F6C;&#xFF0C;&#x7F29;&#x653E;&#xFF0C;&#x79FB;&#x52A8;&#xFF0C;&#x4E24;&#x4E2A;&#x5411;&#x91CF;&#x4E4B;&#x95F4;&#x7684;&#x5939;&#x89D2;&#xFF08;A-&gt;B&#x5939;&#x89D2;&#x548C;B-&gt;A&#x5939;&#x89D2;&#x76F8;&#x540C;&#xFF09;&#xFF0C;&#x4E24;&#x4E2A;&#x5411;&#x91CF;&#x5939;&#x89D2;&#x7684;&#x6709;&#x7B26;&#x53F7;&#x5939;&#x89D2;(A&#x5411;&#x91CF;&#x5230;B&#x5411;&#x91CF;&#x7684;&#x5939;&#x89D2;&#x548C; B&#x5411;&#x91CF;&#x5230;A&#x5411;&#x91CF;&#x7684;&#x5939;&#x89D2;&#x4E0D;&#x540C;)<br>&#x4E00;&#x6761;&#x7EBF;&#x6BB5;&#x7ED5;&#x539F;&#x70B9;&#x65CB;&#x8F6C;&#xFF0C;&#x5DF2;&#x7ECF;&#x7EBF;&#x6BB5;&#x7ED5;&#x76EE;&#x6807;&#x70B9;&#x65CB;&#x8F6C;&#x64CD;&#x4F5C;</p>
 <p>&#x6700;&#x7B80;&#x5355;&#x7684;&#x662F;&#x5411;&#x91CF;&#x7684;&#x79FB;&#x52A8;</p>
 <ul>
@@ -1605,13 +1604,11 @@ amp-twitter {
 <figure class="highlight csharp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Vector2 v1 = <span class="keyword">new</span> Vector2(<span class="number">0</span>,<span class="number">1</span>);</span><br><span class="line">Vector2 v2 = <span class="keyword">new</span> Vector2(<span class="number">1</span>,<span class="number">0</span>);</span><br><span class="line">Vector2 v3 = v1+v2;</span><br></pre></td></tr></tbody></table></figure>
 <p>&#x5411;&#x91CF;&#x7684;&#x79FB;&#x52A8;&#x53EF;&#x4EE5;&#x7406;&#x89E3;&#x4E3A;&#x7269;&#x7406;&#x5B66;&#x4E0A;&#x7684;&#x4E24;&#x4E2A;&#x65B9;&#x5411;&#x7684;&#x4F5C;&#x7528;&#x529B;&#xFF0C;&#x6C42;&#x4ED6;&#x4EEC;&#x7684;&#x5408;&#x529B;<br>&#x4E5F;&#x53EF;&#x4EE5;&#x7406;&#x89E3;&#x4E3A;&#x4E00;&#x4E2A;&#x4EBA;&#x4ECE;(0,0)&#x5411;A&#x65B9;&#x5411;&#x79FB;&#x52A8;&#x4E86;n&#x4E2A;&#x8DDD;&#x79BB;&#xFF0C;&#x63A5;&#x7740;&#x53C8;&#x5728;B&#x65B9;&#x5411;&#x79FB;&#x52A8;&#x4E86;m&#x8DDD;&#x79BB;&#xFF0C;&#x6C42;&#x6700;&#x7EC8;&#x8FD9;&#x4E2A;&#x4EBA;&#x7684;&#x4F4D;&#x7F6E;</p>
 <figure class="highlight csharp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Vector2 aDir = A.normarl();</span><br><span class="line">Vector2 bDir = B.Normal();</span><br><span class="line">Vector2 endPos= aDir*n + bDir*m;</span><br></pre></td></tr></tbody></table></figure>
-
 <ul>
 <li>&#x5411;&#x91CF;&#x7F29;&#x653E;</li>
 </ul>
 <p>&#x6C42;&#x5355;&#x4F4D;&#x5411;&#x91CF;&#x5C31;&#x662F;&#x4E00;&#x4E2A;&#x5411;&#x91CF;&#x7684;&#x7F29;&#x653E;&#x8FD0;&#x7B97;<br>&#x5355;&#x4F4D;&#x5411;&#x91CF;&#x4E0A;&#x79FB;&#x52A8;&#x4E86;N&#x4E2A;&#x8DDD;&#x79BB;&#x4E5F;&#x662F;&#x4E00;&#x4E2A;&#x7F29;&#x653E;&#x8FD0;&#x7B97;</p>
 <figure class="highlight csharp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Vector2 aDir = A.normarl();</span><br><span class="line">Vector2 bDir = B.Normal();</span><br><span class="line">Vector2 endPos= aDir*n + bDir*m;</span><br></pre></td></tr></tbody></table></figure>
-
 <ul>
 <li>&#x5411;&#x91CF;&#x7684;&#x65CB;&#x8F6C;<br>&#x6C42;A&#x5411;&#x91CF;&#x65CB;&#x8F6C; &#x3B8; &#x89D2;&#x5EA6;</li>
 </ul>
