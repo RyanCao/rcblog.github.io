@@ -6,7 +6,7 @@
   <link href="http://blog.rcant.com/atom.xml" rel="self"/>
   
   <link href="http://blog.rcant.com/"/>
-  <updated>2020-09-24T12:36:43.525Z</updated>
+  <updated>2020-09-27T11:19:53.906Z</updated>
   <id>http://blog.rcant.com/</id>
   
   <author>
@@ -15,6 +15,48 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>汇编调试</title>
+    <link href="http://blog.rcant.com/2020/09/27/asm/asm-debug/"/>
+    <id>http://blog.rcant.com/2020/09/27/asm/asm-debug/</id>
+    <published>2020-09-27T03:39:17.000Z</published>
+    <updated>2020-09-27T11:19:53.906Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h2><p>汇编</p><a id="more"></a><p>汇编应该如何调试程序</p><p>从哪里入手</p><p>一般看什么</p><p>有哪些调试工具可以使用</p>  <h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p><a href="AsyncTest.zip" title="源码下载">点击下载</a></p>]]></content>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;引子&quot;&gt;&lt;a href=&quot;#引子&quot; class=&quot;headerlink&quot; title=&quot;引子&quot;&gt;&lt;/a&gt;引子&lt;/h2&gt;&lt;p&gt;汇编&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="ASM" scheme="http://blog.rcant.com/categories/ASM/"/>
+    
+    
+    <category term="ASM" scheme="http://blog.rcant.com/tags/ASM/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>第一个汇编程序 HelloWorld</title>
+    <link href="http://blog.rcant.com/2020/09/25/asm/asm-helloworld/"/>
+    <id>http://blog.rcant.com/2020/09/25/asm/asm-helloworld/</id>
+    <published>2020-09-25T14:39:17.000Z</published>
+    <updated>2020-09-27T11:55:57.911Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h2><p>汇编程序的逻辑</p><a id="more"></a><p>简单的汇编程序的结构</p><p>简单的模块</p><p>简单的汇编指令</p><p>一个HelloWorld例子</p><p>如何编译，运行</p><p>```</p><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2>]]></content>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;引子&quot;&gt;&lt;a href=&quot;#引子&quot; class=&quot;headerlink&quot; title=&quot;引子&quot;&gt;&lt;/a&gt;引子&lt;/h2&gt;&lt;p&gt;汇编程序的逻辑&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="ASM" scheme="http://blog.rcant.com/categories/ASM/"/>
+    
+    
+    <category term="ASM" scheme="http://blog.rcant.com/tags/ASM/"/>
+    
+  </entry>
   
   <entry>
     <title>Mermaid 使用指南</title>
@@ -208,6 +250,50 @@
   </entry>
   
   <entry>
+    <title>汇编程序安装</title>
+    <link href="http://blog.rcant.com/2020/09/05/asm/asm-install/"/>
+    <id>http://blog.rcant.com/2020/09/05/asm/asm-install/</id>
+    <published>2020-09-05T03:39:17.000Z</published>
+    <updated>2020-09-27T11:55:32.719Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h2><p>汇编程序运行需要什么</p><a id="more"></a><h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><ul><li><a href="MASM.zip" title="下载编译器">Masm5.0</a></li><li><a href="DOSBox0.74-win32-installer.exe" title="下载DosBox">DosBox 0.74</a></li></ul><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>首先将 <strong>DosBox</strong> 和 <strong>Masm</strong> 下载下来<br>安装DosBox ,DosBox 就是运行汇编的环境</p><p>汇编是个比较古老的东西，Masm 需要在 DosBox上才能运行</p><p>所以用它来运行</p><p>然后 新建一个 汇编的工程目录 如 :<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">e:&#x2F;projects&#x2F;asms&#x2F;</span><br></pre></td></tr></table></figure><br>这个目录以后专门放汇编的程序代码</p><p>将编译器放入 这个目录下面</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">e:&#x2F;projects&#x2F;asms&#x2F;masm</span><br></pre></td></tr></table></figure><p>如下<br><img src="/2020/09/05/asm/asm-install/asm-install.png" class="" title="asm-install">  </p><h2 id="挂载"><a href="#挂载" class="headerlink" title="挂载"></a>挂载</h2><p>运行DosBox ，挂载asms 目录</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$&gt; mount c e:&#x2F;projects&#x2F;asms</span><br><span class="line">&#96;&#96;&#96; </span><br><span class="line"></span><br><span class="line">这样就可以切到C:</span><br></pre></td></tr></table></figure><p>$&gt; C:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">然后 调用</span><br></pre></td></tr></table></figure><br>masm h.asm<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">编译汇编程序 ,生成 h.obj 文件</span><br><span class="line"></span><br><span class="line">&#123;% asset_img masm-1.png masm-1 %&#125;</span><br></pre></td></tr></table></figure><br>link h.obj<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">链接obj文件生成EXE文件 h.obj</span><br><span class="line"></span><br><span class="line">&#123;% asset_img masm-2.png masm-2 %&#125;  </span><br><span class="line"></span><br><span class="line">## 卸载</span><br></pre></td></tr></table></figure><br>$&gt; mount -u c<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#123;% asset_img dosbox-umount.png DosBox-umount %&#125;  </span><br><span class="line"></span><br><span class="line">## DosBox 自动挂载</span><br><span class="line"></span><br><span class="line">DosBox 启动的时候 会有这样一段话</span><br></pre></td></tr></table></figure><br>DOSBox version 0.74</p><h2 id="Copyright-2002-2010-DOSBox-Team-published-under-GNU-GPL"><a href="#Copyright-2002-2010-DOSBox-Team-published-under-GNU-GPL" class="headerlink" title="Copyright 2002-2010 DOSBox Team, published under GNU GPL."></a>Copyright 2002-2010 DOSBox Team, published under GNU GPL.</h2><p>CONFIG:Loading primary settings from config file C:\Users\cqs\AppData\Local\DOSBox\dosbox-0.74.conf<br>MIDI:Opened device:win32<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#123;% asset_img dosbox-init.png DosBox-init %&#125;  </span><br><span class="line"></span><br><span class="line">只需要修改配置就可以了</span><br><span class="line"></span><br><span class="line">内容很多，只需要在最后加上一段就好了</span><br></pre></td></tr></table></figure><br>…<br>[ipx]</p><h1 id="ipx-Enable-ipx-over-UDP-IP-emulation"><a href="#ipx-Enable-ipx-over-UDP-IP-emulation" class="headerlink" title="ipx: Enable ipx over UDP/IP emulation."></a>ipx: Enable ipx over UDP/IP emulation.</h1><p>ipx=false</p><p>[autoexec]</p><h1 id="Lines-in-this-section-will-be-run-at-startup"><a href="#Lines-in-this-section-will-be-run-at-startup" class="headerlink" title="Lines in this section will be run at startup."></a>Lines in this section will be run at startup.</h1><h1 id="You-can-put-your-MOUNT-lines-here"><a href="#You-can-put-your-MOUNT-lines-here" class="headerlink" title="You can put your MOUNT lines here."></a>You can put your MOUNT lines here.</h1><p>mount c e:/projects/asms<br>c:</p><p>```</p><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://blog.csdn.net/Milkoy/article/details/106020951" target="_blank" rel="noopener">DOSBOX的安装及ASM文件的编译</a></p><h2 id="系列"><a href="#系列" class="headerlink" title="系列"></a>系列</h2>]]></content>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;引子&quot;&gt;&lt;a href=&quot;#引子&quot; class=&quot;headerlink&quot; title=&quot;引子&quot;&gt;&lt;/a&gt;引子&lt;/h2&gt;&lt;p&gt;汇编程序运行需要什么&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="ASM" scheme="http://blog.rcant.com/categories/ASM/"/>
+    
+    
+    <category term="ASM" scheme="http://blog.rcant.com/tags/ASM/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>汇编程序 如何在优雅的VSCode上使用</title>
+    <link href="http://blog.rcant.com/2020/09/05/asm/asm-vscode/"/>
+    <id>http://blog.rcant.com/2020/09/05/asm/asm-vscode/</id>
+    <published>2020-09-05T03:39:17.000Z</published>
+    <updated>2020-09-27T11:19:49.950Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h2><a id="more"></a><p>使用VSCode 编译汇编程序</p><p>插件</p><p>以及其他</p><p>```<br>  </p><h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p><a href="AsyncTest.zip" title="源码下载">点击下载</a></p>]]></content>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;引子&quot;&gt;&lt;a href=&quot;#引子&quot; class=&quot;headerlink&quot; title=&quot;引子&quot;&gt;&lt;/a&gt;引子&lt;/h2&gt;</summary>
+    
+    
+    
+    <category term="ASM" scheme="http://blog.rcant.com/categories/ASM/"/>
+    
+    
+    <category term="ASM" scheme="http://blog.rcant.com/tags/ASM/"/>
+    
+    <category term="VSCode" scheme="http://blog.rcant.com/tags/VSCode/"/>
+    
+  </entry>
+  
+  <entry>
     <title>CSharp 协程处理</title>
     <link href="http://blog.rcant.com/2020/09/04/csharp/csharp-coroutine/"/>
     <id>http://blog.rcant.com/2020/09/04/csharp/csharp-coroutine/</id>
@@ -387,98 +473,6 @@
     <category term="golang" scheme="http://blog.rcant.com/tags/golang/"/>
     
     <category term="vscode" scheme="http://blog.rcant.com/tags/vscode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>VSCode+Python 环境搭建</title>
-    <link href="http://blog.rcant.com/2020/06/03/python/python3-vscode/"/>
-    <id>http://blog.rcant.com/2020/06/03/python/python3-vscode/</id>
-    <published>2020-06-03T06:40:07.000Z</published>
-    <updated>2020-08-07T02:31:56.909Z</updated>
-    
-    <content type="html"><![CDATA[<p>Window 上建立python开发环境记录</p><a id="more"></a><h2 id="环境信息"><a href="#环境信息" class="headerlink" title="环境信息"></a>环境信息</h2><ul><li>Windows操作系统</li><li>python 3.6</li><li>VSCode 1.46</li></ul><h2 id="下载并安装软件"><a href="#下载并安装软件" class="headerlink" title="下载并安装软件"></a>下载并安装软件</h2><ul><li>略</li></ul><h2 id="设置-python-环境变量"><a href="#设置-python-环境变量" class="headerlink" title="设置 python 环境变量"></a>设置 python 环境变量</h2><p>系统环境变量中添加 </p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PythonHome&#x3D;C:\Python36</span><br></pre></td></tr></table></figure><p>系统环境变量 Path 变量中添加<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">%PythonHome%</span><br><span class="line">%PythonHome%\Scripts</span><br></pre></td></tr></table></figure></p><h2 id="安装VSCode-python插件"><a href="#安装VSCode-python插件" class="headerlink" title="安装VSCode python插件"></a>安装VSCode python插件</h2><img src="/2020/06/03/python/python3-vscode/vscode-plugin.png" class="" title="VSCode插件"><h2 id="修改python-pip-镜像地址"><a href="#修改python-pip-镜像地址" class="headerlink" title="修改python pip 镜像地址"></a>修改python pip 镜像地址</h2><h3 id="Windows-环境下修改"><a href="#Windows-环境下修改" class="headerlink" title="Windows 环境下修改"></a>Windows 环境下修改</h3><p>vi ~/pip/pip.ini</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[global]</span><br><span class="line">trusted-host &#x3D;  mirrors.aliyun.com</span><br><span class="line">index-url &#x3D; http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;pypi&#x2F;simple</span><br></pre></td></tr></table></figure><h3 id="Linux-环境下修改"><a href="#Linux-环境下修改" class="headerlink" title="Linux 环境下修改"></a>Linux 环境下修改</h3><p>vim ~/.pip/pip.conf</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[global]</span><br><span class="line">trusted-host &#x3D;  mirrors.aliyun.com</span><br><span class="line">index-url &#x3D; http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;pypi&#x2F;simple</span><br></pre></td></tr></table></figure><h2 id="安装-pylint"><a href="#安装-pylint" class="headerlink" title="安装 pylint"></a>安装 pylint</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install pylint</span><br></pre></td></tr></table></figure>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;Window 上建立python开发环境记录&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="python" scheme="http://blog.rcant.com/categories/python/"/>
-    
-    
-    <category term="vscode" scheme="http://blog.rcant.com/tags/vscode/"/>
-    
-    <category term="python3" scheme="http://blog.rcant.com/tags/python3/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hexo 升级 Node 版本</title>
-    <link href="http://blog.rcant.com/2020/06/01/hexo/hexo-updatenode/"/>
-    <id>http://blog.rcant.com/2020/06/01/hexo/hexo-updatenode/</id>
-    <published>2020-06-01T02:39:17.000Z</published>
-    <updated>2020-09-24T09:21:26.227Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h2><p>电脑重装系统 重新装的新的Node，无法使用Hexo</p><a id="more"></a><h2 id="配置环境"><a href="#配置环境" class="headerlink" title="配置环境"></a>配置环境</h2><ul><li>Node v12.18</li><li>Git</li></ul><h2 id="node-设置环境变量"><a href="#node-设置环境变量" class="headerlink" title="node 设置环境变量"></a>node 设置环境变量</h2><p>重装Node的时候最好卸载掉旧版本文件，防止冲突</p><h2 id="npm更换淘宝镜像"><a href="#npm更换淘宝镜像" class="headerlink" title="npm更换淘宝镜像"></a>npm更换淘宝镜像</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm config set registry https://registry.npm.taobao.org</span><br></pre></td></tr></table></figure><h2 id="npm-安装-grunt-cli-hexo"><a href="#npm-安装-grunt-cli-hexo" class="headerlink" title="npm  安装 grunt-cli hexo"></a>npm  安装 grunt-cli hexo</h2><h3 id="安装-grunt-cli"><a href="#安装-grunt-cli" class="headerlink" title="安装 grunt-cli"></a>安装 grunt-cli</h3><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g grunt-cli</span><br></pre></td></tr></table></figure><h3 id="安装-hexo"><a href="#安装-hexo" class="headerlink" title="安装 hexo"></a>安装 hexo</h3><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo</span><br></pre></td></tr></table></figure><p>查看信息</p><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">$ hexo -v</span><br><span class="line">hexo-cli: 3.1.0</span><br><span class="line">os: Windows_NT 10.0.18363 win32 x64</span><br><span class="line">node: 12.18.0</span><br><span class="line">v8: 7.8.279.23-node.37</span><br><span class="line">uv: 1.37.0</span><br><span class="line">zlib: 1.2.11</span><br><span class="line">brotli: 1.0.7</span><br><span class="line">ares: 1.16.0</span><br><span class="line">modules: 72</span><br><span class="line">nghttp2: 1.41.0</span><br><span class="line">napi: 6</span><br><span class="line">llhttp: 2.0.4</span><br><span class="line">http_parser: 2.9.3</span><br><span class="line">openssl: 1.1.1g</span><br><span class="line">cldr: 37.0</span><br><span class="line">icu: 67.1</span><br><span class="line">tz: 2019c</span><br><span class="line">unicode: 13.0</span><br></pre></td></tr></table></figure><h2 id="升级错误记录"><a href="#升级错误记录" class="headerlink" title="升级错误记录"></a>升级错误记录</h2><h3 id="node-升级14-以后，hexo-部署失败了"><a href="#node-升级14-以后，hexo-部署失败了" class="headerlink" title="node 升级14 以后，hexo 部署失败了"></a>node 升级14 以后，hexo 部署失败了</h3><p>报错如下</p><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$ hexo d</span><br><span class="line">INFO  Deploying: git</span><br><span class="line">INFO  Clearing .deploy_git folder...</span><br><span class="line">INFO  Copying files from public folder...</span><br><span class="line">FATAL Something's wrong. Maybe you can find the solution here: https://hexo.io/docs/troubleshooting.html</span><br><span class="line">TypeError [ERR<span class="emphasis">_INVALID_</span>ARG_TYPE]: The "mode" argument must be integer. Received an instance of Object</span><br><span class="line"><span class="code">    at copyFile (fs.js:1924:10)</span></span><br><span class="line"><span class="code">    at tryCatcher (E:\projects\hexo\rcantblog_hexo\blog\node_modules\hexo-fs\node_modules\bluebird\js\release\util.js:16:23)</span></span><br><span class="line"><span class="code">    at ret (eval at makeNodePromisifiedEval (C:\Users\cqs\AppData\Roaming\npm\node_modules\hexo\node_modules\bluebird\js\release\promisify.js:184:12), &lt;anonymous&gt;:13:39)</span></span><br><span class="line"><span class="code">    at E:\projects\hexo\rcantblog_hexo\blog\node_modules\hexo-fs\lib\fs.js:144:39</span></span><br><span class="line"><span class="code">    at tryCatcher (E:\projects\hexo\rcantblog_hexo\blog\node_modules\hexo-fs\node_modules\bluebird\js\release\util.js:16:23)</span></span><br><span class="line"><span class="code">    at Promise._settlePromiseFromHandler (E:\projects\hexo\rcantblog_hexo\blog\node_modules\hexo-fs\node_modules\bluebird\js\release\promise.js:517:31)</span></span><br><span class="line"><span class="code">    at Promise._settlePromise (E:\projects\hexo\rcantblog_hexo\blog\node_modules\hexo-fs\node_modules\bluebird\js\release\promise.js:574:18)</span></span><br></pre></td></tr></table></figure><p>google了下发现是hexo不支持最新node14+，issue见此，解决方案两种：降低node版本或者升级最新hexo@4.2.1+。</p><p>我尝试了升级hexo到4.2.1发现并没有什么卵用，照样报相同的错，所以选择了降低node版本到稳定版：</p><p>直接到官网下载最新稳定版：<a href="https://nodejs.org/en/download/" target="_blank" rel="noopener">https://nodejs.org/en/download/</a></p><p>然后重新执行 hexo clean &amp;&amp; hexo deploy 打包命令就好了。</p><p>P.S. 如果打包成功后，最好验证下hexo下的分类和标签是否正常工作，我就遇到了点击自己博客首页的「分类」和「标签」后，跳转的页面报404，原因是打开的路由最后多了个空格：./categories/%20 。不知道啥原因，所以我把hexo版本退回到了3.8.0。这样路由就正确了。</p><h2 id="Hexo博客系列"><a href="#Hexo博客系列" class="headerlink" title="Hexo博客系列"></a>Hexo博客系列</h2><ul><li><a href="/2017/03/01/hexo/hexo-firstblog/" title="Hexo博客搭建">Hexo博客搭建</a>  </li><li><a href="/2017/03/01/hexo/hexo-secordblog/" title="Hexo更换博客样式">Hexo更换博客样式</a>  </li><li><a href="/2020/06/01/hexo/hexo-updatenode/" title="Hexo升级Node版本">Hexo升级Node版本</a>  </li><li><a href="/2020/09/20/hexo/hexo-amp-enable/" title="Hexo AMP 支持">Hexo AMP 支持</a>  </li><li><a href="/2017/03/03/others/markdown-first/" title="MarkDown语法">MarkDown语法</a>  </li><li><a href="/2020/09/24/hexo/hexo-markdown-extends/" title="Hexo-MarkDown扩展">Hexo-MarkDown扩展</a></li></ul>]]></content>
-    
-    
-    <summary type="html">&lt;h2 id=&quot;起因&quot;&gt;&lt;a href=&quot;#起因&quot; class=&quot;headerlink&quot; title=&quot;起因&quot;&gt;&lt;/a&gt;起因&lt;/h2&gt;&lt;p&gt;电脑重装系统 重新装的新的Node，无法使用Hexo&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="hexo" scheme="http://blog.rcant.com/categories/hexo/"/>
-    
-    
-    <category term="hexo" scheme="http://blog.rcant.com/tags/hexo/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>各种国内镜像仓库地址收集</title>
-    <link href="http://blog.rcant.com/2019/08/28/others/hubmirror/"/>
-    <id>http://blog.rcant.com/2019/08/28/others/hubmirror/</id>
-    <published>2019-08-28T06:40:07.000Z</published>
-    <updated>2020-08-07T02:31:56.898Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h2><a id="more"></a><h2 id="CentOS-yum-软件包仓库"><a href="#CentOS-yum-软件包仓库" class="headerlink" title="CentOS yum 软件包仓库"></a>CentOS yum 软件包仓库</h2><h3 id="备份默认源"><a href="#备份默认源" class="headerlink" title="备份默认源"></a>备份默认源</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@user ~]# mv &#x2F;etc&#x2F;yum.repos.d&#x2F;CentOS-Base.repo &#x2F;etc&#x2F;yum.repos.d&#x2F;CentOS-Base.repo.b</span><br></pre></td></tr></table></figure><h3 id="使用阿里云镜像"><a href="#使用阿里云镜像" class="headerlink" title="使用阿里云镜像"></a>使用阿里云镜像</h3><h4 id="CentOS-5"><a href="#CentOS-5" class="headerlink" title="CentOS 5"></a>CentOS 5</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -o &#x2F;etc&#x2F;yum.repos.d&#x2F;CentOS-Base.repo http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;repo&#x2F;Centos-5.repo</span><br></pre></td></tr></table></figure><h4 id="CentOS-6"><a href="#CentOS-6" class="headerlink" title="CentOS 6"></a>CentOS 6</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -o &#x2F;etc&#x2F;yum.repos.d&#x2F;CentOS-Base.repo http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;repo&#x2F;Centos-6.repo</span><br></pre></td></tr></table></figure><h4 id="CentOS-7"><a href="#CentOS-7" class="headerlink" title="CentOS 7"></a>CentOS 7</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -o &#x2F;etc&#x2F;yum.repos.d&#x2F;CentOS-Base.repo http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;repo&#x2F;Centos-7.repo</span><br></pre></td></tr></table></figure><h3 id="生成对应的缓存"><a href="#生成对应的缓存" class="headerlink" title="生成对应的缓存"></a>生成对应的缓存</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum clean all</span><br><span class="line">yum makecache</span><br></pre></td></tr></table></figure><h2 id="DockerCe-更换镜像源"><a href="#DockerCe-更换镜像源" class="headerlink" title="DockerCe 更换镜像源"></a>DockerCe 更换镜像源</h2><p>配置docker-ce软件仓库<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum-config-manager \</span><br><span class="line">    --add-repo \</span><br><span class="line">    https:&#x2F;&#x2F;download.docker.com&#x2F;linux&#x2F;centos&#x2F;docker-ce.repo</span><br></pre></td></tr></table></figure></p><p>更换阿里云 </p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cd &#x2F;etc&#x2F;yum.repos.d&#x2F;</span><br><span class="line"></span><br><span class="line">vim docker-ce.repo </span><br><span class="line"># 按ecs进行非编辑模式</span><br><span class="line">:%s&#x2F;https:\&#x2F;\&#x2F;download.docker.com&#x2F;https:\&#x2F;\&#x2F;mirrors.aliyun.com\&#x2F;docker-ce&#x2F;g</span><br></pre></td></tr></table></figure><h2 id="DockerHub-仓库"><a href="#DockerHub-仓库" class="headerlink" title="DockerHub 仓库"></a>DockerHub 仓库</h2><h3 id="配置Docker-镜像加速"><a href="#配置Docker-镜像加速" class="headerlink" title="配置Docker 镜像加速"></a>配置Docker 镜像加速</h3><h4 id="国内加速站点"><a href="#国内加速站点" class="headerlink" title="国内加速站点"></a>国内加速站点</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;registry.docker-cn.com</span><br><span class="line">http:&#x2F;&#x2F;hub-mirror.c.163.com</span><br><span class="line">https:&#x2F;&#x2F;3laho3y3.mirror.aliyuncs.com</span><br><span class="line">http:&#x2F;&#x2F;f1361db2.m.daocloud.io</span><br><span class="line">https:&#x2F;&#x2F;mirror.ccs.tencentyun.com</span><br></pre></td></tr></table></figure><h4 id="使用命令来配置加速站点"><a href="#使用命令来配置加速站点" class="headerlink" title="使用命令来配置加速站点"></a>使用命令来配置加速站点</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p &#x2F;etc&#x2F;docker</span><br><span class="line">sudo tee &#x2F;etc&#x2F;docker&#x2F;daemon.json &lt;&lt;-&#39;EOF&#39;</span><br><span class="line">&#123;</span><br><span class="line">  &quot;registry-mirrors&quot;: [&quot;&lt;your accelerate address&gt;&quot;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h4 id="使用脚本来配置加速站点"><a href="#使用脚本来配置加速站点" class="headerlink" title="使用脚本来配置加速站点"></a>使用脚本来配置加速站点</h4><p>该脚本可以将 —registry-mirror 加入到你的 Docker 配置文件 /etc/docker/daemon.json 中。适用于 Ubuntu14.04、Debian、CentOS6 、CentOS7、Fedora、Arch Linux、openSUSE Leap 42.1，其他版本可能有细微不同。更多详情请访问文档。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -sSL https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;wss434631143&#x2F;xiaoshujiang&#x2F;master&#x2F;articles&#x2F;Docker&#x2F;shell&#x2F;set_mirror.sh | sh -s &lt;your accelerate address&gt;</span><br></pre></td></tr></table></figure><h4 id="通过修改启动脚本配置加速站点"><a href="#通过修改启动脚本配置加速站点" class="headerlink" title="通过修改启动脚本配置加速站点"></a>通过修改启动脚本配置加速站点</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 直接修改 &#x2F;usr&#x2F;lib&#x2F;systemd&#x2F;system&#x2F;docker.service 启动脚本</span><br><span class="line">vim &#x2F;usr&#x2F;lib&#x2F;systemd&#x2F;system&#x2F;docker.service </span><br><span class="line"># 在dockerd后面加参数</span><br><span class="line">ExecStart&#x3D;&#x2F;usr&#x2F;bin&#x2F;dockerd --registry-mirror&#x3D;&lt;your accelerate address&gt;</span><br></pre></td></tr></table></figure><p>以上操作后重启一下 Docker</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl daemon-reload</span><br><span class="line">sudo systemctl restart docker</span><br></pre></td></tr></table></figure><h2 id="pip-软件包仓库"><a href="#pip-软件包仓库" class="headerlink" title="pip 软件包仓库"></a>pip 软件包仓库</h2><h3 id="pip改用阿里云镜像源"><a href="#pip改用阿里云镜像源" class="headerlink" title="pip改用阿里云镜像源"></a>pip改用阿里云镜像源</h3><p>vim ~/.pip/pip.conf</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[global]</span><br><span class="line">trusted-host &#x3D;  mirrors.aliyun.com</span><br><span class="line">index-url &#x3D; http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;pypi&#x2F;simple</span><br></pre></td></tr></table></figure><h3 id="直接使用命令安装"><a href="#直接使用命令安装" class="headerlink" title="直接使用命令安装"></a>直接使用命令安装</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install --trusted-host mirrors.aliyun.com -i http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;pypi&#x2F;simple -r requirements.txt</span><br></pre></td></tr></table></figure>]]></content>
-    
-    
-    <summary type="html">&lt;h2 id=&quot;引子&quot;&gt;&lt;a href=&quot;#引子&quot; class=&quot;headerlink&quot; title=&quot;引子&quot;&gt;&lt;/a&gt;引子&lt;/h2&gt;</summary>
-    
-    
-    
-    <category term="mirror" scheme="http://blog.rcant.com/categories/mirror/"/>
-    
-    
-    <category term="mirror" scheme="http://blog.rcant.com/tags/mirror/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>动态规划算法</title>
-    <link href="http://blog.rcant.com/2019/08/03/algorithm/dynamicprogram-algorithm/"/>
-    <id>http://blog.rcant.com/2019/08/03/algorithm/dynamicprogram-algorithm/</id>
-    <published>2019-08-03T06:50:07.000Z</published>
-    <updated>2020-09-21T09:58:27.138Z</updated>
-    
-    <content type="html"><![CDATA[<p>动态规划算法是通过拆分问题，定义问题状态和状态之间的关系，使得问题能够以递推（或者说分治）的方式去解决。<br>动态规划算法的基本思想与分治法类似，也是将待求解的问题分解为若干个子问题（阶段），按顺序求解子阶段，前一子问题的解，为后一子问题的求解提供了有用的信息。在求解任一子问题时，列出各种可能的局部解，通过决策保留那些有可能达到最优的局部解，丢弃其他局部解。依次解决各子问题，最后一个子问题就是初始问题的解。</p><a id="more"></a><h2 id="算法基本思想-理念"><a href="#算法基本思想-理念" class="headerlink" title="算法基本思想 理念"></a>算法基本思想 理念</h2><p>动态规划算法通常用于求解具有某种最优性质的问题。在这类问题中，可能会有许多可行解。每一个解都对应于一个值，我们希望找到具有最优值的解。</p><p>动态规划算法与分治法类似，其基本思想也是将待求解问题分解成若干个子问题，先求解子问题，然后从这些子问题的解得到原问题的解。</p><p>与分治法不同的是，<span style="color:blue;">适合于用动态规划求解的问题，经分解得到子问题往往不是互相独立的</span>。若用分治法来解这类问题，则分解得到的子问题数目太多，有些子问题被重复计算了很多次。如果我们能够<span style="color:red;">保存已解决的子问题的答案，而在需要时再找出已求得的答案，这样就可以避免大量的重复计算，节省时间</span>。我们可以用一个表来记录所有已解的子问题的答案。不管该子问题以后是否被用到，只要它被计算过，就将其结果填入表中。这就是动态规划法的基本思路。</p><p>具体的动态规划算法多种多样，但它们<span style="color:red;">具有相同的填表格式</span>。</p><p>与<span style="color:red;">分治法最大的差别</span>是：适合于用动态规划法求解的问题，经分解后得到的<span style="color:blue;">子问题往往不是互相独立的</span>（即下一个子阶段的求解是建立在上一个子阶段的解的基础上，进行进一步的求解）</p><h2 id="动态规划分类"><a href="#动态规划分类" class="headerlink" title="动态规划分类"></a>动态规划分类</h2><p>动态规划一般可分为线性动规，区域动规，树形动规，背包动规四类。</p><h3 id="线性动规："><a href="#线性动规：" class="headerlink" title="线性动规："></a>线性动规：</h3><blockquote><ol><li>拦截导弹</li><li>合唱队形</li><li>挖地雷</li><li>建学校</li><li>剑客决斗等</li></ol></blockquote><h3 id="区域动规："><a href="#区域动规：" class="headerlink" title="区域动规："></a>区域动规：</h3><blockquote><ol><li>石子合并</li><li>加分二叉树</li><li>统计单词个数</li><li>炮兵布阵等</li></ol></blockquote><h3 id="树形动规："><a href="#树形动规：" class="headerlink" title="树形动规："></a>树形动规：</h3><blockquote><ol><li>贪吃的九头龙</li><li>二分查找树</li><li>聚会的欢乐</li><li>数字三角形等</li></ol></blockquote><h3 id="背包问题："><a href="#背包问题：" class="headerlink" title="背包问题："></a>背包问题：</h3><blockquote><ol><li>01背包问题</li><li>完全背包问题</li><li>分组背包问题</li><li>二维背包</li><li>装箱问题</li><li>挤牛奶等</li></ol></blockquote><h2 id="算法适用条件"><a href="#算法适用条件" class="headerlink" title="算法适用条件"></a>算法适用条件</h2><p>适用条件<br>任何思想方法都有一定的局限性，超出了特定条件，它就失去了作用。同样，动态规划也并不是万能的。适用动态规划的问题必须满足最优化原理和无后效性。</p><p>1.<span style="color:blue;">最优化原理</span>（最优子结构性质） 最优化原理可这样阐述：一个最优化策略具有这样的性质，不论过去状态和决策如何，对前面的决策所形成的状态而言，余下的诸决策必须构成最优策略。简而言之，一个最优化策略的子策略总是最优的。一个问题满足最优化原理又称其具有最优子结构性质。</p><p>2.无后效性将各阶段按照一定的次序排列好之后，对于某个给定的阶段状态，它以前各阶段的状态无法直接影响它未来的决策，而只能通过当前的这个状态。换句话说，每个状态都是过去历史的一个完整总结。这就是无后向性，又称为无后效性。</p><p>3.子问题的重叠性 动态规划将原来具有指数级时间复杂度的搜索算法改进成了具有多项式时间复杂度的算法。其中的关键在于解决冗余，这是动态规划算法的根本目的。动态规划实质上是一种以空间换时间的技术，它在实现的过程中，不得不存储产生过程中的各种状态，所以它的空间复杂度要大于其它的算法。（<span style="color:blue;">该性质并不是动态规划适用的必要条件，但是如果没有这条性质，动态规划算法同其他算法相比就不具备优势</span>）</p><h2 id="算法的一般解题思路"><a href="#算法的一般解题思路" class="headerlink" title="算法的一般解题思路"></a>算法的一般解题思路</h2><p>动态规划所处理的问题是一个多阶段决策问题，一般由初始状态开始，通过对中间阶段决策的选择，达到结束状态。这些决策形成了一个决策序列，同时确定了完成整个过程的一条活动路线(通常是求最优的活动路线)。如图所示。动态规划的设计都有着一定的模式，一般要经历以下几个步骤。</p><pre><code>初始状态→│决策１│→│决策２│→…→│决策ｎ│→结束状态                  图1 动态规划决策过程示意图(1)划分阶段：按照问题的时间或空间特征，把问题分为若干个阶段。在划分阶段时，注意划分后的阶段一定要是有序的或者是可排序的，否则问题就无法求解。(2)确定状态和状态变量：将问题发展到各个阶段时所处于的各种客观情况用不同的状态表示出来。当然，状态的选择要满足无后效性。(3)确定决策并写出状态转移方程：因为决策和状态转移有着天然的联系，状态转移就是根据上一阶段的状态和决策来导出本阶段的状态。所以如果确定了决策，状态转移方程也就可写出。但事实上常常是反过来做，根据相邻两个阶段的状态之间的关系来确定决策方法和状态转移方程。(4)寻找边界条件：给出的状态转移方程是一个递推式，需要一个递推的终止条件或边界条件。一般，只要解决问题的阶段、状态和状态转移决策确定了，就可以写出状态转移方程（包括边界条件）。</code></pre><p>实际应用中可以按以下几个简化的步骤进行设计：</p><pre><code>（1）分析最优解的性质，并刻画其结构特征。（2）递归的定义最优解。（3）以自底向上或自顶向下的记忆化方式（备忘录法）计算出最优值（4）根据计算最优值时得到的信息，构造问题的最优解</code></pre><h2 id="算法执行逻辑"><a href="#算法执行逻辑" class="headerlink" title="算法执行逻辑"></a>算法执行逻辑</h2><h2 id="算法例子"><a href="#算法例子" class="headerlink" title="算法例子"></a>算法例子</h2><h3 id="斐波那契数列"><a href="#斐波那契数列" class="headerlink" title="斐波那契数列"></a>斐波那契数列</h3><p>默认递归实现</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">def Fibonacci(n):</span><br><span class="line">    if n &#x3D;&#x3D; 0:</span><br><span class="line">        return 1</span><br><span class="line">    elif n &#x3D;&#x3D; 1:</span><br><span class="line">        return 1</span><br><span class="line">    else:</span><br><span class="line">        return Fibonacci(n-1) + Fibonacci(n-2)</span><br></pre></td></tr></table></figure><p>使用动态递归实现</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">def Fibonacci(n):</span><br><span class="line">    if n &#x3D;&#x3D; 0:</span><br><span class="line">        return 1</span><br><span class="line">    elif n &#x3D;&#x3D; 1:</span><br><span class="line">        return 1</span><br><span class="line">    else:</span><br><span class="line">        result &#x3D; &#123;0:1,1:1&#125;</span><br><span class="line">        for i in range(n-1):</span><br><span class="line">            result[i+2] &#x3D; result[i+1] + result[i];</span><br><span class="line">        return result[n]</span><br></pre></td></tr></table></figure><p>使用了一个dict 存取每个状态<br>也可以只存上一个状态减少内存消耗</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">def Fibonacci(n):</span><br><span class="line">    if n &#x3D;&#x3D; 0:</span><br><span class="line">        return 1</span><br><span class="line">    elif n &#x3D;&#x3D; 1:</span><br><span class="line">        return 1</span><br><span class="line">    else:</span><br><span class="line">        pred &#x3D; 1</span><br><span class="line">        curr &#x3D; 1</span><br><span class="line">        for i in range(n-1):</span><br><span class="line">            pred,curr &#x3D; curr,pred+curr</span><br><span class="line">        return curr</span><br></pre></td></tr></table></figure><h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://blog.csdn.net/zw6161080123/article/details/80639932" target="_blank" rel="noopener">https://blog.csdn.net/zw6161080123/article/details/80639932</a></p><h2 id="算法系列"><a href="#算法系列" class="headerlink" title="算法系列"></a>算法系列</h2><ul><li><a href="/2019/08/03/algorithm/algorithm-readme/" title="算法目录">算法目录</a>  </li><li><a href="/2019/08/03/algorithm/greedy-algorithm/" title="贪婪法">贪婪法</a>  </li><li><a href="/2019/08/03/algorithm/algorithm-readme/" title="分治算法">分治算法</a>  </li><li><a href="/2019/08/03/algorithm/dynamicprogram-algorithm/" title="动态规划算法">动态规划算法</a>  </li><li><a href="/2019/08/01/algorithm/genetic-algorithm-use/" title="遗传算法">遗传算法</a>  </li></ul>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;动态规划算法是通过拆分问题，定义问题状态和状态之间的关系，使得问题能够以递推（或者说分治）的方式去解决。&lt;br&gt;动态规划算法的基本思想与分治法类似，也是将待求解的问题分解为若干个子问题（阶段），按顺序求解子阶段，前一子问题的解，为后一子问题的求解提供了有用的信息。在求解任一子问题时，列出各种可能的局部解，通过决策保留那些有可能达到最优的局部解，丢弃其他局部解。依次解决各子问题，最后一个子问题就是初始问题的解。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="algorithm" scheme="http://blog.rcant.com/categories/algorithm/"/>
-    
-    
-    <category term="algorithm" scheme="http://blog.rcant.com/tags/algorithm/"/>
-    
-    <category term="算法" scheme="http://blog.rcant.com/tags/%E7%AE%97%E6%B3%95/"/>
-    
-    <category term="dynamic program" scheme="http://blog.rcant.com/tags/dynamic-program/"/>
-    
-    <category term="动态规划" scheme="http://blog.rcant.com/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
     
   </entry>
   
