@@ -1,6 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://blog.rcant.com/2020/10/20/mq/rabbitmq-use/</loc>
+    <lastmod>2020-10-20</lastmod>
+  </url>
+  <url>
+    <loc>http://blog.rcant.com/2020/10/21/hexo/hexo-plugins/</loc>
+    <lastmod>2020-10-20</lastmod>
+  </url>
+  <url>
+    <loc>http://blog.rcant.com/2020/10/14/asm/asm-register/</loc>
+    <lastmod>2020-10-16</lastmod>
+  </url>
+  <url>
+    <loc>http://blog.rcant.com/2020/10/17/cpp/cpp-gdb/</loc>
+    <lastmod>2020-10-16</lastmod>
+  </url>
+  <url>
+    <loc>http://blog.rcant.com/2020/09/05/framework/framework-general/</loc>
+    <lastmod>2020-10-14</lastmod>
+  </url>
+  <url>
     <loc>http://blog.rcant.com/2020/09/05/asm/asm-install/</loc>
     <lastmod>2020-09-27</lastmod>
   </url>
@@ -177,19 +197,19 @@
     <lastmod>2020-08-07</lastmod>
   </url>
   <url>
-    <loc>http://blog.rcant.com/2017/12/05/unity/unity-vector/</loc>
-    <lastmod>2020-08-07</lastmod>
-  </url>
-  <url>
     <loc>http://blog.rcant.com/2017/03/06/unity/unity-optimization/</loc>
     <lastmod>2020-08-07</lastmod>
   </url>
   <url>
-    <loc>http://blog.rcant.com/2017/03/07/unity/unity-code-optimization/</loc>
+    <loc>http://blog.rcant.com/2017/12/05/unity/unity-vector/</loc>
     <lastmod>2020-08-07</lastmod>
   </url>
   <url>
     <loc>http://blog.rcant.com/2018/01/05/unity/unity-mono-encode/</loc>
+    <lastmod>2020-08-07</lastmod>
+  </url>
+  <url>
+    <loc>http://blog.rcant.com/2017/03/07/unity/unity-code-optimization/</loc>
     <lastmod>2020-08-07</lastmod>
   </url>
   <url>
@@ -233,19 +253,19 @@
     <lastmod>2020-08-07</lastmod>
   </url>
   <url>
-    <loc>http://blog.rcant.com/2017/11/24/python/python3-record/</loc>
-    <lastmod>2020-08-07</lastmod>
-  </url>
-  <url>
     <loc>http://blog.rcant.com/2019/02/13/python/python3-string/</loc>
     <lastmod>2020-08-07</lastmod>
   </url>
   <url>
-    <loc>http://blog.rcant.com/2018/12/26/python/python3-pkg/</loc>
+    <loc>http://blog.rcant.com/2017/11/24/python/python3-record/</loc>
     <lastmod>2020-08-07</lastmod>
   </url>
   <url>
     <loc>http://blog.rcant.com/2017/11/03/python/python3-pip/</loc>
+    <lastmod>2020-08-07</lastmod>
+  </url>
+  <url>
+    <loc>http://blog.rcant.com/2018/12/26/python/python3-pkg/</loc>
     <lastmod>2020-08-07</lastmod>
   </url>
   <url>
@@ -277,11 +297,11 @@
     <lastmod>2020-08-07</lastmod>
   </url>
   <url>
-    <loc>http://blog.rcant.com/2017/05/17/others/virtualbox-first/</loc>
+    <loc>http://blog.rcant.com/2017/05/17/others/virtualbox-sencond/</loc>
     <lastmod>2020-08-07</lastmod>
   </url>
   <url>
-    <loc>http://blog.rcant.com/2017/05/17/others/virtualbox-sencond/</loc>
+    <loc>http://blog.rcant.com/2017/05/17/others/virtualbox-first/</loc>
     <lastmod>2020-08-07</lastmod>
   </url>
   <url>
@@ -345,19 +365,19 @@
     <lastmod>2020-08-07</lastmod>
   </url>
   <url>
-    <loc>http://blog.rcant.com/2017/10/24/centos/centos-repos-change/</loc>
-    <lastmod>2020-08-07</lastmod>
-  </url>
-  <url>
     <loc>http://blog.rcant.com/2017/11/22/centos/centos-kernel-upgrade/</loc>
     <lastmod>2020-08-07</lastmod>
   </url>
   <url>
-    <loc>http://blog.rcant.com/2018/09/20/centos/centos-ShadowSocks/</loc>
+    <loc>http://blog.rcant.com/2017/10/24/centos/centos-repos-change/</loc>
     <lastmod>2020-08-07</lastmod>
   </url>
   <url>
     <loc>http://blog.rcant.com/2019/04/01/centos/centos-change-rootpasswd/</loc>
+    <lastmod>2020-08-07</lastmod>
+  </url>
+  <url>
+    <loc>http://blog.rcant.com/2018/09/20/centos/centos-ShadowSocks/</loc>
     <lastmod>2020-08-07</lastmod>
   </url>
   <url>
