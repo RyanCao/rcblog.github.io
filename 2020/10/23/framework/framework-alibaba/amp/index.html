@@ -1,0 +1,1831 @@
+<!doctype html>
+<html ⚡>
+  <head>
+    <meta charset="utf-8">
+    <link rel="canonical" href="http://blog.rcant.com/2020/10/23/framework/framework-alibaba/index.html" >
+    <title>阿里巴巴为什么能抗住90秒100亿？ | Chester.Cao Blog</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+    <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style>
+    <noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+    <script async custom-element="amp-sidebar" src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js"></script>
+  	<script async custom-element="amp-social-share" src="https://cdn.ampproject.org/v0/amp-social-share-0.1.js"></script>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+    <script type="application/ld+json">
+		{
+			"@context": "http://schema.org",
+			"@type": "BlogPosting",
+			"headline": "阿里巴巴为什么能抗住90秒100亿？",
+			
+			"description": "&lt;p&gt;本文以淘宝作为例子，介绍从一百个并发到千万级并发情况下服务端的架构的演进过程&lt;/p&gt;",
+			
+			"mainEntityOfPage":{
+			    "@type":"WebPage",
+			    "@id":"http://blog.rcant.com/2020/10/23/framework/framework-alibaba/"
+			},
+			"datePublished": "2020-10-23T14:39:17.000Z",
+			"dateModified": "2020-10-23T07:24:06.441Z",
+			
+			"image": {
+				"@type": "ImageObject",
+				"url": "\amp-dist\sample\sample-substituteTitleImage.png",
+				"width" : "1024",
+				"height" : "800"
+			},
+			
+			"author": {
+			    "@type": "Person",
+			    "name": "Chester.C"
+			},
+			"publisher": {
+			    "@type": "Organization",
+			    "name": "Chester.Cao Blog"
+			    
+			    ,
+			    "logo": {
+			      "@type": "ImageObject",
+			      "url": "http://blog.rcant.com\amp-dist\sample\sample-logo.png",
+			      "width": 600,
+			      "height": 60
+			    }
+			    
+			}
+		}
+	</script>
+	
+	<style amp-custom>
+		
+:root sub,
+:root sup {
+  vertical-align: baseline;
+}
+a {
+  -moz-transition: 0.7s;
+  -ms-transition: 0.7s;
+  -o-transition: 0.7s;
+  -webkit-transition: 0.7s;
+  color: #0379c4;
+  -webkit-transition: 0.7s;
+  -moz-transition: 0.7s;
+  -o-transition: 0.7s;
+  -ms-transition: 0.7s;
+  transition: 0.7s;
+  border: 0;
+  font-family: inherit;
+  font-size: 100%;
+  font-style: inherit;
+  font-weight: inherit;
+  margin: 0;
+  outline: 0;
+  padding: 0;
+  vertical-align: baseline;
+}
+a img {
+  border: none;
+}
+a:hover {
+  -moz-transition: 0.3s;
+  -ms-transition: 0.3s;
+  -o-transition: 0.3s;
+  -webkit-transition: 0.3s;
+  color: #31adfc;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -o-transition: 0.3s;
+  -ms-transition: 0.3s;
+  transition: 0.3s;
+}
+abbr,
+acronym,
+address,
+applet,
+big,
+blockquote,
+body,
+caption,
+cite,
+code,
+dd,
+del,
+dfn,
+div,
+dl,
+dt,
+em,
+fieldset,
+form,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+html,
+iframe,
+img,
+ins,
+kbd,
+label,
+legend,
+li,
+object,
+ol,
+p,
+pre,
+q,
+s,
+samp,
+small,
+span,
+strike,
+strong,
+sub,
+sup,
+table,
+tbody,
+td,
+tfoot,
+th,
+thead,
+tr,
+tt,
+ul,
+var {
+  border: 0;
+  font-family: inherit;
+  font-size: 100%;
+  font-style: inherit;
+  font-weight: inherit;
+  margin: 0;
+  outline: 0;
+  padding: 0;
+  vertical-align: baseline;
+}
+abbr {
+  cursor: help;
+  border-bottom: 1px dotted;
+  font-variant: normal;
+}
+acronym {
+  border-bottom: 1px dotted;
+  font-variant: normal;
+}
+body {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  background: #fff;
+  color: #34393a;
+  font-family: 'メイリオ', 'MS PGothic', sans-serif;
+  font-size: 102%;
+  font-wight: 500;
+  line-height: 2em;
+  text-rendering: optimizelegibility;
+}
+button::-moz-focus-inner,
+input::-moz-focus-inner,
+figure.highlight td,
+.post .entry-content figure.highlight th {
+  border: 0;
+  padding: 0;
+}
+caption,
+table,
+td,
+th {
+  vertical-align: middle;
+}
+caption,
+td,
+th,
+.table-align-left {
+  text-align: left;
+}
+code,
+figure.highlight .code,
+pre {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: subpixel-antialiased;
+}
+code,
+kbd,
+pre,
+samp {
+  font-family: Menlo, Consolas, Monaco, Consolas, monospace;
+}
+code,
+pre {
+  background-color: #f5f2f0;
+  margin: 0 3px;
+  padding: 1px 8px;
+}
+code,
+pre,
+samp {
+  font-size: 0.9em;
+  letter-spacing: 0.05em;
+}
+del {
+  text-decoration: line-through;
+}
+#article-nav {
+  clear: both;
+  margin: 1em 20px;
+  position: relative;
+  
+}
+#article-nav:after {
+  clear: both;
+  content: "";
+  display: table;
+}
+#article-nav:before {
+  content: "";
+  display: table;
+  -webkit-border-radius: 50%;
+  -webkit-box-shadow: 0 1px 2px #fff;
+  border-radius: 50%;
+  -webkit-box-shadow: 0 1px 2px #fff;
+  box-shadow: 0 1px 2px #fff;
+  content: "";
+  height: 8px;
+  left: 50%;
+  margin-left: -4px;
+  margin-top: -4px;
+  position: absolute;
+  top: 50%;
+  width: 8px;
+}
+#article-nav-newer {
+  float: left;
+  padding-right: 20px;
+  text-align: right;
+}
+#article-nav-newer .article-nav-caption {
+  margin-right: -2px;
+}
+#article-nav-older {
+  float: right;
+  padding-left: 20px;
+  text-align: left;
+}
+#container {
+  margin-left: auto;
+  margin-right: auto;
+}
+#footer {
+  background-color: #0379c4;
+  display: block;
+  font-size: 70%;
+  line-height: 1.6;
+  padding: 20px 0;
+}
+#footer:after {
+  content: ".";
+  display: block;
+  font-size: 0;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+.moreRead:before,
+.useFlame,
+kbd,
+.copyright,
+.table-align-center {
+  text-align: center;
+}
+.blog-title a,
+.nav,
+.nav-icon,
+.loadingPutAbsolute,
+.moreRead:before,
+.titleWrapper {
+  position: relative;
+}
+#header {
+  display: block;
+  margin: 0.5em 0 1em;
+  position: static;
+  text-align: center;
+  position: relative;
+}
+#header:after {
+  display: block;
+  font-size: 0;
+  height: 0;
+}
+#header:after,
+.clearfix:after,
+.nav ul:after {
+  clear: both;
+  visibility: hidden;
+}
+#main {
+  margin-bottom: 3em;
+  padding-left: 0;
+}
+.useFlame,
+kbd {
+  display: inline-block;
+}
+#page-nav a,
+.photoby,
+kbd {
+  color: #4c5355;
+}
+* html .clearfix {
+  height: 1%;
+}
+.alignleft,
+.left {
+  float: left;
+}
+.alignright,
+.right {
+  float: right;
+}
+.article-devider {
+  border: 0;
+  border-top: 5px solid #ddd;
+  margin: 5em auto;
+  width: 8%;
+}
+.article-nav-caption,
+.nav {
+  text-transform: uppercase;
+}
+.article-nav-caption {
+  color: #ddd;
+  font-weight: 700;
+  letter-spacing: 2px;
+  line-height: 1em;
+}
+.article-nav-link-wrap,
+a {
+  text-decoration: none;
+}
+.article-nav-link-wrap {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #999;
+  display: block;
+  margin-top: 0;
+  text-align: center;
+  width: 50%;
+}
+.article-nav-link-wrap:hover {
+  color: #bfbfbf;
+}
+.article-nav-title {
+  font-size: 0.85em;
+  line-height: 1.6em;
+  margin-top: 0.5em;
+}
+.nav ul {
+  display: block;
+}
+.nav ul li {
+  display: block;
+}
+.nav ul li a {
+  display: block;
+}
+.authorCap {
+  font-size: 1.5em;
+}
+.authorReading {
+  font-size: 0.7em;
+}
+.site-author-info-wrapper {
+  padding: 20px;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -o-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+.gravatar-wrapper {
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -o-box-flex: 1;
+  box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+.gravatar-area {
+  margin: 0 20px 0 0;
+}
+.authorCap-wrapper {
+  -webkit-box-flex: 3;
+  -moz-box-flex: 3;
+  -o-box-flex: 3;
+  box-flex: 3;
+  -webkit-flex: 3;
+  -ms-flex: 3;
+  flex: 3;
+}
+.blog-title {
+  border-bottom: none;
+  float: none;
+  font-size: 120%;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  margin: 10px 0;
+  padding-bottom: 0.2em;
+}
+.blog-title a {
+  left: 0.1em;
+  padding: 0.4em 0;
+}
+.circle {
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+}
+.clearfix:after {
+  content: ".";
+  display: block;
+  height: 0;
+}
+.copyright-title {
+  font-size: 1.2em;
+}
+.copyright-tool {
+  text-align: center;
+  font-family: 'メイリオ', 'MS PGothic', sans-serif;
+  margin: 1em 0 0 0;
+}
+h6.tag,
+h6.categories {
+  color: #0379c4;
+  font-size: 110%;
+}
+.entry-content {
+  width: 93.75%;
+  margin: 0 auto;
+  font-size: 100%;
+}
+.entry-content h2,
+.entry-content h3 {
+  text-align: center;
+}
+.entry-content h1 {
+  font-size: 170%;
+  line-height: 1.5;
+  margin: 1em 0 0.8em;
+}
+.entry-content h2,
+.entry-content h3,
+.entry-content h4,
+.entry-content h5,
+.entry-content h6 {
+  line-height: 1.5;
+  margin: 1em 0 0.8em;
+}
+.entry-content h2 {
+  border-bottom: 2px solid #0379c4;
+  color: #0379c4;
+  font-size: 160%;
+  margin: 1.8em 0 0.5em;
+  padding: 0.8em 0;
+}
+.entry-content h3 {
+  color: #0379c4;
+  font-size: 150%;
+  margin: 1.8em 0 0.5em;
+  padding: 0.8em 0.5em;
+}
+.entry-content h4 {
+  border-left: 2px solid #0379c4;
+  color: #0379c4;
+  font-size: 120%;
+  margin: 1.8em 0 0.5em;
+  padding-left: 1.2em;
+  text-align: left;
+}
+.entry-content h5,
+.entry-content h6 {
+  color: #0379c4;
+  margin: 1.8em 0 0.5em;
+  text-align: left;
+}
+.entry-content h5 {
+  font-size: 110%;
+  padding-left: 1.2em;
+}
+.entry-content h6 {
+  font-size: 100%;
+}
+.entry-content p {
+  font-size: 1em;
+  letter-spacing: 0;
+  line-height: 2.2em;
+  margin: 1.8em 0;
+}
+.entry-content p em {
+  background-color: #faf7dc;
+  color: #736e4f;
+  font-style: normal;
+  margin: 0 2px;
+  padding: 3px;
+}
+.entry-content p strong {
+  color: #734f4f;
+  font-style: normal;
+  margin: 0 2px;
+  padding: 3px;
+  background-color: #fadcdc;
+}
+.entry-content dl,
+.entry-content ol,
+.entry-content ul {
+  margin: 1.8em 0 1.8em 1em;
+  padding: 0;
+}
+.entry-content ol p,
+.entry-content ul p,
+.entry-content dl p {
+  margin: 0;
+}
+.entry-content dl li,
+.entry-content ol li {
+  line-height: 1.8em;
+  margin: 0.5em;
+}
+.entry-content ol {
+  list-style: decimal ;
+}
+.entry-content ol li {
+  font-size: 1em;
+  margin: 0.2em 0 0.2em 2.6em;
+  padding: 0 0 0 0.1em;
+  position: relative;
+}
+.entry-content ol p:not(:first-child),
+.entry-content ul p:not(:first-child) {
+  color: #4c5355;
+}
+.entry-content ol {
+  padding: 0 /* paddingキャンセル */;
+  margin: 0 /* marginキャンセル */;
+  list-style: none /* olがはき出す数字を消す */;
+}
+.entry-content ol {
+  counter-reset: number /* 名前を付けたカウンターをリセット */;
+  list-style: none /* olが数字を付けることをキャンセル */;
+  margin: 0;
+  padding: 0;
+}
+.entry-content ol li:before {
+  counter-increment: number /* 任意の名前を付けて！ */;
+  content: counter(number) /* 名前を付けたカウンターを呼び出し */;
+  position: absolute;
+  left: -2.2em;
+  top: 0.05em;
+  display: inline-block;
+  margin: 0 0.5em 0 0;
+  padding: 0;
+  float: left;
+  background: #6abcf0;
+  width: 1.6em;
+  height: 1.6em;
+  border-radius: 50%;
+  color: #fff;
+  text-align: center;
+  line-height: 1.6em;
+}
+.entry-content ol li p:first-child {
+  display: inline-block;
+  line-height: 1.6em;
+  height: 1.6em;
+  line-height: 1.6em;
+}
+.entry-content ul {
+  list-style: none;
+}
+.entry-content ul li {
+  font-size: 1em;
+  margin: 0.2em 0 0.2em 0.5em;
+  padding: 0 0 0 0.2em;
+  position: relative;
+}
+.entry-content ul li::after {
+  display: block;
+  content: '';
+  position: absolute;
+  top: 0.4em;
+  left: -1em;
+  width: 8px;
+  height: 8px;
+  border-bottom: 3px solid #ddd;
+}
+.entry-content dl li ol,
+.entry-content dl li ul {
+  margin-bottom: 2em;
+}
+.entry-content ol li ol,
+.entry-content ol li ul {
+  margin-bottom: 2em;
+}
+.entry-content ul li ol,
+.entry-content ul li ul {
+  margin-bottom: 2em;
+}
+.entry-content blockquote p:last-child,
+.entry-content .archive .post {
+  margin-bottom: 0;
+}
+.entry-content blockquote {
+  margin: 1.8em 0;
+  padding: 0.5em 20px;
+  position: relative;
+  background-color: #f6f6f4;
+}
+.entry-content blockquote p {
+  margin: 1em 0;
+}
+.entry-content blockquote:before {
+  color: #dfdfd8;
+  content: "”";
+  font-family: sans-serif;
+  font-size: 600%;
+  line-height: 1em;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 1;
+}
+.entry-content blockquote blockquote:before {
+  content: "";
+}
+.entry-content hr {
+  border: 0;
+  border-top: 3px solid #ddd;
+  margin: 3em auto;
+  width: 20%;
+}
+.entry-content img,
+.entry-content video {
+  display: block;
+  height: auto;
+  margin: auto;
+  max-width: 100%;
+}
+.entry-content pre {
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding;
+  background: #f5f2f0;
+  -webkit-background-clip: padding;
+  -moz-background-clip: padding;
+  background-clip: padding-box;
+  border: 0;
+  font-size: 100%;
+  line-height: 1.3;
+  overflow-x: auto;
+  padding: 15px;
+}
+.entry-content table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  font-size: 0.85em;
+  margin: 1.8em auto;
+  width: auto;
+}
+.entry-content td {
+  border: 1px solid #c4c4c4;
+  line-height: 1.5em;
+  padding: 0.6em 0.4em;
+}
+.entry-content th {
+  background-color: #fdf7f4;
+  border: 1px solid #c4c4c4;
+  padding: 0.6em 0.4em;
+}
+.entry-content iframe {
+  width: 100% ;
+}
+.entry-content figure.highlight {
+  margin: 1.8em 0;
+}
+.entry-content figure.highlight td {
+  border: 0;
+  font-size: 1.1em;
+  padding: 0;
+}
+.entry-content figure.highlight td.code {
+  border-left: 1px solid #eceae8;
+}
+.entry-meta-header {
+  font-size: 87%;
+  left: -200px;
+  margin-bottom: 1em;
+  position: static;
+  top: 0.5em;
+  width: auto;
+  text-align: center;
+}
+.entry-meta-header .date {
+  font-family: 'メイリオ', 'MS PGothic', sans-serif;
+}
+.entry-meta-header .meta-elements {
+  display: inline;
+  margin-bottom: 0.5em;
+  margin-right: 1em;
+}
+.gist {
+  background: #fff;
+  border: 1px solid color-gutter;
+  color: #918577;
+  line-height: 1.6;
+  margin-top: 15px;
+  overflow: auto;
+  padding: 7px 15px;
+}
+.gist .gist-file {
+  border: none;
+  font-family: inherit;
+  font-size: 1em;
+  letter-spacing: 0;
+  margin: 0;
+}
+.gist .gist-file .gist-data {
+  background: 0 0;
+  border-bottom: none;
+}
+.gist .gist-file .gist-data pre {
+  font-family: Menlo, Consolas, Monaco, Consolas, monospace;
+  padding: 0 ;
+}
+.gist .gist-file .gist-meta {
+  background: 0 0;
+  color: #918577;
+  font-size: 100%;
+  margin-top: 5px;
+  padding: 0;
+}
+.gist .gist-file .gist-meta a {
+  color: #918577;
+}
+.gist .gist-file .gist-meta a:visited {
+  color: #918577;
+}
+.line {
+  font-size: 95%;
+  letter-spacing: 0.05em;
+  line-height: 2em;
+}
+.post {
+  font-size: 90%;
+  margin-bottom: 5em;
+  position: relative;
+}
+.post .entry-header {
+  margin-bottom: 2em;
+}
+.post .entry-title {
+  font-size: 130%;
+  margin: 0;
+}
+.post h1 {
+  font-size: 1.2em;
+}
+.table-align-right {
+  text-align: right;
+}
+figure.highlight {
+  background: #fff;
+  border: 1px solid color-gutter;
+  font-size: 0.9em;
+  line-height: 2;
+  margin: 2.2em 0;
+  overflow: auto;
+  padding: 7px 10px;
+  position: relative;
+}
+figure.highlight .code {
+  border-left: 1px solid #fff;
+  color: #918577;
+}
+figure.highlight .gutter {
+  color: #d4d0cd;
+  padding-right: 10px;
+  text-align: left;
+}
+figure.highlight figcaption {
+  color: #d4d0cd;
+  margin-bottom: 5px;
+}
+figure.highlight figcaption a {
+  position: absolute;
+  right: 15px;
+}
+figure.highlight pre {
+  background: 0 0;
+  border: none;
+  margin: 0;
+  padding: 8px;
+}
+figure.highlight table {
+  border-spacing: 0;
+  margin: 0;
+}
+.post .entry-content figure.highlight table {
+  border-spacing: 0;
+  margin: 0;
+}
+figure.highlight th {
+  border: 0;
+  font-weight: 400;
+  padding: 0;
+}
+h1 a,
+h2 a,
+h3 a,
+h4 a,
+h5 a,
+h6 a {
+  color: #000;
+  text-decoration: none;
+}
+h1 a:hover,
+h2 a:hover,
+h3 a:hover,
+h4 a:hover,
+h5 a:hover,
+h6 a:hover {
+  color: #0379c4;
+}
+img.responsive-img {
+  height: auto;
+  max-width: 100%;
+}
+video.responsive-video {
+  height: auto;
+  max-width: 100%;
+}
+kbd {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-border-radius: 3px;
+  -webkit-box-shadow: 0 0 10px #e2e2e2 inset, 0 1px 0 #c3c3c3, 0 2px 0 #c9c9c9, 0 3px 3px #333;
+  -webkit-font-smoothing: subpixel-antialiased;
+  background: #fff;
+  border-bottom: 1px solid #e6e6e6;
+  border-left: 1px solid #fff;
+  border-radius: 3px;
+  border-right: 1px solid #e6e6e6;
+  border-top: 1px solid #fff;
+  -webkit-box-shadow: 0 0 10px #e8e8e8 inset, 0 1px 0 #c3c3c3, 0 2px 0 #c9c9c9, 0 3px 3px #333;
+  box-shadow: 0 0 10px #e8e8e8 inset, 0 1px 0 #c3c3c3, 0 2px 0 #c9c9c9, 0 3px 3px #333;
+  font-size: 0.85em;
+  line-height: 1;
+  margin: 5px;
+  padding: 6px 8px 3px;
+  text-shadow: 0 1px 0 #fff;
+  vertical-align: baseline;
+  
+}
+pre .addition,
+pre .css .tag,
+pre .keyword,
+pre .method,
+pre .nginx .title,
+pre .request,
+pre .status,
+pre .winutils {
+  color: #1a9ca1;
+}
+pre .attr_selector,
+pre .cdata,
+pre .clojure .title,
+pre .diff .change,
+pre .important {
+  color: #816ec5;
+}
+pre .preprocessor {
+  color: #816ec5;
+}
+pre .preprocessor .keyword {
+  color: #816ec5;
+}
+pre .shebang,
+pre .special,
+pre .subst {
+  color: #816ec5;
+}
+pre .symbol {
+  color: #816ec5;
+}
+pre .symbol .string {
+  color: #816ec5;
+}
+pre .attribute,
+pre .class .title,
+pre .constant,
+pre .haskell .type,
+pre .lisp .body,
+pre .parent,
+pre .smalltalk .number,
+pre .variable {
+  color: #c38700;
+}
+pre .built_in,
+pre .chunk,
+pre .decorator,
+pre .id,
+pre .identifier,
+pre .literal,
+pre .localvars,
+pre .title,
+pre .vhdl,
+pre .deletion {
+  color: #b42147;
+}
+pre .command,
+pre .hexcolor,
+pre .number,
+pre .phpdoc,
+pre .regexp,
+pre .string,
+pre .tag .value,
+pre .tex .formula {
+  color: #6c9a1c;
+}
+pre .comment,
+pre .diff .header,
+pre .doctype,
+pre .javadoc,
+pre .lisp .string,
+pre .pi,
+pre .template_comment {
+  color: #d4d0cd;
+  font-wight: normal;
+}
+sub {
+  bottom: -0.2em;
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+}
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  top: -0.5em;
+}
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+td.code,
+.article-tag-list {
+  padding: 0;
+}
+.entry-content .toc {
+  background: #fff;
+  padding: 1em 1em 1em 0;
+  margin: 2.8em 0em;
+  border: 1px solid #98d1f5;
+}
+.entry-content .toc ul:first-child {
+  border-top: none;
+}
+.entry-content .toc ul {
+  margin-bottom: 0;
+  padding: 0;
+  margin: 0;
+  border-top: 1px dotted #98d1f5;
+}
+.entry-content .toc ul ul,
+.entry-content .toc ul ol {
+  margin-bottom: 0;
+  padding: 0;
+  margin: 0 0 0 0.8em;
+}
+.entry-content .toc ul li {
+  padding: 0;
+  margin: 0 0 0 1em;
+  border-top: 1px dotted #98d1f5;
+}
+.entry-content .toc ul li a {
+  display: block;
+  padding: 10px 8px;
+  color: #34393a;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -o-transition: 0.3s;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -o-transition: 0.3s;
+  -ms-transition: 0.3s;
+  transition: 0.3s;
+}
+.entry-content .toc ul li a:hover {
+  color: #0379c4;
+  background-color: #98d1f5;
+}
+.entry-content .toc ul li a:before {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+  margin-right: 0.8em;
+}
+.entry-content .toc ul li ul,
+.entry-content .toc ul li ol {
+  margin-bottom: 0;
+  padding: 0;
+  margin: 0 0 0 0.8em;
+}
+.entry-content .toc ul li ul li a,
+.entry-content .toc ul li ol li a {
+  padding: 7px 10px;
+  font-size: 0.9em;
+}
+.entry-content .toc ul li ul li a:before,
+.entry-content .toc ul li ol li a:before {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+  margin-right: 0.6em;
+}
+.entry-content .toc ul li:first-child {
+  border-top: none;
+}
+.entry-content .toc ul li::after,
+.entry-content .toc ul li::before {
+  content: normal;
+}
+header {
+  height: 60px;
+}
+header .nav-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  -webkit-box-pack: justify;
+  -moz-box-pack: justify;
+  -o-box-pack: justify;
+  -ms-flex-pack: justify;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+}
+header .left-nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -o-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  -webkit-box-pack: start;
+  -moz-box-pack: start;
+  -o-box-pack: start;
+  -ms-flex-pack: start;
+  -webkit-justify-content: flex-start;
+  justify-content: flex-start;
+  font-size: 20px;
+  margin-left: 0;
+  font-weight: 300;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  -webkit-box-pack: start;
+  -moz-box-pack: start;
+  -o-box-pack: start;
+  -ms-flex-pack: start;
+  -webkit-justify-content: flex-start;
+  justify-content: flex-start;
+  -webkit-box-flex: 1;
+  -ms-flex: 1 1 auto;
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -o-box-flex: 1;
+  box-flex: 1;
+  -webkit-flex: 1 1 auto;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  text-align: left;
+  width: auto;
+  font-size: 15px;
+}
+header .right {
+  font-size: 15px;
+}
+header .alt {
+  padding: 0;
+  text-align: right;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -webkit-box-align: stretch;
+  -ms-flex-align: stretch;
+  -webkit-box-align: stretch;
+  -moz-box-align: stretch;
+  -o-box-align: stretch;
+  -ms-flex-align: stretch;
+  -webkit-align-items: stretch;
+  align-items: stretch;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  -o-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+.header-title a {
+  padding: 0 0 0 20px;
+  height: 60px;
+  line-height: 60px;
+  font-size: 20px;
+  color: #000;
+  letter-spacing: 0.2em;
+}
+button {
+  -webkit-box-align: start;
+  -moz-box-align: start;
+  -o-box-align: start;
+  -ms-flex-align: start;
+  -webkit-align-items: flex-start;
+  align-items: flex-start;
+  text-align: center;
+  cursor: default;
+  color: buttontext;
+  background-color: buttonface;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 2px 6px 3px;
+  border-width: 2px;
+  border-style: outset;
+  border-color: buttonface;
+  -webkit-border-image: initial;
+  -moz-border-image: initial;
+  -o-border-image: initial;
+  border-image: initial;
+  text-rendering: auto;
+  color: initial;
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-transform: none;
+  text-indent: 0px;
+  text-shadow: none;
+  display: inline-block;
+  text-align: start;
+  margin: 0em 0em 0em 0em;
+  font: 11px system-ui;
+  -webkit-writing-mode: horizontal-tb;
+  -webkit-appearance: button;
+}
+.__web-inspector-hide-shortcut__ {
+  visibility: hidden ;
+}
+.hamburger {
+  display: inline-block;
+  background-color: transparent;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-3 -6 24 24\"><path fill=\"#4A4A4A\" d=\"M0 12h18v-2H0v2M0 7h18V5H0v2M0 0v2h18V0H0\"/></svg>");
+  background-repeat: no-repeat;
+  -webkit-background-size: 30px 24px;
+  -moz-background-size: 30px 24px;
+  background-size: 30px 24px;
+  background-position: center center;
+  border: none;
+  margin: 0;
+  padding: 0;
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  -ms-flex-item-align: center;
+  -ms-grid-row-align: center;
+  -webkit-align-self: center;
+  align-self: center;
+  -ms-flex-item-align: center;
+}
+.tab {
+  position: relative;
+  color: #424242;
+  padding: 6px;
+  margin: 0 4px;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: 400;
+  -webkit-transition: 0.1s ease color;
+  -webkit-transition: 0.1s ease color;
+  -moz-transition: 0.1s ease color;
+  -o-transition: 0.1s ease color;
+  -ms-transition: 0.1s ease color;
+  transition: 0.1s ease color;
+}
+amp-sidebar {
+  width: 200px;
+}
+amp-sidebar ul {
+  padding: 10px 0;
+}
+amp-sidebar li a {
+  display: block;
+  padding: 10px 20px;
+}
+.title-cover {
+  background-color: #0379c4;
+  color: #fff;
+  padding: 30px 15px 20px 15px;
+  text-align: center;
+}
+.title-cover a {
+  color: #fff;
+}
+.title-cover a:hover {
+  color: #fff;
+}
+.meta-content {
+  background-color: #e9e9e9;
+  padding: 20px 0;
+}
+.meta-wrapper {
+  margin: 20px 20px;
+  padding: 20px 20px;
+  background-color: #fff;
+}
+#footer .homeLink,
+#footer .copyright-tool {
+  margin: 20px;
+}
+.copyright-tool {
+  color: #fff;
+  font-size: 0.5em;
+}
+.social-share {
+  margin: 10px 0 0 0;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  -o-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+.social-share amp-social-share {
+  margin: 5px;
+}
+#totop {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  font-size: 1.2em;
+  z-index: 995;
+  line-height: 1.8em;
+}
+#totop a {
+  background: rgba(152,209,245,0.6);
+  text-decoration: none;
+  color: #fff;
+  padding: 0;
+  text-align: center;
+  display: block;
+  width: 1.2em;
+  height: 2.2em;
+  line-height: 2em;
+  letter-spacing: 0;
+  position: relative;
+  display: inline-block;
+  padding: 0 0 0 16px;
+  vertical-align: middle;
+  text-decoration: none;
+  font-size: 15px;
+}
+#totop a:before,
+#totop a:after {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  content: "";
+  vertical-align: middle;
+}
+#totop a:before {
+  left: 12px;
+  width: 8px;
+  height: 8px;
+  border-top: 2px solid #fff;
+  border-right: 2px solid #fff;
+  -webkit-transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+#totop a:hover {
+  text-decoration: none;
+  background: #0379c4;
+  color: #fff;
+  line-height: 2.3em;
+}
+.site-author-desc {
+  font-size: 1.2em;
+  line-height: 2em;
+  margin-top: 1em;
+}
+.site-author-info {
+  background-color: #fff;
+  margin: 20px;
+}
+.gravatar-area {
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+}
+.article-tag,
+.article-tag-list,
+.article-categories,
+.article-categories-list {
+  padding: 0;
+  margin: 0;
+}
+.article-categories {
+  margin-bottom: 1.6em;
+}
+.article-tag-list li,
+.article-categories-list li {
+  list-style: none;
+  display: inline-block;
+  padding: 0;
+  margin: 0.2em 0;
+}
+.article-tag-list li a,
+.article-categories-list li a {
+  padding: 0.5em 0.6em;
+  margin: 0.4em 0em;
+  background-color: #f5f2f0;
+  color: #34393a;
+}
+.article-tag-list li a:before,
+.article-categories-list li a:before {
+  content: "#";
+}
+.article-tag-list li a:hover,
+.article-categories-list li a:hover {
+  color: #fff;
+  background-color: #0498f6;
+}
+.homeLink,
+.htmlPageLink {
+  font-weight: 700;
+  -moz-transition: 0.7s;
+  -ms-transition: 0.7s;
+  -o-transition: 0.7s;
+  -webkit-transition: 0.7s;
+  -webkit-transition: 0.7s;
+  -moz-transition: 0.7s;
+  -o-transition: 0.7s;
+  -ms-transition: 0.7s;
+  transition: 0.7s;
+  padding: 0.4em 0;
+}
+.homeLink a,
+.htmlPageLink a {
+  color: #fff;
+  display: block;
+  padding: 1em;
+  text-align: center;
+}
+.homeLink:hover,
+.htmlPageLink:hover {
+  -moz-transition: 0.3s;
+  -ms-transition: 0.3s;
+  -o-transition: 0.3s;
+  -webkit-transition: 0.3s;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -o-transition: 0.3s;
+  -ms-transition: 0.3s;
+  transition: 0.3s;
+}
+.homeLink {
+  font-size: 120%;
+  background: #18a3fb;
+}
+.homeLink:hover {
+  background: #4ab7fc;
+}
+.htmlPageLink {
+  font-size: 110%;
+  background: #18a3fb;
+}
+.htmlPageLink:hover {
+  background: #4ab7fc;
+}
+.googleAdPost,
+.ad-footer,
+amp-instagram,
+amp-vimeo,
+amp-video,
+amp-youtube,
+amp-twitter {
+  margin: 2.8em auto;
+}
+@media (min-width: 800px) {
+  .entry-header,
+  .entry-title,
+  .entry-content,
+  .article-nav {
+    width: 780px;
+    margin: 0 auto;
+  }
+  .nav-container {
+    width: 800px;
+    margin: 0 auto;
+  }
+  .meta-wrapper {
+    width: 760px;
+    margin: 20px auto;
+  }
+  .site-author-info {
+    width: 760px;
+    margin: 20px auto;
+  }
+  #footer .homeLink,
+  #footer .copyright-tool {
+    width: 760px;
+    margin: 20px auto;
+  }
+}
+
+	</style>
+	
+  </head>
+  <body>
+  	
+  	
+  	<!-- google analytics -->
+  	
+  	
+  	
+  	<!-- menu -->
+  	<header>
+  		<div class="nav-container">
+	  		<div class="left-nav">
+	  			<div class="header-title">
+	  				<a href="/">Chester.Cao Blog</a>
+	  			</div>
+	  		</div>
+	  		<div class="right alt">
+	  			<button on='tap:sidebar.toggle' class="tab hamburger"></button>
+	  		</div>
+	  	</div>
+    </header>
+  	
+  	
+  	<!-- sidebar -->
+  	<amp-sidebar id='sidebar' layout="nodisplay" side="left">
+      <ul>
+      	<!--
+      		To use the menu, add the menu option of _config.yml.
+      		
+      		generator_amp:
+      		  theme:
+			    menu:
+			      diary: /categories/diary/
+			      gallery: /categories/archive-gallery
+			      archives: /archives
+      	-->
+        <li><a href="/">Home</a></li>
+        
+      </ul>
+    </amp-sidebar>
+  	
+  	
+  	<!-- container -->
+  	<div id="container">
+	  	<div id="main">
+		    <article id="post-framework/framework-alibaba" class="post">
+		    
+		    	<!-- entry title -->
+				<div class="title-cover">
+					<div class="entry-header">
+						
+						  <h1 class="article-title entry-title" itemprop="name">
+						    <a href="http://blog.rcant.com/2020/10/23/framework/framework-alibaba/" target="_blank" itemprop="url">阿里巴巴为什么能抗住90秒100亿？</a>
+						  </h1>
+						
+					</div>
+					
+					<!-- datePublished -->
+					<div class="entry-meta-header">
+						<span class="meta-elements date">
+							<time datetime="2020-10-23" itemprop="datePublished">2020-10-23</time>
+						</span>
+					</div>
+				</div>
+				
+				<!-- entry content -->
+			    <div class="entry-content ecp">
+			    
+			    
+			    	<!-- social share button -->
+			    	<!--
+			      		To use the facebook button, add the facebook_app_id option of _config.yml.
+			      		
+			      		generator_amp:
+			      		  theme:
+    						facebook_app_id: 123456789
+			      	-->
+			    	<div class="social-share">
+			    		<amp-social-share type="twitter" width="40" height="40"></amp-social-share>
+			    		
+			    		<!--
+			    		<amp-social-share type="pinterest" width="40" height="40"></amp-social-share>
+			    		-->
+			    		<amp-social-share type="gplus" width="40" height="40"></amp-social-share>
+			    		<!--
+			    		<amp-social-share type="tumblr" width="40" height="40"></amp-social-share>
+			    		<amp-social-share type="whatsapp" width="40" height="40"></amp-social-share>
+			    		<amp-social-share type="linkedin" width="40" height="40"></amp-social-share>
+			    		<amp-social-share type="email" width="40" height="40"></amp-social-share>
+			    		-->
+			    	</div>
+			    	
+			    	
+			    	<!-- content -->
+			  		<p>&#x672C;&#x6587;&#x4EE5;&#x6DD8;&#x5B9D;&#x4F5C;&#x4E3A;&#x4F8B;&#x5B50;&#xFF0C;&#x4ECB;&#x7ECD;&#x4ECE;&#x4E00;&#x767E;&#x4E2A;&#x5E76;&#x53D1;&#x5230;&#x5343;&#x4E07;&#x7EA7;&#x5E76;&#x53D1;&#x60C5;&#x51B5;&#x4E0B;&#x670D;&#x52A1;&#x7AEF;&#x7684;&#x67B6;&#x6784;&#x7684;&#x6F14;&#x8FDB;&#x8FC7;&#x7A0B;</p>
+<a id="more"></a>
+<h2 id="1&#x3001;-&#x6982;&#x8FF0;"><a href="#1&#x3001;-&#x6982;&#x8FF0;" class="headerlink" title="1&#x3001; &#x6982;&#x8FF0;"></a>1&#x3001; &#x6982;&#x8FF0;</h2><p>&#x672C;&#x6587;&#x4EE5;&#x6DD8;&#x5B9D;&#x4F5C;&#x4E3A;&#x4F8B;&#x5B50;&#xFF0C;&#x4ECB;&#x7ECD;&#x4ECE;&#x4E00;&#x767E;&#x4E2A;&#x5E76;&#x53D1;&#x5230;&#x5343;&#x4E07;&#x7EA7;&#x5E76;&#x53D1;&#x60C5;&#x51B5;&#x4E0B;&#x670D;&#x52A1;&#x7AEF;&#x7684;&#x67B6;&#x6784;&#x7684;&#x6F14;&#x8FDB;&#x8FC7;&#x7A0B;&#xFF0C;&#x540C;&#x65F6;&#x5217;&#x4E3E;&#x51FA;&#x6BCF;&#x4E2A;&#x6F14;&#x8FDB;&#x9636;&#x6BB5;&#x4F1A;&#x9047;&#x5230;&#x7684;&#x76F8;&#x5173;&#x6280;&#x672F;&#xFF0C;&#x8BA9;&#x5927;&#x5BB6;&#x5BF9;&#x67B6;&#x6784;&#x7684;&#x6F14;&#x8FDB;&#x6709;&#x4E00;&#x4E2A;&#x6574;&#x4F53;&#x7684;&#x8BA4;&#x77E5;&#xFF0C;&#x6587;&#x7AE0;&#x6700;&#x540E;&#x6C47;&#x603B;&#x4E86;&#x4E00;&#x4E9B;&#x67B6;&#x6784;&#x8BBE;&#x8BA1;&#x7684;&#x539F;&#x5219;&#x3002;</p>
+<h2 id="2&#x3001;&#x57FA;&#x672C;&#x6982;&#x5FF5;"><a href="#2&#x3001;&#x57FA;&#x672C;&#x6982;&#x5FF5;" class="headerlink" title="2&#x3001;&#x57FA;&#x672C;&#x6982;&#x5FF5;"></a>2&#x3001;&#x57FA;&#x672C;&#x6982;&#x5FF5;</h2><p>&#x5728;&#x4ECB;&#x7ECD;&#x67B6;&#x6784;&#x4E4B;&#x524D;&#xFF0C;&#x4E3A;&#x4E86;&#x907F;&#x514D;&#x90E8;&#x5206;&#x8BFB;&#x8005;&#x5BF9;&#x67B6;&#x6784;&#x8BBE;&#x8BA1;&#x4E2D;&#x7684;&#x4E00;&#x4E9B;&#x6982;&#x5FF5;&#x4E0D;&#x4E86;&#x89E3;&#xFF0C;&#x4E0B;&#x9762;&#x5BF9;&#x51E0;&#x4E2A;&#x6700;&#x57FA;&#x7840;&#x7684;&#x6982;&#x5FF5;&#x8FDB;&#x884C;&#x4ECB;&#x7ECD;&#x3002;</p>
+<h3 id="1&#xFF09;&#x4EC0;&#x4E48;&#x662F;&#x5206;&#x5E03;&#x5F0F;&#xFF1F;"><a href="#1&#xFF09;&#x4EC0;&#x4E48;&#x662F;&#x5206;&#x5E03;&#x5F0F;&#xFF1F;" class="headerlink" title="1&#xFF09;&#x4EC0;&#x4E48;&#x662F;&#x5206;&#x5E03;&#x5F0F;&#xFF1F;"></a>1&#xFF09;&#x4EC0;&#x4E48;&#x662F;&#x5206;&#x5E03;&#x5F0F;&#xFF1F;</h3><p>&#x7CFB;&#x7EDF;&#x4E2D;&#x7684;&#x591A;&#x4E2A;&#x6A21;&#x5757;&#x5728;&#x4E0D;&#x540C;&#x670D;&#x52A1;&#x5668;&#x4E0A;&#x90E8;&#x7F72;&#xFF0C;&#x5373;&#x53EF;&#x79F0;&#x4E3A;&#x5206;&#x5E03;&#x5F0F;&#x7CFB;&#x7EDF;&#xFF0C;&#x5982;Tomcat&#x548C;&#x6570;&#x636E;&#x5E93;&#x5206;&#x522B;&#x90E8;&#x7F72;&#x5728;&#x4E0D;&#x540C;&#x7684;&#x670D;&#x52A1;&#x5668;&#x4E0A;&#xFF0C;&#x6216;&#x4E24;&#x4E2A;&#x76F8;&#x540C;&#x529F;&#x80FD;&#x7684;Tomcat&#x5206;&#x522B;&#x90E8;&#x7F72;&#x5728;&#x4E0D;&#x540C;&#x670D;&#x52A1;&#x5668;&#x4E0A;&#x3002;</p>
+<h3 id="2&#xFF09;&#x4EC0;&#x4E48;&#x662F;&#x9AD8;&#x53EF;&#x7528;&#xFF1F;"><a href="#2&#xFF09;&#x4EC0;&#x4E48;&#x662F;&#x9AD8;&#x53EF;&#x7528;&#xFF1F;" class="headerlink" title="2&#xFF09;&#x4EC0;&#x4E48;&#x662F;&#x9AD8;&#x53EF;&#x7528;&#xFF1F;"></a>2&#xFF09;&#x4EC0;&#x4E48;&#x662F;&#x9AD8;&#x53EF;&#x7528;&#xFF1F;</h3><p>&#x7CFB;&#x7EDF;&#x4E2D;&#x90E8;&#x5206;&#x8282;&#x70B9;&#x5931;&#x6548;&#x65F6;&#xFF0C;&#x5176;&#x4ED6;&#x8282;&#x70B9;&#x80FD;&#x591F;&#x63A5;&#x66FF;&#x5B83;&#x7EE7;&#x7EED;&#x63D0;&#x4F9B;&#x670D;&#x52A1;&#xFF0C;&#x5219;&#x53EF;&#x8BA4;&#x4E3A;&#x7CFB;&#x7EDF;&#x5177;&#x6709;&#x9AD8;&#x53EF;&#x7528;&#x6027;&#x3002;</p>
+<h3 id="3&#xFF09;&#x4EC0;&#x4E48;&#x662F;&#x96C6;&#x7FA4;&#xFF1F;"><a href="#3&#xFF09;&#x4EC0;&#x4E48;&#x662F;&#x96C6;&#x7FA4;&#xFF1F;" class="headerlink" title="3&#xFF09;&#x4EC0;&#x4E48;&#x662F;&#x96C6;&#x7FA4;&#xFF1F;"></a>3&#xFF09;&#x4EC0;&#x4E48;&#x662F;&#x96C6;&#x7FA4;&#xFF1F;</h3><p>&#x4E00;&#x4E2A;&#x7279;&#x5B9A;&#x9886;&#x57DF;&#x7684;&#x8F6F;&#x4EF6;&#x90E8;&#x7F72;&#x5728;&#x591A;&#x53F0;&#x670D;&#x52A1;&#x5668;&#x4E0A;&#x5E76;&#x4F5C;&#x4E3A;&#x4E00;&#x4E2A;&#x6574;&#x4F53;&#x63D0;&#x4F9B;&#x4E00;&#x7C7B;&#x670D;&#x52A1;&#xFF0C;&#x8FD9;&#x4E2A;&#x6574;&#x4F53;&#x79F0;&#x4E3A;&#x96C6;&#x7FA4;&#x3002;<br>&#x5982;Zookeeper&#x4E2D;&#x7684;Master&#x548C;Slave&#x5206;&#x522B;&#x90E8;&#x7F72;&#x5728;&#x591A;&#x53F0;&#x670D;&#x52A1;&#x5668;&#x4E0A;&#xFF0C;&#x5171;&#x540C;&#x7EC4;&#x6210;&#x4E00;&#x4E2A;&#x6574;&#x4F53;&#x63D0;&#x4F9B;&#x96C6;&#x4E2D;&#x914D;&#x7F6E;&#x670D;&#x52A1;&#x3002;<br>&#x5728;&#x5E38;&#x89C1;&#x7684;&#x96C6;&#x7FA4;&#x4E2D;&#xFF0C;&#x5BA2;&#x6237;&#x7AEF;&#x5F80;&#x5F80;&#x80FD;&#x591F;&#x8FDE;&#x63A5;&#x4EFB;&#x610F;&#x4E00;&#x4E2A;&#x8282;&#x70B9;&#x83B7;&#x5F97;&#x670D;&#x52A1;&#xFF0C;&#x5E76;&#x4E14;&#x5F53;&#x96C6;&#x7FA4;&#x4E2D;&#x4E00;&#x4E2A;&#x8282;&#x70B9;&#x6389;&#x7EBF;&#x65F6;&#xFF0C;&#x5176;&#x4ED6;&#x8282;&#x70B9;&#x5F80;&#x5F80;&#x80FD;&#x591F;&#x81EA;&#x52A8;&#x7684;&#x63A5;&#x66FF;&#x5B83;&#x7EE7;&#x7EED;&#x63D0;&#x4F9B;&#x670D;&#x52A1;&#xFF0C;&#x8FD9;&#x65F6;&#x5019;&#x8BF4;&#x660E;&#x96C6;&#x7FA4;&#x5177;&#x6709;&#x9AD8;&#x53EF;&#x7528;&#x6027;&#x3002;</p>
+<h3 id="4&#xFF09;&#x4EC0;&#x4E48;&#x662F;&#x8D1F;&#x8F7D;&#x5747;&#x8861;&#xFF1F;"><a href="#4&#xFF09;&#x4EC0;&#x4E48;&#x662F;&#x8D1F;&#x8F7D;&#x5747;&#x8861;&#xFF1F;" class="headerlink" title="4&#xFF09;&#x4EC0;&#x4E48;&#x662F;&#x8D1F;&#x8F7D;&#x5747;&#x8861;&#xFF1F;"></a>4&#xFF09;&#x4EC0;&#x4E48;&#x662F;&#x8D1F;&#x8F7D;&#x5747;&#x8861;&#xFF1F;</h3><p>&#x8BF7;&#x6C42;&#x53D1;&#x9001;&#x5230;&#x7CFB;&#x7EDF;&#x65F6;&#xFF0C;&#x901A;&#x8FC7;&#x67D0;&#x4E9B;&#x65B9;&#x5F0F;&#x628A;&#x8BF7;&#x6C42;&#x5747;&#x5300;&#x5206;&#x53D1;&#x5230;&#x591A;&#x4E2A;&#x8282;&#x70B9;&#x4E0A;&#xFF0C;&#x4F7F;&#x7CFB;&#x7EDF;&#x4E2D;&#x6BCF;&#x4E2A;&#x8282;&#x70B9;&#x80FD;&#x591F;&#x5747;&#x5300;&#x7684;&#x5904;&#x7406;&#x8BF7;&#x6C42;&#x8D1F;&#x8F7D;&#xFF0C;&#x5219;&#x53EF;&#x8BA4;&#x4E3A;&#x7CFB;&#x7EDF;&#x662F;&#x8D1F;&#x8F7D;&#x5747;&#x8861;&#x7684;&#x3002;</p>
+<h3 id="5&#xFF09;&#x4EC0;&#x4E48;&#x662F;&#x6B63;&#x5411;&#x4EE3;&#x7406;&#x548C;&#x53CD;&#x5411;&#x4EE3;&#x7406;&#xFF1F;"><a href="#5&#xFF09;&#x4EC0;&#x4E48;&#x662F;&#x6B63;&#x5411;&#x4EE3;&#x7406;&#x548C;&#x53CD;&#x5411;&#x4EE3;&#x7406;&#xFF1F;" class="headerlink" title="5&#xFF09;&#x4EC0;&#x4E48;&#x662F;&#x6B63;&#x5411;&#x4EE3;&#x7406;&#x548C;&#x53CD;&#x5411;&#x4EE3;&#x7406;&#xFF1F;"></a>5&#xFF09;&#x4EC0;&#x4E48;&#x662F;&#x6B63;&#x5411;&#x4EE3;&#x7406;&#x548C;&#x53CD;&#x5411;&#x4EE3;&#x7406;&#xFF1F;</h3><p>&#x7CFB;&#x7EDF;&#x5185;&#x90E8;&#x8981;&#x8BBF;&#x95EE;&#x5916;&#x90E8;&#x7F51;&#x7EDC;&#x65F6;&#xFF0C;&#x7EDF;&#x4E00;&#x901A;&#x8FC7;&#x4E00;&#x4E2A;&#x4EE3;&#x7406;&#x670D;&#x52A1;&#x5668;&#x628A;&#x8BF7;&#x6C42;&#x8F6C;&#x53D1;&#x51FA;&#x53BB;&#xFF0C;&#x5728;&#x5916;&#x90E8;&#x7F51;&#x7EDC;&#x770B;&#x6765;&#x5C31;&#x662F;&#x4EE3;&#x7406;&#x670D;&#x52A1;&#x5668;&#x53D1;&#x8D77;&#x7684;&#x8BBF;&#x95EE;&#xFF0C;&#x6B64;&#x65F6;&#x4EE3;&#x7406;&#x670D;&#x52A1;&#x5668;&#x5B9E;&#x73B0;&#x7684;&#x662F;&#x6B63;&#x5411;&#x4EE3;&#x7406;&#xFF1B;<br>&#x5F53;&#x5916;&#x90E8;&#x8BF7;&#x6C42;&#x8FDB;&#x5165;&#x7CFB;&#x7EDF;&#x65F6;&#xFF0C;&#x4EE3;&#x7406;&#x670D;&#x52A1;&#x5668;&#x628A;&#x8BE5;&#x8BF7;&#x6C42;&#x8F6C;&#x53D1;&#x5230;&#x7CFB;&#x7EDF;&#x4E2D;&#x7684;&#x67D0;&#x53F0;&#x670D;&#x52A1;&#x5668;&#x4E0A;&#xFF0C;&#x5BF9;&#x5916;&#x90E8;&#x8BF7;&#x6C42;&#x6765;&#x8BF4;&#xFF0C;&#x4E0E;&#x4E4B;&#x4EA4;&#x4E92;&#x7684;&#x53EA;&#x6709;&#x4EE3;&#x7406;&#x670D;&#x52A1;&#x5668;&#xFF0C;&#x6B64;&#x65F6;&#x4EE3;&#x7406;&#x670D;&#x52A1;&#x5668;&#x5B9E;&#x73B0;&#x7684;&#x662F;&#x53CD;&#x5411;&#x4EE3;&#x7406;&#x3002;<br>&#x7B80;&#x5355;&#x6765;&#x8BF4;&#xFF0C;&#x6B63;&#x5411;&#x4EE3;&#x7406;&#x662F;&#x4EE3;&#x7406;&#x670D;&#x52A1;&#x5668;&#x4EE3;&#x66FF;&#x7CFB;&#x7EDF;&#x5185;&#x90E8;&#x6765;&#x8BBF;&#x95EE;&#x5916;&#x90E8;&#x7F51;&#x7EDC;&#x7684;&#x8FC7;&#x7A0B;&#xFF0C;&#x53CD;&#x5411;&#x4EE3;&#x7406;&#x662F;&#x5916;&#x90E8;&#x8BF7;&#x6C42;&#x8BBF;&#x95EE;&#x7CFB;&#x7EDF;&#x65F6;&#x901A;&#x8FC7;&#x4EE3;&#x7406;&#x670D;&#x52A1;&#x5668;&#x8F6C;&#x53D1;&#x5230;&#x5185;&#x90E8;&#x670D;&#x52A1;&#x5668;&#x7684;&#x8FC7;&#x7A0B;&#x3002;</p>
+<h2 id="3&#x3001;&#x67B6;&#x6784;&#x6F14;&#x8FDB;"><a href="#3&#x3001;&#x67B6;&#x6784;&#x6F14;&#x8FDB;" class="headerlink" title="3&#x3001;&#x67B6;&#x6784;&#x6F14;&#x8FDB;"></a>3&#x3001;&#x67B6;&#x6784;&#x6F14;&#x8FDB;</h2><h3 id="3-1-&#x5355;&#x673A;&#x67B6;&#x6784;"><a href="#3-1-&#x5355;&#x673A;&#x67B6;&#x6784;" class="headerlink" title="3.1 &#x5355;&#x673A;&#x67B6;&#x6784;"></a>3.1 &#x5355;&#x673A;&#x67B6;&#x6784;</h3><div class="amp-img-wrapper"><amp-img src="/2020/10/23/framework/framework-alibaba/1.webp" width="579" height="192" layout="responsive"></amp-img></div> 
+<p>&#x4EE5;&#x6DD8;&#x5B9D;&#x4F5C;&#x4E3A;&#x4F8B;&#x5B50;&#xFF1A;&#x5728;&#x7F51;&#x7AD9;&#x6700;&#x521D;&#x65F6;&#xFF0C;&#x5E94;&#x7528;&#x6570;&#x91CF;&#x4E0E;&#x7528;&#x6237;&#x6570;&#x90FD;&#x8F83;&#x5C11;&#xFF0C;&#x53EF;&#x4EE5;&#x628A;Tomcat&#x548C;&#x6570;&#x636E;&#x5E93;&#x90E8;&#x7F72;&#x5728;&#x540C;&#x4E00;&#x53F0;&#x670D;&#x52A1;&#x5668;&#x4E0A;&#x3002;</p>
+<p>&#x6D4F;&#x89C8;&#x5668;&#x5F80;www.taobao.com&#x53D1;&#x8D77;&#x8BF7;&#x6C42;&#x65F6;&#xFF0C;&#x9996;&#x5148;&#x7ECF;&#x8FC7;DNS&#x670D;&#x52A1;&#x5668;&#xFF08;&#x57DF;&#x540D;&#x7CFB;&#x7EDF;&#xFF09;&#x628A;&#x57DF;&#x540D;&#x8F6C;&#x6362;&#x4E3A;&#x5B9E;&#x9645;IP&#x5730;&#x5740;10.102.4.1&#xFF0C;&#x6D4F;&#x89C8;&#x5668;&#x8F6C;&#x800C;&#x8BBF;&#x95EE;&#x8BE5;IP&#x5BF9;&#x5E94;&#x7684;Tomcat&#x3002;</p>
+<p>&#x67B6;&#x6784;&#x74F6;&#x9888;&#xFF1A;&#x968F;&#x7740;&#x7528;&#x6237;&#x6570;&#x7684;&#x589E;&#x957F;&#xFF0C;Tomcat&#x548C;&#x6570;&#x636E;&#x5E93;&#x4E4B;&#x95F4;&#x7ADE;&#x4E89;&#x8D44;&#x6E90;&#xFF0C;&#x5355;&#x673A;&#x6027;&#x80FD;&#x4E0D;&#x8DB3;&#x4EE5;&#x652F;&#x6491;&#x4E1A;&#x52A1;&#x3002;</p>
+<h3 id="3-2&#x7B2C;&#x4E00;&#x6B21;&#x6F14;&#x8FDB;&#xFF1A;Tomcat&#x4E0E;&#x6570;&#x636E;&#x5E93;&#x5206;&#x5F00;&#x90E8;&#x7F72;"><a href="#3-2&#x7B2C;&#x4E00;&#x6B21;&#x6F14;&#x8FDB;&#xFF1A;Tomcat&#x4E0E;&#x6570;&#x636E;&#x5E93;&#x5206;&#x5F00;&#x90E8;&#x7F72;" class="headerlink" title="3.2&#x7B2C;&#x4E00;&#x6B21;&#x6F14;&#x8FDB;&#xFF1A;Tomcat&#x4E0E;&#x6570;&#x636E;&#x5E93;&#x5206;&#x5F00;&#x90E8;&#x7F72;"></a>3.2&#x7B2C;&#x4E00;&#x6B21;&#x6F14;&#x8FDB;&#xFF1A;Tomcat&#x4E0E;&#x6570;&#x636E;&#x5E93;&#x5206;&#x5F00;&#x90E8;&#x7F72;</h3><div class="amp-img-wrapper"><amp-img src="/2020/10/23/framework/framework-alibaba/2.webp" width="581" height="191" layout="responsive"></amp-img></div> 
+<p>Tomcat&#x548C;&#x6570;&#x636E;&#x5E93;&#x5206;&#x522B;&#x72EC;&#x5360;&#x670D;&#x52A1;&#x5668;&#x8D44;&#x6E90;&#xFF0C;&#x663E;&#x8457;&#x63D0;&#x9AD8;&#x4E24;&#x8005;&#x5404;&#x81EA;&#x6027;&#x80FD;&#x3002;</p>
+<p>&#x67B6;&#x6784;&#x74F6;&#x9888;&#xFF1A;&#x968F;&#x7740;&#x7528;&#x6237;&#x6570;&#x7684;&#x589E;&#x957F;&#xFF0C;&#x5E76;&#x53D1;&#x8BFB;&#x5199;&#x6570;&#x636E;&#x5E93;&#x6210;&#x4E3A;&#x74F6;&#x9888;&#x3002;</p>
+<p>Tips&#xFF1A;&#x6B22;&#x8FCE;&#x5173;&#x6CE8;&#x5FAE;&#x4FE1;&#x516C;&#x4F17;&#x53F7;&#xFF1A;Java&#x540E;&#x7AEF;&#xFF0C;&#x83B7;&#x53D6;&#x66F4;&#x591A;&#x6280;&#x672F;&#x535A;&#x6587;&#x63A8;&#x9001;&#x3002;</p>
+<h3 id="3-3-&#x7B2C;&#x4E8C;&#x6B21;&#x6F14;&#x8FDB;&#xFF1A;&#x5F15;&#x5165;&#x672C;&#x5730;&#x7F13;&#x5B58;&#x548C;&#x5206;&#x5E03;&#x5F0F;&#x7F13;&#x5B58;"><a href="#3-3-&#x7B2C;&#x4E8C;&#x6B21;&#x6F14;&#x8FDB;&#xFF1A;&#x5F15;&#x5165;&#x672C;&#x5730;&#x7F13;&#x5B58;&#x548C;&#x5206;&#x5E03;&#x5F0F;&#x7F13;&#x5B58;" class="headerlink" title="3.3 &#x7B2C;&#x4E8C;&#x6B21;&#x6F14;&#x8FDB;&#xFF1A;&#x5F15;&#x5165;&#x672C;&#x5730;&#x7F13;&#x5B58;&#x548C;&#x5206;&#x5E03;&#x5F0F;&#x7F13;&#x5B58;"></a>3.3 &#x7B2C;&#x4E8C;&#x6B21;&#x6F14;&#x8FDB;&#xFF1A;&#x5F15;&#x5165;&#x672C;&#x5730;&#x7F13;&#x5B58;&#x548C;&#x5206;&#x5E03;&#x5F0F;&#x7F13;&#x5B58;</h3><div class="amp-img-wrapper"><amp-img src="/2020/10/23/framework/framework-alibaba/3.webp" width="581" height="321" layout="responsive"></amp-img></div> 
+<p>&#x5728;Tomcat&#x540C;&#x670D;&#x52A1;&#x5668;&#x4E0A;&#x6216;&#x540C;JVM&#x4E2D;&#x589E;&#x52A0;&#x672C;&#x5730;&#x7F13;&#x5B58;&#xFF0C;&#x5E76;&#x5728;&#x5916;&#x90E8;&#x589E;&#x52A0;&#x5206;&#x5E03;&#x5F0F;&#x7F13;&#x5B58;&#xFF0C;&#x7F13;&#x5B58;&#x70ED;&#x95E8;&#x5546;&#x54C1;&#x4FE1;&#x606F;&#x6216;&#x70ED;&#x95E8;&#x5546;&#x54C1;&#x7684;html&#x9875;&#x9762;&#x7B49;&#x3002;&#x901A;&#x8FC7;&#x7F13;&#x5B58;&#x80FD;&#x628A;&#x7EDD;&#x5927;&#x591A;&#x6570;&#x8BF7;&#x6C42;&#x5728;&#x8BFB;&#x5199;&#x6570;&#x636E;&#x5E93;&#x524D;&#x62E6;&#x622A;&#x6389;&#xFF0C;&#x5927;&#x5927;&#x964D;&#x4F4E;&#x6570;&#x636E;&#x5E93;&#x538B;&#x529B;&#x3002;</p>
+<p>&#x5176;&#x4E2D;&#x6D89;&#x53CA;&#x7684;&#x6280;&#x672F;&#x5305;&#x62EC;&#xFF1A;&#x4F7F;&#x7528;memcached&#x4F5C;&#x4E3A;&#x672C;&#x5730;&#x7F13;&#x5B58;&#xFF0C;&#x4F7F;&#x7528;Redis&#x4F5C;&#x4E3A;&#x5206;&#x5E03;&#x5F0F;&#x7F13;&#x5B58;&#xFF0C;&#x8FD8;&#x4F1A;&#x6D89;&#x53CA;&#x7F13;&#x5B58;&#x4E00;&#x81F4;&#x6027;&#x3001;&#x7F13;&#x5B58;&#x7A7F;&#x900F;/&#x51FB;&#x7A7F;&#x3001;&#x7F13;&#x5B58;&#x96EA;&#x5D29;&#x3001;&#x70ED;&#x70B9;&#x6570;&#x636E;&#x96C6;&#x4E2D;&#x5931;&#x6548;&#x7B49;&#x95EE;&#x9898;&#x3002;</p>
+<p>&#x67B6;&#x6784;&#x74F6;&#x9888;&#xFF1A;&#x7F13;&#x5B58;&#x6297;&#x4F4F;&#x4E86;&#x5927;&#x90E8;&#x5206;&#x7684;&#x8BBF;&#x95EE;&#x8BF7;&#x6C42;&#xFF0C;&#x968F;&#x7740;&#x7528;&#x6237;&#x6570;&#x7684;&#x589E;&#x957F;&#xFF0C;&#x5E76;&#x53D1;&#x538B;&#x529B;&#x4E3B;&#x8981;&#x843D;&#x5728;&#x5355;&#x673A;&#x7684;Tomcat&#x4E0A;&#xFF0C;&#x54CD;&#x5E94;&#x9010;&#x6E10;&#x53D8;&#x6162;&#x3002;</p>
+<h3 id="3-4-&#x7B2C;&#x4E09;&#x6B21;&#x6F14;&#x8FDB;&#xFF1A;&#x5F15;&#x5165;&#x53CD;&#x5411;&#x4EE3;&#x7406;&#x5B9E;&#x73B0;&#x8D1F;&#x8F7D;&#x5747;&#x8861;"><a href="#3-4-&#x7B2C;&#x4E09;&#x6B21;&#x6F14;&#x8FDB;&#xFF1A;&#x5F15;&#x5165;&#x53CD;&#x5411;&#x4EE3;&#x7406;&#x5B9E;&#x73B0;&#x8D1F;&#x8F7D;&#x5747;&#x8861;" class="headerlink" title="3.4 &#x7B2C;&#x4E09;&#x6B21;&#x6F14;&#x8FDB;&#xFF1A;&#x5F15;&#x5165;&#x53CD;&#x5411;&#x4EE3;&#x7406;&#x5B9E;&#x73B0;&#x8D1F;&#x8F7D;&#x5747;&#x8861;"></a>3.4 &#x7B2C;&#x4E09;&#x6B21;&#x6F14;&#x8FDB;&#xFF1A;&#x5F15;&#x5165;&#x53CD;&#x5411;&#x4EE3;&#x7406;&#x5B9E;&#x73B0;&#x8D1F;&#x8F7D;&#x5747;&#x8861;</h3><div class="amp-img-wrapper"><amp-img src="/2020/10/23/framework/framework-alibaba/4.webp" width="401" height="313" layout="responsive"></amp-img></div> 
+<p>&#x5728;&#x591A;&#x53F0;&#x670D;&#x52A1;&#x5668;&#x4E0A;&#x5206;&#x522B;&#x90E8;&#x7F72;Tomcat&#xFF0C;&#x4F7F;&#x7528;&#x53CD;&#x5411;&#x4EE3;&#x7406;&#x8F6F;&#x4EF6;&#xFF08;Nginx&#xFF09;&#x628A;&#x8BF7;&#x6C42;&#x5747;&#x5300;&#x5206;&#x53D1;&#x5230;&#x6BCF;&#x4E2A;Tomcat&#x4E2D;&#x3002;</p>
+<p>&#x6B64;&#x5904;&#x5047;&#x8BBE;Tomcat&#x6700;&#x591A;&#x652F;&#x6301;100&#x4E2A;&#x5E76;&#x53D1;&#xFF0C;Nginx&#x6700;&#x591A;&#x652F;&#x6301;50000&#x4E2A;&#x5E76;&#x53D1;&#xFF0C;&#x90A3;&#x4E48;&#x7406;&#x8BBA;&#x4E0A;Nginx&#x628A;&#x8BF7;&#x6C42;&#x5206;&#x53D1;&#x5230;500&#x4E2A;Tomcat&#x4E0A;&#xFF0C;&#x5C31;&#x80FD;&#x6297;&#x4F4F;50000&#x4E2A;&#x5E76;&#x53D1;&#x3002;</p>
+<p>&#x5176;&#x4E2D;&#x6D89;&#x53CA;&#x7684;&#x6280;&#x672F;&#x5305;&#x62EC;&#xFF1A;Nginx&#x3001;HAProxy&#xFF0C;&#x4E24;&#x8005;&#x90FD;&#x662F;&#x5DE5;&#x4F5C;&#x5728;&#x7F51;&#x7EDC;&#x7B2C;&#x4E03;&#x5C42;&#x7684;&#x53CD;&#x5411;&#x4EE3;&#x7406;&#x8F6F;&#x4EF6;&#xFF0C;&#x4E3B;&#x8981;&#x652F;&#x6301;http&#x534F;&#x8BAE;&#xFF0C;&#x8FD8;&#x4F1A;&#x6D89;&#x53CA;session&#x5171;&#x4EAB;&#x3001;&#x6587;&#x4EF6;&#x4E0A;&#x4F20;&#x4E0B;&#x8F7D;&#x7684;&#x95EE;&#x9898;&#x3002;</p>
+<p>&#x67B6;&#x6784;&#x74F6;&#x9888;&#xFF1A;&#x53CD;&#x5411;&#x4EE3;&#x7406;&#x4F7F;&#x5E94;&#x7528;&#x670D;&#x52A1;&#x5668;&#x53EF;&#x652F;&#x6301;&#x7684;&#x5E76;&#x53D1;&#x91CF;&#x5927;&#x5927;&#x589E;&#x52A0;&#xFF0C;&#x4F46;&#x5E76;&#x53D1;&#x91CF;&#x7684;&#x589E;&#x957F;&#x4E5F;&#x610F;&#x5473;&#x7740;&#x66F4;&#x591A;&#x8BF7;&#x6C42;&#x7A7F;&#x900F;&#x5230;&#x6570;&#x636E;&#x5E93;&#xFF0C;&#x5355;&#x673A;&#x7684;&#x6570;&#x636E;&#x5E93;&#x6700;&#x7EC8;&#x6210;&#x4E3A;&#x74F6;&#x9888;&#x3002;</p>
+<h3 id="3-5-&#x7B2C;&#x56DB;&#x6B21;&#x6F14;&#x8FDB;&#xFF1A;&#x6570;&#x636E;&#x5E93;&#x8BFB;&#x5199;&#x5206;&#x79BB;"><a href="#3-5-&#x7B2C;&#x56DB;&#x6B21;&#x6F14;&#x8FDB;&#xFF1A;&#x6570;&#x636E;&#x5E93;&#x8BFB;&#x5199;&#x5206;&#x79BB;" class="headerlink" title="3.5 &#x7B2C;&#x56DB;&#x6B21;&#x6F14;&#x8FDB;&#xFF1A;&#x6570;&#x636E;&#x5E93;&#x8BFB;&#x5199;&#x5206;&#x79BB;"></a>3.5 &#x7B2C;&#x56DB;&#x6B21;&#x6F14;&#x8FDB;&#xFF1A;&#x6570;&#x636E;&#x5E93;&#x8BFB;&#x5199;&#x5206;&#x79BB;</h3><div class="amp-img-wrapper"><amp-img src="/2020/10/23/framework/framework-alibaba/5.webp" width="427" height="276" layout="responsive"></amp-img></div> 
+<p>&#x628A;&#x6570;&#x636E;&#x5E93;&#x5212;&#x5206;&#x4E3A;&#x8BFB;&#x5E93;&#x548C;&#x5199;&#x5E93;&#xFF0C;&#x8BFB;&#x5E93;&#x53EF;&#x4EE5;&#x6709;&#x591A;&#x4E2A;&#xFF0C;&#x901A;&#x8FC7;&#x540C;&#x6B65;&#x673A;&#x5236;&#x628A;&#x5199;&#x5E93;&#x7684;&#x6570;&#x636E;&#x540C;&#x6B65;&#x5230;&#x8BFB;&#x5E93;&#xFF0C;&#x5BF9;&#x4E8E;&#x9700;&#x8981;&#x67E5;&#x8BE2;&#x6700;&#x65B0;&#x5199;&#x5165;&#x6570;&#x636E;&#x573A;&#x666F;&#xFF0C;&#x53EF;&#x901A;&#x8FC7;&#x5728;&#x7F13;&#x5B58;&#x4E2D;&#x591A;&#x5199;&#x4E00;&#x4EFD;&#xFF0C;&#x901A;&#x8FC7;&#x7F13;&#x5B58;&#x83B7;&#x5F97;&#x6700;&#x65B0;&#x6570;&#x636E;&#x3002;</p>
+<p>&#x5176;&#x4E2D;&#x6D89;&#x53CA;&#x7684;&#x6280;&#x672F;&#x5305;&#x62EC;&#xFF1A;Mycat&#xFF0C;&#x5B83;&#x662F;&#x6570;&#x636E;&#x5E93;&#x4E2D;&#x95F4;&#x4EF6;&#xFF0C;&#x53EF;&#x901A;&#x8FC7;&#x5B83;&#x6765;&#x7EC4;&#x7EC7;&#x6570;&#x636E;&#x5E93;&#x7684;&#x5206;&#x79BB;&#x8BFB;&#x5199;&#x548C;&#x5206;&#x5E93;&#x5206;&#x8868;&#xFF0C;&#x5BA2;&#x6237;&#x7AEF;&#x901A;&#x8FC7;&#x5B83;&#x6765;&#x8BBF;&#x95EE;&#x4E0B;&#x5C42;&#x6570;&#x636E;&#x5E93;&#xFF0C;&#x8FD8;&#x4F1A;&#x6D89;&#x53CA;&#x6570;&#x636E;&#x540C;&#x6B65;&#xFF0C;&#x6570;&#x636E;&#x4E00;&#x81F4;&#x6027;&#x7684;&#x95EE;&#x9898;&#x3002;</p>
+<p>&#x67B6;&#x6784;&#x74F6;&#x9888;&#xFF1A;&#x4E1A;&#x52A1;&#x9010;&#x6E10;&#x53D8;&#x591A;&#xFF0C;&#x4E0D;&#x540C;&#x4E1A;&#x52A1;&#x4E4B;&#x95F4;&#x7684;&#x8BBF;&#x95EE;&#x91CF;&#x5DEE;&#x8DDD;&#x8F83;&#x5927;&#xFF0C;&#x4E0D;&#x540C;&#x4E1A;&#x52A1;&#x76F4;&#x63A5;&#x7ADE;&#x4E89;&#x6570;&#x636E;&#x5E93;&#xFF0C;&#x76F8;&#x4E92;&#x5F71;&#x54CD;&#x6027;&#x80FD;&#x3002;</p>
+<h3 id="3-6-&#x7B2C;&#x4E94;&#x6B21;&#x6F14;&#x8FDB;&#xFF1A;&#x6570;&#x636E;&#x5E93;&#x6309;&#x4E1A;&#x52A1;&#x5206;&#x5E93;"><a href="#3-6-&#x7B2C;&#x4E94;&#x6B21;&#x6F14;&#x8FDB;&#xFF1A;&#x6570;&#x636E;&#x5E93;&#x6309;&#x4E1A;&#x52A1;&#x5206;&#x5E93;" class="headerlink" title="3.6 &#x7B2C;&#x4E94;&#x6B21;&#x6F14;&#x8FDB;&#xFF1A;&#x6570;&#x636E;&#x5E93;&#x6309;&#x4E1A;&#x52A1;&#x5206;&#x5E93;"></a>3.6 &#x7B2C;&#x4E94;&#x6B21;&#x6F14;&#x8FDB;&#xFF1A;&#x6570;&#x636E;&#x5E93;&#x6309;&#x4E1A;&#x52A1;&#x5206;&#x5E93;</h3><div class="amp-img-wrapper"><amp-img src="/2020/10/23/framework/framework-alibaba/6.webp" width="537" height="425" layout="responsive"></amp-img></div> 
+<p>&#x628A;&#x4E0D;&#x540C;&#x4E1A;&#x52A1;&#x7684;&#x6570;&#x636E;&#x4FDD;&#x5B58;&#x5230;&#x4E0D;&#x540C;&#x7684;&#x6570;&#x636E;&#x5E93;&#x4E2D;&#xFF0C;&#x4F7F;&#x4E1A;&#x52A1;&#x4E4B;&#x95F4;&#x7684;&#x8D44;&#x6E90;&#x7ADE;&#x4E89;&#x964D;&#x4F4E;&#xFF0C;&#x5BF9;&#x4E8E;&#x8BBF;&#x95EE;&#x91CF;&#x5927;&#x7684;&#x4E1A;&#x52A1;&#xFF0C;&#x53EF;&#x4EE5;&#x90E8;&#x7F72;&#x66F4;&#x591A;&#x7684;&#x670D;&#x52A1;&#x5668;&#x6765;&#x652F;&#x6491;&#x3002;</p>
+<p>&#x8FD9;&#x6837;&#x540C;&#x65F6;&#x5BFC;&#x81F4;&#x8DE8;&#x4E1A;&#x52A1;&#x7684;&#x8868;&#x65E0;&#x6CD5;&#x76F4;&#x63A5;&#x505A;&#x5173;&#x8054;&#x5206;&#x6790;&#xFF0C;&#x9700;&#x8981;&#x901A;&#x8FC7;&#x5176;&#x4ED6;&#x9014;&#x5F84;&#x6765;&#x89E3;&#x51B3;&#xFF0C;&#x4F46;&#x8FD9;&#x4E0D;&#x662F;&#x672C;&#x6587;&#x8BA8;&#x8BBA;&#x7684;&#x91CD;&#x70B9;&#xFF0C;&#x6709;&#x5174;&#x8DA3;&#x7684;&#x53EF;&#x4EE5;&#x81EA;&#x884C;&#x641C;&#x7D22;&#x89E3;&#x51B3;&#x65B9;&#x6848;&#x3002;</p>
+<p>&#x67B6;&#x6784;&#x74F6;&#x9888;&#xFF1A;&#x968F;&#x7740;&#x7528;&#x6237;&#x6570;&#x7684;&#x589E;&#x957F;&#xFF0C;&#x5355;&#x673A;&#x7684;&#x5199;&#x5E93;&#x4F1A;&#x9010;&#x6E10;&#x4F1A;&#x8FBE;&#x5230;&#x6027;&#x80FD;&#x74F6;&#x9888;&#x3002;</p>
+<h3 id="3-7-&#x7B2C;&#x516D;&#x6B21;&#x6F14;&#x8FDB;&#xFF1A;&#x628A;&#x5927;&#x8868;&#x62C6;&#x5206;&#x4E3A;&#x5C0F;&#x8868;"><a href="#3-7-&#x7B2C;&#x516D;&#x6B21;&#x6F14;&#x8FDB;&#xFF1A;&#x628A;&#x5927;&#x8868;&#x62C6;&#x5206;&#x4E3A;&#x5C0F;&#x8868;" class="headerlink" title="3.7 &#x7B2C;&#x516D;&#x6B21;&#x6F14;&#x8FDB;&#xFF1A;&#x628A;&#x5927;&#x8868;&#x62C6;&#x5206;&#x4E3A;&#x5C0F;&#x8868;"></a>3.7 &#x7B2C;&#x516D;&#x6B21;&#x6F14;&#x8FDB;&#xFF1A;&#x628A;&#x5927;&#x8868;&#x62C6;&#x5206;&#x4E3A;&#x5C0F;&#x8868;</h3><div class="amp-img-wrapper"><amp-img src="/2020/10/23/framework/framework-alibaba/7.webp" width="584" height="426" layout="responsive"></amp-img></div> 
+<p>&#x6BD4;&#x5982;&#x9488;&#x5BF9;&#x8BC4;&#x8BBA;&#x6570;&#x636E;&#xFF0C;&#x53EF;&#x6309;&#x7167;&#x5546;&#x54C1;ID&#x8FDB;&#x884C;hash&#xFF0C;&#x8DEF;&#x7531;&#x5230;&#x5BF9;&#x5E94;&#x7684;&#x8868;&#x4E2D;&#x5B58;&#x50A8;&#xFF1B;</p>
+<p>&#x9488;&#x5BF9;&#x652F;&#x4ED8;&#x8BB0;&#x5F55;&#xFF0C;&#x53EF;&#x6309;&#x7167;&#x5C0F;&#x65F6;&#x521B;&#x5EFA;&#x8868;&#xFF0C;&#x6BCF;&#x4E2A;&#x5C0F;&#x65F6;&#x8868;&#x7EE7;&#x7EED;&#x62C6;&#x5206;&#x4E3A;&#x5C0F;&#x8868;&#xFF0C;&#x4F7F;&#x7528;&#x7528;&#x6237;ID&#x6216;&#x8BB0;&#x5F55;&#x7F16;&#x53F7;&#x6765;&#x8DEF;&#x7531;&#x6570;&#x636E;&#x3002;</p>
+<p>&#x53EA;&#x8981;&#x5B9E;&#x65F6;&#x64CD;&#x4F5C;&#x7684;&#x8868;&#x6570;&#x636E;&#x91CF;&#x8DB3;&#x591F;&#x5C0F;&#xFF0C;&#x8BF7;&#x6C42;&#x80FD;&#x591F;&#x8DB3;&#x591F;&#x5747;&#x5300;&#x7684;&#x5206;&#x53D1;&#x5230;&#x591A;&#x53F0;&#x670D;&#x52A1;&#x5668;&#x4E0A;&#x7684;&#x5C0F;&#x8868;&#xFF0C;&#x90A3;&#x6570;&#x636E;&#x5E93;&#x5C31;&#x80FD;&#x901A;&#x8FC7;&#x6C34;&#x5E73;&#x6269;&#x5C55;&#x7684;&#x65B9;&#x5F0F;&#x6765;&#x63D0;&#x9AD8;&#x6027;&#x80FD;&#x3002;&#x5176;&#x4E2D;&#x524D;&#x9762;&#x63D0;&#x5230;&#x7684;Mycat&#x4E5F;&#x652F;&#x6301;&#x5728;&#x5927;&#x8868;&#x62C6;&#x5206;&#x4E3A;&#x5C0F;&#x8868;&#x60C5;&#x51B5;&#x4E0B;&#x7684;&#x8BBF;&#x95EE;&#x63A7;&#x5236;&#x3002;</p>
+<p>&#x8FD9;&#x79CD;&#x505A;&#x6CD5;&#x663E;&#x8457;&#x7684;&#x589E;&#x52A0;&#x4E86;&#x6570;&#x636E;&#x5E93;&#x8FD0;&#x7EF4;&#x7684;&#x96BE;&#x5EA6;&#xFF0C;&#x5BF9;DBA&#x7684;&#x8981;&#x6C42;&#x8F83;&#x9AD8;&#x3002;&#x6570;&#x636E;&#x5E93;&#x8BBE;&#x8BA1;&#x5230;&#x8FD9;&#x79CD;&#x7ED3;&#x6784;&#x65F6;&#xFF0C;&#x5DF2;&#x7ECF;&#x53EF;&#x4EE5;&#x79F0;&#x4E3A;&#x5206;&#x5E03;&#x5F0F;&#x6570;&#x636E;&#x5E93;</p>
+<p>&#x4F46;&#x8FD9;&#x53EA;&#x662F;&#x4E00;&#x4E2A;&#x903B;&#x8F91;&#x7684;&#x6570;&#x636E;&#x5E93;&#x6574;&#x4F53;&#xFF0C;&#x6570;&#x636E;&#x5E93;&#x91CC;&#x4E0D;&#x540C;&#x7684;&#x7EC4;&#x6210;&#x90E8;&#x5206;&#x662F;&#x7531;&#x4E0D;&#x540C;&#x7684;&#x7EC4;&#x4EF6;&#x5355;&#x72EC;&#x6765;&#x5B9E;&#x73B0;&#x7684;</p>
+<p>&#x5982;&#x5206;&#x5E93;&#x5206;&#x8868;&#x7684;&#x7BA1;&#x7406;&#x548C;&#x8BF7;&#x6C42;&#x5206;&#x53D1;&#xFF0C;&#x7531;Mycat&#x5B9E;&#x73B0;&#xFF0C;SQL&#x7684;&#x89E3;&#x6790;&#x7531;&#x5355;&#x673A;&#x7684;&#x6570;&#x636E;&#x5E93;&#x5B9E;&#x73B0;&#xFF0C;&#x8BFB;&#x5199;&#x5206;&#x79BB;&#x53EF;&#x80FD;&#x7531;&#x7F51;&#x5173;&#x548C;&#x6D88;&#x606F;&#x961F;&#x5217;&#x6765;&#x5B9E;&#x73B0;&#xFF0C;&#x67E5;&#x8BE2;&#x7ED3;&#x679C;&#x7684;&#x6C47;&#x603B;&#x53EF;&#x80FD;&#x7531;&#x6570;&#x636E;&#x5E93;&#x63A5;&#x53E3;&#x5C42;&#x6765;&#x5B9E;&#x73B0;&#x7B49;&#x7B49;</p>
+<p>&#x8FD9;&#x79CD;&#x67B6;&#x6784;&#x5176;&#x5B9E;&#x662F;MPP&#xFF08;&#x5927;&#x89C4;&#x6A21;&#x5E76;&#x884C;&#x5904;&#x7406;&#xFF09;&#x67B6;&#x6784;&#x7684;&#x4E00;&#x7C7B;&#x5B9E;&#x73B0;&#x3002;</p>
+<p>&#x76EE;&#x524D;&#x5F00;&#x6E90;&#x548C;&#x5546;&#x7528;&#x90FD;&#x5DF2;&#x7ECF;&#x6709;&#x4E0D;&#x5C11;MPP&#x6570;&#x636E;&#x5E93;&#xFF0C;&#x5F00;&#x6E90;&#x4E2D;&#x6BD4;&#x8F83;&#x6D41;&#x884C;&#x7684;&#x6709;Greenplum&#x3001;TiDB&#x3001;Postgresql XC&#x3001;HAWQ&#x7B49;&#xFF0C;&#x5546;&#x7528;&#x7684;&#x5982;&#x5357;&#x5927;&#x901A;&#x7528;&#x7684;GBase&#x3001;&#x777F;&#x5E06;&#x79D1;&#x6280;&#x7684;&#x96EA;&#x7403;DB&#x3001;&#x534E;&#x4E3A;&#x7684;LibrA&#x7B49;&#x7B49;</p>
+<p>&#x4E0D;&#x540C;&#x7684;MPP&#x6570;&#x636E;&#x5E93;&#x7684;&#x4FA7;&#x91CD;&#x70B9;&#x4E5F;&#x4E0D;&#x4E00;&#x6837;&#xFF0C;&#x5982;TiDB&#x66F4;&#x4FA7;&#x91CD;&#x4E8E;&#x5206;&#x5E03;&#x5F0F;OLTP&#x573A;&#x666F;&#xFF0C;Greenplum&#x66F4;&#x4FA7;&#x91CD;&#x4E8E;&#x5206;&#x5E03;&#x5F0F;OLAP&#x573A;&#x666F;</p>
+<p>&#x8FD9;&#x4E9B;MPP&#x6570;&#x636E;&#x5E93;&#x57FA;&#x672C;&#x90FD;&#x63D0;&#x4F9B;&#x4E86;&#x7C7B;&#x4F3C;Postgresql&#x3001;Oracle&#x3001;MySQL&#x90A3;&#x6837;&#x7684;SQL&#x6807;&#x51C6;&#x652F;&#x6301;&#x80FD;&#x529B;&#xFF0C;&#x80FD;&#x628A;&#x4E00;&#x4E2A;&#x67E5;&#x8BE2;&#x89E3;&#x6790;&#x4E3A;&#x5206;&#x5E03;&#x5F0F;&#x7684;&#x6267;&#x884C;&#x8BA1;&#x5212;&#x5206;&#x53D1;&#x5230;&#x6BCF;&#x53F0;&#x673A;&#x5668;&#x4E0A;&#x5E76;&#x884C;&#x6267;&#x884C;&#xFF0C;&#x6700;&#x7EC8;&#x7531;&#x6570;&#x636E;&#x5E93;&#x672C;&#x8EAB;&#x6C47;&#x603B;&#x6570;&#x636E;&#x8FDB;&#x884C;&#x8FD4;&#x56DE;</p>
+<p>&#x4E5F;&#x63D0;&#x4F9B;&#x4E86;&#x8BF8;&#x5982;&#x6743;&#x9650;&#x7BA1;&#x7406;&#x3001;&#x5206;&#x5E93;&#x5206;&#x8868;&#x3001;&#x4E8B;&#x52A1;&#x3001;&#x6570;&#x636E;&#x526F;&#x672C;&#x7B49;&#x80FD;&#x529B;&#xFF0C;&#x5E76;&#x4E14;&#x5927;&#x591A;&#x80FD;&#x591F;&#x652F;&#x6301;100&#x4E2A;&#x8282;&#x70B9;&#x4EE5;&#x4E0A;&#x7684;&#x96C6;&#x7FA4;&#xFF0C;&#x5927;&#x5927;&#x964D;&#x4F4E;&#x4E86;&#x6570;&#x636E;&#x5E93;&#x8FD0;&#x7EF4;&#x7684;&#x6210;&#x672C;&#xFF0C;&#x5E76;&#x4E14;&#x4F7F;&#x6570;&#x636E;&#x5E93;&#x4E5F;&#x80FD;&#x591F;&#x5B9E;&#x73B0;&#x6C34;&#x5E73;&#x6269;&#x5C55;&#x3002;</p>
+<p>&#x67B6;&#x6784;&#x74F6;&#x9888;&#xFF1A;&#x6570;&#x636E;&#x5E93;&#x548C;Tomcat&#x90FD;&#x80FD;&#x591F;&#x6C34;&#x5E73;&#x6269;&#x5C55;&#xFF0C;&#x53EF;&#x652F;&#x6491;&#x7684;&#x5E76;&#x53D1;&#x5927;&#x5E45;&#x63D0;&#x9AD8;&#xFF0C;&#x968F;&#x7740;&#x7528;&#x6237;&#x6570;&#x7684;&#x589E;&#x957F;&#xFF0C;&#x6700;&#x7EC8;&#x5355;&#x673A;&#x7684;Nginx&#x4F1A;&#x6210;&#x4E3A;&#x74F6;&#x9888;&#x3002;</p>
+<h3 id="3-8-&#x7B2C;&#x4E03;&#x6B21;&#x6F14;&#x8FDB;&#xFF1A;&#x4F7F;&#x7528;LVS&#x6216;F5&#x6765;&#x4F7F;&#x591A;&#x4E2A;Nginx&#x8D1F;&#x8F7D;&#x5747;&#x8861;"><a href="#3-8-&#x7B2C;&#x4E03;&#x6B21;&#x6F14;&#x8FDB;&#xFF1A;&#x4F7F;&#x7528;LVS&#x6216;F5&#x6765;&#x4F7F;&#x591A;&#x4E2A;Nginx&#x8D1F;&#x8F7D;&#x5747;&#x8861;" class="headerlink" title="3.8 &#x7B2C;&#x4E03;&#x6B21;&#x6F14;&#x8FDB;&#xFF1A;&#x4F7F;&#x7528;LVS&#x6216;F5&#x6765;&#x4F7F;&#x591A;&#x4E2A;Nginx&#x8D1F;&#x8F7D;&#x5747;&#x8861;"></a>3.8 &#x7B2C;&#x4E03;&#x6B21;&#x6F14;&#x8FDB;&#xFF1A;&#x4F7F;&#x7528;LVS&#x6216;F5&#x6765;&#x4F7F;&#x591A;&#x4E2A;Nginx&#x8D1F;&#x8F7D;&#x5747;&#x8861;</h3><div class="amp-img-wrapper"><amp-img src="/2020/10/23/framework/framework-alibaba/8.webp" width="589" height="499" layout="responsive"></amp-img></div> 
+<p>&#x7531;&#x4E8E;&#x74F6;&#x9888;&#x5728;Nginx&#xFF0C;&#x56E0;&#x6B64;&#x65E0;&#x6CD5;&#x901A;&#x8FC7;&#x4E24;&#x5C42;&#x7684;Nginx&#x6765;&#x5B9E;&#x73B0;&#x591A;&#x4E2A;Nginx&#x7684;&#x8D1F;&#x8F7D;&#x5747;&#x8861;&#x3002;</p>
+<p>&#x56FE;&#x4E2D;&#x7684;LVS&#x548C;F5&#x662F;&#x5DE5;&#x4F5C;&#x5728;&#x7F51;&#x7EDC;&#x7B2C;&#x56DB;&#x5C42;&#x7684;&#x8D1F;&#x8F7D;&#x5747;&#x8861;&#x89E3;&#x51B3;&#x65B9;&#x6848;&#xFF0C;&#x5176;&#x4E2D;LVS&#x662F;&#x8F6F;&#x4EF6;&#xFF0C;&#x8FD0;&#x884C;&#x5728;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x5185;&#x6838;&#x6001;&#xFF0C;&#x53EF;&#x5BF9;TCP&#x8BF7;&#x6C42;&#x6216;&#x66F4;&#x9AD8;&#x5C42;&#x7EA7;&#x7684;&#x7F51;&#x7EDC;&#x534F;&#x8BAE;&#x8FDB;&#x884C;&#x8F6C;&#x53D1;&#xFF0C;&#x56E0;&#x6B64;&#x652F;&#x6301;&#x7684;&#x534F;&#x8BAE;&#x66F4;&#x4E30;&#x5BCC;&#xFF0C;&#x5E76;&#x4E14;&#x6027;&#x80FD;&#x4E5F;&#x8FDC;&#x9AD8;&#x4E8E;Nginx&#xFF0C;&#x53EF;&#x5047;&#x8BBE;&#x5355;&#x673A;&#x7684;LVS&#x53EF;&#x652F;&#x6301;&#x51E0;&#x5341;&#x4E07;&#x4E2A;&#x5E76;&#x53D1;&#x7684;&#x8BF7;&#x6C42;&#x8F6C;&#x53D1;&#xFF1B;</p>
+<p>F5&#x662F;&#x4E00;&#x79CD;&#x8D1F;&#x8F7D;&#x5747;&#x8861;&#x786C;&#x4EF6;&#xFF0C;&#x4E0E;LVS&#x63D0;&#x4F9B;&#x7684;&#x80FD;&#x529B;&#x7C7B;&#x4F3C;&#xFF0C;&#x6027;&#x80FD;&#x6BD4;LVS&#x66F4;&#x9AD8;&#xFF0C;&#x4F46;&#x4EF7;&#x683C;&#x6602;&#x8D35;&#x3002;</p>
+<p>&#x7531;&#x4E8E;LVS&#x662F;&#x5355;&#x673A;&#x7248;&#x7684;&#x8F6F;&#x4EF6;&#xFF0C;&#x82E5;LVS&#x6240;&#x5728;&#x670D;&#x52A1;&#x5668;&#x5B95;&#x673A;&#x5219;&#x4F1A;&#x5BFC;&#x81F4;&#x6574;&#x4E2A;&#x540E;&#x7AEF;&#x7CFB;&#x7EDF;&#x90FD;&#x65E0;&#x6CD5;&#x8BBF;&#x95EE;&#xFF0C;&#x56E0;&#x6B64;&#x9700;&#x8981;&#x6709;&#x5907;&#x7528;&#x8282;&#x70B9;&#x3002;</p>
+<p>&#x53EF;&#x4F7F;&#x7528;keepalived&#x8F6F;&#x4EF6;&#x6A21;&#x62DF;&#x51FA;&#x865A;&#x62DF;IP&#xFF0C;&#x7136;&#x540E;&#x628A;&#x865A;&#x62DF;IP&#x7ED1;&#x5B9A;&#x5230;&#x591A;&#x53F0;LVS&#x670D;&#x52A1;&#x5668;&#x4E0A;&#xFF0C;&#x6D4F;&#x89C8;&#x5668;&#x8BBF;&#x95EE;&#x865A;&#x62DF;IP&#x65F6;&#xFF0C;&#x4F1A;&#x88AB;&#x8DEF;&#x7531;&#x5668;&#x91CD;&#x5B9A;&#x5411;&#x5230;&#x771F;&#x5B9E;&#x7684;LVS&#x670D;&#x52A1;&#x5668;</p>
+<p>&#x5F53;&#x4E3B;LVS&#x670D;&#x52A1;&#x5668;&#x5B95;&#x673A;&#x65F6;&#xFF0C;keepalived&#x8F6F;&#x4EF6;&#x4F1A;&#x81EA;&#x52A8;&#x66F4;&#x65B0;&#x8DEF;&#x7531;&#x5668;&#x4E2D;&#x7684;&#x8DEF;&#x7531;&#x8868;&#xFF0C;&#x628A;&#x865A;&#x62DF;IP&#x91CD;&#x5B9A;&#x5411;&#x5230;&#x53E6;&#x5916;&#x4E00;&#x53F0;&#x6B63;&#x5E38;&#x7684;LVS&#x670D;&#x52A1;&#x5668;&#xFF0C;&#x4ECE;&#x800C;&#x8FBE;&#x5230;LVS&#x670D;&#x52A1;&#x5668;&#x9AD8;&#x53EF;&#x7528;&#x7684;&#x6548;&#x679C;&#x3002;</p>
+<p>&#x6B64;&#x5904;&#x9700;&#x8981;&#x6CE8;&#x610F;&#x7684;&#x662F;&#xFF0C;&#x4E0A;&#x56FE;&#x4E2D;&#x4ECE;Nginx&#x5C42;&#x5230;Tomcat&#x5C42;&#x8FD9;&#x6837;&#x753B;&#x5E76;&#x4E0D;&#x4EE3;&#x8868;&#x5168;&#x90E8;Nginx&#x90FD;&#x8F6C;&#x53D1;&#x8BF7;&#x6C42;&#x5230;&#x5168;&#x90E8;&#x7684;Tomcat</p>
+<p>&#x5728;&#x5B9E;&#x9645;&#x4F7F;&#x7528;&#x65F6;&#xFF0C;&#x53EF;&#x80FD;&#x4F1A;&#x662F;&#x51E0;&#x4E2A;Nginx&#x4E0B;&#x9762;&#x63A5;&#x4E00;&#x90E8;&#x5206;&#x7684;Tomcat&#xFF0C;&#x8FD9;&#x4E9B;Nginx&#x4E4B;&#x95F4;&#x901A;&#x8FC7;keepalived&#x5B9E;&#x73B0;&#x9AD8;&#x53EF;&#x7528;&#xFF0C;&#x5176;&#x4ED6;&#x7684;Nginx&#x63A5;&#x53E6;&#x5916;&#x7684;Tomcat&#xFF0C;&#x8FD9;&#x6837;&#x53EF;&#x63A5;&#x5165;&#x7684;Tomcat&#x6570;&#x91CF;&#x5C31;&#x80FD;&#x6210;&#x500D;&#x7684;&#x589E;&#x52A0;&#x3002;</p>
+<p>&#x67B6;&#x6784;&#x74F6;&#x9888;&#xFF1A;&#x7531;&#x4E8E;LVS&#x4E5F;&#x662F;&#x5355;&#x673A;&#x7684;&#xFF0C;&#x968F;&#x7740;&#x5E76;&#x53D1;&#x6570;&#x589E;&#x957F;&#x5230;&#x51E0;&#x5341;&#x4E07;&#x65F6;&#xFF0C;LVS&#x670D;&#x52A1;&#x5668;&#x6700;&#x7EC8;&#x4F1A;&#x8FBE;&#x5230;&#x74F6;&#x9888;&#xFF0C;&#x6B64;&#x65F6;&#x7528;&#x6237;&#x6570;&#x8FBE;&#x5230;&#x5343;&#x4E07;&#x751A;&#x81F3;&#x4E0A;&#x4EBF;&#x7EA7;&#x522B;&#xFF0C;&#x7528;&#x6237;&#x5206;&#x5E03;&#x5728;&#x4E0D;&#x540C;&#x7684;&#x5730;&#x533A;&#xFF0C;&#x4E0E;&#x670D;&#x52A1;&#x5668;&#x673A;&#x623F;&#x8DDD;&#x79BB;&#x4E0D;&#x540C;&#xFF0C;&#x5BFC;&#x81F4;&#x4E86;&#x8BBF;&#x95EE;&#x7684;&#x5EF6;&#x8FDF;&#x4F1A;&#x660E;&#x663E;&#x4E0D;&#x540C;&#x3002;</p>
+<h3 id="3-9-&#x7B2C;&#x516B;&#x6B21;&#x6F14;&#x8FDB;&#xFF1A;&#x901A;&#x8FC7;DNS&#x8F6E;&#x8BE2;&#x5B9E;&#x73B0;&#x673A;&#x623F;&#x95F4;&#x7684;&#x8D1F;&#x8F7D;&#x5747;&#x8861;"><a href="#3-9-&#x7B2C;&#x516B;&#x6B21;&#x6F14;&#x8FDB;&#xFF1A;&#x901A;&#x8FC7;DNS&#x8F6E;&#x8BE2;&#x5B9E;&#x73B0;&#x673A;&#x623F;&#x95F4;&#x7684;&#x8D1F;&#x8F7D;&#x5747;&#x8861;" class="headerlink" title="3.9 &#x7B2C;&#x516B;&#x6B21;&#x6F14;&#x8FDB;&#xFF1A;&#x901A;&#x8FC7;DNS&#x8F6E;&#x8BE2;&#x5B9E;&#x73B0;&#x673A;&#x623F;&#x95F4;&#x7684;&#x8D1F;&#x8F7D;&#x5747;&#x8861;"></a>3.9 &#x7B2C;&#x516B;&#x6B21;&#x6F14;&#x8FDB;&#xFF1A;&#x901A;&#x8FC7;DNS&#x8F6E;&#x8BE2;&#x5B9E;&#x73B0;&#x673A;&#x623F;&#x95F4;&#x7684;&#x8D1F;&#x8F7D;&#x5747;&#x8861;</h3><div class="amp-img-wrapper"><amp-img src="/2020/10/23/framework/framework-alibaba/9.webp" width="752" height="516" layout="responsive"></amp-img></div> 
+<p>&#x5728;DNS&#x670D;&#x52A1;&#x5668;&#x4E2D;&#x53EF;&#x914D;&#x7F6E;&#x4E00;&#x4E2A;&#x57DF;&#x540D;&#x5BF9;&#x5E94;&#x591A;&#x4E2A;IP&#x5730;&#x5740;&#xFF0C;&#x6BCF;&#x4E2A;IP&#x5730;&#x5740;&#x5BF9;&#x5E94;&#x5230;&#x4E0D;&#x540C;&#x7684;&#x673A;&#x623F;&#x91CC;&#x7684;&#x865A;&#x62DF;IP&#x3002;</p>
+<p>&#x5F53;&#x7528;&#x6237;&#x8BBF;&#x95EE;www.taobao.com&#x65F6;&#xFF0C;DNS&#x670D;&#x52A1;&#x5668;&#x4F1A;&#x4F7F;&#x7528;&#x8F6E;&#x8BE2;&#x7B56;&#x7565;&#x6216;&#x5176;&#x4ED6;&#x7B56;&#x7565;&#xFF0C;&#x6765;&#x9009;&#x62E9;&#x67D0;&#x4E2A;IP&#x4F9B;&#x7528;&#x6237;&#x8BBF;&#x95EE;&#x3002;&#x6B64;&#x65B9;&#x5F0F;&#x80FD;&#x5B9E;&#x73B0;&#x673A;&#x623F;&#x95F4;&#x7684;&#x8D1F;&#x8F7D;&#x5747;&#x8861;</p>
+<p>&#x81F3;&#x6B64;&#xFF0C;&#x7CFB;&#x7EDF;&#x53EF;&#x505A;&#x5230;&#x673A;&#x623F;&#x7EA7;&#x522B;&#x7684;&#x6C34;&#x5E73;&#x6269;&#x5C55;&#xFF0C;&#x5343;&#x4E07;&#x7EA7;&#x5230;&#x4EBF;&#x7EA7;&#x7684;&#x5E76;&#x53D1;&#x91CF;&#x90FD;&#x53EF;&#x901A;&#x8FC7;&#x589E;&#x52A0;&#x673A;&#x623F;&#x6765;&#x89E3;&#x51B3;&#xFF0C;&#x7CFB;&#x7EDF;&#x5165;&#x53E3;&#x5904;&#x7684;&#x8BF7;&#x6C42;&#x5E76;&#x53D1;&#x91CF;&#x4E0D;&#x518D;&#x662F;&#x95EE;&#x9898;&#x3002;</p>
+<p>&#x67B6;&#x6784;&#x74F6;&#x9888;&#xFF1A;&#x968F;&#x7740;&#x6570;&#x636E;&#x7684;&#x4E30;&#x5BCC;&#x7A0B;&#x5EA6;&#x548C;&#x4E1A;&#x52A1;&#x7684;&#x53D1;&#x5C55;&#xFF0C;&#x68C0;&#x7D22;&#x3001;&#x5206;&#x6790;&#x7B49;&#x9700;&#x6C42;&#x8D8A;&#x6765;&#x8D8A;&#x4E30;&#x5BCC;&#xFF0C;&#x5355;&#x5355;&#x4F9D;&#x9760;&#x6570;&#x636E;&#x5E93;&#x65E0;&#x6CD5;&#x89E3;&#x51B3;&#x5982;&#x6B64;&#x4E30;&#x5BCC;&#x7684;&#x9700;&#x6C42;&#x3002;</p>
+<h3 id="3-10-&#x7B2C;&#x4E5D;&#x6B21;&#x6F14;&#x8FDB;&#xFF1A;&#x5F15;&#x5165;NoSQL&#x6570;&#x636E;&#x5E93;&#x548C;&#x641C;&#x7D22;&#x5F15;&#x64CE;&#x7B49;&#x6280;&#x672F;"><a href="#3-10-&#x7B2C;&#x4E5D;&#x6B21;&#x6F14;&#x8FDB;&#xFF1A;&#x5F15;&#x5165;NoSQL&#x6570;&#x636E;&#x5E93;&#x548C;&#x641C;&#x7D22;&#x5F15;&#x64CE;&#x7B49;&#x6280;&#x672F;" class="headerlink" title="3.10 &#x7B2C;&#x4E5D;&#x6B21;&#x6F14;&#x8FDB;&#xFF1A;&#x5F15;&#x5165;NoSQL&#x6570;&#x636E;&#x5E93;&#x548C;&#x641C;&#x7D22;&#x5F15;&#x64CE;&#x7B49;&#x6280;&#x672F;"></a>3.10 &#x7B2C;&#x4E5D;&#x6B21;&#x6F14;&#x8FDB;&#xFF1A;&#x5F15;&#x5165;NoSQL&#x6570;&#x636E;&#x5E93;&#x548C;&#x641C;&#x7D22;&#x5F15;&#x64CE;&#x7B49;&#x6280;&#x672F;</h3><div class="amp-img-wrapper"><amp-img src="/2020/10/23/framework/framework-alibaba/10.webp" width="685" height="429" layout="responsive"></amp-img></div> 
+<p>&#x5F53;&#x6570;&#x636E;&#x5E93;&#x4E2D;&#x7684;&#x6570;&#x636E;&#x591A;&#x5230;&#x4E00;&#x5B9A;&#x89C4;&#x6A21;&#x65F6;&#xFF0C;&#x6570;&#x636E;&#x5E93;&#x5C31;&#x4E0D;&#x9002;&#x7528;&#x4E8E;&#x590D;&#x6742;&#x7684;&#x67E5;&#x8BE2;&#x4E86;&#xFF0C;&#x5F80;&#x5F80;&#x53EA;&#x80FD;&#x6EE1;&#x8DB3;&#x666E;&#x901A;&#x67E5;&#x8BE2;&#x7684;&#x573A;&#x666F;&#x3002;</p>
+<p>&#x5BF9;&#x4E8E;&#x7EDF;&#x8BA1;&#x62A5;&#x8868;&#x573A;&#x666F;&#xFF0C;&#x5728;&#x6570;&#x636E;&#x91CF;&#x5927;&#x65F6;&#x4E0D;&#x4E00;&#x5B9A;&#x80FD;&#x8DD1;&#x51FA;&#x7ED3;&#x679C;&#xFF0C;&#x800C;&#x4E14;&#x5728;&#x8DD1;&#x590D;&#x6742;&#x67E5;&#x8BE2;&#x65F6;&#x4F1A;&#x5BFC;&#x81F4;&#x5176;&#x4ED6;&#x67E5;&#x8BE2;&#x53D8;&#x6162;</p>
+<p>&#x5BF9;&#x4E8E;&#x5168;&#x6587;&#x68C0;&#x7D22;&#x3001;&#x53EF;&#x53D8;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x7B49;&#x573A;&#x666F;&#xFF0C;&#x6570;&#x636E;&#x5E93;&#x5929;&#x751F;&#x4E0D;&#x9002;&#x7528;&#x3002;&#x56E0;&#x6B64;&#x9700;&#x8981;&#x9488;&#x5BF9;&#x7279;&#x5B9A;&#x7684;&#x573A;&#x666F;&#xFF0C;&#x5F15;&#x5165;&#x5408;&#x9002;&#x7684;&#x89E3;&#x51B3;&#x65B9;&#x6848;&#x3002;</p>
+<p>&#x5982;&#x5BF9;&#x4E8E;&#x6D77;&#x91CF;&#x6587;&#x4EF6;&#x5B58;&#x50A8;&#xFF0C;&#x53EF;&#x901A;&#x8FC7;&#x5206;&#x5E03;&#x5F0F;&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;HDFS&#x89E3;&#x51B3;&#xFF0C;&#x5BF9;&#x4E8E;key value&#x7C7B;&#x578B;&#x7684;&#x6570;&#x636E;&#xFF0C;&#x53EF;&#x901A;&#x8FC7;HBase&#x548C;Redis&#x7B49;&#x65B9;&#x6848;&#x89E3;&#x51B3;</p>
+<p>&#x5BF9;&#x4E8E;&#x5168;&#x6587;&#x68C0;&#x7D22;&#x573A;&#x666F;&#xFF0C;&#x53EF;&#x901A;&#x8FC7;&#x641C;&#x7D22;&#x5F15;&#x64CE;&#x5982;ElasticSearch&#x89E3;&#x51B3;&#xFF0C;&#x5BF9;&#x4E8E;&#x591A;&#x7EF4;&#x5206;&#x6790;&#x573A;&#x666F;&#xFF0C;&#x53EF;&#x901A;&#x8FC7;Kylin&#x6216;Druid&#x7B49;&#x65B9;&#x6848;&#x89E3;&#x51B3;&#x3002;</p>
+<p>&#x5F53;&#x7136;&#xFF0C;&#x5F15;&#x5165;&#x66F4;&#x591A;&#x7EC4;&#x4EF6;&#x540C;&#x65F6;&#x4F1A;&#x63D0;&#x9AD8;&#x7CFB;&#x7EDF;&#x7684;&#x590D;&#x6742;&#x5EA6;&#xFF0C;&#x4E0D;&#x540C;&#x7684;&#x7EC4;&#x4EF6;&#x4FDD;&#x5B58;&#x7684;&#x6570;&#x636E;&#x9700;&#x8981;&#x540C;&#x6B65;&#xFF0C;&#x9700;&#x8981;&#x8003;&#x8651;&#x4E00;&#x81F4;&#x6027;&#x7684;&#x95EE;&#x9898;&#xFF0C;&#x9700;&#x8981;&#x6709;&#x66F4;&#x591A;&#x7684;&#x8FD0;&#x7EF4;&#x624B;&#x6BB5;&#x6765;&#x7BA1;&#x7406;&#x8FD9;&#x4E9B;&#x7EC4;&#x4EF6;&#x7B49;&#x3002;</p>
+<p>&#x67B6;&#x6784;&#x74F6;&#x9888;&#xFF1A;&#x5F15;&#x5165;&#x66F4;&#x591A;&#x7EC4;&#x4EF6;&#x89E3;&#x51B3;&#x4E86;&#x4E30;&#x5BCC;&#x7684;&#x9700;&#x6C42;&#xFF0C;&#x4E1A;&#x52A1;&#x7EF4;&#x5EA6;&#x80FD;&#x591F;&#x6781;&#x5927;&#x6269;&#x5145;&#xFF0C;&#x968F;&#x4E4B;&#x800C;&#x6765;&#x7684;&#x662F;&#x4E00;&#x4E2A;&#x5E94;&#x7528;&#x4E2D;&#x5305;&#x542B;&#x4E86;&#x592A;&#x591A;&#x7684;&#x4E1A;&#x52A1;&#x4EE3;&#x7801;&#xFF0C;&#x4E1A;&#x52A1;&#x7684;&#x5347;&#x7EA7;&#x8FED;&#x4EE3;&#x53D8;&#x5F97;&#x56F0;&#x96BE;&#x3002;</p>
+<h3 id="3-11-&#x7B2C;&#x5341;&#x6B21;&#x6F14;&#x8FDB;&#xFF1A;&#x5927;&#x5E94;&#x7528;&#x62C6;&#x5206;&#x4E3A;&#x5C0F;&#x5E94;&#x7528;"><a href="#3-11-&#x7B2C;&#x5341;&#x6B21;&#x6F14;&#x8FDB;&#xFF1A;&#x5927;&#x5E94;&#x7528;&#x62C6;&#x5206;&#x4E3A;&#x5C0F;&#x5E94;&#x7528;" class="headerlink" title="3.11 &#x7B2C;&#x5341;&#x6B21;&#x6F14;&#x8FDB;&#xFF1A;&#x5927;&#x5E94;&#x7528;&#x62C6;&#x5206;&#x4E3A;&#x5C0F;&#x5E94;&#x7528;"></a>3.11 &#x7B2C;&#x5341;&#x6B21;&#x6F14;&#x8FDB;&#xFF1A;&#x5927;&#x5E94;&#x7528;&#x62C6;&#x5206;&#x4E3A;&#x5C0F;&#x5E94;&#x7528;</h3><div class="amp-img-wrapper"><amp-img src="/2020/10/23/framework/framework-alibaba/11.webp" width="687" height="444" layout="responsive"></amp-img></div> 
+<p>&#x6309;&#x7167;&#x4E1A;&#x52A1;&#x677F;&#x5757;&#x6765;&#x5212;&#x5206;&#x5E94;&#x7528;&#x4EE3;&#x7801;&#xFF0C;&#x4F7F;&#x5355;&#x4E2A;&#x5E94;&#x7528;&#x7684;&#x804C;&#x8D23;&#x66F4;&#x6E05;&#x6670;&#xFF0C;&#x76F8;&#x4E92;&#x4E4B;&#x95F4;&#x53EF;&#x4EE5;&#x505A;&#x5230;&#x72EC;&#x7ACB;&#x5347;&#x7EA7;&#x8FED;&#x4EE3;&#x3002;&#x8FD9;&#x65F6;&#x5019;&#x5E94;&#x7528;&#x4E4B;&#x95F4;&#x53EF;&#x80FD;&#x4F1A;&#x6D89;&#x53CA;&#x5230;&#x4E00;&#x4E9B;&#x516C;&#x5171;&#x914D;&#x7F6E;&#xFF0C;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x5206;&#x5E03;&#x5F0F;&#x914D;&#x7F6E;&#x4E2D;&#x5FC3;Zookeeper&#x6765;&#x89E3;&#x51B3;&#x3002;</p>
+<p>&#x67B6;&#x6784;&#x74F6;&#x9888;&#xFF1A;&#x4E0D;&#x540C;&#x5E94;&#x7528;&#x4E4B;&#x95F4;&#x5B58;&#x5728;&#x5171;&#x7528;&#x7684;&#x6A21;&#x5757;&#xFF0C;&#x7531;&#x5E94;&#x7528;&#x5355;&#x72EC;&#x7BA1;&#x7406;&#x4F1A;&#x5BFC;&#x81F4;&#x76F8;&#x540C;&#x4EE3;&#x7801;&#x5B58;&#x5728;&#x591A;&#x4EFD;&#xFF0C;&#x5BFC;&#x81F4;&#x516C;&#x5171;&#x529F;&#x80FD;&#x5347;&#x7EA7;&#x65F6;&#x5168;&#x90E8;&#x5E94;&#x7528;&#x4EE3;&#x7801;&#x90FD;&#x8981;&#x8DDF;&#x7740;&#x5347;&#x7EA7;&#x3002;</p>
+<h3 id="3-12-&#x7B2C;&#x5341;&#x4E00;&#x6B21;&#x6F14;&#x8FDB;&#xFF1A;&#x590D;&#x7528;&#x7684;&#x529F;&#x80FD;&#x62BD;&#x79BB;&#x6210;&#x5FAE;&#x670D;&#x52A1;"><a href="#3-12-&#x7B2C;&#x5341;&#x4E00;&#x6B21;&#x6F14;&#x8FDB;&#xFF1A;&#x590D;&#x7528;&#x7684;&#x529F;&#x80FD;&#x62BD;&#x79BB;&#x6210;&#x5FAE;&#x670D;&#x52A1;" class="headerlink" title="3.12 &#x7B2C;&#x5341;&#x4E00;&#x6B21;&#x6F14;&#x8FDB;&#xFF1A;&#x590D;&#x7528;&#x7684;&#x529F;&#x80FD;&#x62BD;&#x79BB;&#x6210;&#x5FAE;&#x670D;&#x52A1;"></a>3.12 &#x7B2C;&#x5341;&#x4E00;&#x6B21;&#x6F14;&#x8FDB;&#xFF1A;&#x590D;&#x7528;&#x7684;&#x529F;&#x80FD;&#x62BD;&#x79BB;&#x6210;&#x5FAE;&#x670D;&#x52A1;</h3><div class="amp-img-wrapper"><amp-img src="/2020/10/23/framework/framework-alibaba/12.webp" width="682" height="519" layout="responsive"></amp-img></div> 
+<p>&#x5982;&#x7528;&#x6237;&#x7BA1;&#x7406;&#x3001;&#x8BA2;&#x5355;&#x3001;&#x652F;&#x4ED8;&#x3001;&#x9274;&#x6743;&#x7B49;&#x529F;&#x80FD;&#x5728;&#x591A;&#x4E2A;&#x5E94;&#x7528;&#x4E2D;&#x90FD;&#x5B58;&#x5728;&#xFF0C;&#x90A3;&#x4E48;&#x53EF;&#x4EE5;&#x628A;&#x8FD9;&#x4E9B;&#x529F;&#x80FD;&#x7684;&#x4EE3;&#x7801;&#x5355;&#x72EC;&#x62BD;&#x53D6;&#x51FA;&#x6765;&#x5F62;&#x6210;&#x4E00;&#x4E2A;&#x5355;&#x72EC;&#x7684;&#x670D;&#x52A1;&#x6765;&#x7BA1;&#x7406;</p>
+<p>&#x8FD9;&#x6837;&#x7684;&#x670D;&#x52A1;&#x5C31;&#x662F;&#x6240;&#x8C13;&#x7684;&#x5FAE;&#x670D;&#x52A1;&#xFF0C;&#x5E94;&#x7528;&#x548C;&#x670D;&#x52A1;&#x4E4B;&#x95F4;&#x901A;&#x8FC7;HTTP&#x3001;TCP&#x6216;RPC&#x8BF7;&#x6C42;&#x7B49;&#x591A;&#x79CD;&#x65B9;&#x5F0F;&#x6765;&#x8BBF;&#x95EE;&#x516C;&#x5171;&#x670D;&#x52A1;&#xFF0C;&#x6BCF;&#x4E2A;&#x5355;&#x72EC;&#x7684;&#x670D;&#x52A1;&#x90FD;&#x53EF;&#x4EE5;&#x7531;&#x5355;&#x72EC;&#x7684;&#x56E2;&#x961F;&#x6765;&#x7BA1;&#x7406;&#x3002;</p>
+<p>&#x6B64;&#x5916;&#xFF0C;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;Dubbo&#x3001;SpringCloud&#x7B49;&#x6846;&#x67B6;&#x5B9E;&#x73B0;&#x670D;&#x52A1;&#x6CBB;&#x7406;&#x3001;&#x9650;&#x6D41;&#x3001;&#x7194;&#x65AD;&#x3001;&#x964D;&#x7EA7;&#x7B49;&#x529F;&#x80FD;&#xFF0C;&#x63D0;&#x9AD8;&#x670D;&#x52A1;&#x7684;&#x7A33;&#x5B9A;&#x6027;&#x548C;&#x53EF;&#x7528;&#x6027;&#x3002;</p>
+<p>&#x67B6;&#x6784;&#x74F6;&#x9888;&#xFF1A;&#x4E0D;&#x540C;&#x670D;&#x52A1;&#x7684;&#x63A5;&#x53E3;&#x8BBF;&#x95EE;&#x65B9;&#x5F0F;&#x4E0D;&#x540C;&#xFF0C;&#x5E94;&#x7528;&#x4EE3;&#x7801;&#x9700;&#x8981;&#x9002;&#x914D;&#x591A;&#x79CD;&#x8BBF;&#x95EE;&#x65B9;&#x5F0F;&#x624D;&#x80FD;&#x4F7F;&#x7528;&#x670D;&#x52A1;&#xFF0C;&#x6B64;&#x5916;&#xFF0C;&#x5E94;&#x7528;&#x8BBF;&#x95EE;&#x670D;&#x52A1;&#xFF0C;&#x670D;&#x52A1;&#x4E4B;&#x95F4;&#x4E5F;&#x53EF;&#x80FD;&#x76F8;&#x4E92;&#x8BBF;&#x95EE;&#xFF0C;&#x8C03;&#x7528;&#x94FE;&#x5C06;&#x4F1A;&#x53D8;&#x5F97;&#x975E;&#x5E38;&#x590D;&#x6742;&#xFF0C;&#x903B;&#x8F91;&#x53D8;&#x5F97;&#x6DF7;&#x4E71;&#x3002;</p>
+<h3 id="3-13-&#x7B2C;&#x5341;&#x4E8C;&#x6B21;&#x6F14;&#x8FDB;&#xFF1A;&#x5F15;&#x5165;&#x4F01;&#x4E1A;&#x670D;&#x52A1;&#x603B;&#x7EBF;ESB&#x5C4F;&#x853D;&#x670D;&#x52A1;&#x63A5;&#x53E3;&#x7684;&#x8BBF;&#x95EE;&#x5DEE;&#x5F02;"><a href="#3-13-&#x7B2C;&#x5341;&#x4E8C;&#x6B21;&#x6F14;&#x8FDB;&#xFF1A;&#x5F15;&#x5165;&#x4F01;&#x4E1A;&#x670D;&#x52A1;&#x603B;&#x7EBF;ESB&#x5C4F;&#x853D;&#x670D;&#x52A1;&#x63A5;&#x53E3;&#x7684;&#x8BBF;&#x95EE;&#x5DEE;&#x5F02;" class="headerlink" title="3.13 &#x7B2C;&#x5341;&#x4E8C;&#x6B21;&#x6F14;&#x8FDB;&#xFF1A;&#x5F15;&#x5165;&#x4F01;&#x4E1A;&#x670D;&#x52A1;&#x603B;&#x7EBF;ESB&#x5C4F;&#x853D;&#x670D;&#x52A1;&#x63A5;&#x53E3;&#x7684;&#x8BBF;&#x95EE;&#x5DEE;&#x5F02;"></a>3.13 &#x7B2C;&#x5341;&#x4E8C;&#x6B21;&#x6F14;&#x8FDB;&#xFF1A;&#x5F15;&#x5165;&#x4F01;&#x4E1A;&#x670D;&#x52A1;&#x603B;&#x7EBF;ESB&#x5C4F;&#x853D;&#x670D;&#x52A1;&#x63A5;&#x53E3;&#x7684;&#x8BBF;&#x95EE;&#x5DEE;&#x5F02;</h3><div class="amp-img-wrapper"><amp-img src="/2020/10/23/framework/framework-alibaba/13.webp" width="693" height="579" layout="responsive"></amp-img></div> 
+<p>&#x901A;&#x8FC7;ESB&#x7EDF;&#x4E00;&#x8FDB;&#x884C;&#x8BBF;&#x95EE;&#x534F;&#x8BAE;&#x8F6C;&#x6362;&#xFF0C;&#x5E94;&#x7528;&#x7EDF;&#x4E00;&#x901A;&#x8FC7;ESB&#x6765;&#x8BBF;&#x95EE;&#x540E;&#x7AEF;&#x670D;&#x52A1;&#xFF0C;&#x670D;&#x52A1;&#x4E0E;&#x670D;&#x52A1;&#x4E4B;&#x95F4;&#x4E5F;&#x901A;&#x8FC7;ESB&#x6765;&#x76F8;&#x4E92;&#x8C03;&#x7528;&#xFF0C;&#x4EE5;&#x6B64;&#x964D;&#x4F4E;&#x7CFB;&#x7EDF;&#x7684;&#x8026;&#x5408;&#x7A0B;&#x5EA6;&#x3002;</p>
+<p>&#x8FD9;&#x79CD;&#x5355;&#x4E2A;&#x5E94;&#x7528;&#x62C6;&#x5206;&#x4E3A;&#x591A;&#x4E2A;&#x5E94;&#x7528;&#xFF0C;&#x516C;&#x5171;&#x670D;&#x52A1;&#x5355;&#x72EC;&#x62BD;&#x53D6;&#x51FA;&#x6765;&#x6765;&#x7BA1;&#x7406;&#xFF0C;&#x5E76;&#x4F7F;&#x7528;&#x4F01;&#x4E1A;&#x6D88;&#x606F;&#x603B;&#x7EBF;&#x6765;&#x89E3;&#x9664;&#x670D;&#x52A1;&#x4E4B;&#x95F4;&#x8026;&#x5408;&#x95EE;&#x9898;&#x7684;&#x67B6;&#x6784;&#xFF0C;&#x5C31;&#x662F;&#x6240;&#x8C13;&#x7684;SOA&#xFF08;&#x9762;&#x5411;&#x670D;&#x52A1;&#xFF09;&#x67B6;&#x6784;&#xFF0C;&#x8FD9;&#x79CD;&#x67B6;&#x6784;&#x4E0E;&#x5FAE;&#x670D;&#x52A1;&#x67B6;&#x6784;&#x5BB9;&#x6613;&#x6DF7;&#x6DC6;&#xFF0C;&#x56E0;&#x4E3A;&#x8868;&#x73B0;&#x5F62;&#x5F0F;&#x5341;&#x5206;&#x76F8;&#x4F3C;&#x3002;</p>
+<p>&#x4E2A;&#x4EBA;&#x7406;&#x89E3;&#xFF0C;&#x5FAE;&#x670D;&#x52A1;&#x67B6;&#x6784;&#x66F4;&#x591A;&#x662F;&#x6307;&#x628A;&#x7CFB;&#x7EDF;&#x91CC;&#x7684;&#x516C;&#x5171;&#x670D;&#x52A1;&#x62BD;&#x53D6;&#x51FA;&#x6765;&#x5355;&#x72EC;&#x8FD0;&#x7EF4;&#x7BA1;&#x7406;&#x7684;&#x601D;&#x60F3;&#xFF0C;&#x800C;SOA&#x67B6;&#x6784;&#x5219;&#x662F;&#x6307;&#x4E00;&#x79CD;&#x62C6;&#x5206;&#x670D;&#x52A1;&#x5E76;&#x4F7F;&#x670D;&#x52A1;&#x63A5;&#x53E3;&#x8BBF;&#x95EE;&#x53D8;&#x5F97;&#x7EDF;&#x4E00;&#x7684;&#x67B6;&#x6784;&#x601D;&#x60F3;&#xFF0C;SOA&#x67B6;&#x6784;&#x4E2D;&#x5305;&#x542B;&#x4E86;&#x5FAE;&#x670D;&#x52A1;&#x7684;&#x601D;&#x60F3;&#x3002;</p>
+<p>&#x67B6;&#x6784;&#x74F6;&#x9888;&#xFF1A;&#x4E1A;&#x52A1;&#x4E0D;&#x65AD;&#x53D1;&#x5C55;&#xFF0C;&#x5E94;&#x7528;&#x548C;&#x670D;&#x52A1;&#x90FD;&#x4F1A;&#x4E0D;&#x65AD;&#x53D8;&#x591A;&#xFF0C;&#x5E94;&#x7528;&#x548C;&#x670D;&#x52A1;&#x7684;&#x90E8;&#x7F72;&#x53D8;&#x5F97;&#x590D;&#x6742;&#xFF0C;&#x540C;&#x4E00;&#x53F0;&#x670D;&#x52A1;&#x5668;&#x4E0A;&#x90E8;&#x7F72;&#x591A;&#x4E2A;&#x670D;&#x52A1;&#x8FD8;&#x8981;&#x89E3;&#x51B3;&#x8FD0;&#x884C;&#x73AF;&#x5883;&#x51B2;&#x7A81;&#x7684;&#x95EE;&#x9898;</p>
+<p>&#x6B64;&#x5916;&#xFF0C;&#x5BF9;&#x4E8E;&#x5982;&#x5927;&#x4FC3;&#x8FD9;&#x7C7B;&#x9700;&#x8981;&#x52A8;&#x6001;&#x6269;&#x7F29;&#x5BB9;&#x7684;&#x573A;&#x666F;&#xFF0C;&#x9700;&#x8981;&#x6C34;&#x5E73;&#x6269;&#x5C55;&#x670D;&#x52A1;&#x7684;&#x6027;&#x80FD;&#xFF0C;&#x5C31;&#x9700;&#x8981;&#x5728;&#x65B0;&#x589E;&#x7684;&#x670D;&#x52A1;&#x4E0A;&#x51C6;&#x5907;&#x8FD0;&#x884C;&#x73AF;&#x5883;&#xFF0C;&#x90E8;&#x7F72;&#x670D;&#x52A1;&#x7B49;&#xFF0C;&#x8FD0;&#x7EF4;&#x5C06;&#x53D8;&#x5F97;&#x5341;&#x5206;&#x56F0;&#x96BE;&#x3002;</p>
+<h3 id="3-14-&#x7B2C;&#x5341;&#x4E09;&#x6B21;&#x6F14;&#x8FDB;&#xFF1A;&#x5F15;&#x5165;&#x5BB9;&#x5668;&#x5316;&#x6280;&#x672F;&#x5B9E;&#x73B0;&#x8FD0;&#x884C;&#x73AF;&#x5883;&#x9694;&#x79BB;&#x4E0E;&#x52A8;&#x6001;&#x670D;&#x52A1;&#x7BA1;&#x7406;"><a href="#3-14-&#x7B2C;&#x5341;&#x4E09;&#x6B21;&#x6F14;&#x8FDB;&#xFF1A;&#x5F15;&#x5165;&#x5BB9;&#x5668;&#x5316;&#x6280;&#x672F;&#x5B9E;&#x73B0;&#x8FD0;&#x884C;&#x73AF;&#x5883;&#x9694;&#x79BB;&#x4E0E;&#x52A8;&#x6001;&#x670D;&#x52A1;&#x7BA1;&#x7406;" class="headerlink" title="3.14 &#x7B2C;&#x5341;&#x4E09;&#x6B21;&#x6F14;&#x8FDB;&#xFF1A;&#x5F15;&#x5165;&#x5BB9;&#x5668;&#x5316;&#x6280;&#x672F;&#x5B9E;&#x73B0;&#x8FD0;&#x884C;&#x73AF;&#x5883;&#x9694;&#x79BB;&#x4E0E;&#x52A8;&#x6001;&#x670D;&#x52A1;&#x7BA1;&#x7406;"></a>3.14 &#x7B2C;&#x5341;&#x4E09;&#x6B21;&#x6F14;&#x8FDB;&#xFF1A;&#x5F15;&#x5165;&#x5BB9;&#x5668;&#x5316;&#x6280;&#x672F;&#x5B9E;&#x73B0;&#x8FD0;&#x884C;&#x73AF;&#x5883;&#x9694;&#x79BB;&#x4E0E;&#x52A8;&#x6001;&#x670D;&#x52A1;&#x7BA1;&#x7406;</h3><div class="amp-img-wrapper"><amp-img src="/2020/10/23/framework/framework-alibaba/14.webp" width="645" height="597" layout="responsive"></amp-img></div> 
+<p>&#x76EE;&#x524D;&#x6700;&#x6D41;&#x884C;&#x7684;&#x5BB9;&#x5668;&#x5316;&#x6280;&#x672F;&#x662F;Docker&#xFF0C;&#x6700;&#x6D41;&#x884C;&#x7684;&#x5BB9;&#x5668;&#x7BA1;&#x7406;&#x670D;&#x52A1;&#x662F;Kubernetes(K8S)&#xFF0C;&#x5E94;&#x7528;/&#x670D;&#x52A1;&#x53EF;&#x4EE5;&#x6253;&#x5305;&#x4E3A;Docker&#x955C;&#x50CF;&#xFF0C;&#x901A;&#x8FC7;K8S&#x6765;&#x52A8;&#x6001;&#x5206;&#x53D1;&#x548C;&#x90E8;&#x7F72;&#x955C;&#x50CF;&#x3002;</p>
+<p>Docker&#x955C;&#x50CF;&#x53EF;&#x7406;&#x89E3;&#x4E3A;&#x4E00;&#x4E2A;&#x80FD;&#x8FD0;&#x884C;&#x4F60;&#x7684;&#x5E94;&#x7528;/&#x670D;&#x52A1;&#x7684;&#x6700;&#x5C0F;&#x7684;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#xFF0C;&#x91CC;&#x9762;&#x653E;&#x7740;&#x5E94;&#x7528;/&#x670D;&#x52A1;&#x7684;&#x8FD0;&#x884C;&#x4EE3;&#x7801;&#xFF0C;&#x8FD0;&#x884C;&#x73AF;&#x5883;&#x6839;&#x636E;&#x5B9E;&#x9645;&#x7684;&#x9700;&#x8981;&#x8BBE;&#x7F6E;&#x597D;&#x3002;</p>
+<p>&#x628A;&#x6574;&#x4E2A;&#x201C;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x201D;&#x6253;&#x5305;&#x4E3A;&#x4E00;&#x4E2A;&#x955C;&#x50CF;&#x540E;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x5206;&#x53D1;&#x5230;&#x9700;&#x8981;&#x90E8;&#x7F72;&#x76F8;&#x5173;&#x670D;&#x52A1;&#x7684;&#x673A;&#x5668;&#x4E0A;&#xFF0C;&#x76F4;&#x63A5;&#x542F;&#x52A8;Docker&#x955C;&#x50CF;&#x5C31;&#x53EF;&#x4EE5;&#x628A;&#x670D;&#x52A1;&#x8D77;&#x8D77;&#x6765;&#xFF0C;&#x4F7F;&#x670D;&#x52A1;&#x7684;&#x90E8;&#x7F72;&#x548C;&#x8FD0;&#x7EF4;&#x53D8;&#x5F97;&#x7B80;&#x5355;&#x3002;</p>
+<p>&#x5728;&#x5927;&#x4FC3;&#x7684;&#x4E4B;&#x524D;&#xFF0C;&#x53EF;&#x4EE5;&#x5728;&#x73B0;&#x6709;&#x7684;&#x673A;&#x5668;&#x96C6;&#x7FA4;&#x4E0A;&#x5212;&#x5206;&#x51FA;&#x670D;&#x52A1;&#x5668;&#x6765;&#x542F;&#x52A8;Docker&#x955C;&#x50CF;&#xFF0C;&#x589E;&#x5F3A;&#x670D;&#x52A1;&#x7684;&#x6027;&#x80FD;</p>
+<p>&#x5927;&#x4FC3;&#x8FC7;&#x540E;&#x5C31;&#x53EF;&#x4EE5;&#x5173;&#x95ED;&#x955C;&#x50CF;&#xFF0C;&#x5BF9;&#x673A;&#x5668;&#x4E0A;&#x7684;&#x5176;&#x4ED6;&#x670D;&#x52A1;&#x4E0D;&#x9020;&#x6210;&#x5F71;&#x54CD;&#xFF08;&#x5728;&#x7B2C;18&#x8282;&#x4E4B;&#x524D;&#xFF0C;&#x670D;&#x52A1;&#x8FD0;&#x884C;&#x5728;&#x65B0;&#x589E;&#x673A;&#x5668;&#x4E0A;&#x9700;&#x8981;&#x4FEE;&#x6539;&#x7CFB;&#x7EDF;&#x914D;&#x7F6E;&#x6765;&#x9002;&#x914D;&#x670D;&#x52A1;&#xFF0C;&#x8FD9;&#x4F1A;&#x5BFC;&#x81F4;&#x673A;&#x5668;&#x4E0A;&#x5176;&#x4ED6;&#x670D;&#x52A1;&#x9700;&#x8981;&#x7684;&#x8FD0;&#x884C;&#x73AF;&#x5883;&#x88AB;&#x7834;&#x574F;&#xFF09;&#x3002;</p>
+<p>&#x67B6;&#x6784;&#x74F6;&#x9888;&#xFF1A;&#x4F7F;&#x7528;&#x5BB9;&#x5668;&#x5316;&#x6280;&#x672F;&#x540E;&#x670D;&#x52A1;&#x52A8;&#x6001;&#x6269;&#x7F29;&#x5BB9;&#x95EE;&#x9898;&#x5F97;&#x4EE5;&#x89E3;&#x51B3;&#xFF0C;&#x4F46;&#x662F;&#x673A;&#x5668;&#x8FD8;&#x662F;&#x9700;&#x8981;&#x516C;&#x53F8;&#x81EA;&#x8EAB;&#x6765;&#x7BA1;&#x7406;&#xFF0C;&#x5728;&#x975E;&#x5927;&#x4FC3;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x8FD8;&#x662F;&#x9700;&#x8981;&#x95F2;&#x7F6E;&#x7740;&#x5927;&#x91CF;&#x7684;&#x673A;&#x5668;&#x8D44;&#x6E90;&#x6765;&#x5E94;&#x5BF9;&#x5927;&#x4FC3;&#xFF0C;&#x673A;&#x5668;&#x81EA;&#x8EAB;&#x6210;&#x672C;&#x548C;&#x8FD0;&#x7EF4;&#x6210;&#x672C;&#x90FD;&#x6781;&#x9AD8;&#xFF0C;&#x8D44;&#x6E90;&#x5229;&#x7528;&#x7387;&#x4F4E;&#x3002;</p>
+<h3 id="3-15-&#x7B2C;&#x5341;&#x56DB;&#x6B21;&#x6F14;&#x8FDB;&#xFF1A;&#x4EE5;&#x4E91;&#x5E73;&#x53F0;&#x627F;&#x8F7D;&#x7CFB;&#x7EDF;"><a href="#3-15-&#x7B2C;&#x5341;&#x56DB;&#x6B21;&#x6F14;&#x8FDB;&#xFF1A;&#x4EE5;&#x4E91;&#x5E73;&#x53F0;&#x627F;&#x8F7D;&#x7CFB;&#x7EDF;" class="headerlink" title="3.15 &#x7B2C;&#x5341;&#x56DB;&#x6B21;&#x6F14;&#x8FDB;&#xFF1A;&#x4EE5;&#x4E91;&#x5E73;&#x53F0;&#x627F;&#x8F7D;&#x7CFB;&#x7EDF;"></a>3.15 &#x7B2C;&#x5341;&#x56DB;&#x6B21;&#x6F14;&#x8FDB;&#xFF1A;&#x4EE5;&#x4E91;&#x5E73;&#x53F0;&#x627F;&#x8F7D;&#x7CFB;&#x7EDF;</h3><div class="amp-img-wrapper"><amp-img src="/2020/10/23/framework/framework-alibaba/15.webp" width="800" height="477" layout="responsive"></amp-img></div> 
+<p>&#x7CFB;&#x7EDF;&#x53EF;&#x90E8;&#x7F72;&#x5230;&#x516C;&#x6709;&#x4E91;&#x4E0A;&#xFF0C;&#x5229;&#x7528;&#x516C;&#x6709;&#x4E91;&#x7684;&#x6D77;&#x91CF;&#x673A;&#x5668;&#x8D44;&#x6E90;&#xFF0C;&#x89E3;&#x51B3;&#x52A8;&#x6001;&#x786C;&#x4EF6;&#x8D44;&#x6E90;&#x7684;&#x95EE;&#x9898;</p>
+<p>&#x5728;&#x5927;&#x4FC3;&#x7684;&#x65F6;&#x95F4;&#x6BB5;&#x91CC;&#xFF0C;&#x5728;&#x4E91;&#x5E73;&#x53F0;&#x4E2D;&#x4E34;&#x65F6;&#x7533;&#x8BF7;&#x66F4;&#x591A;&#x7684;&#x8D44;&#x6E90;&#xFF0C;&#x7ED3;&#x5408;Docker&#x548C;K8S&#x6765;&#x5FEB;&#x901F;&#x90E8;&#x7F72;&#x670D;&#x52A1;&#xFF0C;&#x5728;&#x5927;&#x4FC3;&#x7ED3;&#x675F;&#x540E;&#x91CA;&#x653E;&#x8D44;&#x6E90;&#xFF0C;&#x771F;&#x6B63;&#x505A;&#x5230;&#x6309;&#x9700;&#x4ED8;&#x8D39;&#xFF0C;&#x8D44;&#x6E90;&#x5229;&#x7528;&#x7387;&#x5927;&#x5927;&#x63D0;&#x9AD8;&#xFF0C;&#x540C;&#x65F6;&#x5927;&#x5927;&#x964D;&#x4F4E;&#x4E86;&#x8FD0;&#x7EF4;&#x6210;&#x672C;&#x3002;</p>
+<p>&#x6240;&#x8C13;&#x7684;&#x4E91;&#x5E73;&#x53F0;&#xFF0C;&#x5C31;&#x662F;&#x628A;&#x6D77;&#x91CF;&#x673A;&#x5668;&#x8D44;&#x6E90;&#xFF0C;&#x901A;&#x8FC7;&#x7EDF;&#x4E00;&#x7684;&#x8D44;&#x6E90;&#x7BA1;&#x7406;&#xFF0C;&#x62BD;&#x8C61;&#x4E3A;&#x4E00;&#x4E2A;&#x8D44;&#x6E90;&#x6574;&#x4F53;</p>
+<p>&#x5728;&#x4E91;&#x5E73;&#x53F0;&#x4E0A;&#x53EF;&#x6309;&#x9700;&#x52A8;&#x6001;&#x7533;&#x8BF7;&#x786C;&#x4EF6;&#x8D44;&#x6E90;&#xFF08;&#x5982;CPU&#x3001;&#x5185;&#x5B58;&#x3001;&#x7F51;&#x7EDC;&#x7B49;&#xFF09;&#xFF0C;&#x5E76;&#x4E14;&#x4E4B;&#x4E0A;&#x63D0;&#x4F9B;&#x901A;&#x7528;&#x7684;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#xFF0C;&#x63D0;&#x4F9B;&#x5E38;&#x7528;&#x7684;&#x6280;&#x672F;&#x7EC4;&#x4EF6;&#xFF08;&#x5982;Hadoop&#x6280;&#x672F;&#x6808;&#xFF0C;MPP&#x6570;&#x636E;&#x5E93;&#x7B49;&#xFF09;&#x4F9B;&#x7528;&#x6237;&#x4F7F;&#x7528;&#xFF0C;&#x751A;&#x81F3;&#x63D0;&#x4F9B;&#x5F00;&#x53D1;&#x597D;&#x7684;&#x5E94;&#x7528;</p>
+<p>&#x7528;&#x6237;&#x4E0D;&#x9700;&#x8981;&#x5173;&#x5FC3;&#x5E94;&#x7528;&#x5185;&#x90E8;&#x4F7F;&#x7528;&#x4E86;&#x4EC0;&#x4E48;&#x6280;&#x672F;&#xFF0C;&#x5C31;&#x80FD;&#x591F;&#x89E3;&#x51B3;&#x9700;&#x6C42;&#xFF08;&#x5982;&#x97F3;&#x89C6;&#x9891;&#x8F6C;&#x7801;&#x670D;&#x52A1;&#x3001;&#x90AE;&#x4EF6;&#x670D;&#x52A1;&#x3001;&#x4E2A;&#x4EBA;&#x535A;&#x5BA2;&#x7B49;&#xFF09;&#x3002;</p>
+<p>&#x5728;&#x4E91;&#x5E73;&#x53F0;&#x4E2D;&#x4F1A;&#x6D89;&#x53CA;&#x5982;&#x4E0B;&#x51E0;&#x4E2A;&#x6982;&#x5FF5;&#xFF1A;</p>
+<p>IaaS&#xFF1A;&#x57FA;&#x7840;&#x8BBE;&#x65BD;&#x5373;&#x670D;&#x52A1;&#x3002;&#x5BF9;&#x5E94;&#x4E8E;&#x4E0A;&#x9762;&#x6240;&#x8BF4;&#x7684;&#x673A;&#x5668;&#x8D44;&#x6E90;&#x7EDF;&#x4E00;&#x4E3A;&#x8D44;&#x6E90;&#x6574;&#x4F53;&#xFF0C;&#x53EF;&#x52A8;&#x6001;&#x7533;&#x8BF7;&#x786C;&#x4EF6;&#x8D44;&#x6E90;&#x7684;&#x5C42;&#x9762;&#xFF1B;</p>
+<p>PaaS&#xFF1A;&#x5E73;&#x53F0;&#x5373;&#x670D;&#x52A1;&#x3002;&#x5BF9;&#x5E94;&#x4E8E;&#x4E0A;&#x9762;&#x6240;&#x8BF4;&#x7684;&#x63D0;&#x4F9B;&#x5E38;&#x7528;&#x7684;&#x6280;&#x672F;&#x7EC4;&#x4EF6;&#x65B9;&#x4FBF;&#x7CFB;&#x7EDF;&#x7684;&#x5F00;&#x53D1;&#x548C;&#x7EF4;&#x62A4;&#xFF1B;</p>
+<p>SaaS&#xFF1A;&#x8F6F;&#x4EF6;&#x5373;&#x670D;&#x52A1;&#x3002;&#x5BF9;&#x5E94;&#x4E8E;&#x4E0A;&#x9762;&#x6240;&#x8BF4;&#x7684;&#x63D0;&#x4F9B;&#x5F00;&#x53D1;&#x597D;&#x7684;&#x5E94;&#x7528;&#x6216;&#x670D;&#x52A1;&#xFF0C;&#x6309;&#x529F;&#x80FD;&#x6216;&#x6027;&#x80FD;&#x8981;&#x6C42;&#x4ED8;&#x8D39;&#x3002;</p>
+<p>&#x81F3;&#x6B64;&#xFF1A;&#x4EE5;&#x4E0A;&#x6240;&#x63D0;&#x5230;&#x7684;&#x4ECE;&#x9AD8;&#x5E76;&#x53D1;&#x8BBF;&#x95EE;&#x95EE;&#x9898;&#xFF0C;&#x5230;&#x670D;&#x52A1;&#x7684;&#x67B6;&#x6784;&#x548C;&#x7CFB;&#x7EDF;&#x5B9E;&#x65BD;&#x7684;&#x5C42;&#x9762;&#x90FD;&#x6709;&#x4E86;&#x5404;&#x81EA;&#x7684;&#x89E3;&#x51B3;&#x65B9;&#x6848;&#x3002;</p>
+<p>&#x4F46;&#x540C;&#x65F6;&#x4E5F;&#x5E94;&#x8BE5;&#x610F;&#x8BC6;&#x5230;&#xFF0C;&#x5728;&#x4E0A;&#x9762;&#x7684;&#x4ECB;&#x7ECD;&#x4E2D;&#xFF0C;&#x5176;&#x5B9E;&#x662F;&#x6709;&#x610F;&#x5FFD;&#x7565;&#x4E86;&#x8BF8;&#x5982;&#x8DE8;&#x673A;&#x623F;&#x6570;&#x636E;&#x540C;&#x6B65;&#x3001;&#x5206;&#x5E03;&#x5F0F;&#x4E8B;&#x52A1;&#x5B9E;&#x73B0;&#x7B49;&#x7B49;&#x7684;&#x5B9E;&#x9645;&#x95EE;&#x9898;&#xFF0C;&#x8FD9;&#x4E9B;&#x95EE;&#x9898;&#x4EE5;&#x540E;&#x6709;&#x673A;&#x4F1A;&#x518D;&#x62FF;&#x51FA;&#x6765;&#x5355;&#x72EC;&#x8BA8;&#x8BBA;&#x3002;</p>
+<h2 id="4&#x3001;&#x67B6;&#x6784;&#x8BBE;&#x8BA1;&#x603B;&#x7ED3;"><a href="#4&#x3001;&#x67B6;&#x6784;&#x8BBE;&#x8BA1;&#x603B;&#x7ED3;" class="headerlink" title="4&#x3001;&#x67B6;&#x6784;&#x8BBE;&#x8BA1;&#x603B;&#x7ED3;"></a>4&#x3001;&#x67B6;&#x6784;&#x8BBE;&#x8BA1;&#x603B;&#x7ED3;</h2><h3 id="1&#xFF09;&#x67B6;&#x6784;&#x7684;&#x8C03;&#x6574;&#x662F;&#x5426;&#x5FC5;&#x987B;&#x6309;&#x7167;&#x4E0A;&#x8FF0;&#x6F14;&#x53D8;&#x8DEF;&#x5F84;&#x8FDB;&#x884C;&#xFF1F;"><a href="#1&#xFF09;&#x67B6;&#x6784;&#x7684;&#x8C03;&#x6574;&#x662F;&#x5426;&#x5FC5;&#x987B;&#x6309;&#x7167;&#x4E0A;&#x8FF0;&#x6F14;&#x53D8;&#x8DEF;&#x5F84;&#x8FDB;&#x884C;&#xFF1F;" class="headerlink" title="1&#xFF09;&#x67B6;&#x6784;&#x7684;&#x8C03;&#x6574;&#x662F;&#x5426;&#x5FC5;&#x987B;&#x6309;&#x7167;&#x4E0A;&#x8FF0;&#x6F14;&#x53D8;&#x8DEF;&#x5F84;&#x8FDB;&#x884C;&#xFF1F;"></a>1&#xFF09;&#x67B6;&#x6784;&#x7684;&#x8C03;&#x6574;&#x662F;&#x5426;&#x5FC5;&#x987B;&#x6309;&#x7167;&#x4E0A;&#x8FF0;&#x6F14;&#x53D8;&#x8DEF;&#x5F84;&#x8FDB;&#x884C;&#xFF1F;</h3><p>&#x4E0D;&#x662F;&#x7684;&#xFF0C;&#x4EE5;&#x4E0A;&#x6240;&#x8BF4;&#x7684;&#x67B6;&#x6784;&#x6F14;&#x53D8;&#x987A;&#x5E8F;&#x53EA;&#x662F;&#x9488;&#x5BF9;&#x67D0;&#x4E2A;&#x4FA7;&#x9762;&#x8FDB;&#x884C;&#x5355;&#x72EC;&#x7684;&#x6539;&#x8FDB;</p>
+<p>&#x5728;&#x5B9E;&#x9645;&#x573A;&#x666F;&#x4E2D;&#xFF0C;&#x53EF;&#x80FD;&#x540C;&#x4E00;&#x65F6;&#x95F4;&#x4F1A;&#x6709;&#x51E0;&#x4E2A;&#x95EE;&#x9898;&#x9700;&#x8981;&#x89E3;&#x51B3;&#xFF0C;&#x6216;&#x8005;&#x53EF;&#x80FD;&#x5148;&#x8FBE;&#x5230;&#x74F6;&#x9888;&#x7684;&#x662F;&#x53E6;&#x5916;&#x7684;&#x65B9;&#x9762;&#xFF0C;&#x8FD9;&#x65F6;&#x5019;&#x5C31;&#x5E94;&#x8BE5;&#x6309;&#x7167;&#x5B9E;&#x9645;&#x95EE;&#x9898;&#x5B9E;&#x9645;&#x89E3;&#x51B3;&#x3002;</p>
+<p>&#x5982;&#x5728;&#x653F;&#x5E9C;&#x7C7B;&#x7684;&#x5E76;&#x53D1;&#x91CF;&#x53EF;&#x80FD;&#x4E0D;&#x5927;&#xFF0C;&#x4F46;&#x4E1A;&#x52A1;&#x53EF;&#x80FD;&#x5F88;&#x4E30;&#x5BCC;&#x7684;&#x573A;&#x666F;&#xFF0C;&#x9AD8;&#x5E76;&#x53D1;&#x5C31;&#x4E0D;&#x662F;&#x91CD;&#x70B9;&#x89E3;&#x51B3;&#x7684;&#x95EE;&#x9898;&#xFF0C;&#x6B64;&#x65F6;&#x4F18;&#x5148;&#x9700;&#x8981;&#x7684;&#x53EF;&#x80FD;&#x4F1A;&#x662F;&#x4E30;&#x5BCC;&#x9700;&#x6C42;&#x7684;&#x89E3;&#x51B3;&#x65B9;&#x6848;&#x3002;</p>
+<h3 id="2&#xFF09;&#x5BF9;&#x4E8E;&#x5C06;&#x8981;&#x5B9E;&#x65BD;&#x7684;&#x7CFB;&#x7EDF;&#xFF0C;&#x67B6;&#x6784;&#x5E94;&#x8BE5;&#x8BBE;&#x8BA1;&#x5230;&#x4EC0;&#x4E48;&#x7A0B;&#x5EA6;&#xFF1F;"><a href="#2&#xFF09;&#x5BF9;&#x4E8E;&#x5C06;&#x8981;&#x5B9E;&#x65BD;&#x7684;&#x7CFB;&#x7EDF;&#xFF0C;&#x67B6;&#x6784;&#x5E94;&#x8BE5;&#x8BBE;&#x8BA1;&#x5230;&#x4EC0;&#x4E48;&#x7A0B;&#x5EA6;&#xFF1F;" class="headerlink" title="2&#xFF09;&#x5BF9;&#x4E8E;&#x5C06;&#x8981;&#x5B9E;&#x65BD;&#x7684;&#x7CFB;&#x7EDF;&#xFF0C;&#x67B6;&#x6784;&#x5E94;&#x8BE5;&#x8BBE;&#x8BA1;&#x5230;&#x4EC0;&#x4E48;&#x7A0B;&#x5EA6;&#xFF1F;"></a>2&#xFF09;&#x5BF9;&#x4E8E;&#x5C06;&#x8981;&#x5B9E;&#x65BD;&#x7684;&#x7CFB;&#x7EDF;&#xFF0C;&#x67B6;&#x6784;&#x5E94;&#x8BE5;&#x8BBE;&#x8BA1;&#x5230;&#x4EC0;&#x4E48;&#x7A0B;&#x5EA6;&#xFF1F;</h3><p>&#x5BF9;&#x4E8E;&#x5355;&#x6B21;&#x5B9E;&#x65BD;&#x5E76;&#x4E14;&#x6027;&#x80FD;&#x6307;&#x6807;&#x660E;&#x786E;&#x7684;&#x7CFB;&#x7EDF;&#xFF0C;&#x67B6;&#x6784;&#x8BBE;&#x8BA1;&#x5230;&#x80FD;&#x591F;&#x652F;&#x6301;&#x7CFB;&#x7EDF;&#x7684;&#x6027;&#x80FD;&#x6307;&#x6807;&#x8981;&#x6C42;&#x5C31;&#x8DB3;&#x591F;&#x4E86;&#xFF0C;&#x4F46;&#x8981;&#x7559;&#x6709;&#x6269;&#x5C55;&#x67B6;&#x6784;&#x7684;&#x63A5;&#x53E3;&#x4EE5;&#x4FBF;&#x4E0D;&#x5907;&#x4E4B;&#x9700;&#x3002;</p>
+<p>&#x5BF9;&#x4E8E;&#x4E0D;&#x65AD;&#x53D1;&#x5C55;&#x7684;&#x7CFB;&#x7EDF;&#xFF0C;&#x5982;&#x7535;&#x5546;&#x5E73;&#x53F0;&#xFF0C;&#x5E94;&#x8BBE;&#x8BA1;&#x5230;&#x80FD;&#x6EE1;&#x8DB3;&#x4E0B;&#x4E00;&#x9636;&#x6BB5;&#x7528;&#x6237;&#x91CF;&#x548C;&#x6027;&#x80FD;&#x6307;&#x6807;&#x8981;&#x6C42;&#x7684;&#x7A0B;&#x5EA6;&#xFF0C;&#x5E76;&#x6839;&#x636E;&#x4E1A;&#x52A1;&#x7684;&#x589E;&#x957F;&#x4E0D;&#x65AD;&#x7684;&#x8FED;&#x4EE3;&#x5347;&#x7EA7;&#x67B6;&#x6784;&#xFF0C;&#x4EE5;&#x652F;&#x6301;&#x66F4;&#x9AD8;&#x7684;&#x5E76;&#x53D1;&#x548C;&#x66F4;&#x4E30;&#x5BCC;&#x7684;&#x4E1A;&#x52A1;&#x3002;</p>
+<h3 id="3&#xFF09;&#x670D;&#x52A1;&#x7AEF;&#x67B6;&#x6784;&#x548C;&#x5927;&#x6570;&#x636E;&#x67B6;&#x6784;&#x6709;&#x4EC0;&#x4E48;&#x533A;&#x522B;&#xFF1F;"><a href="#3&#xFF09;&#x670D;&#x52A1;&#x7AEF;&#x67B6;&#x6784;&#x548C;&#x5927;&#x6570;&#x636E;&#x67B6;&#x6784;&#x6709;&#x4EC0;&#x4E48;&#x533A;&#x522B;&#xFF1F;" class="headerlink" title="3&#xFF09;&#x670D;&#x52A1;&#x7AEF;&#x67B6;&#x6784;&#x548C;&#x5927;&#x6570;&#x636E;&#x67B6;&#x6784;&#x6709;&#x4EC0;&#x4E48;&#x533A;&#x522B;&#xFF1F;"></a>3&#xFF09;&#x670D;&#x52A1;&#x7AEF;&#x67B6;&#x6784;&#x548C;&#x5927;&#x6570;&#x636E;&#x67B6;&#x6784;&#x6709;&#x4EC0;&#x4E48;&#x533A;&#x522B;&#xFF1F;</h3><p>&#x6240;&#x8C13;&#x7684;&#x201C;&#x5927;&#x6570;&#x636E;&#x201D;&#x5176;&#x5B9E;&#x662F;&#x6D77;&#x91CF;&#x6570;&#x636E;&#x91C7;&#x96C6;&#x6E05;&#x6D17;&#x8F6C;&#x6362;&#x3001;&#x6570;&#x636E;&#x5B58;&#x50A8;&#x3001;&#x6570;&#x636E;&#x5206;&#x6790;&#x3001;&#x6570;&#x636E;&#x670D;&#x52A1;&#x7B49;&#x573A;&#x666F;&#x89E3;&#x51B3;&#x65B9;&#x6848;&#x7684;&#x4E00;&#x4E2A;&#x7EDF;&#x79F0;&#xFF0C;&#x5728;&#x6BCF;&#x4E00;&#x4E2A;&#x573A;&#x666F;&#x90FD;&#x5305;&#x542B;&#x4E86;&#x591A;&#x79CD;&#x53EF;&#x9009;&#x7684;&#x6280;&#x672F;</p>
+<p>&#x5982;&#x6570;&#x636E;&#x91C7;&#x96C6;&#x6709;Flume&#x3001;Sqoop&#x3001;Kettle&#x7B49;&#xFF0C;&#x6570;&#x636E;&#x5B58;&#x50A8;&#x6709;&#x5206;&#x5E03;&#x5F0F;&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;HDFS&#x3001;FastDFS&#xFF0C;NoSQL&#x6570;&#x636E;&#x5E93;HBase&#x3001;MongoDB&#x7B49;&#xFF0C;&#x6570;&#x636E;&#x5206;&#x6790;&#x6709;Spark&#x6280;&#x672F;&#x6808;&#x3001;&#x673A;&#x5668;&#x5B66;&#x4E60;&#x7B97;&#x6CD5;&#x7B49;&#x3002;</p>
+<p>&#x603B;&#x7684;&#x6765;&#x8BF4;&#x5927;&#x6570;&#x636E;&#x67B6;&#x6784;&#x5C31;&#x662F;&#x6839;&#x636E;&#x4E1A;&#x52A1;&#x7684;&#x9700;&#x6C42;&#xFF0C;&#x6574;&#x5408;&#x5404;&#x79CD;&#x5927;&#x6570;&#x636E;&#x7EC4;&#x4EF6;&#x7EC4;&#x5408;&#x800C;&#x6210;&#x7684;&#x67B6;&#x6784;&#xFF0C;&#x4E00;&#x822C;&#x4F1A;&#x63D0;&#x4F9B;&#x5206;&#x5E03;&#x5F0F;&#x5B58;&#x50A8;&#x3001;&#x5206;&#x5E03;&#x5F0F;&#x8BA1;&#x7B97;&#x3001;&#x591A;&#x7EF4;&#x5206;&#x6790;&#x3001;&#x6570;&#x636E;&#x4ED3;&#x5E93;&#x3001;&#x673A;&#x5668;&#x5B66;&#x4E60;&#x7B97;&#x6CD5;&#x7B49;&#x80FD;&#x529B;&#x3002;</p>
+<p>&#x800C;&#x670D;&#x52A1;&#x7AEF;&#x67B6;&#x6784;&#x66F4;&#x591A;&#x6307;&#x7684;&#x662F;&#x5E94;&#x7528;&#x7EC4;&#x7EC7;&#x5C42;&#x9762;&#x7684;&#x67B6;&#x6784;&#xFF0C;&#x5E95;&#x5C42;&#x80FD;&#x529B;&#x5F80;&#x5F80;&#x662F;&#x7531;&#x5927;&#x6570;&#x636E;&#x67B6;&#x6784;&#x6765;&#x63D0;&#x4F9B;&#x3002;</p>
+<h3 id="4&#xFF09;&#x6709;&#x6CA1;&#x6709;&#x4E00;&#x4E9B;&#x67B6;&#x6784;&#x8BBE;&#x8BA1;&#x7684;&#x539F;&#x5219;&#xFF1F;"><a href="#4&#xFF09;&#x6709;&#x6CA1;&#x6709;&#x4E00;&#x4E9B;&#x67B6;&#x6784;&#x8BBE;&#x8BA1;&#x7684;&#x539F;&#x5219;&#xFF1F;" class="headerlink" title="4&#xFF09;&#x6709;&#x6CA1;&#x6709;&#x4E00;&#x4E9B;&#x67B6;&#x6784;&#x8BBE;&#x8BA1;&#x7684;&#x539F;&#x5219;&#xFF1F;"></a>4&#xFF09;&#x6709;&#x6CA1;&#x6709;&#x4E00;&#x4E9B;&#x67B6;&#x6784;&#x8BBE;&#x8BA1;&#x7684;&#x539F;&#x5219;&#xFF1F;</h3><pre><code>- N+1&#x8BBE;&#x8BA1;&#xFF1A;&#x7CFB;&#x7EDF;&#x4E2D;&#x7684;&#x6BCF;&#x4E2A;&#x7EC4;&#x4EF6;&#x90FD;&#x5E94;&#x505A;&#x5230;&#x6CA1;&#x6709;&#x5355;&#x70B9;&#x6545;&#x969C;&#xFF1B;
+- &#x56DE;&#x6EDA;&#x8BBE;&#x8BA1;&#xFF1A;&#x786E;&#x4FDD;&#x7CFB;&#x7EDF;&#x53EF;&#x4EE5;&#x5411;&#x524D;&#x517C;&#x5BB9;&#xFF0C;&#x5728;&#x7CFB;&#x7EDF;&#x5347;&#x7EA7;&#x65F6;&#x5E94;&#x80FD;&#x6709;&#x529E;&#x6CD5;&#x56DE;&#x6EDA;&#x7248;&#x672C;&#xFF1B;
+- &#x7981;&#x7528;&#x8BBE;&#x8BA1;&#xFF1A;&#x5E94;&#x8BE5;&#x63D0;&#x4F9B;&#x63A7;&#x5236;&#x5177;&#x4F53;&#x529F;&#x80FD;&#x662F;&#x5426;&#x53EF;&#x7528;&#x7684;&#x914D;&#x7F6E;&#xFF0C;&#x5728;&#x7CFB;&#x7EDF;&#x51FA;&#x73B0;&#x6545;&#x969C;&#x65F6;&#x80FD;&#x591F;&#x5FEB;&#x901F;&#x4E0B;&#x7EBF;&#x529F;&#x80FD;&#xFF1B;
+- &#x76D1;&#x63A7;&#x8BBE;&#x8BA1;&#xFF1A;&#x5728;&#x8BBE;&#x8BA1;&#x9636;&#x6BB5;&#x5C31;&#x8981;&#x8003;&#x8651;&#x76D1;&#x63A7;&#x7684;&#x624B;&#x6BB5;&#xFF1B;
+- &#x591A;&#x6D3B;&#x6570;&#x636E;&#x4E2D;&#x5FC3;&#x8BBE;&#x8BA1;&#xFF1A;&#x82E5;&#x7CFB;&#x7EDF;&#x9700;&#x8981;&#x6781;&#x9AD8;&#x7684;&#x9AD8;&#x53EF;&#x7528;&#xFF0C;&#x5E94;&#x8003;&#x8651;&#x5728;&#x591A;&#x5730;&#x5B9E;&#x65BD;&#x6570;&#x636E;&#x4E2D;&#x5FC3;&#x8FDB;&#x884C;&#x591A;&#x6D3B;&#xFF0C;&#x81F3;&#x5C11;&#x5728;&#x4E00;&#x4E2A;&#x673A;&#x623F;&#x65AD;&#x7535;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#x7CFB;&#x7EDF;&#x4F9D;&#x7136;&#x53EF;&#x7528;&#xFF1B;
+- &#x91C7;&#x7528;&#x6210;&#x719F;&#x7684;&#x6280;&#x672F;&#xFF1A;&#x521A;&#x5F00;&#x53D1;&#x7684;&#x6216;&#x5F00;&#x6E90;&#x7684;&#x6280;&#x672F;&#x5F80;&#x5F80;&#x5B58;&#x5728;&#x5F88;&#x591A;&#x9690;&#x85CF;&#x7684;bug&#xFF0C;&#x51FA;&#x4E86;&#x95EE;&#x9898;&#x6CA1;&#x6709;&#x5546;&#x4E1A;&#x652F;&#x6301;&#x53EF;&#x80FD;&#x4F1A;&#x662F;&#x4E00;&#x4E2A;&#x707E;&#x96BE;&#xFF1B;
+- &#x8D44;&#x6E90;&#x9694;&#x79BB;&#x8BBE;&#x8BA1;&#xFF1A;&#x5E94;&#x907F;&#x514D;&#x5355;&#x4E00;&#x4E1A;&#x52A1;&#x5360;&#x7528;&#x5168;&#x90E8;&#x8D44;&#x6E90;&#xFF1B;
+- &#x67B6;&#x6784;&#x5E94;&#x80FD;&#x6C34;&#x5E73;&#x6269;&#x5C55;&#xFF1A;&#x7CFB;&#x7EDF;&#x53EA;&#x6709;&#x505A;&#x5230;&#x80FD;&#x6C34;&#x5E73;&#x6269;&#x5C55;&#xFF0C;&#x624D;&#x80FD;&#x6709;&#x6548;&#x907F;&#x514D;&#x74F6;&#x9888;&#x95EE;&#x9898;&#xFF1B;
+- &#x975E;&#x6838;&#x5FC3;&#x5219;&#x8D2D;&#x4E70;&#xFF1A;&#x975E;&#x6838;&#x5FC3;&#x529F;&#x80FD;&#x82E5;&#x9700;&#x8981;&#x5360;&#x7528;&#x5927;&#x91CF;&#x7684;&#x7814;&#x53D1;&#x8D44;&#x6E90;&#x624D;&#x80FD;&#x89E3;&#x51B3;&#xFF0C;&#x5219;&#x8003;&#x8651;&#x8D2D;&#x4E70;&#x6210;&#x719F;&#x7684;&#x4EA7;&#x54C1;&#xFF1B;
+- &#x4F7F;&#x7528;&#x5546;&#x7528;&#x786C;&#x4EF6;&#xFF1A;&#x5546;&#x7528;&#x786C;&#x4EF6;&#x80FD;&#x6709;&#x6548;&#x964D;&#x4F4E;&#x786C;&#x4EF6;&#x6545;&#x969C;&#x7684;&#x673A;&#x7387;&#xFF1B;
+- &#x5FEB;&#x901F;&#x8FED;&#x4EE3;&#xFF1A;&#x7CFB;&#x7EDF;&#x5E94;&#x8BE5;&#x5FEB;&#x901F;&#x5F00;&#x53D1;&#x5C0F;&#x529F;&#x80FD;&#x6A21;&#x5757;&#xFF0C;&#x5C3D;&#x5FEB;&#x4E0A;&#x7EBF;&#x8FDB;&#x884C;&#x9A8C;&#x8BC1;&#xFF0C;&#x65E9;&#x65E5;&#x53D1;&#x73B0;&#x95EE;&#x9898;&#x5927;&#x5927;&#x964D;&#x4F4E;&#x7CFB;&#x7EDF;&#x4EA4;&#x4ED8;&#x7684;&#x98CE;&#x9669;&#xFF1B;
+- &#x65E0;&#x72B6;&#x6001;&#x8BBE;&#x8BA1;&#xFF1A;&#x670D;&#x52A1;&#x63A5;&#x53E3;&#x5E94;&#x8BE5;&#x505A;&#x6210;&#x65E0;&#x72B6;&#x6001;&#x7684;&#xFF0C;&#x5F53;&#x524D;&#x63A5;&#x53E3;&#x7684;&#x8BBF;&#x95EE;&#x4E0D;&#x4F9D;&#x8D56;&#x4E8E;&#x63A5;&#x53E3;&#x4E0A;&#x6B21;&#x8BBF;&#x95EE;&#x7684;&#x72B6;&#x6001;&#x3002;
+</code></pre>
+			  		
+			  		
+			  		<!-- google Adsense -->
+			  		
+					
+			  	</div>
+				
+		  	</article>
+		  	
+		  	
+		  	<!-- meta (categories , tags) -->
+		  	
+		  	<div class="meta-content">
+		  	
+		  		
+		  		<div class="meta-wrapper">
+				  	<h6 class="categories">Category</h6>
+				  	<div class="article-categories">
+						<ul class="article-categories-list">
+							
+					    		<li class="article-categories-list-item">
+					    			<a class="article-categories-list-link" href="/categories/架构/" class="link-gaTrack" data-linkType="link-categories">
+					    				架构
+					    			</a>
+					    		</li>
+							
+						</ul>
+					</div>
+				</div>
+				
+				
+				
+				<div class="meta-wrapper">
+				  	<h6 class="tag">Tag</h6>
+				  	<div class="article-tag">
+						<ul class="article-tag-list">
+							
+					    		<li class="article-tag-list-item">
+					    			<a class="article-tag-list-link" href="/tags/架构/" class="link-gaTrack" data-linkType="link-tag">
+					    				架构
+					    			</a>
+					    		</li>
+							
+						</ul>
+					</div>
+				</div>
+				
+			</div>
+		  	
+		  	
+		  	<!-- article nav -->
+		  	
+			<nav id="article-nav">
+			  
+			  <a href="/2020/10/24/mq/rabbitmq-model-work/" id="article-nav-newer" class="article-nav-link-wrap">
+			    <strong class="article-nav-caption">Newer</strong>
+			    <div class="article-nav-title">
+			      
+			        RabbitMQ Work Queues
+			      
+			    </div>
+			  </a>
+			  
+			  
+			  <a href="/2020/10/23/mq/rabbitmq-base-console/" id="article-nav-older" class="article-nav-link-wrap">
+			    <strong class="article-nav-caption">Older</strong>
+			    <div class="article-nav-title">
+			      
+			        RabbitMQ 控制台操作
+			      
+			    </div>
+			  </a>
+			  
+			</nav>
+			
+			
+		</div>
+		
+		
+		<footer id="footer">
+		
+			
+			
+			
+			
+			<div class="homeLink">
+		  		<a href="/">Home</a>
+		  	</div>
+			
+			
+			<div class="copyright-tool">
+				<div class="copyright-title">
+					<span>
+					&copy; 2020&nbsp;Chester.C
+					</span>
+				</div>
+				
+			</div>
+			
+		</footer>
+		
+		
+	</div>
+	
+	
+  	<div id="totop"><a href="#"></a></div>
+  	
+  	
+  </body>
+</html>

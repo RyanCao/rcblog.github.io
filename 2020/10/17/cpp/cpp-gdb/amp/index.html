@@ -32,7 +32,7 @@
 			    "@id":"http://blog.rcant.com/2020/10/17/cpp/cpp-gdb/"
 			},
 			"datePublished": "2020-10-17T03:39:17.000Z",
-			"dateModified": "2020-10-16T02:24:02.033Z",
+			"dateModified": "2020-11-12T12:22:06.682Z",
 			
 			"image": {
 				"@type": "ImageObject",
@@ -1789,6 +1789,7 @@ amp-twitter {
 <p>12      }<br>   0x00000000004005dd &lt;+51&gt;:    leaveq<br>   0x00000000004005de &lt;+52&gt;:    retq</p>
 <p>End of assembler dump.<br>(gdb) b *0x00000000004005ab<br>Breakpoint 1 at 0x4005ab: file add.cpp, line 8.<br>(gdb) r<br>Starting program: /root/projects/cpp/add.o<br>Missing separate debuginfos, use: yum debuginfo-install glibc-2.28-101.el8.x86_64</p>
 <p>Breakpoint 1, 0x00000000004005ab in main () at add.cpp:8<br>8       {<br>(gdb) p <amp-mathml layout="container" inline data-formula="\[rbp&lt;br&gt;\]"></amp-mathml>1 = (void <em>) 0x4005e0 &lt;__libc_csu_init&gt;<br>(gdb) p <amp-mathml layout="container" inline data-formula="\[rsp&lt;br&gt;\]"></amp-mathml>2 = (void </em>) 0x7fffffffe420<br>(gdb) si<br>0x00000000004005ae      8       {<br>(gdb) disass main<br>Dump of assembler code for function main():<br>   0x00000000004005aa &lt;+0&gt;:     push   %rbp<br>   0x00000000004005ab &lt;+1&gt;:     mov    %rsp,%rbp<br>=&gt; 0x00000000004005ae &lt;+4&gt;:     sub    <amp-mathml layout="container" inline data-formula="\[0x10,%rsp&lt;br&gt;   0x00000000004005b2 &lt;+8&gt;:     mov    \]"></amp-mathml>0x5,%esi<br>   0x00000000004005b7 &lt;+13&gt;:    mov    <amp-mathml layout="container" inline data-formula="\[0x6,%edi&lt;br&gt;   0x00000000004005bc &lt;+18&gt;:    callq  0x400596 &lt;add(int, int)&gt;&lt;br&gt;   0x00000000004005c1 &lt;+23&gt;:    mov    %eax,-0x4(%rbp)&lt;br&gt;   0x00000000004005c4 &lt;+26&gt;:    mov    -0x4(%rbp),%eax&lt;br&gt;   0x00000000004005c7 &lt;+29&gt;:    mov    %eax,%esi&lt;br&gt;   0x00000000004005c9 &lt;+31&gt;:    mov    \]"></amp-mathml>0x400678,%edi<br>   0x00000000004005ce &lt;+36&gt;:    mov    <amp-mathml layout="container" inline data-formula="\[0x0,%eax&lt;br&gt;   0x00000000004005d3 &lt;+41&gt;:    callq  0x4004a0 &lt;a href=" mailto:printf@plt">printf@plt<br>   0x00000000004005d8 &lt;+46&gt;:    mov    \]&quot;&gt;</amp-mathml>0x0,%eax<br>   0x00000000004005dd &lt;+51&gt;:    leaveq<br>   0x00000000004005de &lt;+52&gt;:    retq<br>End of assembler dump.<br>(gdb) p <amp-mathml layout="container" inline data-formula="\[rbp&lt;br&gt;\]"></amp-mathml>4 = (void <em>) 0x7fffffffe420<br>(gdb) si<br>9               int p = add(6,5);<br>(gdb) p <amp-mathml layout="container" inline data-formula="\[rsp&lt;br&gt;\]"></amp-mathml>5 = (void </em>) 0x7fffffffe410<br>(gdb)<br>```</p>
+<h2 id="&#x53C2;&#x8003;"><a href="#&#x53C2;&#x8003;" class="headerlink" title="&#x53C2;&#x8003;"></a>&#x53C2;&#x8003;</h2><p><a href="https://wiki.ubuntu.org.cn/%E7%94%A8GDB%E8%B0%83%E8%AF%95%E7%A8%8B%E5%BA%8F" target="_blank" rel="noopener">&#x7528;GDB&#x8C03;&#x8BD5;&#x7A0B;&#x5E8F;</a></p>
 
 			  		
 			  		
@@ -1850,21 +1851,21 @@ amp-twitter {
 		  	
 			<nav id="article-nav">
 			  
-			  <a href="/2020/10/20/mq/rabbitmq-use/" id="article-nav-newer" class="article-nav-link-wrap">
+			  <a href="/2020/10/21/hexo/hexo-plugins/" id="article-nav-newer" class="article-nav-link-wrap">
 			    <strong class="article-nav-caption">Newer</strong>
 			    <div class="article-nav-title">
 			      
-			        RabbitMQ 使用
+			        Hexo 插件添加
 			      
 			    </div>
 			  </a>
 			  
 			  
-			  <a href="/2020/10/14/asm/asm-register/" id="article-nav-older" class="article-nav-link-wrap">
+			  <a href="/2020/10/17/cpp/cpp-configure/" id="article-nav-older" class="article-nav-link-wrap">
 			    <strong class="article-nav-caption">Older</strong>
 			    <div class="article-nav-title">
 			      
-			        汇编程序寄存器的理解
+			        GDB 调试
 			      
 			    </div>
 			  </a>
