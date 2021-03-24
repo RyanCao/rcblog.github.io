@@ -1,0 +1,1815 @@
+<!doctype html>
+<html ⚡>
+  <head>
+    <meta charset="utf-8">
+    <link rel="canonical" href="http://blog.rcant.com/2017/04/06/unity/unity-optimization/index.html" >
+    <title>Unity 优化 | Chester.Cao Blog</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+    <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style>
+    <noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+    <script async custom-element="amp-sidebar" src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js"></script>
+  	<script async custom-element="amp-social-share" src="https://cdn.ampproject.org/v0/amp-social-share-0.1.js"></script>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+    <script type="application/ld+json">
+		{
+			"@context": "http://schema.org",
+			"@type": "BlogPosting",
+			"headline": "Unity 优化",
+			
+			"description": "&lt;h2 id=&#34;引子&#34;&gt;&lt;a href=&#34;#引子&#34; class=&#34;headerlink&#34; title=&#34;引子&#34;&gt;&lt;/a&gt;引子&lt;/h2&gt;&lt;p&gt;个人记录备份&lt;/p&gt;",
+			
+			"mainEntityOfPage":{
+			    "@type":"WebPage",
+			    "@id":"http://blog.rcant.com/2017/04/06/unity/unity-optimization/"
+			},
+			"datePublished": "2017-04-06T06:40:07.000Z",
+			"dateModified": "2020-11-13T12:26:16.756Z",
+			
+			"image": {
+				"@type": "ImageObject",
+				"url": "\amp-dist\sample\sample-substituteTitleImage.png",
+				"width" : "1024",
+				"height" : "800"
+			},
+			
+			"author": {
+			    "@type": "Person",
+			    "name": "Chester.C"
+			},
+			"publisher": {
+			    "@type": "Organization",
+			    "name": "Chester.Cao Blog"
+			    
+			    ,
+			    "logo": {
+			      "@type": "ImageObject",
+			      "url": "http://blog.rcant.com\amp-dist\sample\sample-logo.png",
+			      "width": 600,
+			      "height": 60
+			    }
+			    
+			}
+		}
+	</script>
+	
+	<style amp-custom>
+		
+:root sub,
+:root sup {
+  vertical-align: baseline;
+}
+a {
+  -moz-transition: 0.7s;
+  -ms-transition: 0.7s;
+  -o-transition: 0.7s;
+  -webkit-transition: 0.7s;
+  color: #0379c4;
+  -webkit-transition: 0.7s;
+  -moz-transition: 0.7s;
+  -o-transition: 0.7s;
+  -ms-transition: 0.7s;
+  transition: 0.7s;
+  border: 0;
+  font-family: inherit;
+  font-size: 100%;
+  font-style: inherit;
+  font-weight: inherit;
+  margin: 0;
+  outline: 0;
+  padding: 0;
+  vertical-align: baseline;
+}
+a img {
+  border: none;
+}
+a:hover {
+  -moz-transition: 0.3s;
+  -ms-transition: 0.3s;
+  -o-transition: 0.3s;
+  -webkit-transition: 0.3s;
+  color: #31adfc;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -o-transition: 0.3s;
+  -ms-transition: 0.3s;
+  transition: 0.3s;
+}
+abbr,
+acronym,
+address,
+applet,
+big,
+blockquote,
+body,
+caption,
+cite,
+code,
+dd,
+del,
+dfn,
+div,
+dl,
+dt,
+em,
+fieldset,
+form,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+html,
+iframe,
+img,
+ins,
+kbd,
+label,
+legend,
+li,
+object,
+ol,
+p,
+pre,
+q,
+s,
+samp,
+small,
+span,
+strike,
+strong,
+sub,
+sup,
+table,
+tbody,
+td,
+tfoot,
+th,
+thead,
+tr,
+tt,
+ul,
+var {
+  border: 0;
+  font-family: inherit;
+  font-size: 100%;
+  font-style: inherit;
+  font-weight: inherit;
+  margin: 0;
+  outline: 0;
+  padding: 0;
+  vertical-align: baseline;
+}
+abbr {
+  cursor: help;
+  border-bottom: 1px dotted;
+  font-variant: normal;
+}
+acronym {
+  border-bottom: 1px dotted;
+  font-variant: normal;
+}
+body {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  background: #fff;
+  color: #34393a;
+  font-family: 'メイリオ', 'MS PGothic', sans-serif;
+  font-size: 102%;
+  font-wight: 500;
+  line-height: 2em;
+  text-rendering: optimizelegibility;
+}
+button::-moz-focus-inner,
+input::-moz-focus-inner,
+figure.highlight td,
+.post .entry-content figure.highlight th {
+  border: 0;
+  padding: 0;
+}
+caption,
+table,
+td,
+th {
+  vertical-align: middle;
+}
+caption,
+td,
+th,
+.table-align-left {
+  text-align: left;
+}
+code,
+figure.highlight .code,
+pre {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: subpixel-antialiased;
+}
+code,
+kbd,
+pre,
+samp {
+  font-family: Menlo, Consolas, Monaco, Consolas, monospace;
+}
+code,
+pre {
+  background-color: #f5f2f0;
+  margin: 0 3px;
+  padding: 1px 8px;
+}
+code,
+pre,
+samp {
+  font-size: 0.9em;
+  letter-spacing: 0.05em;
+}
+del {
+  text-decoration: line-through;
+}
+#article-nav {
+  clear: both;
+  margin: 1em 20px;
+  position: relative;
+  
+}
+#article-nav:after {
+  clear: both;
+  content: "";
+  display: table;
+}
+#article-nav:before {
+  content: "";
+  display: table;
+  -webkit-border-radius: 50%;
+  -webkit-box-shadow: 0 1px 2px #fff;
+  border-radius: 50%;
+  -webkit-box-shadow: 0 1px 2px #fff;
+  box-shadow: 0 1px 2px #fff;
+  content: "";
+  height: 8px;
+  left: 50%;
+  margin-left: -4px;
+  margin-top: -4px;
+  position: absolute;
+  top: 50%;
+  width: 8px;
+}
+#article-nav-newer {
+  float: left;
+  padding-right: 20px;
+  text-align: right;
+}
+#article-nav-newer .article-nav-caption {
+  margin-right: -2px;
+}
+#article-nav-older {
+  float: right;
+  padding-left: 20px;
+  text-align: left;
+}
+#container {
+  margin-left: auto;
+  margin-right: auto;
+}
+#footer {
+  background-color: #0379c4;
+  display: block;
+  font-size: 70%;
+  line-height: 1.6;
+  padding: 20px 0;
+}
+#footer:after {
+  content: ".";
+  display: block;
+  font-size: 0;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+.moreRead:before,
+.useFlame,
+kbd,
+.copyright,
+.table-align-center {
+  text-align: center;
+}
+.blog-title a,
+.nav,
+.nav-icon,
+.loadingPutAbsolute,
+.moreRead:before,
+.titleWrapper {
+  position: relative;
+}
+#header {
+  display: block;
+  margin: 0.5em 0 1em;
+  position: static;
+  text-align: center;
+  position: relative;
+}
+#header:after {
+  display: block;
+  font-size: 0;
+  height: 0;
+}
+#header:after,
+.clearfix:after,
+.nav ul:after {
+  clear: both;
+  visibility: hidden;
+}
+#main {
+  margin-bottom: 3em;
+  padding-left: 0;
+}
+.useFlame,
+kbd {
+  display: inline-block;
+}
+#page-nav a,
+.photoby,
+kbd {
+  color: #4c5355;
+}
+* html .clearfix {
+  height: 1%;
+}
+.alignleft,
+.left {
+  float: left;
+}
+.alignright,
+.right {
+  float: right;
+}
+.article-devider {
+  border: 0;
+  border-top: 5px solid #ddd;
+  margin: 5em auto;
+  width: 8%;
+}
+.article-nav-caption,
+.nav {
+  text-transform: uppercase;
+}
+.article-nav-caption {
+  color: #ddd;
+  font-weight: 700;
+  letter-spacing: 2px;
+  line-height: 1em;
+}
+.article-nav-link-wrap,
+a {
+  text-decoration: none;
+}
+.article-nav-link-wrap {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #999;
+  display: block;
+  margin-top: 0;
+  text-align: center;
+  width: 50%;
+}
+.article-nav-link-wrap:hover {
+  color: #bfbfbf;
+}
+.article-nav-title {
+  font-size: 0.85em;
+  line-height: 1.6em;
+  margin-top: 0.5em;
+}
+.nav ul {
+  display: block;
+}
+.nav ul li {
+  display: block;
+}
+.nav ul li a {
+  display: block;
+}
+.authorCap {
+  font-size: 1.5em;
+}
+.authorReading {
+  font-size: 0.7em;
+}
+.site-author-info-wrapper {
+  padding: 20px;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -o-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+.gravatar-wrapper {
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -o-box-flex: 1;
+  box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+.gravatar-area {
+  margin: 0 20px 0 0;
+}
+.authorCap-wrapper {
+  -webkit-box-flex: 3;
+  -moz-box-flex: 3;
+  -o-box-flex: 3;
+  box-flex: 3;
+  -webkit-flex: 3;
+  -ms-flex: 3;
+  flex: 3;
+}
+.blog-title {
+  border-bottom: none;
+  float: none;
+  font-size: 120%;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  margin: 10px 0;
+  padding-bottom: 0.2em;
+}
+.blog-title a {
+  left: 0.1em;
+  padding: 0.4em 0;
+}
+.circle {
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+}
+.clearfix:after {
+  content: ".";
+  display: block;
+  height: 0;
+}
+.copyright-title {
+  font-size: 1.2em;
+}
+.copyright-tool {
+  text-align: center;
+  font-family: 'メイリオ', 'MS PGothic', sans-serif;
+  margin: 1em 0 0 0;
+}
+h6.tag,
+h6.categories {
+  color: #0379c4;
+  font-size: 110%;
+}
+.entry-content {
+  width: 93.75%;
+  margin: 0 auto;
+  font-size: 100%;
+}
+.entry-content h2,
+.entry-content h3 {
+  text-align: center;
+}
+.entry-content h1 {
+  font-size: 170%;
+  line-height: 1.5;
+  margin: 1em 0 0.8em;
+}
+.entry-content h2,
+.entry-content h3,
+.entry-content h4,
+.entry-content h5,
+.entry-content h6 {
+  line-height: 1.5;
+  margin: 1em 0 0.8em;
+}
+.entry-content h2 {
+  border-bottom: 2px solid #0379c4;
+  color: #0379c4;
+  font-size: 160%;
+  margin: 1.8em 0 0.5em;
+  padding: 0.8em 0;
+}
+.entry-content h3 {
+  color: #0379c4;
+  font-size: 150%;
+  margin: 1.8em 0 0.5em;
+  padding: 0.8em 0.5em;
+}
+.entry-content h4 {
+  border-left: 2px solid #0379c4;
+  color: #0379c4;
+  font-size: 120%;
+  margin: 1.8em 0 0.5em;
+  padding-left: 1.2em;
+  text-align: left;
+}
+.entry-content h5,
+.entry-content h6 {
+  color: #0379c4;
+  margin: 1.8em 0 0.5em;
+  text-align: left;
+}
+.entry-content h5 {
+  font-size: 110%;
+  padding-left: 1.2em;
+}
+.entry-content h6 {
+  font-size: 100%;
+}
+.entry-content p {
+  font-size: 1em;
+  letter-spacing: 0;
+  line-height: 2.2em;
+  margin: 1.8em 0;
+}
+.entry-content p em {
+  background-color: #faf7dc;
+  color: #736e4f;
+  font-style: normal;
+  margin: 0 2px;
+  padding: 3px;
+}
+.entry-content p strong {
+  color: #734f4f;
+  font-style: normal;
+  margin: 0 2px;
+  padding: 3px;
+  background-color: #fadcdc;
+}
+.entry-content dl,
+.entry-content ol,
+.entry-content ul {
+  margin: 1.8em 0 1.8em 1em;
+  padding: 0;
+}
+.entry-content ol p,
+.entry-content ul p,
+.entry-content dl p {
+  margin: 0;
+}
+.entry-content dl li,
+.entry-content ol li {
+  line-height: 1.8em;
+  margin: 0.5em;
+}
+.entry-content ol {
+  list-style: decimal ;
+}
+.entry-content ol li {
+  font-size: 1em;
+  margin: 0.2em 0 0.2em 2.6em;
+  padding: 0 0 0 0.1em;
+  position: relative;
+}
+.entry-content ol p:not(:first-child),
+.entry-content ul p:not(:first-child) {
+  color: #4c5355;
+}
+.entry-content ol {
+  padding: 0 /* paddingキャンセル */;
+  margin: 0 /* marginキャンセル */;
+  list-style: none /* olがはき出す数字を消す */;
+}
+.entry-content ol {
+  counter-reset: number /* 名前を付けたカウンターをリセット */;
+  list-style: none /* olが数字を付けることをキャンセル */;
+  margin: 0;
+  padding: 0;
+}
+.entry-content ol li:before {
+  counter-increment: number /* 任意の名前を付けて！ */;
+  content: counter(number) /* 名前を付けたカウンターを呼び出し */;
+  position: absolute;
+  left: -2.2em;
+  top: 0.05em;
+  display: inline-block;
+  margin: 0 0.5em 0 0;
+  padding: 0;
+  float: left;
+  background: #6abcf0;
+  width: 1.6em;
+  height: 1.6em;
+  border-radius: 50%;
+  color: #fff;
+  text-align: center;
+  line-height: 1.6em;
+}
+.entry-content ol li p:first-child {
+  display: inline-block;
+  line-height: 1.6em;
+  height: 1.6em;
+  line-height: 1.6em;
+}
+.entry-content ul {
+  list-style: none;
+}
+.entry-content ul li {
+  font-size: 1em;
+  margin: 0.2em 0 0.2em 0.5em;
+  padding: 0 0 0 0.2em;
+  position: relative;
+}
+.entry-content ul li::after {
+  display: block;
+  content: '';
+  position: absolute;
+  top: 0.4em;
+  left: -1em;
+  width: 8px;
+  height: 8px;
+  border-bottom: 3px solid #ddd;
+}
+.entry-content dl li ol,
+.entry-content dl li ul {
+  margin-bottom: 2em;
+}
+.entry-content ol li ol,
+.entry-content ol li ul {
+  margin-bottom: 2em;
+}
+.entry-content ul li ol,
+.entry-content ul li ul {
+  margin-bottom: 2em;
+}
+.entry-content blockquote p:last-child,
+.entry-content .archive .post {
+  margin-bottom: 0;
+}
+.entry-content blockquote {
+  margin: 1.8em 0;
+  padding: 0.5em 20px;
+  position: relative;
+  background-color: #f6f6f4;
+}
+.entry-content blockquote p {
+  margin: 1em 0;
+}
+.entry-content blockquote:before {
+  color: #dfdfd8;
+  content: "”";
+  font-family: sans-serif;
+  font-size: 600%;
+  line-height: 1em;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 1;
+}
+.entry-content blockquote blockquote:before {
+  content: "";
+}
+.entry-content hr {
+  border: 0;
+  border-top: 3px solid #ddd;
+  margin: 3em auto;
+  width: 20%;
+}
+.entry-content img,
+.entry-content video {
+  display: block;
+  height: auto;
+  margin: auto;
+  max-width: 100%;
+}
+.entry-content pre {
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding;
+  background: #f5f2f0;
+  -webkit-background-clip: padding;
+  -moz-background-clip: padding;
+  background-clip: padding-box;
+  border: 0;
+  font-size: 100%;
+  line-height: 1.3;
+  overflow-x: auto;
+  padding: 15px;
+}
+.entry-content table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  font-size: 0.85em;
+  margin: 1.8em auto;
+  width: auto;
+}
+.entry-content td {
+  border: 1px solid #c4c4c4;
+  line-height: 1.5em;
+  padding: 0.6em 0.4em;
+}
+.entry-content th {
+  background-color: #fdf7f4;
+  border: 1px solid #c4c4c4;
+  padding: 0.6em 0.4em;
+}
+.entry-content iframe {
+  width: 100% ;
+}
+.entry-content figure.highlight {
+  margin: 1.8em 0;
+}
+.entry-content figure.highlight td {
+  border: 0;
+  font-size: 1.1em;
+  padding: 0;
+}
+.entry-content figure.highlight td.code {
+  border-left: 1px solid #eceae8;
+}
+.entry-meta-header {
+  font-size: 87%;
+  left: -200px;
+  margin-bottom: 1em;
+  position: static;
+  top: 0.5em;
+  width: auto;
+  text-align: center;
+}
+.entry-meta-header .date {
+  font-family: 'メイリオ', 'MS PGothic', sans-serif;
+}
+.entry-meta-header .meta-elements {
+  display: inline;
+  margin-bottom: 0.5em;
+  margin-right: 1em;
+}
+.gist {
+  background: #fff;
+  border: 1px solid color-gutter;
+  color: #918577;
+  line-height: 1.6;
+  margin-top: 15px;
+  overflow: auto;
+  padding: 7px 15px;
+}
+.gist .gist-file {
+  border: none;
+  font-family: inherit;
+  font-size: 1em;
+  letter-spacing: 0;
+  margin: 0;
+}
+.gist .gist-file .gist-data {
+  background: 0 0;
+  border-bottom: none;
+}
+.gist .gist-file .gist-data pre {
+  font-family: Menlo, Consolas, Monaco, Consolas, monospace;
+  padding: 0 ;
+}
+.gist .gist-file .gist-meta {
+  background: 0 0;
+  color: #918577;
+  font-size: 100%;
+  margin-top: 5px;
+  padding: 0;
+}
+.gist .gist-file .gist-meta a {
+  color: #918577;
+}
+.gist .gist-file .gist-meta a:visited {
+  color: #918577;
+}
+.line {
+  font-size: 95%;
+  letter-spacing: 0.05em;
+  line-height: 2em;
+}
+.post {
+  font-size: 90%;
+  margin-bottom: 5em;
+  position: relative;
+}
+.post .entry-header {
+  margin-bottom: 2em;
+}
+.post .entry-title {
+  font-size: 130%;
+  margin: 0;
+}
+.post h1 {
+  font-size: 1.2em;
+}
+.table-align-right {
+  text-align: right;
+}
+figure.highlight {
+  background: #fff;
+  border: 1px solid color-gutter;
+  font-size: 0.9em;
+  line-height: 2;
+  margin: 2.2em 0;
+  overflow: auto;
+  padding: 7px 10px;
+  position: relative;
+}
+figure.highlight .code {
+  border-left: 1px solid #fff;
+  color: #918577;
+}
+figure.highlight .gutter {
+  color: #d4d0cd;
+  padding-right: 10px;
+  text-align: left;
+}
+figure.highlight figcaption {
+  color: #d4d0cd;
+  margin-bottom: 5px;
+}
+figure.highlight figcaption a {
+  position: absolute;
+  right: 15px;
+}
+figure.highlight pre {
+  background: 0 0;
+  border: none;
+  margin: 0;
+  padding: 8px;
+}
+figure.highlight table {
+  border-spacing: 0;
+  margin: 0;
+}
+.post .entry-content figure.highlight table {
+  border-spacing: 0;
+  margin: 0;
+}
+figure.highlight th {
+  border: 0;
+  font-weight: 400;
+  padding: 0;
+}
+h1 a,
+h2 a,
+h3 a,
+h4 a,
+h5 a,
+h6 a {
+  color: #000;
+  text-decoration: none;
+}
+h1 a:hover,
+h2 a:hover,
+h3 a:hover,
+h4 a:hover,
+h5 a:hover,
+h6 a:hover {
+  color: #0379c4;
+}
+img.responsive-img {
+  height: auto;
+  max-width: 100%;
+}
+video.responsive-video {
+  height: auto;
+  max-width: 100%;
+}
+kbd {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-border-radius: 3px;
+  -webkit-box-shadow: 0 0 10px #e2e2e2 inset, 0 1px 0 #c3c3c3, 0 2px 0 #c9c9c9, 0 3px 3px #333;
+  -webkit-font-smoothing: subpixel-antialiased;
+  background: #fff;
+  border-bottom: 1px solid #e6e6e6;
+  border-left: 1px solid #fff;
+  border-radius: 3px;
+  border-right: 1px solid #e6e6e6;
+  border-top: 1px solid #fff;
+  -webkit-box-shadow: 0 0 10px #e8e8e8 inset, 0 1px 0 #c3c3c3, 0 2px 0 #c9c9c9, 0 3px 3px #333;
+  box-shadow: 0 0 10px #e8e8e8 inset, 0 1px 0 #c3c3c3, 0 2px 0 #c9c9c9, 0 3px 3px #333;
+  font-size: 0.85em;
+  line-height: 1;
+  margin: 5px;
+  padding: 6px 8px 3px;
+  text-shadow: 0 1px 0 #fff;
+  vertical-align: baseline;
+  
+}
+pre .addition,
+pre .css .tag,
+pre .keyword,
+pre .method,
+pre .nginx .title,
+pre .request,
+pre .status,
+pre .winutils {
+  color: #1a9ca1;
+}
+pre .attr_selector,
+pre .cdata,
+pre .clojure .title,
+pre .diff .change,
+pre .important {
+  color: #816ec5;
+}
+pre .preprocessor {
+  color: #816ec5;
+}
+pre .preprocessor .keyword {
+  color: #816ec5;
+}
+pre .shebang,
+pre .special,
+pre .subst {
+  color: #816ec5;
+}
+pre .symbol {
+  color: #816ec5;
+}
+pre .symbol .string {
+  color: #816ec5;
+}
+pre .attribute,
+pre .class .title,
+pre .constant,
+pre .haskell .type,
+pre .lisp .body,
+pre .parent,
+pre .smalltalk .number,
+pre .variable {
+  color: #c38700;
+}
+pre .built_in,
+pre .chunk,
+pre .decorator,
+pre .id,
+pre .identifier,
+pre .literal,
+pre .localvars,
+pre .title,
+pre .vhdl,
+pre .deletion {
+  color: #b42147;
+}
+pre .command,
+pre .hexcolor,
+pre .number,
+pre .phpdoc,
+pre .regexp,
+pre .string,
+pre .tag .value,
+pre .tex .formula {
+  color: #6c9a1c;
+}
+pre .comment,
+pre .diff .header,
+pre .doctype,
+pre .javadoc,
+pre .lisp .string,
+pre .pi,
+pre .template_comment {
+  color: #d4d0cd;
+  font-wight: normal;
+}
+sub {
+  bottom: -0.2em;
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+}
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  top: -0.5em;
+}
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+td.code,
+.article-tag-list {
+  padding: 0;
+}
+.entry-content .toc {
+  background: #fff;
+  padding: 1em 1em 1em 0;
+  margin: 2.8em 0em;
+  border: 1px solid #98d1f5;
+}
+.entry-content .toc ul:first-child {
+  border-top: none;
+}
+.entry-content .toc ul {
+  margin-bottom: 0;
+  padding: 0;
+  margin: 0;
+  border-top: 1px dotted #98d1f5;
+}
+.entry-content .toc ul ul,
+.entry-content .toc ul ol {
+  margin-bottom: 0;
+  padding: 0;
+  margin: 0 0 0 0.8em;
+}
+.entry-content .toc ul li {
+  padding: 0;
+  margin: 0 0 0 1em;
+  border-top: 1px dotted #98d1f5;
+}
+.entry-content .toc ul li a {
+  display: block;
+  padding: 10px 8px;
+  color: #34393a;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -o-transition: 0.3s;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -o-transition: 0.3s;
+  -ms-transition: 0.3s;
+  transition: 0.3s;
+}
+.entry-content .toc ul li a:hover {
+  color: #0379c4;
+  background-color: #98d1f5;
+}
+.entry-content .toc ul li a:before {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+  margin-right: 0.8em;
+}
+.entry-content .toc ul li ul,
+.entry-content .toc ul li ol {
+  margin-bottom: 0;
+  padding: 0;
+  margin: 0 0 0 0.8em;
+}
+.entry-content .toc ul li ul li a,
+.entry-content .toc ul li ol li a {
+  padding: 7px 10px;
+  font-size: 0.9em;
+}
+.entry-content .toc ul li ul li a:before,
+.entry-content .toc ul li ol li a:before {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+  margin-right: 0.6em;
+}
+.entry-content .toc ul li:first-child {
+  border-top: none;
+}
+.entry-content .toc ul li::after,
+.entry-content .toc ul li::before {
+  content: normal;
+}
+header {
+  height: 60px;
+}
+header .nav-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  -webkit-box-pack: justify;
+  -moz-box-pack: justify;
+  -o-box-pack: justify;
+  -ms-flex-pack: justify;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+}
+header .left-nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -o-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  -webkit-box-pack: start;
+  -moz-box-pack: start;
+  -o-box-pack: start;
+  -ms-flex-pack: start;
+  -webkit-justify-content: flex-start;
+  justify-content: flex-start;
+  font-size: 20px;
+  margin-left: 0;
+  font-weight: 300;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  -webkit-box-pack: start;
+  -moz-box-pack: start;
+  -o-box-pack: start;
+  -ms-flex-pack: start;
+  -webkit-justify-content: flex-start;
+  justify-content: flex-start;
+  -webkit-box-flex: 1;
+  -ms-flex: 1 1 auto;
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -o-box-flex: 1;
+  box-flex: 1;
+  -webkit-flex: 1 1 auto;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  text-align: left;
+  width: auto;
+  font-size: 15px;
+}
+header .right {
+  font-size: 15px;
+}
+header .alt {
+  padding: 0;
+  text-align: right;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -webkit-box-align: stretch;
+  -ms-flex-align: stretch;
+  -webkit-box-align: stretch;
+  -moz-box-align: stretch;
+  -o-box-align: stretch;
+  -ms-flex-align: stretch;
+  -webkit-align-items: stretch;
+  align-items: stretch;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  -o-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+.header-title a {
+  padding: 0 0 0 20px;
+  height: 60px;
+  line-height: 60px;
+  font-size: 20px;
+  color: #000;
+  letter-spacing: 0.2em;
+}
+button {
+  -webkit-box-align: start;
+  -moz-box-align: start;
+  -o-box-align: start;
+  -ms-flex-align: start;
+  -webkit-align-items: flex-start;
+  align-items: flex-start;
+  text-align: center;
+  cursor: default;
+  color: buttontext;
+  background-color: buttonface;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 2px 6px 3px;
+  border-width: 2px;
+  border-style: outset;
+  border-color: buttonface;
+  -webkit-border-image: initial;
+  -moz-border-image: initial;
+  -o-border-image: initial;
+  border-image: initial;
+  text-rendering: auto;
+  color: initial;
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-transform: none;
+  text-indent: 0px;
+  text-shadow: none;
+  display: inline-block;
+  text-align: start;
+  margin: 0em 0em 0em 0em;
+  font: 11px system-ui;
+  -webkit-writing-mode: horizontal-tb;
+  -webkit-appearance: button;
+}
+.__web-inspector-hide-shortcut__ {
+  visibility: hidden ;
+}
+.hamburger {
+  display: inline-block;
+  background-color: transparent;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-3 -6 24 24\"><path fill=\"#4A4A4A\" d=\"M0 12h18v-2H0v2M0 7h18V5H0v2M0 0v2h18V0H0\"/></svg>");
+  background-repeat: no-repeat;
+  -webkit-background-size: 30px 24px;
+  -moz-background-size: 30px 24px;
+  background-size: 30px 24px;
+  background-position: center center;
+  border: none;
+  margin: 0;
+  padding: 0;
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  -ms-flex-item-align: center;
+  -ms-grid-row-align: center;
+  -webkit-align-self: center;
+  align-self: center;
+  -ms-flex-item-align: center;
+}
+.tab {
+  position: relative;
+  color: #424242;
+  padding: 6px;
+  margin: 0 4px;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: 400;
+  -webkit-transition: 0.1s ease color;
+  -webkit-transition: 0.1s ease color;
+  -moz-transition: 0.1s ease color;
+  -o-transition: 0.1s ease color;
+  -ms-transition: 0.1s ease color;
+  transition: 0.1s ease color;
+}
+amp-sidebar {
+  width: 200px;
+}
+amp-sidebar ul {
+  padding: 10px 0;
+}
+amp-sidebar li a {
+  display: block;
+  padding: 10px 20px;
+}
+.title-cover {
+  background-color: #0379c4;
+  color: #fff;
+  padding: 30px 15px 20px 15px;
+  text-align: center;
+}
+.title-cover a {
+  color: #fff;
+}
+.title-cover a:hover {
+  color: #fff;
+}
+.meta-content {
+  background-color: #e9e9e9;
+  padding: 20px 0;
+}
+.meta-wrapper {
+  margin: 20px 20px;
+  padding: 20px 20px;
+  background-color: #fff;
+}
+#footer .homeLink,
+#footer .copyright-tool {
+  margin: 20px;
+}
+.copyright-tool {
+  color: #fff;
+  font-size: 0.5em;
+}
+.social-share {
+  margin: 10px 0 0 0;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  -o-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+.social-share amp-social-share {
+  margin: 5px;
+}
+#totop {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  font-size: 1.2em;
+  z-index: 995;
+  line-height: 1.8em;
+}
+#totop a {
+  background: rgba(152,209,245,0.6);
+  text-decoration: none;
+  color: #fff;
+  padding: 0;
+  text-align: center;
+  display: block;
+  width: 1.2em;
+  height: 2.2em;
+  line-height: 2em;
+  letter-spacing: 0;
+  position: relative;
+  display: inline-block;
+  padding: 0 0 0 16px;
+  vertical-align: middle;
+  text-decoration: none;
+  font-size: 15px;
+}
+#totop a:before,
+#totop a:after {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  content: "";
+  vertical-align: middle;
+}
+#totop a:before {
+  left: 12px;
+  width: 8px;
+  height: 8px;
+  border-top: 2px solid #fff;
+  border-right: 2px solid #fff;
+  -webkit-transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+#totop a:hover {
+  text-decoration: none;
+  background: #0379c4;
+  color: #fff;
+  line-height: 2.3em;
+}
+.site-author-desc {
+  font-size: 1.2em;
+  line-height: 2em;
+  margin-top: 1em;
+}
+.site-author-info {
+  background-color: #fff;
+  margin: 20px;
+}
+.gravatar-area {
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+}
+.article-tag,
+.article-tag-list,
+.article-categories,
+.article-categories-list {
+  padding: 0;
+  margin: 0;
+}
+.article-categories {
+  margin-bottom: 1.6em;
+}
+.article-tag-list li,
+.article-categories-list li {
+  list-style: none;
+  display: inline-block;
+  padding: 0;
+  margin: 0.2em 0;
+}
+.article-tag-list li a,
+.article-categories-list li a {
+  padding: 0.5em 0.6em;
+  margin: 0.4em 0em;
+  background-color: #f5f2f0;
+  color: #34393a;
+}
+.article-tag-list li a:before,
+.article-categories-list li a:before {
+  content: "#";
+}
+.article-tag-list li a:hover,
+.article-categories-list li a:hover {
+  color: #fff;
+  background-color: #0498f6;
+}
+.homeLink,
+.htmlPageLink {
+  font-weight: 700;
+  -moz-transition: 0.7s;
+  -ms-transition: 0.7s;
+  -o-transition: 0.7s;
+  -webkit-transition: 0.7s;
+  -webkit-transition: 0.7s;
+  -moz-transition: 0.7s;
+  -o-transition: 0.7s;
+  -ms-transition: 0.7s;
+  transition: 0.7s;
+  padding: 0.4em 0;
+}
+.homeLink a,
+.htmlPageLink a {
+  color: #fff;
+  display: block;
+  padding: 1em;
+  text-align: center;
+}
+.homeLink:hover,
+.htmlPageLink:hover {
+  -moz-transition: 0.3s;
+  -ms-transition: 0.3s;
+  -o-transition: 0.3s;
+  -webkit-transition: 0.3s;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -o-transition: 0.3s;
+  -ms-transition: 0.3s;
+  transition: 0.3s;
+}
+.homeLink {
+  font-size: 120%;
+  background: #18a3fb;
+}
+.homeLink:hover {
+  background: #4ab7fc;
+}
+.htmlPageLink {
+  font-size: 110%;
+  background: #18a3fb;
+}
+.htmlPageLink:hover {
+  background: #4ab7fc;
+}
+.googleAdPost,
+.ad-footer,
+amp-instagram,
+amp-vimeo,
+amp-video,
+amp-youtube,
+amp-twitter {
+  margin: 2.8em auto;
+}
+@media (min-width: 800px) {
+  .entry-header,
+  .entry-title,
+  .entry-content,
+  .article-nav {
+    width: 780px;
+    margin: 0 auto;
+  }
+  .nav-container {
+    width: 800px;
+    margin: 0 auto;
+  }
+  .meta-wrapper {
+    width: 760px;
+    margin: 20px auto;
+  }
+  .site-author-info {
+    width: 760px;
+    margin: 20px auto;
+  }
+  #footer .homeLink,
+  #footer .copyright-tool {
+    width: 760px;
+    margin: 20px auto;
+  }
+}
+
+	</style>
+	
+  </head>
+  <body>
+  	
+  	
+  	<!-- google analytics -->
+  	
+  	
+  	
+  	<!-- menu -->
+  	<header>
+  		<div class="nav-container">
+	  		<div class="left-nav">
+	  			<div class="header-title">
+	  				<a href="/">Chester.Cao Blog</a>
+	  			</div>
+	  		</div>
+	  		<div class="right alt">
+	  			<button on='tap:sidebar.toggle' class="tab hamburger"></button>
+	  		</div>
+	  	</div>
+    </header>
+  	
+  	
+  	<!-- sidebar -->
+  	<amp-sidebar id='sidebar' layout="nodisplay" side="left">
+      <ul>
+      	<!--
+      		To use the menu, add the menu option of _config.yml.
+      		
+      		generator_amp:
+      		  theme:
+			    menu:
+			      diary: /categories/diary/
+			      gallery: /categories/archive-gallery
+			      archives: /archives
+      	-->
+        <li><a href="/">Home</a></li>
+        
+      </ul>
+    </amp-sidebar>
+  	
+  	
+  	<!-- container -->
+  	<div id="container">
+	  	<div id="main">
+		    <article id="post-unity/unity-optimization" class="post">
+		    
+		    	<!-- entry title -->
+				<div class="title-cover">
+					<div class="entry-header">
+						
+						  <h1 class="article-title entry-title" itemprop="name">
+						    <a href="http://blog.rcant.com/2017/04/06/unity/unity-optimization/" target="_blank" itemprop="url">Unity 优化</a>
+						  </h1>
+						
+					</div>
+					
+					<!-- datePublished -->
+					<div class="entry-meta-header">
+						<span class="meta-elements date">
+							<time datetime="2017-04-06" itemprop="datePublished">2017-04-06</time>
+						</span>
+					</div>
+				</div>
+				
+				<!-- entry content -->
+			    <div class="entry-content ecp">
+			    
+			    
+			    	<!-- social share button -->
+			    	<!--
+			      		To use the facebook button, add the facebook_app_id option of _config.yml.
+			      		
+			      		generator_amp:
+			      		  theme:
+    						facebook_app_id: 123456789
+			      	-->
+			    	<div class="social-share">
+			    		<amp-social-share type="twitter" width="40" height="40"></amp-social-share>
+			    		
+			    		<!--
+			    		<amp-social-share type="pinterest" width="40" height="40"></amp-social-share>
+			    		-->
+			    		<amp-social-share type="gplus" width="40" height="40"></amp-social-share>
+			    		<!--
+			    		<amp-social-share type="tumblr" width="40" height="40"></amp-social-share>
+			    		<amp-social-share type="whatsapp" width="40" height="40"></amp-social-share>
+			    		<amp-social-share type="linkedin" width="40" height="40"></amp-social-share>
+			    		<amp-social-share type="email" width="40" height="40"></amp-social-share>
+			    		-->
+			    	</div>
+			    	
+			    	
+			    	<!-- content -->
+			  		<h2 id="&#x5F15;&#x5B50;"><a href="#&#x5F15;&#x5B50;" class="headerlink" title="&#x5F15;&#x5B50;"></a>&#x5F15;&#x5B50;</h2><p>&#x4E2A;&#x4EBA;&#x8BB0;&#x5F55;&#x5907;&#x4EFD;</p>
+<a id="more"></a>
+<h2 id="&#x5F71;&#x54CD;&#x6027;&#x80FD;&#x7684;&#x56E0;&#x7D20;"><a href="#&#x5F71;&#x54CD;&#x6027;&#x80FD;&#x7684;&#x56E0;&#x7D20;" class="headerlink" title="&#x5F71;&#x54CD;&#x6027;&#x80FD;&#x7684;&#x56E0;&#x7D20;"></a>&#x5F71;&#x54CD;&#x6027;&#x80FD;&#x7684;&#x56E0;&#x7D20;</h2><p>&#x9996;&#x5148;&#xFF0C;&#x6211;&#x4EEC;&#x5F97;&#x4E86;&#x89E3;&#xFF0C;&#x5F71;&#x54CD;&#x6E38;&#x620F;&#x6027;&#x80FD;&#x7684;&#x56E0;&#x7D20;&#x54EA;&#x4E9B;&#xFF0C;&#x624D;&#x80FD;&#x5BF9;&#x75C7;&#x4E0B;&#x836F;&#x3002;&#x5BF9;&#x4E8E;&#x4E00;&#x4E2A;&#x6E38;&#x620F;&#x6765;&#x8BF4;&#xFF0C;&#x6709;&#x4E24;&#x79CD;&#x4E3B;&#x8981;&#x7684;&#x8BA1;&#x7B97;&#x8D44;&#x6E90;&#xFF1A;CPU&#x548C;GPU&#x3002;&#x5B83;&#x4EEC;&#x4F1A;&#x4E92;&#x76F8;&#x5408;&#x4F5C;&#xFF0C;&#x6765;&#x8BA9;&#x6211;&#x4EEC;&#x7684;&#x6E38;&#x620F;&#x53EF;&#x4EE5;&#x5728;&#x9884;&#x671F;&#x7684;&#x5E27;&#x7387;&#x548C;&#x5206;&#x8FA8;&#x7387;&#x4E0B;&#x5DE5;&#x4F5C;&#x3002;CPU&#x8D1F;&#x8D23;&#x5176;&#x4E2D;&#x7684;&#x5E27;&#x7387;&#xFF0C;GPU&#x4E3B;&#x8981;&#x8D1F;&#x8D23;&#x5206;&#x8FA8;&#x7387;&#x76F8;&#x5173;&#x7684;&#x4E00;&#x4E9B;&#x4E1C;&#x897F;&#x3002;</p>
+<p>&#x603B;&#x7ED3;&#x8D77;&#x6765;&#xFF0C;&#x4E3B;&#x8981;&#x7684;&#x6027;&#x80FD;&#x74F6;&#x9888;&#x5728;&#x4E8E;&#xFF1A;</p>
+<h3 id="CPU"><a href="#CPU" class="headerlink" title="CPU"></a>CPU</h3><ul>
+<li>&#x8FC7;&#x591A;&#x7684;Draw Calls</li>
+<li>&#x590D;&#x6742;&#x7684;&#x811A;&#x672C;&#x6216;&#x8005;&#x7269;&#x7406;&#x6A21;&#x62DF;</li>
+</ul>
+<h3 id="&#x9876;&#x70B9;&#x5904;&#x7406;"><a href="#&#x9876;&#x70B9;&#x5904;&#x7406;" class="headerlink" title="&#x9876;&#x70B9;&#x5904;&#x7406;"></a>&#x9876;&#x70B9;&#x5904;&#x7406;</h3><ul>
+<li>&#x8FC7;&#x591A;&#x7684;&#x9876;&#x70B9;</li>
+<li>&#x8FC7;&#x591A;&#x7684;&#x9010;&#x9876;&#x70B9;&#x8BA1;&#x7B97;</li>
+</ul>
+<h3 id="&#x50CF;&#x7D20;&#xFF08;Fragment&#xFF09;&#x5904;&#x7406;-&#x3010;GPU&#x3011;"><a href="#&#x50CF;&#x7D20;&#xFF08;Fragment&#xFF09;&#x5904;&#x7406;-&#x3010;GPU&#x3011;" class="headerlink" title="&#x50CF;&#x7D20;&#xFF08;Fragment&#xFF09;&#x5904;&#x7406; &#x3010;GPU&#x3011;"></a>&#x50CF;&#x7D20;&#xFF08;Fragment&#xFF09;&#x5904;&#x7406; &#x3010;GPU&#x3011;</h3><ul>
+<li>&#x8FC7;&#x591A;&#x7684;fragment&#xFF0C;overdraws</li>
+<li>&#x8FC7;&#x591A;&#x7684;&#x9010;&#x50CF;&#x7D20;&#x8BA1;&#x7B97;</li>
+</ul>
+<h3 id="&#x5E26;&#x5BBD;"><a href="#&#x5E26;&#x5BBD;" class="headerlink" title="&#x5E26;&#x5BBD;"></a>&#x5E26;&#x5BBD;</h3><ul>
+<li>&#x5C3A;&#x5BF8;&#x5F88;&#x5927;&#x4E14;&#x672A;&#x538B;&#x7F29;&#x7684;&#x7EB9;&#x7406;</li>
+<li>&#x5206;&#x8FA8;&#x7387;&#x8FC7;&#x9AD8;&#x7684;framebuffer</li>
+</ul>
+<h2 id="CPU-1"><a href="#CPU-1" class="headerlink" title="CPU"></a>CPU</h2><blockquote>
+<p>&#x5BF9;&#x4E8E;CPU&#x6765;&#x8BF4;&#xFF0C;&#x9650;&#x5236;&#x5B83;&#x7684;&#x4E3B;&#x8981;&#x662F;&#x6E38;&#x620F;&#x4E2D;&#x7684;Draw Calls&#x3002;&#x90A3;&#x4E48;&#x4EC0;&#x4E48;&#x662F;Draw Call&#x5462;&#xFF1F;&#x5982;&#x679C;&#x4F60;&#x5B66;&#x8FC7;OpenGL&#xFF0C;&#x90A3;&#x4E48;&#x4F60;&#x4E00;&#x5B9A;&#x8FD8;&#x8BB0;&#x5F97;&#x5728;&#x6BCF;&#x6B21;&#x7ED8;&#x56FE;&#x524D;&#xFF0C;&#x6211;&#x4EEC;&#x90FD;&#x9700;&#x8981;&#x5148;&#x51C6;&#x5907;&#x597D;&#x9876;&#x70B9;&#x6570;&#x636E;&#xFF08;&#x4F4D;&#x7F6E;&#x3001;&#x6CD5;&#x7EBF;&#x3001;&#x989C;&#x8272;&#x3001;&#x7EB9;&#x7406;&#x5750;&#x6807;&#x7B49;&#xFF09;&#xFF0C;&#x7136;&#x540E;&#x8C03;&#x7528;&#x4E00;&#x7CFB;&#x5217;API&#x628A;&#x5B83;&#x4EEC;&#x653E;&#x5230;GPU&#x53EF;&#x4EE5;&#x8BBF;&#x95EE;&#x5230;&#x7684;&#x6307;&#x5B9A;&#x4F4D;&#x7F6E;&#xFF0C;&#x6700;&#x540E;&#xFF0C;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x8C03;&#x7528;_glDraw<em>&#x547D;&#x4EE4;&#xFF0C;&#x6765;&#x544A;&#x8BC9;GPU&#xFF0C;&#x201C;&#x563F;&#xFF0C;&#x6211;&#x628A;&#x4E1C;&#x897F;&#x90FD;&#x51C6;&#x5907;&#x597D;&#x4E86;&#xFF0C;&#x4F60;&#x4E2A;&#x61D2;&#x5BB6;&#x4F19;&#x8D76;&#x7D27;&#x51FA;&#x6765;&#x5E72;&#x6D3B;&#xFF08;&#x6E32;&#x67D3;&#xFF09;&#x5427;&#xFF01;&#x201D;&#x3002;&#x800C;&#x8C03;&#x7528;_glDraw</em>&#x547D;&#x4EE4;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5C31;&#x662F;&#x4E00;&#x6B21;Draw Call&#x3002;&#x90A3;&#x4E48;&#x4E3A;&#x4EC0;&#x4E48;Draw Call&#x4F1A;&#x6210;&#x4E3A;&#x6027;&#x80FD;&#x74F6;&#x9888;&#x5462;&#xFF08;&#x800C;&#x4E14;&#x662F;CPU&#x7684;&#x74F6;&#x9888;&#xFF09;&#xFF1F;&#x4E0A;&#x9762;&#x8BF4;&#x5230;&#x8FC7;&#xFF0C;&#x6211;&#x4EEC;&#x60F3;&#x8981;&#x7ED8;&#x5236;&#x56FE;&#x50CF;&#x65F6;&#xFF0C;&#x5C31;&#x4E00;&#x5B9A;&#x9700;&#x8981;&#x8C03;&#x7528;Draw Call&#x3002;&#x4F8B;&#x5982;&#xFF0C;&#x4E00;&#x4E2A;&#x573A;&#x666F;&#x91CC;&#x6709;&#x6C34;&#x6709;&#x6811;&#xFF0C;&#x6211;&#x4EEC;&#x6E32;&#x67D3;&#x6C34;&#x7684;&#x65F6;&#x5019;&#x4F7F;&#x7528;&#x7684;&#x662F;&#x4E00;&#x4E2A;material&#x4EE5;&#x53CA;&#x4E00;&#x4E2A;shader&#xFF0C;&#x4F46;&#x6E32;&#x67D3;&#x6811;&#x7684;&#x65F6;&#x5019;&#x5C31;&#x9700;&#x8981;&#x4E00;&#x4E2A;&#x5B8C;&#x5168;&#x4E0D;&#x540C;&#x7684;material&#x548C;shader&#xFF0C;&#x90A3;&#x4E48;&#x5C31;&#x9700;&#x8981;CPU&#x91CD;&#x65B0;&#x51C6;&#x5907;&#x9876;&#x70B9;&#x6570;&#x636E;&#x3001;&#x91CD;&#x65B0;&#x8BBE;&#x7F6E;shader&#xFF0C;&#x800C;&#x8FD9;&#x79CD;&#x5DE5;&#x4F5C;&#x5B9E;&#x9645;&#x662F;&#x975E;&#x5E38;&#x8017;&#x65F6;&#x7684;&#x3002;&#x5982;&#x679C;&#x573A;&#x666F;&#x4E2D;&#xFF0C;&#x6BCF;&#x4E00;&#x4E2A;&#x7269;&#x4F53;&#x90FD;&#x4F7F;&#x7528;&#x4E0D;&#x540C;&#x7684;material&#x3001;&#x4E0D;&#x540C;&#x7684;&#x7EB9;&#x7406;&#xFF0C;&#x90A3;&#x4E48;&#x5C31;&#x4F1A;&#x4EA7;&#x751F;&#x592A;&#x591A;Draw Call&#xFF0C;&#x5F71;&#x54CD;&#x5E27;&#x7387;&#xFF0C;&#x6E38;&#x620F;&#x6027;&#x80FD;&#x5C31;&#x4F1A;&#x4E0B;&#x964D;&#x3002;&#x5F53;&#x7136;&#xFF0C;&#x8FD9;&#x91CC;&#x8BF4;&#x5F97;&#x5F88;&#x7B80;&#x5355;&#xFF0C;&#x66F4;&#x8BE6;&#x7EC6;&#x7684;&#x8BF7;&#x81EA;&#x884C;&#x8C37;&#x6B4C;&#x3002;&#x5176;&#x4ED6;CPU&#x7684;&#x6027;&#x80FD;&#x74F6;&#x9888;&#x8FD8;&#x6709;&#x7269;&#x7406;&#x3001;&#x5E03;&#x6599;&#x6A21;&#x62DF;&#x3001;&#x7C92;&#x5B50;&#x6A21;&#x62DF;&#x7B49;&#xFF0C;&#x90FD;&#x662F;&#x8BA1;&#x7B97;&#x91CF;&#x5F88;&#x5927;&#x7684;&#x64CD;&#x4F5C;&#x3002;</p>
+</blockquote>
+<h3 id="&#x51CF;&#x5C11;Draw-Calls"><a href="#&#x51CF;&#x5C11;Draw-Calls" class="headerlink" title="&#x51CF;&#x5C11;Draw Calls"></a>&#x51CF;&#x5C11;Draw Calls</h3><h4 id="&#x6279;&#x5904;&#x7406;&#xFF08;Batching&#xFF09;"><a href="#&#x6279;&#x5904;&#x7406;&#xFF08;Batching&#xFF09;" class="headerlink" title="&#x6279;&#x5904;&#x7406;&#xFF08;Batching&#xFF09;"></a>&#x6279;&#x5904;&#x7406;&#xFF08;Batching&#xFF09;</h4><p>&#x8FD9;&#x65B9;&#x9762;&#x7684;&#x4F18;&#x5316;&#x6559;&#x7A0B;&#x60F3;&#x5FC5;&#x662F;&#x6700;&#x591A;&#x7684;&#x4E86;&#x3002;&#x6700;&#x5E38;&#x89C1;&#x7684;&#x5C31;&#x662F;&#x901A;&#x8FC7;&#x6279;&#x5904;&#x7406;&#xFF08;Batching&#xFF09;&#x4E86;&#x3002;&#x4ECE;&#x540D;&#x5B57;&#x4E0A;&#x6765;&#x7406;&#x89E3;&#xFF0C;&#x5C31;&#x662F;&#x4E00;&#x5757;&#x5904;&#x7406;&#x591A;&#x4E2A;&#x7269;&#x4F53;&#x7684;&#x610F;&#x601D;&#x3002;&#x90A3;&#x4E48;&#x4EC0;&#x4E48;&#x6837;&#x7684;&#x7269;&#x4F53;&#x53EF;&#x4EE5;&#x4E00;&#x8D77;&#x5904;&#x7406;&#x5462;&#xFF1F;&#x7B54;&#x6848;&#x5C31;&#x662F;&#x4F7F;&#x7528;&#x540C;&#x4E00;&#x4E2A;&#x6750;&#x8D28;&#x7684;&#x7269;&#x4F53;&#x3002;&#x8FD9;&#x662F;&#x56E0;&#x6B64;&#xFF0C;&#x5BF9;&#x4E8E;&#x4F7F;&#x7528;&#x540C;&#x4E00;&#x4E2A;&#x6750;&#x8D28;&#x7684;&#x7269;&#x4F53;&#xFF0C;&#x5B83;&#x4EEC;&#x4E4B;&#x95F4;&#x7684;&#x4E0D;&#x540C;&#x4EC5;&#x4EC5;&#x5728;&#x4E8E;&#x9876;&#x70B9;&#x6570;&#x636E;&#x7684;&#x5DEE;&#x522B;&#xFF0C;&#x5373;&#x4F7F;&#x7528;&#x7684;&#x7F51;&#x683C;&#x4E0D;&#x540C;&#x800C;&#x5DF2;&#x3002;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x628A;&#x8FD9;&#x4E9B;&#x9876;&#x70B9;&#x6570;&#x636E;&#x5408;&#x5E76;&#x5728;&#x4E00;&#x8D77;&#xFF0C;&#x518D;&#x4E00;&#x8D77;&#x53D1;&#x9001;&#x7ED9;GPU&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x5B8C;&#x6210;&#x4E00;&#x6B21;&#x6279;&#x5904;&#x7406;&#x3002;</p>
+<p>Unity&#x4E2D;&#x6709;&#x4E24;&#x79CD;&#x6279;&#x5904;&#x7406;&#x65B9;&#x5F0F;&#xFF1A;&#x4E00;&#x79CD;&#x662F;&#x52A8;&#x6001;&#x6279;&#x5904;&#x7406;&#xFF0C;&#x4E00;&#x79CD;&#x662F;&#x9759;&#x6001;&#x6279;&#x5904;&#x7406;&#x3002;&#x5BF9;&#x4E8E;&#x52A8;&#x6001;&#x6279;&#x5904;&#x7406;&#x6765;&#x8BF4;&#xFF0C;&#x597D;&#x6D88;&#x606F;&#x662F;&#x4E00;&#x5207;&#x5904;&#x7406;&#x90FD;&#x662F;&#x81EA;&#x52A8;&#x7684;&#xFF0C;&#x4E0D;&#x9700;&#x8981;&#x6211;&#x4EEC;&#x81EA;&#x5DF1;&#x505A;&#x4EFB;&#x4F55;&#x64CD;&#x4F5C;&#xFF0C;&#x800C;&#x4E14;&#x7269;&#x4F53;&#x662F;&#x53EF;&#x4EE5;&#x79FB;&#x52A8;&#x7684;&#xFF0C;&#x4F46;&#x574F;&#x6D88;&#x606F;&#x662F;&#xFF0C;&#x9650;&#x5236;&#x5F88;&#x591A;&#xFF0C;&#x53EF;&#x80FD;&#x4E00;&#x4E0D;&#x5C0F;&#x5FC3;&#x6211;&#x4EEC;&#x5C31;&#x4F1A;&#x7834;&#x574F;&#x4E86;&#x8FD9;&#x79CD;&#x673A;&#x5236;&#xFF0C;&#x5BFC;&#x81F4;Unity&#x65E0;&#x6CD5;&#x6279;&#x5904;&#x7406;&#x4E00;&#x4E9B;&#x4F7F;&#x7528;&#x4E86;&#x76F8;&#x540C;&#x6750;&#x8D28;&#x7684;&#x7269;&#x4F53;&#x3002;&#x5BF9;&#x4E8E;&#x9759;&#x6001;&#x6279;&#x5904;&#x7406;&#x6765;&#x8BF4;&#xFF0C;&#x597D;&#x6D88;&#x606F;&#x662F;&#x81EA;&#x7531;&#x5EA6;&#x5F88;&#x9AD8;&#xFF0C;&#x9650;&#x5236;&#x5F88;&#x5C11;&#xFF0C;&#x574F;&#x6D88;&#x606F;&#x662F;&#x53EF;&#x80FD;&#x4F1A;&#x5360;&#x7528;&#x66F4;&#x591A;&#x7684;&#x5185;&#x5B58;&#xFF0C;&#x800C;&#x4E14;&#x7ECF;&#x8FC7;&#x9759;&#x6001;&#x6279;&#x5904;&#x7406;&#x540E;&#x7684;&#x6240;&#x6709;&#x7269;&#x4F53;&#x90FD;&#x4E0D;&#x53EF;&#x4EE5;&#x518D;&#x79FB;&#x52A8;&#x4E86;&#x3002;</p>
+<p>&#x9996;&#x5148;&#x6765;&#x8BF4;&#x52A8;&#x6001;&#x6279;&#x5904;&#x7406;&#x3002;Unity&#x8FDB;&#x884C;&#x52A8;&#x6001;&#x6279;&#x5904;&#x7406;&#x7684;&#x6761;&#x4EF6;&#x662F;&#xFF0C;&#x7269;&#x4F53;&#x4F7F;&#x7528;&#x540C;&#x4E00;&#x4E2A;&#x6750;&#x8D28;&#x5E76;&#x4E14;&#x6EE1;&#x8DB3;&#x4E00;&#x4E9B;&#x7279;&#x5B9A;&#x6761;&#x4EF6;&#x3002;Unity&#x603B;&#x662F;&#x5728;&#x4E0D;&#x77E5;&#x4E0D;&#x89C9;&#x4E2D;&#x5C31;&#x4E3A;&#x6211;&#x4EEC;&#x505A;&#x4E86;&#x52A8;&#x6001;&#x6279;&#x5904;&#x7406;&#x3002;&#x4F8B;&#x5982;&#x4E0B;&#x9762;&#x7684;&#x573A;&#x666F;&#xFF1A;</p>
+<p>&#x8FD9;&#x4E2A;&#x573A;&#x666F;&#x5171;&#x5305;&#x542B;&#x4E86;4&#x4E2A;&#x7269;&#x4F53;&#xFF0C;&#x5176;&#x4E2D;&#x4E24;&#x4E2A;&#x7BB1;&#x5B50;&#x4F7F;&#x7528;&#x4E86;&#x540C;&#x4E00;&#x4E2A;&#x6750;&#x8D28;&#x3002;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#xFF0C;&#x5B83;&#x7684;Draw Calls&#x73B0;&#x5728;&#x662F;3&#xFF0C;&#x5E76;&#x4E14;&#x663E;&#x793A;Save by batching&#x662F;1&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#xFF0C;Unity&#x9760;Batching&#x4E3A;&#x6211;&#x4EEC;&#x8282;&#x7701;&#x4E86;1&#x4E2A;Draw Call&#x3002;&#x4E0B;&#x9762;&#xFF0C;&#x6211;&#x4EEC;&#x6765;&#x628A;&#x5176;&#x4E2D;&#x4E00;&#x4E2A;&#x7BB1;&#x5B50;&#x7684;&#x5927;&#x5C0F;&#x968F;&#x4FBF;&#x6539;&#x52A8;&#x4E00;&#x4E0B;&#xFF0C;&#x770B;&#x770B;&#x4F1A;&#x53D1;&#x751F;&#x4EC0;&#x4E48;&#xFF1A;</p>
+<p>&#x53EF;&#x4EE5;&#x53D1;&#x73B0;&#xFF0C;Draw Calls&#x53D8;&#x6210;&#x4E86;4&#xFF0C;Save by batching&#x7684;&#x6570;&#x76EE;&#x4E5F;&#x53D8;&#x6210;&#x4E86;0&#x3002;&#x8FD9;&#x662F;&#x4E3A;&#x4EC0;&#x4E48;&#x5462;&#xFF1F;&#x5B83;&#x4EEC;&#x660E;&#x660E;&#x8FD8;&#x662F;&#x53EA;&#x4F7F;&#x7528;&#x4E86;&#x4E00;&#x4E2A;&#x6750;&#x8D28;&#x554A;&#x3002;&#x539F;&#x56E0;&#x5C31;&#x662F;&#x524D;&#x9762;&#x63D0;&#x5230;&#x7684;&#x90A3;&#x4E9B;&#x9700;&#x8981;&#x6EE1;&#x8DB3;&#x7684;&#x5176;&#x4ED6;&#x6761;&#x4EF6;&#x3002;&#x52A8;&#x6001;&#x6279;&#x5904;&#x7406;&#x867D;&#x7136;&#x81EA;&#x52A8;&#x5F97;&#x4EE4;&#x4EBA;&#x611F;&#x52A8;&#xFF0C;&#x4F46;&#x5B83;&#x5BF9;&#x6A21;&#x578B;&#x7684;&#x8981;&#x6C42;&#x5F88;&#x591A;&#xFF1A;<br>&#x9876;&#x70B9;&#x5C5E;&#x6027;&#x7684;&#x6700;&#x5927;&#x9650;&#x5236;&#x4E3A;900&#xFF0C;&#x800C;&#x4E14;&#x672A;&#x6765;&#x6709;&#x53EF;&#x80FD;&#x4F1A;&#x53D8;&#x3002;&#x4E0D;&#x8981;&#x4F9D;&#x8D56;&#x8FD9;&#x4E2A;&#x6570;&#x636E;&#x3002;</p>
+<p>&#x4E00;&#x822C;&#x6765;&#x8BF4;&#xFF0C;&#x90A3;&#x4E48;&#x6240;&#x6709;&#x5BF9;&#x8C61;&#x90FD;&#x5FC5;&#x987B;&#x9700;&#x8981;&#x4F7F;&#x7528;&#x540C;&#x4E00;&#x4E2A;&#x7F29;&#x653E;&#x5C3A;&#x5EA6;&#xFF08;&#x53EF;&#x4EE5;&#x662F;(1, 1, 1)&#x3001;(1, 2, 3)&#x3001;(1.5, 1.4, 1.3)&#x7B49;&#x7B49;&#xFF0C;&#x4F46;&#x5FC5;&#x987B;&#x90FD;&#x4E00;&#x6837;&#xFF09;&#x3002;&#x4F46;&#x5982;&#x679C;&#x662F;&#x975E;&#x7EDF;&#x4E00;&#x7F29;&#x653E;&#xFF08;&#x5373;&#x6BCF;&#x4E2A;&#x7EF4;&#x5EA6;&#x7684;&#x7F29;&#x653E;&#x5C3A;&#x5EA6;&#x4E0D;&#x4E00;&#x6837;&#xFF0C;&#x4F8B;&#x5982;(1, 2, 1)&#xFF09;&#xFF0C;&#x90A3;&#x4E48;&#x5982;&#x679C;&#x6240;&#x6709;&#x7684;&#x7269;&#x4F53;&#x90FD;&#x4F7F;&#x7528;&#x4E0D;&#x540C;&#x7684;&#x975E;&#x7EDF;&#x4E00;&#x7F29;&#x653E;&#x4E5F;&#x662F;&#x53EF;&#x4EE5;&#x6279;&#x5904;&#x7406;&#x7684;&#x3002;&#x8FD9;&#x4E2A;&#x8981;&#x6C42;&#x5F88;&#x602A;&#x5F02;&#xFF0C;&#x4E3A;&#x4EC0;&#x4E48;&#x6279;&#x5904;&#x7406;&#x4F1A;&#x548C;&#x7F29;&#x653E;&#x6709;&#x5173;&#x5462;&#xFF1F;&#x8FD9;&#x548C;Unity&#x80CC;&#x540E;&#x7684;&#x6280;&#x672F;&#x6709;&#x5173;&#x7CFB;&#xFF0C;&#x6709;&#x5174;&#x8DA3;&#x7684;&#x53EF;&#x4EE5;&#x81EA;&#x884C;&#x8C37;&#x6B4C;&#xFF0C;&#x6BD4;&#x5982;&#x8FD9;&#x91CC;&#x3002;</p>
+<p>&#x4F7F;&#x7528;lightmap&#x7684;&#x7269;&#x4F53;&#x4E0D;&#x4F1A;&#x6279;&#x5904;&#x7406;&#x3002;&#x591A;passes&#x7684;shader&#x4F1A;&#x4E2D;&#x65AD;&#x6279;&#x5904;&#x7406;&#x3002;&#x63A5;&#x53D7;&#x5B9E;&#x65F6;&#x9634;&#x5F71;&#x7684;&#x7269;&#x4F53;&#x4E5F;&#x4E0D;&#x4F1A;&#x6279;&#x5904;&#x7406;&#x3002;</p>
+<p>&#x4E0A;&#x8FF0;&#x9664;&#x4E86;&#x6700;&#x5E38;&#x89C1;&#x7684;&#x7531;&#x4E8E;&#x7F29;&#x653E;&#x5BFC;&#x81F4;&#x7834;&#x574F;&#x6279;&#x5904;&#x7406;&#x7684;&#x60C5;&#x51B5;&#xFF0C;&#x8FD8;&#x6709;&#x5C31;&#x662F;&#x9876;&#x70B9;&#x5C5E;&#x6027;&#x7684;&#x9650;&#x5236;&#x3002;&#x4F8B;&#x5982;&#xFF0C;&#x5728;&#x4E0A;&#x9762;&#x7684;&#x573A;&#x666F;&#x4E2D;&#x6211;&#x4EEC;&#x6DFB;&#x52A0;&#x4E4B;&#x524D;&#x672A;&#x4F18;&#x5316;&#x540E;&#x7684;&#x7BB1;&#x5B50;&#x6A21;&#x578B;&#xFF1A;</p>
+<p>&#x53EF;&#x4EE5;&#x770B;&#x5230;Draw Calls&#x4E00;&#x4E0B;&#x5B50;&#x53D8;&#x6210;&#x4E86;5&#x3002;&#x8FD9;&#x662F;&#x56E0;&#x4E3A;&#x65B0;&#x6DFB;&#x52A0;&#x7684;&#x7BB1;&#x5B50;&#x6A21;&#x578B;&#x4E2D;&#xFF0C;&#x5305;&#x542B;&#x4E86;474&#x4E2A;&#x9876;&#x70B9;&#xFF0C;&#x800C;&#x5B83;&#x4F7F;&#x7528;&#x7684;&#x9876;&#x70B9;&#x5C5E;&#x6027;&#x6709;&#x4F4D;&#x7F6E;&#x3001;UV&#x5750;&#x6807;&#x3001;&#x6CD5;&#x7EBF;&#x7B49;&#x4FE1;&#x606F;&#xFF0C;&#x4F7F;&#x7528;&#x7684;&#x603B;&#x548C;&#x8D85;&#x8FC7;&#x4E86;900&#x3002;</p>
+<p>&#x52A8;&#x6001;&#x6279;&#x5904;&#x7406;&#x7684;&#x6761;&#x4EF6;&#x8FD9;&#x4E48;&#x591A;&#xFF0C;&#x4E00;&#x4E0D;&#x5C0F;&#x5FC3;&#x5B83;&#x5C31;&#x4E0D;&#x5E72;&#x4E86;&#xFF0C;&#x56E0;&#x6B64;Unity&#x63D0;&#x4F9B;&#x4E86;&#x53E6;&#x4E00;&#x4E2A;&#x65B9;&#x6CD5;&#xFF0C;&#x9759;&#x6001;&#x6279;&#x5904;&#x7406;&#x3002;&#x63A5;&#x7740;&#x4E0A;&#x9762;&#x7684;&#x4F8B;&#x5B50;&#xFF0C;&#x6211;&#x4EEC;&#x4FDD;&#x6301;&#x4FEE;&#x6539;&#x540E;&#x7684;&#x7F29;&#x653E;&#xFF0C;&#x4F46;&#x628A;&#x56DB;&#x4E2A;&#x7269;&#x4F53;&#x7684;&#x201C;Static Flag&#x201D;&#x52FE;&#x9009;&#x4E0A;&#xFF1A;</p>
+<p>&#x70B9;&#x51FB;Static&#x540E;&#x9762;&#x7684;&#x4E09;&#x89D2;&#x4E0B;&#x62C9;&#x6846;&#xFF0C;&#x6211;&#x4EEC;&#x4F1A;&#x770B;&#x5230;&#x5176;&#x5B9E;&#x8FD9;&#x4E00;&#x6B65;&#x8BBE;&#x7F6E;&#x4E86;&#x5F88;&#x591A;&#x4E1C;&#x897F;&#xFF0C;&#x8FD9;&#x91CC;&#x6211;&#x4EEC;&#x60F3;&#x8981;&#x7684;&#x53EA;&#x662F;&#x201C;Batching static&#x201D;&#x4E00;&#x9879;&#x3002;&#x8FD9;&#x65F6;&#x6211;&#x4EEC;&#x518D;&#x770B;Draw Calls&#xFF0C;&#x6069;&#xFF0C;&#x8FD8;&#x662F;&#x6CA1;&#x6709;&#x53D8;&#x5316;&#x3002;&#x4F46;&#x662F;&#x4E0D;&#x8981;&#x6025;&#xFF0C;&#x6211;&#x4EEC;&#x70B9;&#x51FB;&#x8FD0;&#x884C;&#xFF0C;&#x53D8;&#x5316;&#x51FA;&#x73B0;&#x4E86;&#xFF1A;</p>
+<p>Draw Calls&#x53C8;&#x56DE;&#x5230;&#x4E86;3&#xFF0C;&#x5E76;&#x4E14;&#x663E;&#x793A;Save by batching&#x662F;1&#x3002;&#x8FD9;&#x5C31;&#x662F;&#x5F97;&#x5229;&#x4E8E;&#x9759;&#x6001;&#x6279;&#x5904;&#x7406;&#x3002;&#x800C;&#x4E14;&#xFF0C;&#x5982;&#x679C;&#x6211;&#x4EEC;&#x5728;&#x8FD0;&#x884C;&#x65F6;&#x523B;&#x67E5;&#x770B;&#x6A21;&#x578B;&#x7684;&#x7F51;&#x683C;&#xFF0C;&#x4F1A;&#x53D1;&#x73B0;&#x5B83;&#x4EEC;&#x90FD;&#x53D8;&#x6210;&#x4E86;&#x4E00;&#x4E2A;&#x540D;&#x4E3A;Combined Mesh (roo: scene)&#x7684;&#x4E1C;&#x897F;&#x3002;&#x8FD9;&#x4E2A;&#x7F51;&#x683C;&#x662F;Unity&#x5408;&#x5E76;&#x4E86;&#x6240;&#x6709;&#x6807;&#x8BC6;&#x4E3A;&#x201C;Static&#x201D;&#x7684;&#x7269;&#x4F53;&#x7684;&#x7ED3;&#x679C;&#xFF0C;&#x5728;&#x6211;&#x4EEC;&#x7684;&#x4F8B;&#x5B50;&#x91CC;&#xFF0C;&#x5C31;&#x662F;&#x56DB;&#x4E2A;&#x7269;&#x4F53;&#xFF1A;</p>
+<p>&#x4F60;&#x53EF;&#x4EE5;&#x8981;&#x95EE;&#x4E86;&#xFF0C;&#x8FD9;&#x56DB;&#x4E2A;&#x5BF9;&#x8C61;&#x660E;&#x660E;&#x4E0D;&#x662F;&#x90FD;&#x4F7F;&#x7528;&#x4E86;&#x4E00;&#x4E2A;&#x6750;&#x8D28;&#xFF0C;&#x4E3A;&#x4EC0;&#x4E48;&#x53EF;&#x4EE5;&#x5408;&#x5E76;&#x6210;&#x4E00;&#x4E2A;&#x5462;&#xFF1F;&#x5982;&#x679C;&#x4F60;&#x4ED4;&#x7EC6;&#x89C2;&#x5BDF;&#x4E0A;&#x56FE;&#x7684;&#x8BDD;&#xFF0C;&#x4F1A;&#x53D1;&#x73B0;&#x91CC;&#x9762;&#x6807;&#x660E;&#x4E86;&#x201C;4 submeshes&#x201D;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#xFF0C;&#x8FD9;&#x4E2A;&#x5408;&#x5E76;&#x540E;&#x7684;&#x7F51;&#x683C;&#x5176;&#x5B9E;&#x5305;&#x542B;&#x4E86;4&#x4E2A;&#x5B50;&#x7F51;&#x683C;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x6211;&#x4EEC;&#x7684;&#x56DB;&#x4E2A;&#x5BF9;&#x8C61;&#x3002;&#x5BF9;&#x4E8E;&#x5408;&#x5E76;&#x540E;&#x540E;&#x7684;&#x7F51;&#x683C;&#xFF0C;Unity&#x4F1A;&#x5224;&#x65AD;&#x5176;&#x4E2D;&#x4F7F;&#x7528;&#x540C;&#x4E00;&#x4E2A;&#x6750;&#x8D28;&#x7684;&#x5B50;&#x7F51;&#x683C;&#xFF0C;&#x7136;&#x540E;&#x5BF9;&#x5B83;&#x4EEC;&#x8FDB;&#x884C;&#x6279;&#x5904;&#x7406;&#x3002;</p>
+<p>&#x4F46;&#x662F;&#xFF0C;&#x6211;&#x4EEC;&#x518D;&#x7EC6;&#x5FC3;&#x70B9;&#x53EF;&#x4EE5;&#x53D1;&#x73B0;&#xFF0C;&#x6211;&#x4EEC;&#x7684;&#x7BB1;&#x5B50;&#x4F7F;&#x7528;&#x7684;&#x5176;&#x5B9E;&#x662F;&#x540C;&#x4E00;&#x4E2A;&#x7F51;&#x683C;&#xFF0C;&#x4F46;&#x5408;&#x5E76;&#x540E;&#x5374;&#x53D8;&#x6210;&#x4E86;&#x4E24;&#x4E2A;&#x3002;&#x800C;&#x4E14;&#xFF0C;&#x6211;&#x4EEC;&#x89C2;&#x5BDF;&#x8FD0;&#x884C;&#x524D;&#x540E;Stats&#x7A97;&#x53E3;&#x4E2D;&#x7684;&#x201C;VBO total&#x201D;&#xFF0C;&#x5B83;&#x7684;&#x5927;&#x5C0F;&#x7531;241.6KB&#x53D8;&#x6210;&#x4E86;286.2KB&#xFF0C;&#x53D8;&#x5927;&#x4E86;&#xFF01;&#x8FD8;&#x8BB0;&#x5F97;&#x9759;&#x6001;&#x6279;&#x5904;&#x7406;&#x7684;&#x7F3A;&#x70B9;&#x5417;&#xFF1F;&#x5C31;&#x662F;&#x53EF;&#x80FD;&#x4F1A;&#x5360;&#x7528;&#x66F4;&#x591A;&#x7684;&#x5185;&#x5B58;&#x3002;&#x6587;&#x6863;&#x4E2D;&#x662F;&#x8FD9;&#x6837;&#x5199;&#x7684;&#xFF1A;</p>
+<p>&#x201C;Using static batching will require additional memory for storing the combined geometry. If several objects shared the same geometry before static batching, then a copy of geometry will be created for each object, either in the Editor or at runtime. This might not always be a good idea - sometimes you will have to sacrifice rendering performance by avoiding static batching for some objects to keep a smaller memory footprint. For example, marking trees as static in a dense forest level can have serious memory impact.&#x201D;</p>
+<p>&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#xFF0C;&#x5982;&#x679C;&#x5728;&#x9759;&#x6001;&#x6279;&#x5904;&#x7406;&#x524D;&#x6709;&#x4E00;&#x4E9B;&#x7269;&#x4F53;&#x5171;&#x4EAB;&#x4E86;&#x76F8;&#x540C;&#x7684;&#x7F51;&#x683C;&#xFF08;&#x4F8B;&#x5982;&#x8FD9;&#x91CC;&#x7684;&#x4E24;&#x4E2A;&#x7BB1;&#x5B50;&#xFF09;&#xFF0C;&#x90A3;&#x4E48;&#x6BCF;&#x4E00;&#x4E2A;&#x7269;&#x4F53;&#x90FD;&#x4F1A;&#x6709;&#x4E00;&#x4E2A;&#x8BE5;&#x7F51;&#x683C;&#x7684;&#x590D;&#x5236;&#x54C1;&#xFF0C;&#x5373;&#x4E00;&#x4E2A;&#x7F51;&#x683C;&#x4F1A;&#x53D8;&#x6210;&#x591A;&#x4E2A;&#x7F51;&#x683C;&#x88AB;&#x53D1;&#x9001;&#x7ED9;GPU&#x3002;&#x5728;&#x4E0A;&#x9762;&#x7684;&#x4F8B;&#x5B50;&#x770B;&#x6765;&#xFF0C;&#x5C31;&#x662F;VBO&#x7684;&#x5927;&#x5C0F;&#x660E;&#x663E;&#x589E;&#x5927;&#x4E86;&#x3002;&#x5982;&#x679C;&#x8FD9;&#x7C7B;&#x4F7F;&#x7528;&#x540C;&#x4E00;&#x7F51;&#x683C;&#x7684;&#x5BF9;&#x8C61;&#x5F88;&#x591A;&#xFF0C;&#x90A3;&#x4E48;&#x8FD9;&#x5C31;&#x662F;&#x4E00;&#x4E2A;&#x95EE;&#x9898;&#x4E86;&#xFF0C;&#x8FD9;&#x79CD;&#x65F6;&#x5019;&#x6211;&#x4EEC;&#x53EF;&#x80FD;&#x9700;&#x8981;&#x907F;&#x514D;&#x4F7F;&#x7528;&#x9759;&#x6001;&#x6279;&#x5904;&#x7406;&#xFF0C;&#x8FD9;&#x610F;&#x5473;&#x7740;&#x727A;&#x7272;&#x4E00;&#x5B9A;&#x7684;&#x6E32;&#x67D3;&#x6027;&#x80FD;&#x3002;&#x4F8B;&#x5982;&#xFF0C;&#x5982;&#x679C;&#x5728;&#x4E00;&#x4E2A;&#x4F7F;&#x7528;&#x4E86;1000&#x4E2A;&#x91CD;&#x590D;&#x6811;&#x6A21;&#x578B;&#x7684;&#x68EE;&#x6797;&#x4E2D;&#x4F7F;&#x7528;&#x9759;&#x6001;&#x6279;&#x5904;&#x7406;&#xFF0C;&#x90A3;&#x4E48;&#x7ED3;&#x679C;&#x5C31;&#x4F1A;&#x4EA7;&#x751F;1000&#x500D;&#x7684;&#x5185;&#x5B58;&#xFF0C;&#x8FD9;&#x4F1A;&#x9020;&#x6210;&#x4E25;&#x91CD;&#x7684;&#x5185;&#x5B58;&#x5F71;&#x54CD;&#x3002;&#x8FD9;&#x79CD;&#x65F6;&#x5019;&#xFF0C;&#x89E3;&#x51B3;&#x65B9;&#x6CD5;&#x8981;&#x4E48;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x5FCD;&#x53D7;&#x8FD9;&#x79CD;&#x727A;&#x7272;&#x5185;&#x5B58;&#x6362;&#x53D6;&#x6027;&#x80FD;&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x8981;&#x4E48;&#x4E0D;&#x8981;&#x4F7F;&#x7528;&#x9759;&#x6001;&#x6279;&#x5904;&#x7406;&#xFF0C;&#x800C;&#x4F7F;&#x7528;&#x52A8;&#x6001;&#x6279;&#x5904;&#x7406;&#xFF08;&#x524D;&#x63D0;&#x662F;&#x5927;&#x5BB6;&#x4F7F;&#x7528;&#x76F8;&#x540C;&#x7684;&#x7F29;&#x653E;&#x5927;&#x5C0F;&#xFF0C;&#x6216;&#x8005;&#x5927;&#x5BB6;&#x90FD;&#x4F7F;&#x7528;&#x4E0D;&#x540C;&#x7684;&#x975E;&#x7EDF;&#x4E00;&#x7F29;&#x653E;&#x5927;&#x5C0F;&#xFF09;&#xFF0C;&#x6216;&#x8005;&#x81EA;&#x5DF1;&#x7F16;&#x5199;&#x6279;&#x5904;&#x7406;&#x7684;&#x65B9;&#x6CD5;&#x3002;&#x5F53;&#x7136;&#xFF0C;&#x6211;&#x8BA4;&#x4E3A;&#x6700;&#x597D;&#x7684;&#x8FD8;&#x662F;&#x4F7F;&#x7528;&#x52A8;&#x6001;&#x6279;&#x5904;&#x7406;&#x6765;&#x89E3;&#x51B3;&#x3002;</p>
+<p>&#x6709;&#x4E00;&#x4E9B;&#x5C0F;&#x63D0;&#x793A;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#xFF1A;<br>&#x5C3D;&#x53EF;&#x80FD;&#x9009;&#x62E9;&#x9759;&#x6001;&#x6279;&#x5904;&#x7406;&#xFF0C;&#x4F46;&#x5F97;&#x65F6;&#x523B;&#x5C0F;&#x5FC3;&#x5BF9;&#x5185;&#x5B58;&#x7684;&#x6D88;&#x8017;&#x3002;</p>
+<p>&#x5982;&#x679C;&#x65E0;&#x6CD5;&#x8FDB;&#x884C;&#x9759;&#x6001;&#x6279;&#x5904;&#x7406;&#xFF0C;&#x800C;&#x8981;&#x4F7F;&#x7528;&#x52A8;&#x6001;&#x6279;&#x5904;&#x7406;&#x7684;&#x8BDD;&#xFF0C;&#x90A3;&#x4E48;&#x8BF7;&#x5C0F;&#x5FC3;&#x4E0A;&#x9762;&#x63D0;&#x5230;&#x7684;&#x5404;&#x79CD;&#x6CE8;&#x610F;&#x4E8B;&#x9879;&#x3002;&#x4F8B;&#x5982;&#xFF1A;</p>
+<p>&#x5C3D;&#x53EF;&#x80FD;&#x8BA9;&#x8FD9;&#x6837;&#x7684;&#x7269;&#x4F53;&#x5C11;&#x5E76;&#x4E14;&#x5C3D;&#x53EF;&#x80FD;&#x8BA9;&#x8FD9;&#x4E9B;&#x7269;&#x4F53;&#x5305;&#x542B;&#x5C11;&#x91CF;&#x7684;&#x9876;&#x70B9;&#x5C5E;&#x6027;&#x3002;</p>
+<p>&#x4E0D;&#x8981;&#x4F7F;&#x7528;&#x7EDF;&#x4E00;&#x7F29;&#x653E;&#xFF0C;&#x6216;&#x8005;&#x90FD;&#x4F7F;&#x7528;&#x4E0D;&#x540C;&#x7684;&#x975E;&#x7EDF;&#x4E00;&#x7F29;&#x653E;&#x3002;</p>
+<p>&#x5BF9;&#x4E8E;&#x6E38;&#x620F;&#x4E2D;&#x7684;&#x5C0F;&#x9053;&#x5177;&#xFF0C;&#x4F8B;&#x5982;&#x53EF;&#x4EE5;&#x6361;&#x62FE;&#x7684;&#x91D1;&#x5E01;&#x7B49;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x52A8;&#x6001;&#x6279;&#x5904;&#x7406;&#x3002;</p>
+<p>&#x5BF9;&#x4E8E;&#x5305;&#x542B;&#x52A8;&#x753B;&#x7684;&#x8FD9;&#x7C7B;&#x7269;&#x4F53;&#xFF0C;&#x6211;&#x4EEC;&#x65E0;&#x6CD5;&#x5168;&#x90E8;&#x4F7F;&#x7528;&#x9759;&#x6001;&#x6279;&#x5904;&#x7406;&#xFF0C;&#x4F46;&#x5176;&#x4E2D;&#x5982;&#x679C;&#x6709;&#x4E0D;&#x52A8;&#x7684;&#x90E8;&#x5206;&#xFF0C;&#x53EF;&#x4EE5;&#x628A;&#x8FD9;&#x90E8;&#x5206;&#x6807;&#x8BC6;&#x6210;&#x201C;Static&#x201D;&#x3002;</p>
+<p>&#x4E00;&#x4E9B;&#x8BA8;&#x8BBA;&#xFF1A;</p>
+<ul>
+<li><a href="http://answers.unity3d.com/questions/593206/how-static-batching-works.html" target="_blank" rel="noopener">How static batching works</a></li>
+<li><a href="http://forum.unity3d.com/threads/static-batching-use-a-ton-of-memory.102800/" target="_blank" rel="noopener">Static batching use a ton of memory?</a></li>
+<li><a href="http://gamedev.stackexchange.com/questions/45433/unity3d-draw-call-optimization-static-batching-vs-manually-draw-mesh-with-mate" target="_blank" rel="noopener">Unity3D draw call optimization</a></li>
+</ul>
+<h4 id="&#x5408;&#x5E76;&#x7EB9;&#x7406;&#xFF08;Atlas&#xFF09;"><a href="#&#x5408;&#x5E76;&#x7EB9;&#x7406;&#xFF08;Atlas&#xFF09;" class="headerlink" title="&#x5408;&#x5E76;&#x7EB9;&#x7406;&#xFF08;Atlas&#xFF09;"></a>&#x5408;&#x5E76;&#x7EB9;&#x7406;&#xFF08;Atlas&#xFF09;</h4><p>&#x867D;&#x7136;&#x6279;&#x5904;&#x7406;&#x662F;&#x4E2A;&#x5F88;&#x597D;&#x7684;&#x65B9;&#x5F0F;&#xFF0C;&#x4F46;&#x5F88;&#x5BB9;&#x6613;&#x5C31;&#x6253;&#x7834;&#x5B83;&#x7684;&#x89C4;&#x5B9A;&#x3002;&#x4F8B;&#x5982;&#xFF0C;&#x573A;&#x666F;&#x4E2D;&#x7684;&#x7269;&#x4F53;&#x90FD;&#x4F7F;&#x7528;Diffuse&#x6750;&#x8D28;&#xFF0C;&#x4F46;&#x5B83;&#x4EEC;&#x53EF;&#x80FD;&#x4F1A;&#x4F7F;&#x7528;&#x4E0D;&#x540C;&#x7684;&#x7EB9;&#x7406;&#x3002;&#x56E0;&#x6B64;&#xFF0C;&#x5C3D;&#x53EF;&#x80FD;&#x628A;&#x591A;&#x5F20;&#x5C0F;&#x7EB9;&#x7406;&#x5408;&#x5E76;&#x5230;&#x4E00;&#x5F20;&#x5927;&#x7EB9;&#x7406;&#xFF08;Atlas&#xFF09;&#x4E2D;&#x662F;&#x4E00;&#x4E2A;&#x597D;&#x4E3B;&#x610F;&#x3002;</p>
+<h4 id="&#x5229;&#x7528;&#x7F51;&#x683C;&#x7684;&#x9876;&#x70B9;&#x6570;&#x636E;"><a href="#&#x5229;&#x7528;&#x7F51;&#x683C;&#x7684;&#x9876;&#x70B9;&#x6570;&#x636E;" class="headerlink" title="&#x5229;&#x7528;&#x7F51;&#x683C;&#x7684;&#x9876;&#x70B9;&#x6570;&#x636E;"></a>&#x5229;&#x7528;&#x7F51;&#x683C;&#x7684;&#x9876;&#x70B9;&#x6570;&#x636E;</h4><p>&#x4F46;&#x6709;&#x65F6;&#xFF0C;&#x9664;&#x4E86;&#x7EB9;&#x7406;&#x4E0D;&#x540C;&#x5916;&#xFF0C;&#x8FD8;&#x6709;&#x5BF9;&#x4E8E;&#x4E0D;&#x540C;&#x7684;&#x7269;&#x4F53;&#xFF0C;&#x5B83;&#x4EEC;&#x5728;&#x6750;&#x8D28;&#x4E0A;&#x8FD8;&#x6709;&#x4E00;&#x4E9B;&#x5FAE;&#x5C0F;&#x7684;&#x53C2;&#x6570;&#x53D8;&#x5316;&#xFF0C;&#x4F8B;&#x5982;&#x989C;&#x8272;&#x4E0D;&#x540C;&#x3001;&#x67D0;&#x4E9B;&#x6D6E;&#x70B9;&#x53C2;&#x6570;&#x4E0D;&#x540C;&#x3002;&#x4F46;&#x94C1;&#x5B9A;&#x5F8B;&#x662F;&#xFF0C;&#x4E0D;&#x7BA1;&#x662F;&#x52A8;&#x6001;&#x6279;&#x5904;&#x7406;&#x8FD8;&#x662F;&#x9759;&#x6001;&#x6279;&#x5904;&#x7406;&#xFF0C;&#x5B83;&#x4EEC;&#x7684;&#x524D;&#x63D0;&#x90FD;&#x662F;&#x8981;&#x4F7F;&#x7528;&#x540C;&#x4E00;&#x4E2A;&#x6750;&#x8D28;&#x3002;&#x662F;&#x540C;&#x4E00;&#x4E2A;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x540C;&#x4E00;&#x79CD;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#x5B83;&#x4EEC;&#x6307;&#x5411;&#x7684;&#x6750;&#x8D28;&#x5FC5;&#x987B;&#x662F;&#x540C;&#x4E00;&#x4E2A;&#x5B9E;&#x4F53;&#x3002;&#x8FD9;&#x610F;&#x5473;&#x7740;&#xFF0C;&#x53EA;&#x8981;&#x6211;&#x4EEC;&#x8C03;&#x6574;&#x4E86;&#x53C2;&#x6570;&#xFF0C;&#x5C31;&#x4F1A;&#x5F71;&#x54CD;&#x5230;&#x6240;&#x6709;&#x4F7F;&#x7528;&#x8FD9;&#x4E2A;&#x6750;&#x8D28;&#x7684;&#x5BF9;&#x8C61;&#x3002;&#x90A3;&#x4E48;&#x60F3;&#x8981;&#x5FAE;&#x5C0F;&#x7684;&#x8C03;&#x6574;&#x600E;&#x4E48;&#x529E;&#x5462;&#xFF1F;&#x7531;&#x4E8E;Unity&#x4E2D;&#x7684;&#x89C4;&#x5B9A;&#x975E;&#x5E38;&#x6B7B;&#xFF0C;&#x90A3;&#x4E48;&#x6211;&#x4EEC;&#x53EA;&#x597D;&#x60F3;&#x4E9B;&#x201C;&#x6B6A;&#x95E8;&#x90AA;&#x9053;&#x201D;&#xFF0C;&#x5176;&#x4E2D;&#x4E00;&#x79CD;&#x5C31;&#x662F;&#x4F7F;&#x7528;&#x7F51;&#x683C;&#x7684;&#x9876;&#x70B9;&#x6570;&#x636E;&#xFF08;&#x6700;&#x5E38;&#x89C1;&#x7684;&#x5C31;&#x662F;&#x9876;&#x70B9;&#x989C;&#x8272;&#x6570;&#x636E;&#xFF09;&#x3002;</p>
+<p>&#x524D;&#x9762;&#x8BF4;&#x8FC7;&#xFF0C;&#x7ECF;&#x8FC7;&#x6279;&#x5904;&#x7406;&#x540E;&#x7684;&#x7269;&#x4F53;&#x4F1A;&#x88AB;&#x5904;&#x7406;&#x6210;&#x4E00;&#x4E2A;VBO&#x53D1;&#x9001;&#x7ED9;GPU&#xFF0C;VBO&#x4E2D;&#x7684;&#x6570;&#x636E;&#x53EF;&#x4EE5;&#x4F5C;&#x4E3A;&#x8F93;&#x5165;&#x4F20;&#x9012;&#x7ED9;Vertex Shader&#xFF0C;&#x56E0;&#x6B64;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x5DE7;&#x5999;&#x5730;&#x5BF9;VBO&#x4E2D;&#x7684;&#x6570;&#x636E;&#x8FDB;&#x884C;&#x63A7;&#x5236;&#xFF0C;&#x4ECE;&#x800C;&#x8FBE;&#x5230;&#x4E0D;&#x540C;&#x6548;&#x679C;&#x7684;&#x76EE;&#x7684;&#x3002;&#x4E00;&#x4E2A;&#x4F8B;&#x5B50;&#x662F;&#xFF0C;&#x8FD8;&#x662F;&#x4E4B;&#x524D;&#x7684;&#x68EE;&#x6797;&#xFF0C;&#x6240;&#x6709;&#x7684;&#x6811;&#x4F7F;&#x7528;&#x4E86;&#x540C;&#x4E00;&#x79CD;&#x6750;&#x8D28;&#xFF0C;&#x6211;&#x4EEC;&#x5E0C;&#x671B;&#x5B83;&#x4EEC;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x52A8;&#x6001;&#x6279;&#x5904;&#x7406;&#x6765;&#x5B9E;&#x73B0;&#xFF0C;&#x4F46;&#x4E0D;&#x540C;&#x6811;&#x7684;&#x989C;&#x8272;&#x53EF;&#x80FD;&#x4E0D;&#x540C;&#x3002;&#x8FD9;&#x65F6;&#x6211;&#x4E48;&#x53EF;&#x4EE5;&#x5229;&#x7528;&#x7F51;&#x683C;&#x7684;&#x9876;&#x70B9;&#x6570;&#x636E;&#x6765;&#x8C03;&#x6574;&#x3002;&#x5177;&#x4F53;&#x65B9;&#x6CD5;&#xFF0C;&#x53EF;&#x4EE5;&#x53C2;&#x89C1;&#x540E;&#x9762;&#x4F1A;&#x5199;&#x7684;&#x4E00;&#x7BC7;&#x6587;&#x7AE0;&#x3002;</p>
+<p>&#x4F46;&#x8FD9;&#x79CD;&#x65B9;&#x6CD5;&#x7684;&#x7F3A;&#x70B9;&#x5C31;&#x662F;&#x4F1A;&#x9700;&#x8981;&#x66F4;&#x591A;&#x7684;&#x5185;&#x5B58;&#x6765;&#x5B58;&#x50A8;&#x8FD9;&#x4E9B;&#x7528;&#x4E8E;&#x8C03;&#x6574;&#x53C2;&#x6570;&#x7528;&#x7684;&#x9876;&#x70B9;&#x6570;&#x636E;&#x3002;&#x6CA1;&#x529E;&#x6CD5;&#xFF0C;&#x6C38;&#x8FDC;&#x6CA1;&#x6709;&#x7EDD;&#x5BF9;&#x5B8C;&#x7F8E;&#x7684;&#x65B9;&#x6CD5;&#x3002;</p>
+<h2 id="&#x9876;&#x70B9;&#x4F18;&#x5316;"><a href="#&#x9876;&#x70B9;&#x4F18;&#x5316;" class="headerlink" title="&#x9876;&#x70B9;&#x4F18;&#x5316;"></a>&#x9876;&#x70B9;&#x4F18;&#x5316;</h2><h3 id="&#x4F18;&#x5316;&#x51E0;&#x4F55;&#x4F53;"><a href="#&#x4F18;&#x5316;&#x51E0;&#x4F55;&#x4F53;" class="headerlink" title="&#x4F18;&#x5316;&#x51E0;&#x4F55;&#x4F53;"></a>&#x4F18;&#x5316;&#x51E0;&#x4F55;&#x4F53;</h3><p>&#x8FD9;&#x4E00;&#x6B65;&#x4E3B;&#x8981;&#x662F;&#x4E3A;&#x4E86;&#x9488;&#x5BF9;&#x6027;&#x80FD;&#x74F6;&#x9888;&#x4E2D;&#x7684;&#x201D;&#x9876;&#x70B9;&#x5904;&#x7406;&#x201C;&#x4E00;&#x9879;&#x3002;&#x8FD9;&#x91CC;&#x7684;&#x51E0;&#x4F55;&#x4F53;&#x5C31;&#x662F;&#x6307;&#x7EC4;&#x6210;&#x573A;&#x666F;&#x4E2D;&#x5BF9;&#x8C61;&#x7684;&#x7F51;&#x683C;&#x7ED3;&#x6784;&#x3002;</p>
+<p>3D&#x6E38;&#x620F;&#x5236;&#x4F5C;&#x90FD;&#x7531;&#x6A21;&#x578B;&#x5236;&#x4F5C;&#x5F00;&#x59CB;&#x3002;&#x800C;&#x5728;&#x5EFA;&#x6A21;&#x65F6;&#xFF0C;&#x6709;&#x4E00;&#x6761;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x8BB0;&#x4F4F;&#xFF1A;&#x5C3D;&#x53EF;&#x80FD;&#x51CF;&#x5C11;&#x6A21;&#x578B;&#x4E2D;&#x4E09;&#x89D2;&#x5F62;&#x7684;&#x6570;&#x76EE;&#xFF0C;&#x4E00;&#x4E9B;&#x5BF9;&#x4E8E;&#x6A21;&#x578B;&#x6CA1;&#x6709;&#x5F71;&#x54CD;&#x3001;&#x6216;&#x662F;&#x8089;&#x773C;&#x975E;&#x5E38;&#x96BE;&#x5BDF;&#x89C9;&#x5230;&#x533A;&#x522B;&#x7684;&#x9876;&#x70B9;&#x90FD;&#x8981;&#x5C3D;&#x53EF;&#x80FD;&#x53BB;&#x6389;&#x3002;&#x4F8B;&#x5982;&#x5728;&#x4E0B;&#x9762;&#x5DE6;&#x56FE;&#x4E2D;&#xFF0C;&#x6B63;&#x65B9;&#x4F53;&#x5185;&#x90E8;&#x5F88;&#x591A;&#x9876;&#x70B9;&#x90FD;&#x662F;&#x4E0D;&#x9700;&#x8981;&#x7684;&#xFF0C;&#x800C;&#x628A;&#x8FD9;&#x4E2A;&#x6A21;&#x578B;&#x5BFC;&#x5165;&#x5230;Unity&#x91CC;&#x5C31;&#x4F1A;&#x662F;&#x53F3;&#x9762;&#x7684;&#x60C5;&#x666F;&#xFF1A;</p>
+<p>&#x5728;Game&#x89C6;&#x56FE;&#x4E0B;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x67E5;&#x770B;&#x573A;&#x666F;&#x4E2D;&#x7684;&#x4E09;&#x89D2;&#x5F62;&#x6570;&#x76EE;&#x548C;&#x9876;&#x70B9;&#x6570;&#x76EE;&#xFF1A;</p>
+<p>&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x4E00;&#x4E2A;&#x7B80;&#x5355;&#x7684;&#x6B63;&#x65B9;&#x5F62;&#x5C31;&#x4EA7;&#x751F;&#x4E86;&#x8FD9;&#x4E48;&#x591A;&#x9876;&#x70B9;&#xFF0C;&#x8FD9;&#x662F;&#x6211;&#x4EEC;&#x4E0D;&#x5E0C;&#x671B;&#x770B;&#x5230;&#x7684;&#x3002;</p>
+<p>&#x540C;&#x65F6;&#xFF0C;&#x5C3D;&#x53EF;&#x80FD;&#x91CD;&#x7528;&#x9876;&#x70B9;&#x3002;&#x5728;&#x5F88;&#x591A;&#x4E09;&#x7EF4;&#x5EFA;&#x6A21;&#x8F6F;&#x4EF6;&#x4E2D;&#xFF0C;&#x90FD;&#x6709;&#x76F8;&#x5E94;&#x7684;&#x4F18;&#x5316;&#x9009;&#x9879;&#xFF0C;&#x53EF;&#x4EE5;&#x81EA;&#x52A8;&#x4F18;&#x5316;&#x7F51;&#x683C;&#x7ED3;&#x6784;&#x3002;&#x6700;&#x540E;&#x4F18;&#x5316;&#x540E;&#xFF0C;&#x4E00;&#x4E2A;&#x6B63;&#x65B9;&#x4F53;&#x53EF;&#x80FD;&#x53EA;&#x5269;&#x4E0B;8&#x4E2A;&#x9876;&#x70B9;&#xFF1A;</p>
+<p>&#x5B83;&#x5BF9;&#x5E94;&#x7684;&#x9876;&#x70B9;&#x6570;&#x548C;&#x4E09;&#x89D2;&#x5F62;&#x6570;&#x76EE;&#x5982;&#x4E0B;&#xFF1A;</p>
+<p>&#x7B49;&#x7B49;&#xFF01;&#x8FD9;&#x91CC;&#xFF0C;&#x4F60;&#x53EF;&#x80FD;&#x8981;&#x95EE;&#x4E86;&#xFF0C;&#x4E3A;&#x4EC0;&#x4E48;&#x9876;&#x70B9;&#x6570;&#x662F;24&#xFF0C;&#x800C;&#x4E0D;&#x662F;8&#x5462;&#xFF1F;&#x7F8E;&#x672F;&#x670B;&#x53CB;&#x4EEC;&#x7ECF;&#x5E38;&#x4F1A;&#x9047;&#x5230;&#x8FD9;&#x6837;&#x7684;&#x95EE;&#x9898;&#xFF0C;&#x5C31;&#x662F;&#x5EFA;&#x6A21;&#x8F6F;&#x4EF6;&#x91CC;&#x663E;&#x793A;&#x7684;&#x6A21;&#x578B;&#x9876;&#x70B9;&#x6570;&#x548C;Unity&#x4E2D;&#x7684;&#x4E0D;&#x4E00;&#x6837;&#xFF0C;&#x901A;&#x5E38;Unity&#x4F1A;&#x591A;&#x5F88;&#x591A;&#x3002;&#x8C01;&#x624D;&#x662F;&#x5BF9;&#x7684;&#x5462;&#xFF1F;&#x5176;&#x5B9E;&#xFF0C;&#x5B83;&#x4EEC;&#x662F;&#x7AD9;&#x5728;&#x4E0D;&#x540C;&#x7684;&#x89D2;&#x5EA6;&#x4E0A;&#x8BA1;&#x7B97;&#x7684;&#xFF0C;&#x90FD;&#x6709;&#x5404;&#x81EA;&#x7684;&#x9053;&#x7406;&#xFF0C;&#x4F46;&#x6211;&#x4EEC;&#x771F;&#x6B63;&#x5E94;&#x8BE5;&#x5173;&#x5FC3;&#x7684;&#x662F;Unity&#x91CC;&#x7684;&#x6570;&#x76EE;&#x3002;</p>
+<p>&#x6211;&#x4EEC;&#x8FD9;&#x91CC;&#x7B80;&#x5355;&#x89E3;&#x91CA;&#x4E00;&#x4E0B;&#x3002;&#x4E09;&#x7EF4;&#x8F6F;&#x4EF6;&#x91CC;&#x66F4;&#x591A;&#x5730;&#x662F;&#x7AD9;&#x5728;&#x6211;&#x4EEC;&#x4EBA;&#x7C7B;&#x7684;&#x89D2;&#x5EA6;&#x7406;&#x89E3;&#x9876;&#x70B9;&#x7684;&#xFF0C;&#x5373;&#x6211;&#x4EEC;&#x770B;&#x89C1;&#x7684;&#x4E00;&#x4E2A;&#x70B9;&#x5C31;&#x662F;&#x4E00;&#x4E2A;&#x3002;&#x800C;Unity&#x662F;&#x7AD9;&#x5728;GPU&#x7684;&#x89D2;&#x5EA6;&#x4E0A;&#xFF0C;&#x53BB;&#x8BA1;&#x7B97;&#x9876;&#x70B9;&#x6570;&#x76EE;&#x7684;&#x3002;&#x800C;&#x5728;GPU&#x770B;&#x6765;&#xFF0C;&#x770B;&#x8D77;&#x6765;&#x662F;&#x4E00;&#x4E2A;&#x7684;&#x5F88;&#x6709;&#x53EF;&#x80FD;&#x5B83;&#x8981;&#x5206;&#x5F00;&#x5904;&#x7406;&#xFF0C;&#x4ECE;&#x800C;&#x5C31;&#x4EA7;&#x751F;&#x4E86;&#x989D;&#x5916;&#x7684;&#x9876;&#x70B9;&#x3002;&#x8FD9;&#x79CD;&#x5C06;&#x9876;&#x70B9;&#x4E00;&#x5206;&#x4E3A;&#x591A;&#x7684;&#x539F;&#x56E0;&#xFF0C;&#x4E3B;&#x8981;&#x6709;&#x4E24;&#x4E2A;&#xFF1A;&#x4E00;&#x4E2A;&#x662F;UV splits&#xFF0C;&#x4E00;&#x4E2A;&#x662F;Smoothing splits&#x3002;&#x800C;&#x5B83;&#x4EEC;&#x7684;&#x672C;&#x8D28;&#x5176;&#x5B9E;&#x90FD;&#x662F;&#x56E0;&#x4E3A;&#x5BF9;&#x4E8E;GPU&#x6765;&#x8BF4;&#xFF0C;&#x9876;&#x70B9;&#x7684;&#x6BCF;&#x4E00;&#x4E2A;&#x5C5E;&#x6027;&#x548C;&#x9876;&#x70B9;&#x4E4B;&#x95F4;&#x5FC5;&#x987B;&#x662F;&#x4E00;&#x5BF9;&#x4E00;&#x7684;&#x5173;&#x7CFB;&#x3002;UV splits&#x7684;&#x4EA7;&#x751F;&#xFF0C;&#x662F;&#x56E0;&#x4E3A;&#x5EFA;&#x6A21;&#x65F6;&#xFF0C;&#x4E00;&#x4E2A;&#x9876;&#x70B9;&#x7684;UV&#x5750;&#x6807;&#x6709;&#x591A;&#x4E2A;&#x3002;&#x4F8B;&#x5982;&#x4E4B;&#x524D;&#x7684;&#x7ACB;&#x65B9;&#x4F53;&#x7684;&#x4F8B;&#x5B50;&#xFF0C;&#x7531;&#x4E8E;&#x6BCF;&#x4E2A;&#x9762;&#x90FD;&#x6709;&#x5171;&#x540C;&#x7684;&#x9876;&#x70B9;&#xFF0C;&#x56E0;&#x6B64;&#x5728;&#x4E0D;&#x540C;&#x9762;&#x4E0A;&#xFF0C;&#x540C;&#x4E00;&#x4E2A;&#x9876;&#x70B9;&#x7684;UV&#x5750;&#x6807;&#x53EF;&#x80FD;&#x53D1;&#x751F;&#x6539;&#x53D8;&#x3002;&#x8FD9;&#x5BF9;&#x4E8E;GPU&#x6765;&#x8BF4;&#xFF0C;&#x8FD9;&#x662F;&#x4E0D;&#x53EF;&#x7406;&#x89E3;&#x7684;&#xFF0C;&#x56E0;&#x6B64;&#x5B83;&#x5FC5;&#x987B;&#x628A;&#x8FD9;&#x4E2A;&#x9876;&#x70B9;&#x62C6;&#x5206;&#x6210;&#x4E24;&#x4E2A;&#x5177;&#x6709;&#x4E0D;&#x540C;UV&#x5750;&#x6807;&#x7684;&#x5B9A;&#x9876;&#x70B9;&#xFF0C;&#x5B83;&#x624D;&#x7518;&#x5FC3;&#x3002;&#x800C;Smoothing splits&#x7684;&#x4EA7;&#x751F;&#x4E5F;&#x662F;&#x7C7B;&#x4F3C;&#x7684;&#xFF0C;&#x4E0D;&#x540C;&#x7684;&#x65F6;&#xFF0C;&#x8FD9;&#x6B21;&#x4E00;&#x4E2A;&#x9876;&#x70B9;&#x53EF;&#x80FD;&#x4F1A;&#x5BF9;&#x5E94;&#x591A;&#x4E2A;&#x6CD5;&#x7EBF;&#x4FE1;&#x606F;&#x6216;&#x5207;&#x7EBF;&#x4FE1;&#x606F;&#x3002;&#x8FD9;&#x901A;&#x5E38;&#x662F;&#x56E0;&#x4E3A;&#x6211;&#x4EEC;&#x8981;&#x51B3;&#x5B9A;&#x4E00;&#x4E2A;&#x8FB9;&#x662F;&#x4E00;&#x6761;Hard Edge&#x8FD8;&#x662F;Smooth Edge&#x3002;Hard Edge&#x901A;&#x5E38;&#x662F;&#x4E0B;&#x9762;&#x8FD9;&#x6837;&#x7684;&#x6548;&#x679C;&#xFF08;&#x6CE8;&#x610F;&#x4E2D;&#x95F4;&#x7684;&#x6298;&#x75D5;&#x90E8;&#x5206;&#xFF09;&#xFF1A;</p>
+<p>&#x800C;&#x5982;&#x679C;&#x89C2;&#x5BDF;&#x5B83;&#x7684;&#x9876;&#x70B9;&#x6CD5;&#x7EBF;&#xFF0C;&#x5C31;&#x4F1A;&#x53D1;&#x73B0;&#xFF0C;&#x6298;&#x75D5;&#x5904;&#x6BCF;&#x4E2A;&#x9876;&#x70B9;&#x5176;&#x5B9E;&#x5305;&#x542B;&#x4E86;&#x4E24;&#x4E2A;&#x4E0D;&#x540C;&#x7684;&#x6CD5;&#x7EBF;&#x3002;&#x56E0;&#x6B64;&#xFF0C;&#x5BF9;&#x4E8E;GPU&#x6765;&#x8BF4;&#xFF0C;&#x5B83;&#x540C;&#x6837;&#x65E0;&#x6CD5;&#x7406;&#x89E3;&#x8FD9;&#x6837;&#x7684;&#x4E8B;&#x60C5;&#xFF0C;&#x56E0;&#x6B64;&#x4F1A;&#x628A;&#x9876;&#x70B9;&#x4E00;&#x5206;&#x4E3A;&#x4E8C;&#x3002;&#x800C;&#x76F8;&#x53CD;&#xFF0C;Smooth Edge&#x5219;&#x662F;&#x4E0B;&#x9762;&#x7684;&#x60C5;&#x51B5;&#xFF1A;</p>
+<p>&#x5BF9;&#x4E8E;GPU&#x6765;&#x8BF4;&#xFF0C;&#x5B83;&#x672C;&#x8D28;&#x4E0A;&#x53EA;&#x5173;&#x5FC3;&#x6709;&#x591A;&#x5C11;&#x4E2A;&#x9876;&#x70B9;&#x3002;&#x56E0;&#x6B64;&#xFF0C;&#x5C3D;&#x53EF;&#x80FD;&#x51CF;&#x5C11;&#x9876;&#x70B9;&#x7684;&#x6570;&#x76EE;&#x5176;&#x5B9E;&#x624D;&#x662F;&#x6211;&#x4EEC;&#x771F;&#x6B63;&#x5BF9;&#x9700;&#x8981;&#x5173;&#x5FC3;&#x7684;&#x4E8B;&#x60C5;&#x3002;&#x56E0;&#x6B64;&#xFF0C;&#x6700;&#x540E;&#x4E00;&#x6761;&#x4F18;&#x5316;&#x5EFA;&#x8BAE;&#x5C31;&#x662F;&#xFF1A;&#x79FB;&#x9664;&#x4E0D;&#x5FC5;&#x8981;&#x7684;Hard Edge&#x4EE5;&#x53CA;&#x7EB9;&#x7406;&#x8854;&#x63A5;&#xFF0C;&#x5373;&#x907F;&#x514D;Smoothing splits&#x548C;UV splits&#x3002;</p>
+<h3 id="&#x4F7F;&#x7528;LOD&#xFF08;Level-of-detail&#xFF09;&#x6280;&#x672F;"><a href="#&#x4F7F;&#x7528;LOD&#xFF08;Level-of-detail&#xFF09;&#x6280;&#x672F;" class="headerlink" title="&#x4F7F;&#x7528;LOD&#xFF08;Level of detail&#xFF09;&#x6280;&#x672F;"></a>&#x4F7F;&#x7528;LOD&#xFF08;Level of detail&#xFF09;&#x6280;&#x672F;</h3><p>LOD&#x6280;&#x672F;&#x6709;&#x70B9;&#x7C7B;&#x4F3C;&#x4E8E;Mipmap&#x6280;&#x672F;&#xFF0C;&#x4E0D;&#x540C;&#x7684;&#x662F;&#xFF0C;LOD&#x662F;&#x5BF9;&#x6A21;&#x578B;&#x5EFA;&#x7ACB;&#x4E86;&#x4E00;&#x4E2A;&#x6A21;&#x578B;&#x91D1;&#x5B57;&#x5854;&#xFF0C;&#x6839;&#x636E;&#x6444;&#x50CF;&#x673A;&#x8DDD;&#x79BB;&#x5BF9;&#x8C61;&#x7684;&#x8FDC;&#x8FD1;&#xFF0C;&#x9009;&#x62E9;&#x4F7F;&#x7528;&#x4E0D;&#x540C;&#x7CBE;&#x5EA6;&#x7684;&#x6A21;&#x578B;&#x3002;&#x5B83;&#x7684;&#x597D;&#x5904;&#x662F;&#x53EF;&#x4EE5;&#x5728;&#x9002;&#x5F53;&#x7684;&#x65F6;&#x5019;&#x5927;&#x91CF;&#x51CF;&#x5C11;&#x9700;&#x8981;&#x7ED8;&#x5236;&#x7684;&#x9876;&#x70B9;&#x6570;&#x76EE;&#x3002;&#x5B83;&#x7684;&#x7F3A;&#x70B9;&#x540C;&#x6837;&#x662F;&#x9700;&#x8981;&#x5360;&#x7528;&#x66F4;&#x591A;&#x7684;&#x5185;&#x5B58;&#xFF0C;&#x800C;&#x4E14;&#x5982;&#x679C;&#x6CA1;&#x6709;&#x8C03;&#x6574;&#x597D;&#x8DDD;&#x79BB;&#x7684;&#x8BDD;&#xFF0C;&#x53EF;&#x80FD;&#x4F1A;&#x9020;&#x6210;&#x6A21;&#x62DF;&#x7684;&#x7A81;&#x53D8;&#x3002;</p>
+<p>&#x5728;Unity&#x4E2D;&#xFF0C;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;LOD Group&#x6765;&#x5B9E;&#x73B0;LOD&#x6280;&#x672F;&#xFF1A;</p>
+<p>&#x901A;&#x8FC7;&#x4E0A;&#x9762;&#x7684;LOD Group&#x9762;&#x677F;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x9009;&#x62E9;&#x9700;&#x8981;&#x63A7;&#x5236;&#x7684;&#x6A21;&#x578B;&#x4EE5;&#x53CA;&#x8DDD;&#x79BB;&#x8BBE;&#x7F6E;&#x3002;&#x4E0B;&#x9762;&#x5C55;&#x793A;&#x4E86;&#x6CB9;&#x6876;&#x4ECE;&#x4E00;&#x4E2A;&#x5B8C;&#x6574;&#x7F51;&#x683C;&#x5230;&#x7B80;&#x5316;&#x7F51;&#x683C;&#xFF0C;&#x6700;&#x540E;&#x5B8C;&#x5168;&#x88AB;&#x5254;&#x9664;&#x7684;&#x4F8B;&#x5B50;&#xFF1A;</p>
+<h3 id="&#x4F7F;&#x7528;&#x906E;&#x6321;&#x5254;&#x9664;&#xFF08;Occlusion-culling&#xFF09;&#x6280;&#x672F;"><a href="#&#x4F7F;&#x7528;&#x906E;&#x6321;&#x5254;&#x9664;&#xFF08;Occlusion-culling&#xFF09;&#x6280;&#x672F;" class="headerlink" title="&#x4F7F;&#x7528;&#x906E;&#x6321;&#x5254;&#x9664;&#xFF08;Occlusion culling&#xFF09;&#x6280;&#x672F;"></a>&#x4F7F;&#x7528;&#x906E;&#x6321;&#x5254;&#x9664;&#xFF08;Occlusion culling&#xFF09;&#x6280;&#x672F;</h3><p>&#x906E;&#x6321;&#x5254;&#x9664;&#x662F;&#x7528;&#x6765;&#x6D88;&#x9664;&#x8EB2;&#x5728;&#x5176;&#x4ED6;&#x7269;&#x4EF6;&#x540E;&#x9762;&#x770B;&#x4E0D;&#x5230;&#x7684;&#x7269;&#x4EF6;&#xFF0C;&#x8FD9;&#x4EE3;&#x8868;&#x8D44;&#x6E90;&#x4E0D;&#x4F1A;&#x6D6A;&#x8D39;&#x5728;&#x8BA1;&#x7B97;&#x90A3;&#x4E9B;&#x770B;&#x4E0D;&#x5230;&#x7684;&#x9876;&#x70B9;&#x4E0A;&#xFF0C;&#x8FDB;&#x800C;&#x63D0;&#x5347;&#x6027;&#x80FD;&#x3002;&#x5173;&#x4E8E;&#x906E;&#x6321;&#x5254;&#x9664;&#xFF0C;Unity Taiwan&#x6709;&#x4E00;&#x4E2A;&#x7CFB;&#x5217;&#x6587;&#x7AE0;&#x5927;&#x5BB6;&#x53EF;&#x4EE5;&#x770B;&#x770B;&#xFF08;&#x9700;&#x7FFB;&#x5899;&#xFF09;&#xFF1A;</p>
+<ul>
+<li><p><a href="http://unitytaiwan.blogspot.tw/2013/12/unity-43-occlusion-culling.html" target="_blank" rel="noopener">Unity 4.3 &#x5173;&#x4E8E;Occlusion Culling : &#x57FA;&#x672C;&#x7BC7;</a></p>
+</li>
+<li><p><a href="http://unitytaiwan.blogspot.com/2013/12/unity-43-occlusion-culling_26.html" target="_blank" rel="noopener">Unity 4.3 &#x5173;&#x4E8E;Occlusion Culling : &#x6700;&#x4F73;&#x505A;&#x6CD5;</a></p>
+</li>
+<li><p><a href="http://unitytaiwan.blogspot.tw/2014/01/unity-43-occlusion-culling.html" target="_blank" rel="noopener">Unity 4.3 &#x5173;&#x4E8E;Occlusion Culling : &#x9519;&#x8BEF;&#x8BCA;&#x65AD;</a></p>
+</li>
+</ul>
+<p>&#x5177;&#x4F53;&#x7684;&#x5185;&#x5BB9;&#x5927;&#x5BB6;&#x53EF;&#x4EE5;&#x81EA;&#x884C;&#x67E5;&#x627E;&#x3002;</p>
+<h2 id="GPU"><a href="#GPU" class="headerlink" title="GPU"></a>GPU</h2><blockquote>
+<p>&#x800C;&#x5BF9;&#x4E8E;GPU&#x6765;&#x8BF4;&#xFF0C;&#x5B83;&#x8D1F;&#x8D23;&#x6574;&#x4E2A;&#x6E32;&#x67D3;&#x6D41;&#x6C34;&#x7EBF;&#x3002;&#x5B83;&#x4F1A;&#x4ECE;&#x5904;&#x7406;CPU&#x4F20;&#x9012;&#x8FC7;&#x6765;&#x7684;&#x6A21;&#x578B;&#x6570;&#x636E;&#x5F00;&#x59CB;&#xFF0C;&#x8FDB;&#x884C;Vertex Shader&#x3001;Fragment Shader&#x7B49;&#x4E00;&#x7CFB;&#x5217;&#x5DE5;&#x4F5C;&#xFF0C;&#x6700;&#x540E;&#x8F93;&#x51FA;&#x5C4F;&#x5E55;&#x4E0A;&#x7684;&#x6BCF;&#x4E2A;&#x50CF;&#x7D20;&#x3002;&#x56E0;&#x6B64;&#x5B83;&#x7684;&#x6027;&#x80FD;&#x74F6;&#x9888;&#x53EF;&#x80FD;&#x548C;&#x9700;&#x8981;&#x5904;&#x7406;&#x7684;&#x9876;&#x70B9;&#x6570;&#x76EE;&#x7684;&#x3001;&#x5C4F;&#x5E55;&#x5206;&#x8FA8;&#x7387;&#x3001;&#x663E;&#x5B58;&#x7B49;&#x56E0;&#x7D20;&#x6709;&#x5173;&#x3002;&#x603B;&#x4F53;&#x5305;&#x542B;&#x4E86;&#x9876;&#x70B9;&#x548C;&#x50CF;&#x7D20;&#x4E24;&#x65B9;&#x9762;&#x7684;&#x6027;&#x80FD;&#x74F6;&#x9888;&#x3002;&#x5728;&#x50CF;&#x7D20;&#x5904;&#x7406;&#x4E2D;&#xFF0C;&#x6700;&#x5E38;&#x89C1;&#x7684;&#x6027;&#x80FD;&#x74F6;&#x9888;&#x4E4B;&#x4E00;&#x662F;overdraw&#x3002;Overdraw&#x6307;&#x7684;&#x662F;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x80FD;&#x5BF9;&#x5C4F;&#x5E55;&#x4E0A;&#x7684;&#x50CF;&#x7D20;&#x7ED8;&#x5236;&#x4E86;&#x591A;&#x6B21;&#x3002;</p>
+</blockquote>
+<h3 id="&#x50CF;&#x7D20;&#x4F18;&#x5316;"><a href="#&#x50CF;&#x7D20;&#x4F18;&#x5316;" class="headerlink" title="&#x50CF;&#x7D20;&#x4F18;&#x5316;"></a>&#x50CF;&#x7D20;&#x4F18;&#x5316;</h3><p>&#x50CF;&#x7D20;&#x4F18;&#x5316;&#x7684;&#x91CD;&#x70B9;&#x5728;&#x4E8E;&#x51CF;&#x5C11;overdraw&#x3002;&#x4E4B;&#x524D;&#x63D0;&#x8FC7;&#xFF0C;overdraw&#x6307;&#x7684;&#x5C31;&#x662F;&#x4E00;&#x4E2A;&#x50CF;&#x7D20;&#x88AB;&#x7ED8;&#x5236;&#x4E86;&#x591A;&#x6B21;&#x3002;&#x5173;&#x952E;&#x5728;&#x4E8E;&#x63A7;&#x5236;&#x7ED8;&#x5236;&#x987A;&#x5E8F;&#x3002;</p>
+<p>Unity&#x8FD8;&#x63D0;&#x4F9B;&#x4E86;&#x67E5;&#x770B;overdraw&#x7684;&#x89C6;&#x56FE;&#xFF0C;&#x5728;Scene&#x89C6;&#x56FE;&#x7684;Render Mode-&gt;Overdraw&#x3002;&#x5F53;&#x7136;&#x8FD9;&#x91CC;&#x7684;&#x89C6;&#x56FE;&#x53EA;&#x662F;&#x63D0;&#x4F9B;&#x4E86;&#x67E5;&#x770B;&#x7269;&#x4F53;&#x906E;&#x6321;&#x7684;&#x5C42;&#x6570;&#x5173;&#x7CFB;&#xFF0C;&#x5E76;&#x4E0D;&#x662F;&#x771F;&#x6B63;&#x7684;&#x6700;&#x7EC8;&#x5C4F;&#x5E55;&#x7ED8;&#x5236;&#x7684;overdraw&#x3002;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#xFF0C;&#x53EF;&#x4EE5;&#x7406;&#x89E3;&#x4E3A;&#x5B83;&#x663E;&#x793A;&#x7684;&#x662F;&#x5982;&#x679C;&#x6CA1;&#x6709;&#x4F7F;&#x7528;&#x4EFB;&#x4F55;&#x6DF1;&#x5EA6;&#x68C0;&#x9A8C;&#x65F6;&#x7684;overdraw&#x3002;&#x8FD9;&#x79CD;&#x89C6;&#x56FE;&#x662F;&#x901A;&#x8FC7;&#x628A;&#x6240;&#x6709;&#x5BF9;&#x8C61;&#x90FD;&#x6E32;&#x67D3;&#x6210;&#x4E00;&#x4E2A;&#x900F;&#x660E;&#x7684;&#x8F6E;&#x5ED3;&#xFF0C;&#x901A;&#x8FC7;&#x67E5;&#x770B;&#x900F;&#x660E;&#x989C;&#x8272;&#x7684;&#x7D2F;&#x8BA1;&#x7A0B;&#x5EA6;&#xFF0C;&#x6765;&#x5224;&#x65AD;&#x7269;&#x4F53;&#x7684;&#x906E;&#x6321;&#x3002;</p>
+<p>overdraw&#x8D8A;&#x4E25;&#x91CD;&#xFF0C;&#x6D89;&#x53CA;&#x7684;&#x90FD;&#x662F;&#x900F;&#x660E;&#x7269;&#x4F53;&#xFF0C;&#x8FD9;&#x610F;&#x5473;&#x7740;&#x6027;&#x80FD;&#x5C06;&#x4F1A;&#x53D7;&#x5230;&#x5F88;&#x5927;&#x5F71;&#x54CD;&#x3002;</p>
+<h4 id="&#x63A7;&#x5236;&#x7ED8;&#x5236;&#x987A;&#x5E8F;"><a href="#&#x63A7;&#x5236;&#x7ED8;&#x5236;&#x987A;&#x5E8F;" class="headerlink" title="&#x63A7;&#x5236;&#x7ED8;&#x5236;&#x987A;&#x5E8F;"></a>&#x63A7;&#x5236;&#x7ED8;&#x5236;&#x987A;&#x5E8F;</h4><p>&#x9700;&#x8981;&#x63A7;&#x5236;&#x7ED8;&#x5236;&#x987A;&#x5E8F;&#xFF0C;&#x4E3B;&#x8981;&#x539F;&#x56E0;&#x662F;&#x4E3A;&#x4E86;&#x6700;&#x5927;&#x9650;&#x5EA6;&#x7684;&#x907F;&#x514D;overdraws&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x540C;&#x4E00;&#x4E2A;&#x4F4D;&#x7F6E;&#x7684;&#x50CF;&#x7D20;&#x53EF;&#x4EE5;&#x9700;&#x8981;&#x88AB;&#x7ED8;&#x5236;&#x591A;&#x53D8;&#x3002;&#x5728;PC&#x4E0A;&#xFF0C;&#x8D44;&#x6E90;&#x65E0;&#x9650;&#xFF0C;&#x4E3A;&#x4E86;&#x5F97;&#x5230;&#x6700;&#x51C6;&#x786E;&#x7684;&#x6E32;&#x67D3;&#x7ED3;&#x679C;&#xFF0C;&#x7ED8;&#x5236;&#x987A;&#x5E8F;&#x53EF;&#x80FD;&#x662F;&#x4ECE;&#x540E;&#x5F80;&#x524D;&#x7ED8;&#x5236;&#x4E0D;&#x900F;&#x660E;&#x7269;&#x4F53;&#xFF0C;&#x7136;&#x540E;&#x518D;&#x7ED8;&#x5236;&#x900F;&#x660E;&#x7269;&#x4F53;&#x8FDB;&#x884C;&#x6DF7;&#x5408;&#x3002;&#x4F46;&#x5728;&#x79FB;&#x52A8;&#x5E73;&#x53F0;&#x4E0A;&#xFF0C;&#x8FD9;&#x79CD;&#x4F1A;&#x9020;&#x6210;&#x5927;&#x91CF;overdraw&#x7684;&#x65B9;&#x5F0F;&#x663E;&#x7136;&#x662F;&#x4E0D;&#x9002;&#x5408;&#x7684;&#xFF0C;&#x6211;&#x4EEC;&#x5E94;&#x8BE5;&#x5C3D;&#x91CF;&#x4ECE;&#x524D;&#x5F80;&#x540E;&#x7ED8;&#x5236;&#x3002;&#x4ECE;&#x524D;&#x5F80;&#x540E;&#x7ED8;&#x5236;&#x4E4B;&#x6240;&#x4EE5;&#x53EF;&#x4EE5;&#x51CF;&#x5C11;overdraw&#xFF0C;&#x90FD;&#x662F;&#x56E0;&#x4E3A;&#x6DF1;&#x5EA6;&#x68C0;&#x9A8C;&#x7684;&#x529F;&#x52B3;&#x3002;</p>
+<p>&#x5728;Unity&#x4E2D;&#xFF0C;&#x90A3;&#x4E9B;Shader&#x4E2D;&#x88AB;&#x8BBE;&#x7F6E;&#x4E3A;&#x201C;Geometry&#x201D; &#x961F;&#x5217;&#x7684;&#x5BF9;&#x8C61;&#x603B;&#x662F;&#x4ECE;&#x524D;&#x5F80;&#x540E;&#x7ED8;&#x5236;&#x7684;&#xFF0C;&#x800C;&#x5176;&#x4ED6;&#x56FA;&#x5B9A;&#x961F;&#x5217;&#xFF08;&#x5982;&#x201C;Transparent&#x201D;&#x201C;Overla&#x201D;&#x7B49;&#xFF09;&#x7684;&#x7269;&#x4F53;&#xFF0C;&#x5219;&#x90FD;&#x662F;&#x4ECE;&#x540E;&#x5F80;&#x524D;&#x7ED8;&#x5236;&#x7684;&#x3002;&#x8FD9;&#x610F;&#x5473;&#x8FD9;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x5C3D;&#x91CF;&#x628A;&#x7269;&#x4F53;&#x7684;&#x961F;&#x5217;&#x8BBE;&#x7F6E;&#x4E3A;&#x201C;Geometry&#x201D; &#x3002;</p>
+<p>&#x800C;&#x4E14;&#xFF0C;&#x6211;&#x4EEC;&#x8FD8;&#x53EF;&#x4EE5;&#x5145;&#x5206;&#x5229;&#x7528;Unity&#x7684;&#x961F;&#x5217;&#x6765;&#x63A7;&#x5236;&#x7ED8;&#x5236;&#x987A;&#x5E8F;&#x3002;&#x4F8B;&#x5982;&#xFF0C;&#x5BF9;&#x4E8E;&#x5929;&#x7A7A;&#x76D2;&#x5B50;&#x6765;&#x8BF4;&#xFF0C;&#x5B83;&#x51E0;&#x4E4E;&#x8986;&#x76D6;&#x4E86;&#x6240;&#x6709;&#x7684;&#x50CF;&#x7D20;&#xFF0C;&#x800C;&#x4E14;&#x6211;&#x4EEC;&#x77E5;&#x9053;&#x5B83;&#x6C38;&#x8FDC;&#x4F1A;&#x5728;&#x6240;&#x6709;&#x7269;&#x4F53;&#x7684;&#x540E;&#x9762;&#xFF0C;&#x56E0;&#x6B64;&#x5B83;&#x7684;&#x961F;&#x5217;&#x53EF;&#x4EE5;&#x8BBE;&#x7F6E;&#x4E3A;&#x201C;Geometry+1&#x201D;&#x3002;&#x8FD9;&#x6837;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x4FDD;&#x8BC1;&#x4E0D;&#x4F1A;&#x56E0;&#x4E3A;&#x5B83;&#x800C;&#x9020;&#x6210;overdraws&#x3002;</p>
+<h4 id="&#x65F6;&#x523B;&#x8B66;&#x60D5;&#x900F;&#x660E;&#x7269;&#x4F53;"><a href="#&#x65F6;&#x523B;&#x8B66;&#x60D5;&#x900F;&#x660E;&#x7269;&#x4F53;" class="headerlink" title="&#x65F6;&#x523B;&#x8B66;&#x60D5;&#x900F;&#x660E;&#x7269;&#x4F53;"></a>&#x65F6;&#x523B;&#x8B66;&#x60D5;&#x900F;&#x660E;&#x7269;&#x4F53;</h4><p>&#x800C;&#x5BF9;&#x4E8E;&#x900F;&#x660E;&#x5BF9;&#x8C61;&#xFF0C;&#x7531;&#x4E8E;&#x5B83;&#x672C;&#x8EAB;&#x7684;&#x7279;&#x6027;&#xFF08;&#x53EF;&#x4EE5;&#x770B;&#x4E4B;&#x524D;&#x5173;&#x4E8E;Alpha Test&#x548C;Alpha Blending&#x7684;&#x4E00;&#x7BC7;&#x6587;&#x7AE0;&#xFF09;&#x51B3;&#x5B9A;&#x5982;&#x679C;&#x8981;&#x5F97;&#x5230;&#x6B63;&#x786E;&#x7684;&#x6E32;&#x67D3;&#x6548;&#x679C;&#xFF0C;&#x5C31;&#x5FC5;&#x987B;&#x4ECE;&#x540E;&#x5F80;&#x524D;&#x6E32;&#x67D3;&#xFF08;&#x8FD9;&#x91CC;&#x4E0D;&#x8BA8;&#x8BBA;&#x4F7F;&#x7528;&#x6DF1;&#x5EA6;&#x7684;&#x65B9;&#x6CD5;&#xFF09;&#xFF0C;&#x800C;&#x4E14;&#x629B;&#x5F03;&#x4E86;&#x6DF1;&#x5EA6;&#x68C0;&#x9A8C;&#x3002;&#x8FD9;&#x610F;&#x5473;&#x7740;&#xFF0C;&#x900F;&#x660E;&#x7269;&#x4F53;&#x51E0;&#x4E4E;&#x4E00;&#x5B9A;&#x4F1A;&#x9020;&#x6210;overdraws&#x3002;&#x5982;&#x679C;&#x6211;&#x4EEC;&#x4E0D;&#x6CE8;&#x610F;&#x8FD9;&#x4E00;&#x70B9;&#xFF0C;&#x5728;&#x4E00;&#x4E9B;&#x673A;&#x5668;&#x4E0A;&#x53EF;&#x80FD;&#x4F1A;&#x9020;&#x6210;&#x4E25;&#x91CD;&#x7684;&#x6027;&#x80FD;&#x4E0B;&#x9762;&#x3002;&#x4F8B;&#x5982;&#xFF0C;&#x5BF9;&#x4E8E;GUI&#x5BF9;&#x8C61;&#x6765;&#x8BF4;&#xFF0C;&#x5B83;&#x4EEC;&#x5927;&#x591A;&#x88AB;&#x8BBE;&#x7F6E;&#x6210;&#x4E86;&#x534A;&#x900F;&#x660E;&#xFF0C;&#x5982;&#x679C;&#x5C4F;&#x5E55;&#x4E2D;GUI&#x5360;&#x636E;&#x7684;&#x6BD4;&#x4F8B;&#x592A;&#x591A;&#xFF0C;&#x800C;&#x4E3B;&#x6444;&#x50CF;&#x673A;&#x53C8;&#x6CA1;&#x6709;&#x8FDB;&#x884C;&#x8C03;&#x6574;&#x800C;&#x662F;&#x6295;&#x5F71;&#x6574;&#x4E2A;&#x5C4F;&#x5E55;&#xFF0C;&#x90A3;&#x4E48;GUI&#x5C31;&#x4F1A;&#x9020;&#x6210;&#x5C4F;&#x5E55;&#x7684;&#x5927;&#x91CF;overdraws&#x3002;</p>
+<p>&#x56E0;&#x6B64;&#xFF0C;&#x5982;&#x679C;&#x573A;&#x666F;&#x4E2D;&#x5927;&#x9762;&#x79EF;&#x7684;&#x900F;&#x660E;&#x5BF9;&#x8C61;&#xFF0C;&#x6216;&#x8005;&#x6709;&#x5F88;&#x591A;&#x5C42;&#x8986;&#x76D6;&#x7684;&#x591A;&#x5C42;&#x900F;&#x660E;&#x5BF9;&#x8C61;&#xFF08;&#x5373;&#x4FBF;&#x5B83;&#x4EEC;&#x6BCF;&#x4E2A;&#x7684;&#x9762;&#x79EF;&#x53EF;&#x4EE5;&#x90FD;&#x4E0D;&#x5927;&#xFF09;&#xFF0C;&#x6216;&#x8005;&#x662F;&#x900F;&#x660E;&#x7684;&#x7C92;&#x5B50;&#x6548;&#x679C;&#xFF0C;&#x5728;&#x79FB;&#x52A8;&#x8BBE;&#x5907;&#x4E0A;&#x4E5F;&#x4F1A;&#x9020;&#x6210;&#x5927;&#x91CF;&#x7684;overdraws&#x3002;&#x8FD9;&#x662F;&#x5E94;&#x8BE5;&#x5C3D;&#x91CF;&#x907F;&#x514D;&#x7684;&#x3002;</p>
+<p>&#x5BF9;&#x4E8E;&#x4E0A;&#x8FF0;GUI&#x7684;&#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x5C3D;&#x91CF;&#x51CF;&#x5C11;&#x7A97;&#x53E3;&#x4E2D;GUI&#x6240;&#x5360;&#x7684;&#x9762;&#x79EF;&#x3002;&#x5982;&#x679C;&#x5B9E;&#x5728;&#x65E0;&#x80FD;&#x4E3A;&#x529B;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x628A;GUI&#x7ED8;&#x5236;&#x548C;&#x4E09;&#x7EF4;&#x573A;&#x666F;&#x7684;&#x7ED8;&#x5236;&#x4EA4;&#x7ED9;&#x4E0D;&#x540C;&#x7684;&#x6444;&#x50CF;&#x673A;&#xFF0C;&#x800C;&#x5176;&#x4E2D;&#x8D1F;&#x8D23;&#x4E09;&#x7EF4;&#x573A;&#x666F;&#x7684;&#x6444;&#x50CF;&#x673A;&#x7684;&#x89C6;&#x89D2;&#x8303;&#x56F4;&#x5C3D;&#x91CF;&#x4E0D;&#x8981;&#x548C;GUI&#x91CD;&#x53E0;&#x3002;&#x5BF9;&#x4E8E;&#x5176;&#x4ED6;&#x60C5;&#x51B5;&#xFF0C;&#x53EA;&#x80FD;&#x8BF4;&#xFF0C;&#x5C3D;&#x53EF;&#x80FD;&#x5C11;&#x7528;&#x3002;&#x5F53;&#x7136;&#x8FD9;&#x6837;&#x4F1A;&#x5BF9;&#x6E38;&#x620F;&#x7684;&#x7F8E;&#x89C2;&#x5EA6;&#x4EA7;&#x751F;&#x4E00;&#x5B9A;&#x5F71;&#x54CD;&#xFF0C;&#x56E0;&#x6B64;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x5728;&#x4EE3;&#x7801;&#x4E2D;&#x5BF9;&#x673A;&#x5668;&#x7684;&#x6027;&#x80FD;&#x8FDB;&#x884C;&#x5224;&#x65AD;&#xFF0C;&#x4F8B;&#x5982;&#x9996;&#x5148;&#x5173;&#x95ED;&#x6240;&#x6709;&#x7684;&#x8017;&#x8D39;&#x6027;&#x80FD;&#x7684;&#x529F;&#x80FD;&#xFF0C;&#x5982;&#x679C;&#x53D1;&#x73B0;&#x8FD9;&#x4E2A;&#x673A;&#x5668;&#x8868;&#x73B0;&#x975E;&#x5E38;&#x826F;&#x597D;&#xFF0C;&#x518D;&#x5C1D;&#x8BD5;&#x5F00;&#x542F;&#x4E00;&#x4E9B;&#x7279;&#x6548;&#x529F;&#x80FD;&#x3002;</p>
+<h4 id="&#x51CF;&#x5C11;&#x5B9E;&#x65F6;&#x5149;&#x7167;"><a href="#&#x51CF;&#x5C11;&#x5B9E;&#x65F6;&#x5149;&#x7167;" class="headerlink" title="&#x51CF;&#x5C11;&#x5B9E;&#x65F6;&#x5149;&#x7167;"></a>&#x51CF;&#x5C11;&#x5B9E;&#x65F6;&#x5149;&#x7167;</h4><p>&#x5B9E;&#x65F6;&#x5149;&#x7167;&#x5BF9;&#x4E8E;&#x79FB;&#x52A8;&#x5E73;&#x53F0;&#x662F;&#x4E2A;&#x975E;&#x5E38;&#x6602;&#x8D35;&#x7684;&#x64CD;&#x4F5C;&#x3002;&#x5982;&#x679C;&#x53EA;&#x6709;&#x4E00;&#x4E2A;&#x5E73;&#x884C;&#x5149;&#x8FD8;&#x597D;&#xFF0C;&#x4F46;&#x5982;&#x679C;&#x573A;&#x666F;&#x4E2D;&#x5305;&#x542B;&#x4E86;&#x592A;&#x591A;&#x5149;&#x6E90;&#x5E76;&#x4E14;&#x4F7F;&#x7528;&#x4E86;&#x5F88;&#x591A;&#x591A;Passes&#x7684;shader&#xFF0C;&#x90A3;&#x4E48;&#x5F88;&#x6709;&#x53EF;&#x80FD;&#x4F1A;&#x9020;&#x6210;&#x6027;&#x80FD;&#x4E0B;&#x964D;&#x3002;&#x800C;&#x4E14;&#x5728;&#x6709;&#x4E9B;&#x673A;&#x5668;&#x4E0A;&#xFF0C;&#x8FD8;&#x8981;&#x9762;&#x4E34;shader&#x5931;&#x6548;&#x7684;&#x98CE;&#x9669;&#x3002;&#x4F8B;&#x5982;&#xFF0C;&#x4E00;&#x4E2A;&#x573A;&#x666F;&#x91CC;&#x5982;&#x679C;&#x5305;&#x542B;&#x4E86;&#x4E09;&#x4E2A;&#x9010;&#x50CF;&#x7D20;&#x7684;&#x70B9;&#x5149;&#x6E90;&#xFF0C;&#x800C;&#x4E14;&#x4F7F;&#x7528;&#x4E86;&#x9010;&#x50CF;&#x7D20;&#x7684;shader&#xFF0C;&#x90A3;&#x4E48;&#x5F88;&#x6709;&#x53EF;&#x80FD;&#x5C06;Draw Calls&#x63D0;&#x9AD8;&#x4E86;&#x4E09;&#x500D;&#xFF0C;&#x540C;&#x65F6;&#x4E5F;&#x4F1A;&#x589E;&#x52A0;overdraws&#x3002;&#x8FD9;&#x662F;&#x56E0;&#x4E3A;&#xFF0C;&#x5BF9;&#x4E8E;&#x9010;&#x50CF;&#x7D20;&#x7684;&#x5149;&#x6E90;&#x6765;&#x8BF4;&#xFF0C;&#x88AB;&#x8FD9;&#x4E9B;&#x5149;&#x6E90;&#x7167;&#x4EAE;&#x7684;&#x7269;&#x4F53;&#x8981;&#x88AB;&#x518D;&#x6E32;&#x67D3;&#x4E00;&#x6B21;&#x3002;&#x66F4;&#x7CDF;&#x7CD5;&#x7684;&#x662F;&#xFF0C;&#x65E0;&#x8BBA;&#x662F;&#x52A8;&#x6001;&#x6279;&#x5904;&#x7406;&#x8FD8;&#x662F;&#x52A8;&#x6001;&#x6279;&#x5904;&#x7406;&#xFF08;&#x5176;&#x5B9E;&#x6587;&#x6863;&#x4E2D;&#x53EA;&#x63D0;&#x5230;&#x4E86;&#x5BF9;&#x52A8;&#x6001;&#x6279;&#x5904;&#x7406;&#x7684;&#x5F71;&#x54CD;&#xFF0C;&#x4F46;&#x4E0D;&#x77E5;&#x9053;&#x4E3A;&#x4EC0;&#x4E48;&#x5B9E;&#x9A8C;&#x7ED3;&#x679C;&#x5BF9;&#x9759;&#x6001;&#x6279;&#x5904;&#x7406;&#x4E5F;&#x6CA1;&#x6709;&#x7528;&#xFF09;&#xFF0C;&#x5BF9;&#x4E8E;&#x8FD9;&#x79CD;&#x9010;&#x50CF;&#x7D20;&#x7684;pass&#x90FD;&#x65E0;&#x6CD5;&#x8FDB;&#x884C;&#x6279;&#x5904;&#x7406;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#xFF0C;&#x5B83;&#x4EEC;&#x4F1A;&#x4E2D;&#x65AD;&#x6279;&#x5904;&#x7406;&#x3002;</p>
+<p>&#x4F8B;&#x5982;&#xFF0C;&#x4E0B;&#x9762;&#x7684;&#x573A;&#x666F;&#x4E2D;&#xFF0C;&#x56DB;&#x4E2A;&#x7269;&#x4F53;&#x90FD;&#x88AB;&#x6807;&#x8BC6;&#x6210;&#x4E86;&#x201C;Static&#x201D;&#xFF0C;&#x5B83;&#x4EEC;&#x4F7F;&#x7528;&#x7684;shader&#x90FD;&#x662F;&#x81EA;&#x5E26;&#x7684;Bumped Diffuse&#x3002;&#x800C;&#x6240;&#x6709;&#x7684;&#x70B9;&#x5149;&#x6E90;&#x90FD;&#x88AB;&#x6807;&#x8BC6;&#x6210;&#x4E86;&#x201C;Important&#x201D;&#xFF0C;&#x5373;&#x662F;&#x9010;&#x50CF;&#x7D20;&#x5149;&#x3002;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#xFF0C;&#x8FD0;&#x884C;&#x540E;&#x7684;Draw Calls&#x662F;23&#xFF0C;&#x800C;&#x975E;3&#x3002;&#x8FD9;&#x662F;&#x56E0;&#x4E3A;&#xFF0C;&#x53EA;&#x6709;&#x201C;Forward Base&#x201D;&#x7684;Pass&#x65F6;&#x53D1;&#x751F;&#x4E86;&#x9759;&#x6001;&#x6279;&#x5904;&#x7406;&#xFF08;&#x8FD9;&#x91CC;&#x7684;&#x52A8;&#x6001;&#x6279;&#x5904;&#x7406;&#x7531;&#x4E8E;&#x591A;Pass&#x5DF2;&#x7ECF;&#x5B8C;&#x5168;&#x5931;&#x6548;&#x4E86;&#xFF09;&#xFF0C;&#x8282;&#x7701;&#x4E86;&#x4E00;&#x4E2A;Draw Calls&#xFF0C;&#x800C;&#x540E;&#x9762;&#x7684;&#x201C;Forward Add&#x201D; Pass&#xFF0C;&#x6BCF;&#x4E00;&#x6B21;&#x6E32;&#x67D3;&#x90FD;&#x662F;&#x4E00;&#x4E2A;&#x5355;&#x72EC;&#x7684;Draw Call&#xFF08;&#x800C;&#x4E14;&#x53EF;&#x4EE5;&#x770B;&#x5230;Tris&#x548C;Verts&#x6570;&#x76EE;&#x4E5F;&#x589E;&#x52A0;&#x4E86;&#xFF09;&#xFF1A;</p>
+<p>&#x8FD9;&#x70B9;&#x6B63;&#x5982;&#x6587;&#x6863;&#x4E2D;&#x8BF4;&#x7684;&#xFF1A;The draw calls for &#x201C;additional per-pixel lights&#x201D; will not be batched&#x3002;&#x539F;&#x56E0;&#x6211;&#x4E0D;&#x662F;&#x5F88;&#x6E05;&#x695A;&#xFF0C;&#x8FD9;&#x91CC;&#x6709;&#x4E00;&#x4E2A;&#x8BA8;&#x8BBA;&#xFF0C;&#x4F46;&#x91CC;&#x9762;&#x7684;&#x610F;&#x601D;&#x8BF4;&#x662F;&#x5BF9;&#x9759;&#x6001;&#x6279;&#x5904;&#x7406;&#x6CA1;&#x6709;&#x5F71;&#x54CD;&#xFF0C;&#x548C;&#x6211;&#x8FD9;&#x91CC;&#x7684;&#x7ED3;&#x679C;&#x4E0D;&#x4E00;&#x6837;&#xFF0C;&#x77E5;&#x9053;&#x539F;&#x56E0;&#x7684;&#x9EBB;&#x70E6;&#x7ED9;&#x6211;&#x7559;&#x8A00;&#xFF0C;&#x975E;&#x5E38;&#x611F;&#x8C22;&#x3002;&#x6211;&#x4E5F;&#x5728;Unity&#x8BBA;&#x575B;&#x91CC;&#x63D0;&#x95EE;&#x91CC;&#x3002;</p>
+<p>&#x6211;&#x4EEC;&#x770B;&#x5230;&#x5F88;&#x591A;&#x6210;&#x529F;&#x7684;&#x79FB;&#x52A8;&#x6E38;&#x620F;&#xFF0C;&#x5B83;&#x4EEC;&#x7684;&#x753B;&#x9762;&#x6548;&#x679C;&#x770B;&#x8D77;&#x6765;&#x597D;&#x50CF;&#x5305;&#x542B;&#x4E86;&#x5F88;&#x591A;&#x5149;&#x6E90;&#xFF0C;&#x4F46;&#x5176;&#x5B9E;&#x8FD9;&#x90FD;&#x662F;&#x9A97;&#x4EBA;&#x7684;&#x3002;</p>
+<h4 id="&#x4F7F;&#x7528;Lightmaps"><a href="#&#x4F7F;&#x7528;Lightmaps" class="headerlink" title="&#x4F7F;&#x7528;Lightmaps"></a>&#x4F7F;&#x7528;Lightmaps</h4><p>Lightmaps&#x7684;&#x5F88;&#x5E38;&#x89C1;&#x7684;&#x4E00;&#x79CD;&#x4F18;&#x5316;&#x7B56;&#x7565;&#x3002;&#x5B83;&#x4E3B;&#x8981;&#x7528;&#x4E8E;&#x573A;&#x666F;&#x4E2D;&#x6574;&#x4F53;&#x7684;&#x5149;&#x7167;&#x6548;&#x679C;&#x3002;&#x8FD9;&#x79CD;&#x6280;&#x672F;&#x4E3B;&#x8981;&#x662F;&#x63D0;&#x524D;&#x628A;&#x573A;&#x666F;&#x4E2D;&#x7684;&#x5149;&#x7167;&#x4FE1;&#x606F;&#x5B58;&#x50A8;&#x5728;&#x4E00;&#x5F20;&#x5149;&#x7167;&#x7EB9;&#x7406;&#x4E2D;&#xFF0C;&#x7136;&#x540E;&#x5728;&#x8FD0;&#x884C;&#x65F6;&#x523B;&#x53EA;&#x9700;&#x8981;&#x6839;&#x636E;&#x7EB9;&#x7406;&#x91C7;&#x6837;&#x5F97;&#x5230;&#x5149;&#x7167;&#x4FE1;&#x606F;&#x5373;&#x53EF;&#x3002;</p>
+<p>&#x5F53;&#x7136;&#x4E0E;&#x4E4B;&#x914D;&#x5408;&#x7684;&#x8FD8;&#x6709;Light Probes&#x6280;&#x672F;&#x3002;&#x98CE;&#x5B87;&#x51B2;&#x6709;&#x4E00;&#x4E2A;&#x7CFB;&#x5217;&#x6587;&#x7AE0;&#x8BB2;&#x8FC7;&#xFF0C;&#x4F46;&#x662F;&#x65F6;&#x95F4;&#x6BD4;&#x8F83;&#x4E45;&#x8FDC;&#xFF0C;&#x4F46;&#x6559;&#x7A0B;&#x6211;&#x76F8;&#x4FE1;&#x7F51;&#x4E0A;&#x6709;&#x5F88;&#x591A;&#x3002;</p>
+<h4 id="&#x4F7F;&#x7528;God-Rays"><a href="#&#x4F7F;&#x7528;God-Rays" class="headerlink" title="&#x4F7F;&#x7528;God Rays"></a>&#x4F7F;&#x7528;God Rays</h4><p>&#x573A;&#x666F;&#x4E2D;&#x5F88;&#x591A;&#x5C0F;&#x578B;&#x5149;&#x6E90;&#x6548;&#x679C;&#x90FD;&#x662F;&#x9760;&#x8FD9;&#x79CD;&#x65B9;&#x6CD5;&#x6A21;&#x62DF;&#x7684;&#x3002;&#x5B83;&#x4EEC;&#x4E00;&#x822C;&#x5E76;&#x4E0D;&#x662F;&#x771F;&#x7684;&#x5149;&#x6E90;&#x4EA7;&#x751F;&#x7684;&#xFF0C;&#x5F88;&#x591A;&#x60C5;&#x51B5;&#x662F;&#x901A;&#x8FC7;&#x900F;&#x660E;&#x7EB9;&#x7406;&#x8FDB;&#x884C;&#x6A21;&#x62DF;&#x3002;&#x5177;&#x4F53;&#x53EF;&#x4EE5;&#x53C2;&#x89C1;&#x4E4B;&#x524D;&#x7684;&#x6587;&#x7AE0;&#x3002;</p>
+<h2 id="&#x5E26;&#x5BBD;&#x4F18;&#x5316;"><a href="#&#x5E26;&#x5BBD;&#x4F18;&#x5316;" class="headerlink" title="&#x5E26;&#x5BBD;&#x4F18;&#x5316;"></a>&#x5E26;&#x5BBD;&#x4F18;&#x5316;</h2><h3 id="&#x51CF;&#x5C11;&#x7EB9;&#x7406;&#x5927;&#x5C0F;"><a href="#&#x51CF;&#x5C11;&#x7EB9;&#x7406;&#x5927;&#x5C0F;" class="headerlink" title="&#x51CF;&#x5C11;&#x7EB9;&#x7406;&#x5927;&#x5C0F;"></a>&#x51CF;&#x5C11;&#x7EB9;&#x7406;&#x5927;&#x5C0F;</h3><p>&#x4E4B;&#x524D;&#x63D0;&#x5230;&#x8FC7;&#xFF0C;&#x4F7F;&#x7528;Texture Atlas&#x53EF;&#x4EE5;&#x5E2E;&#x52A9;&#x51CF;&#x5C11;Draw Calls&#xFF0C;&#x800C;&#x8FD9;&#x4E9B;&#x7EB9;&#x7406;&#x7684;&#x5927;&#x5C0F;&#x540C;&#x6837;&#x662F;&#x4E00;&#x4E2A;&#x9700;&#x8981;&#x8003;&#x8651;&#x7684;&#x95EE;&#x9898;&#x3002;&#x5728;&#x8FD9;&#x4E4B;&#x524D;&#x8981;&#x63D0;&#x5230;&#x4E00;&#x4E2A;&#x95EE;&#x9898;&#x5C31;&#x662F;&#xFF0C;&#x6240;&#x6709;&#x7EB9;&#x7406;&#x7684;&#x957F;&#x5BBD;&#x6BD4;&#x6700;&#x597D;&#x662F;&#x6B63;&#x65B9;&#x5F62;&#xFF0C;&#x800C;&#x4E14;&#x957F;&#x5EA6;&#x503C;&#x6700;&#x597D;&#x662F;2&#x7684;&#x6574;&#x6570;&#x5E42;&#x3002;&#x8FD9;&#x662F;&#x56E0;&#x4E3A;&#x6709;&#x5F88;&#x591A;&#x4F18;&#x5316;&#x7B56;&#x7565;&#x53EA;&#x6709;&#x5728;&#x8FD9;&#x79CD;&#x65F6;&#x5019;&#x624D;&#x53EF;&#x4EE5;&#x53D1;&#x6325;&#x6700;&#x5927;&#x6548;&#x7528;&#x3002;</p>
+<p>Unity&#x4E2D;&#x67E5;&#x770B;&#x7EB9;&#x7406;&#x53C2;&#x6570;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x7EB9;&#x7406;&#x7684;&#x9762;&#x677F;&#xFF1A;</p>
+<p>&#x800C;&#x8C03;&#x6574;&#x53C2;&#x6570;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x7EB9;&#x7406;&#x7684;Advance&#x9762;&#x677F;&#xFF1A;</p>
+<p>&#x4E0A;&#x9762;&#x5404;&#x79CD;&#x53C2;&#x6570;&#x7684;&#x8BF4;&#x660E;&#x53EF;&#x4EE5;&#x53C2;&#x89C1;&#x6587;&#x6863;&#x3002;&#x5176;&#x4E2D;&#x548C;&#x4F18;&#x5316;&#x76F8;&#x5173;&#x7684;&#x4E3B;&#x8981;&#x6709;&#x201C;Generate Mip Maps&#x201D;&#x3001;&#x201C;Max Size&#x201D;&#x548C;&#x201C;Format&#x201D;&#x51E0;&#x4E2A;&#x9009;&#x9879;&#x3002;</p>
+<p>&#x201C;Generate Mip Maps&#x201D;&#x4F1A;&#x4E3A;&#x540C;&#x4E00;&#x5F20;&#x7EB9;&#x7406;&#x521B;&#x5EFA;&#x51FA;&#x5F88;&#x591A;&#x4E0D;&#x540C;&#x5927;&#x5C0F;&#x7684;&#x5C0F;&#x7EB9;&#x7406;&#xFF0C;&#x6784;&#x6210;&#x4E00;&#x4E2A;&#x7EB9;&#x7406;&#x91D1;&#x5B57;&#x5854;&#x3002;&#x800C;&#x5728;&#x6E38;&#x620F;&#x4E2D;&#x53EF;&#x4EE5;&#x6839;&#x636E;&#x8DDD;&#x79BB;&#x7269;&#x4F53;&#x7684;&#x8FDC;&#x8FD1;&#xFF0C;&#x6765;&#x52A8;&#x6001;&#x9009;&#x62E9;&#x4F7F;&#x7528;&#x54EA;&#x4E00;&#x4E2A;&#x7EB9;&#x7406;&#x3002;&#x8FD9;&#x662F;&#x56E0;&#x4E3A;&#xFF0C;&#x5728;&#x8DDD;&#x79BB;&#x7269;&#x4F53;&#x5F88;&#x8FDC;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5C31;&#x7B97;&#x6211;&#x4EEC;&#x4F7F;&#x7528;&#x4E86;&#x975E;&#x5E38;&#x7CBE;&#x7EC6;&#x7684;&#x7EB9;&#x7406;&#xFF0C;&#x4F46;&#x8089;&#x773C;&#x4E5F;&#x662F;&#x5206;&#x8FA8;&#x4E0D;&#x51FA;&#x6765;&#x7684;&#xFF0C;&#x8FD9;&#x79CD;&#x65F6;&#x5019;&#x5B8C;&#x5168;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x66F4;&#x5C0F;&#x3001;&#x66F4;&#x6A21;&#x7CCA;&#x7684;&#x7EB9;&#x7406;&#x6765;&#x4EE3;&#x66FF;&#xFF0C;&#x800C;&#x8FD9;&#x5927;&#x91CF;&#x53EF;&#x4EE5;&#x8282;&#x7701;&#x8BBF;&#x95EE;&#x7684;&#x50CF;&#x7D20;&#x7684;&#x6570;&#x76EE;&#x3002;&#x4F46;&#x5B83;&#x7684;&#x7F3A;&#x70B9;&#x662F;&#xFF0C;&#x7531;&#x4E8E;&#x9700;&#x8981;&#x4E3A;&#x6BCF;&#x4E00;&#x4E2A;&#x7EB9;&#x7406;&#x5EFA;&#x7ACB;&#x4E00;&#x4E2A;&#x56FE;&#x50CF;&#x91D1;&#x5B57;&#x5854;&#xFF0C;&#x56E0;&#x6B64;&#x5B83;&#x4F1A;&#x9700;&#x8981;&#x5360;&#x7528;&#x66F4;&#x591A;&#x7684;&#x5185;&#x5B58;&#x3002;&#x4F8B;&#x5982;&#x4E0A;&#x9762;&#x7684;&#x4F8B;&#x5B50;&#xFF0C;&#x5728;&#x52FE;&#x9009;&#x201C;Generate Mip Maps&#x201D;&#x524D;&#xFF0C;&#x5185;&#x5B58;&#x5360;&#x7528;&#x662F;0.5M&#xFF0C;&#x800C;&#x52FE;&#x9009;&#x4E86;&#x201C;Generate Mip Maps&#x201D;&#x540E;&#xFF0C;&#x5C31;&#x53D8;&#x6210;&#x4E86;0.7M&#x3002;&#x9664;&#x4E86;&#x5185;&#x5B58;&#x7684;&#x5360;&#x7528;&#x4EE5;&#x5916;&#xFF0C;&#x4E00;&#x4E9B;&#x65F6;&#x5019;&#x6211;&#x4EEC;&#x4E5F;&#x4E0D;&#x5E0C;&#x671B;&#x4F7F;&#x7528;Mipmaps&#xFF0C;&#x4F8B;&#x5982;GUI&#x7EB9;&#x7406;&#x7B49;&#x3002;&#x6211;&#x4EEC;&#x8FD8;&#x53EF;&#x4EE5;&#x5728;&#x9762;&#x677F;&#x4E2D;&#x67E5;&#x770B;&#x751F;&#x6210;&#x7684;Mip Maps&#xFF1A;</p>
+<p>Unity&#x4E2D;&#x8FD8;&#x63D0;&#x4F9B;&#x4E86;&#x67E5;&#x770B;&#x573A;&#x666F;&#x4E2D;&#x7269;&#x4F53;&#x7684;Mip Maps&#x7684;&#x4F7F;&#x7528;&#x60C5;&#x51B5;&#x3002;&#x66F4;&#x786E;&#x5207;&#x7684;&#x8BF4;&#x662F;&#xFF0C;&#x5C55;&#x793A;&#x4E86;&#x7269;&#x4F53;&#x7406;&#x60F3;&#x7684;&#x7EB9;&#x7406;&#x5927;&#x5C0F;&#x3002;&#x5176;&#x4E2D;&#x7EA2;&#x8272;&#x8868;&#x793A;&#x8FD9;&#x4E2A;&#x7269;&#x4F53;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x66F4;&#x5C0F;&#x7684;&#x7EB9;&#x7406;&#xFF0C;&#x84DD;&#x8272;&#x8868;&#x793A;&#x5E94;&#x8BE5;&#x4F7F;&#x7528;&#x66F4;&#x5927;&#x7684;&#x7EB9;&#x7406;&#x3002;</p>
+<p>&#x201C;Max Size&#x201D;&#x51B3;&#x5B9A;&#x4E86;&#x7EB9;&#x7406;&#x7684;&#x957F;&#x5BBD;&#x503C;&#xFF0C;&#x5982;&#x679C;&#x6211;&#x4EEC;&#x4F7F;&#x7528;&#x7684;&#x7EB9;&#x7406;&#x672C;&#x8EAB;&#x8D85;&#x8FC7;&#x4E86;&#x8FD9;&#x4E2A;&#x6700;&#x5927;&#x503C;&#xFF0C;Unity&#x4F1A;&#x5BF9;&#x5176;&#x8FDB;&#x884C;&#x7F29;&#x5C0F;&#x6765;&#x6EE1;&#x8DB3;&#x8FD9;&#x4E2A;&#x6761;&#x4EF6;&#x3002;&#x8FD9;&#x91CC;&#x518D;&#x91CD;&#x590D;&#x4E00;&#x70B9;&#xFF0C;&#x6240;&#x6709;&#x7EB9;&#x7406;&#x7684;&#x957F;&#x5BBD;&#x6BD4;&#x6700;&#x597D;&#x662F;&#x6B63;&#x65B9;&#x5F62;&#xFF0C;&#x800C;&#x4E14;&#x957F;&#x5EA6;&#x503C;&#x6700;&#x597D;&#x662F;2&#x7684;&#x6574;&#x6570;&#x5E42;&#x3002;&#x8FD9;&#x662F;&#x56E0;&#x4E3A;&#x6709;&#x5F88;&#x591A;&#x4F18;&#x5316;&#x7B56;&#x7565;&#x53EA;&#x6709;&#x5728;&#x8FD9;&#x79CD;&#x65F6;&#x5019;&#x624D;&#x53EF;&#x4EE5;&#x53D1;&#x6325;&#x6700;&#x5927;&#x6548;&#x7528;&#x3002;</p>
+<p>&#x201C;Format&#x201D;&#x8D1F;&#x8D23;&#x7EB9;&#x7406;&#x4F7F;&#x7528;&#x7684;&#x538B;&#x7F29;&#x6A21;&#x5F0F;&#x3002;&#x901A;&#x5E38;&#x9009;&#x62E9;&#x8FD9;&#x79CD;&#x81EA;&#x52A8;&#x6A21;&#x5F0F;&#x5C31;&#x53EF;&#x4EE5;&#x4E86;&#xFF0C;Unity&#x4F1A;&#x8D1F;&#x8D23;&#x6839;&#x636E;&#x4E0D;&#x540C;&#x7684;&#x5E73;&#x53F0;&#x6765;&#x9009;&#x62E9;&#x5408;&#x9002;&#x7684;&#x538B;&#x7F29;&#x6A21;&#x5F0F;&#x3002;&#x800C;&#x5BF9;&#x4E8E;GUI&#x7C7B;&#x578B;&#x7684;&#x7EB9;&#x7406;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x6839;&#x636E;&#x5BF9;&#x753B;&#x8D28;&#x7684;&#x8981;&#x6C42;&#x6765;&#x9009;&#x62E9;&#x662F;&#x5426;&#x8FDB;&#x884C;&#x538B;&#x7F29;&#xFF0C;&#x5177;&#x4F53;&#x53EF;&#x4EE5;&#x53C2;&#x89C1;&#x4E4B;&#x524D;&#x5173;&#x4E8E;&#x753B;&#x8D28;&#x7684;&#x6587;&#x7AE0;&#x3002;</p>
+<p>&#x6211;&#x4EEC;&#x8FD8;&#x53EF;&#x4EE5;&#x6839;&#x636E;&#x4E0D;&#x540C;&#x7684;&#x673A;&#x5668;&#x6765;&#x9009;&#x62E9;&#x4F7F;&#x7528;&#x4E0D;&#x540C;&#x5206;&#x8FA8;&#x7387;&#x7684;&#x7EB9;&#x7406;&#xFF0C;&#x4EE5;&#x4FBF;&#x8BA9;&#x6E38;&#x620F;&#x5728;&#x67D0;&#x4E9B;&#x8001;&#x673A;&#x5668;&#x4E0A;&#x4E5F;&#x53EF;&#x4EE5;&#x8FD0;&#x884C;</p>
+<h3 id="&#x5229;&#x7528;&#x7F29;&#x653E;"><a href="#&#x5229;&#x7528;&#x7F29;&#x653E;" class="headerlink" title="&#x5229;&#x7528;&#x7F29;&#x653E;"></a>&#x5229;&#x7528;&#x7F29;&#x653E;</h3><p>&#x5F88;&#x591A;&#x65F6;&#x5019;&#x5206;&#x8FA8;&#x7387;&#x4E5F;&#x662F;&#x9020;&#x6210;&#x6027;&#x80FD;&#x4E0B;&#x964D;&#x7684;&#x539F;&#x56E0;&#xFF0C;&#x5C24;&#x5176;&#x662F;&#x73B0;&#x5728;&#x5F88;&#x591A;&#x56FD;&#x5185;&#x5C71;&#x5BE8;&#x673A;&#xFF0C;&#x9664;&#x4E86;&#x5206;&#x8FA8;&#x7387;&#x9AD8;&#x5176;&#x4ED6;&#x786C;&#x4EF6;&#x7B80;&#x76F4;&#x4E00;&#x584C;&#x7CCA;&#x6D82;&#xFF0C;&#x800C;&#x8FD9;&#x6070;&#x6070;&#x4E2D;&#x4E86;&#x6E38;&#x620F;&#x6027;&#x80FD;&#x7684;&#x4E24;&#x4E2A;&#x74F6;&#x9888;&#xFF1A;&#x8FC7;&#x5927;&#x7684;&#x5C4F;&#x5E55;&#x5206;&#x8FA8;&#x7387;+&#x7CDF;&#x7CD5;&#x7684;GPU&#x3002;&#x56E0;&#x6B64;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x80FD;&#x9700;&#x8981;&#x5BF9;&#x4E8E;&#x7279;&#x5B9A;&#x673A;&#x5668;&#x8FDB;&#x884C;&#x5206;&#x8FA8;&#x7387;&#x7684;&#x653E;&#x7F29;&#x3002;&#x5F53;&#x7136;&#xFF0C;&#x8FD9;&#x6837;&#x4F1A;&#x9020;&#x6210;&#x6E38;&#x620F;&#x6548;&#x679C;&#x7684;&#x4E0B;&#x964D;&#xFF0C;&#x4F46;&#x6027;&#x80FD;&#x548C;&#x753B;&#x9762;&#x4E4B;&#x95F4;&#x6C38;&#x8FDC;&#x662F;&#x4E2A;&#x9700;&#x8981;&#x6743;&#x8861;&#x7684;&#x8BDD;&#x9898;&#x3002;</p>
+<p>&#x5728;Unity&#x4E2D;&#x8BBE;&#x7F6E;&#x5C4F;&#x5E55;&#x5206;&#x8FA8;&#x7387;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x8C03;&#x7528;Screen.SetResolution&#x3002;&#x5B9E;&#x9645;&#x4F7F;&#x7528;&#x4E2D;&#x53EF;&#x80FD;&#x4F1A;&#x9047;&#x5230;&#x4E00;&#x4E9B;&#x60C5;&#x51B5;&#xFF0C;&#x96E8;&#x677E;MOMO&#x6709;&#x4E00;&#x7BC7;&#x6587;&#x7AE0;&#x8BB2;&#x4E86;&#x8FD9;&#x79CD;&#x6280;&#x672F;&#xFF0C;&#x53EF;&#x4EE5;&#x53BB;&#x770B;&#x770B;&#x3002;</p>
+
+			  		
+			  		
+			  		<!-- google Adsense -->
+			  		
+					
+			  	</div>
+				
+		  	</article>
+		  	
+		  	
+		  	<!-- meta (categories , tags) -->
+		  	
+		  	<div class="meta-content">
+		  	
+		  		
+		  		<div class="meta-wrapper">
+				  	<h6 class="categories">Category</h6>
+				  	<div class="article-categories">
+						<ul class="article-categories-list">
+							
+					    		<li class="article-categories-list-item">
+					    			<a class="article-categories-list-link" href="/categories/unity3d/" class="link-gaTrack" data-linkType="link-categories">
+					    				unity3d
+					    			</a>
+					    		</li>
+							
+						</ul>
+					</div>
+				</div>
+				
+				
+				
+				<div class="meta-wrapper">
+				  	<h6 class="tag">Tag</h6>
+				  	<div class="article-tag">
+						<ul class="article-tag-list">
+							
+					    		<li class="article-tag-list-item">
+					    			<a class="article-tag-list-link" href="/tags/unity3d/" class="link-gaTrack" data-linkType="link-tag">
+					    				unity3d
+					    			</a>
+					    		</li>
+							
+						</ul>
+					</div>
+				</div>
+				
+			</div>
+		  	
+		  	
+		  	<!-- article nav -->
+		  	
+			<nav id="article-nav">
+			  
+			  <a href="/2017/04/07/unity/unity-code-optimization/" id="article-nav-newer" class="article-nav-link-wrap">
+			    <strong class="article-nav-caption">Newer</strong>
+			    <div class="article-nav-title">
+			      
+			        Unity Mono托管内存优化
+			      
+			    </div>
+			  </a>
+			  
+			  
+			  <a href="/2017/04/03/unity/unity-3daudio-one/" id="article-nav-older" class="article-nav-link-wrap">
+			    <strong class="article-nav-caption">Older</strong>
+			    <div class="article-nav-title">
+			      
+			        Unity 3D 音效实现
+			      
+			    </div>
+			  </a>
+			  
+			</nav>
+			
+			
+		</div>
+		
+		
+		<footer id="footer">
+		
+			
+			
+			
+			
+			<div class="homeLink">
+		  		<a href="/">Home</a>
+		  	</div>
+			
+			
+			<div class="copyright-tool">
+				<div class="copyright-title">
+					<span>
+					&copy; 2021&nbsp;Chester.C
+					</span>
+				</div>
+				
+			</div>
+			
+		</footer>
+		
+		
+	</div>
+	
+	
+  	<div id="totop"><a href="#"></a></div>
+  	
+  	
+  </body>
+</html>

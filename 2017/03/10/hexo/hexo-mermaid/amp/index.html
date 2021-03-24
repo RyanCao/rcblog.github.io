@@ -1,0 +1,2031 @@
+<!doctype html>
+<html ⚡>
+  <head>
+    <meta charset="utf-8">
+    <link rel="canonical" href="http://blog.rcant.com/2017/03/10/hexo/hexo-mermaid/index.html" >
+    <title>Mermaid 使用指南 | Chester.Cao Blog</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+    <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style>
+    <noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+    <script async custom-element="amp-sidebar" src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js"></script>
+  	<script async custom-element="amp-social-share" src="https://cdn.ampproject.org/v0/amp-social-share-0.1.js"></script>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+    <script type="application/ld+json">
+		{
+			"@context": "http://schema.org",
+			"@type": "BlogPosting",
+			"headline": "Mermaid 使用指南",
+			
+			"description": "&lt;h2 id=&#34;起因&#34;&gt;&lt;a href=&#34;#起因&#34; class=&#34;headerlink&#34; title=&#34;起因&#34;&gt;&lt;/a&gt;起因&lt;/h2&gt;&lt;p&gt;在 MarkDown 中 使用 Mermaid 画流程图很方便，但是需要有一定规则, 做个记录&lt;/p&gt;
+&lt;h2 id=&#34;配置环境&#34;&gt;&lt;a href=&#34;#配置环境&#34; class=&#34;headerlink&#34; title=&#34;配置环境&#34;&gt;&lt;/a&gt;配置环境&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;Node v12.18&lt;/li&gt;
+&lt;li&gt;Hexo v4.2.1&lt;/li&gt;
+&lt;li&gt;Mermaid(hexo-filter-mermaid-diagrams) v1.0.5&lt;/li&gt;
+&lt;/ul&gt;",
+			
+			"mainEntityOfPage":{
+			    "@type":"WebPage",
+			    "@id":"http://blog.rcant.com/2017/03/10/hexo/hexo-mermaid/"
+			},
+			"datePublished": "2017-03-10T03:39:17.000Z",
+			"dateModified": "2020-11-13T12:21:29.724Z",
+			
+			"image": {
+				"@type": "ImageObject",
+				"url": "\amp-dist\sample\sample-substituteTitleImage.png",
+				"width" : "1024",
+				"height" : "800"
+			},
+			
+			"author": {
+			    "@type": "Person",
+			    "name": "Chester.C"
+			},
+			"publisher": {
+			    "@type": "Organization",
+			    "name": "Chester.Cao Blog"
+			    
+			    ,
+			    "logo": {
+			      "@type": "ImageObject",
+			      "url": "http://blog.rcant.com\amp-dist\sample\sample-logo.png",
+			      "width": 600,
+			      "height": 60
+			    }
+			    
+			}
+		}
+	</script>
+	
+	<style amp-custom>
+		
+:root sub,
+:root sup {
+  vertical-align: baseline;
+}
+a {
+  -moz-transition: 0.7s;
+  -ms-transition: 0.7s;
+  -o-transition: 0.7s;
+  -webkit-transition: 0.7s;
+  color: #0379c4;
+  -webkit-transition: 0.7s;
+  -moz-transition: 0.7s;
+  -o-transition: 0.7s;
+  -ms-transition: 0.7s;
+  transition: 0.7s;
+  border: 0;
+  font-family: inherit;
+  font-size: 100%;
+  font-style: inherit;
+  font-weight: inherit;
+  margin: 0;
+  outline: 0;
+  padding: 0;
+  vertical-align: baseline;
+}
+a img {
+  border: none;
+}
+a:hover {
+  -moz-transition: 0.3s;
+  -ms-transition: 0.3s;
+  -o-transition: 0.3s;
+  -webkit-transition: 0.3s;
+  color: #31adfc;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -o-transition: 0.3s;
+  -ms-transition: 0.3s;
+  transition: 0.3s;
+}
+abbr,
+acronym,
+address,
+applet,
+big,
+blockquote,
+body,
+caption,
+cite,
+code,
+dd,
+del,
+dfn,
+div,
+dl,
+dt,
+em,
+fieldset,
+form,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+html,
+iframe,
+img,
+ins,
+kbd,
+label,
+legend,
+li,
+object,
+ol,
+p,
+pre,
+q,
+s,
+samp,
+small,
+span,
+strike,
+strong,
+sub,
+sup,
+table,
+tbody,
+td,
+tfoot,
+th,
+thead,
+tr,
+tt,
+ul,
+var {
+  border: 0;
+  font-family: inherit;
+  font-size: 100%;
+  font-style: inherit;
+  font-weight: inherit;
+  margin: 0;
+  outline: 0;
+  padding: 0;
+  vertical-align: baseline;
+}
+abbr {
+  cursor: help;
+  border-bottom: 1px dotted;
+  font-variant: normal;
+}
+acronym {
+  border-bottom: 1px dotted;
+  font-variant: normal;
+}
+body {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  background: #fff;
+  color: #34393a;
+  font-family: 'メイリオ', 'MS PGothic', sans-serif;
+  font-size: 102%;
+  font-wight: 500;
+  line-height: 2em;
+  text-rendering: optimizelegibility;
+}
+button::-moz-focus-inner,
+input::-moz-focus-inner,
+figure.highlight td,
+.post .entry-content figure.highlight th {
+  border: 0;
+  padding: 0;
+}
+caption,
+table,
+td,
+th {
+  vertical-align: middle;
+}
+caption,
+td,
+th,
+.table-align-left {
+  text-align: left;
+}
+code,
+figure.highlight .code,
+pre {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: subpixel-antialiased;
+}
+code,
+kbd,
+pre,
+samp {
+  font-family: Menlo, Consolas, Monaco, Consolas, monospace;
+}
+code,
+pre {
+  background-color: #f5f2f0;
+  margin: 0 3px;
+  padding: 1px 8px;
+}
+code,
+pre,
+samp {
+  font-size: 0.9em;
+  letter-spacing: 0.05em;
+}
+del {
+  text-decoration: line-through;
+}
+#article-nav {
+  clear: both;
+  margin: 1em 20px;
+  position: relative;
+  
+}
+#article-nav:after {
+  clear: both;
+  content: "";
+  display: table;
+}
+#article-nav:before {
+  content: "";
+  display: table;
+  -webkit-border-radius: 50%;
+  -webkit-box-shadow: 0 1px 2px #fff;
+  border-radius: 50%;
+  -webkit-box-shadow: 0 1px 2px #fff;
+  box-shadow: 0 1px 2px #fff;
+  content: "";
+  height: 8px;
+  left: 50%;
+  margin-left: -4px;
+  margin-top: -4px;
+  position: absolute;
+  top: 50%;
+  width: 8px;
+}
+#article-nav-newer {
+  float: left;
+  padding-right: 20px;
+  text-align: right;
+}
+#article-nav-newer .article-nav-caption {
+  margin-right: -2px;
+}
+#article-nav-older {
+  float: right;
+  padding-left: 20px;
+  text-align: left;
+}
+#container {
+  margin-left: auto;
+  margin-right: auto;
+}
+#footer {
+  background-color: #0379c4;
+  display: block;
+  font-size: 70%;
+  line-height: 1.6;
+  padding: 20px 0;
+}
+#footer:after {
+  content: ".";
+  display: block;
+  font-size: 0;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+.moreRead:before,
+.useFlame,
+kbd,
+.copyright,
+.table-align-center {
+  text-align: center;
+}
+.blog-title a,
+.nav,
+.nav-icon,
+.loadingPutAbsolute,
+.moreRead:before,
+.titleWrapper {
+  position: relative;
+}
+#header {
+  display: block;
+  margin: 0.5em 0 1em;
+  position: static;
+  text-align: center;
+  position: relative;
+}
+#header:after {
+  display: block;
+  font-size: 0;
+  height: 0;
+}
+#header:after,
+.clearfix:after,
+.nav ul:after {
+  clear: both;
+  visibility: hidden;
+}
+#main {
+  margin-bottom: 3em;
+  padding-left: 0;
+}
+.useFlame,
+kbd {
+  display: inline-block;
+}
+#page-nav a,
+.photoby,
+kbd {
+  color: #4c5355;
+}
+* html .clearfix {
+  height: 1%;
+}
+.alignleft,
+.left {
+  float: left;
+}
+.alignright,
+.right {
+  float: right;
+}
+.article-devider {
+  border: 0;
+  border-top: 5px solid #ddd;
+  margin: 5em auto;
+  width: 8%;
+}
+.article-nav-caption,
+.nav {
+  text-transform: uppercase;
+}
+.article-nav-caption {
+  color: #ddd;
+  font-weight: 700;
+  letter-spacing: 2px;
+  line-height: 1em;
+}
+.article-nav-link-wrap,
+a {
+  text-decoration: none;
+}
+.article-nav-link-wrap {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #999;
+  display: block;
+  margin-top: 0;
+  text-align: center;
+  width: 50%;
+}
+.article-nav-link-wrap:hover {
+  color: #bfbfbf;
+}
+.article-nav-title {
+  font-size: 0.85em;
+  line-height: 1.6em;
+  margin-top: 0.5em;
+}
+.nav ul {
+  display: block;
+}
+.nav ul li {
+  display: block;
+}
+.nav ul li a {
+  display: block;
+}
+.authorCap {
+  font-size: 1.5em;
+}
+.authorReading {
+  font-size: 0.7em;
+}
+.site-author-info-wrapper {
+  padding: 20px;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -o-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+.gravatar-wrapper {
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -o-box-flex: 1;
+  box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+.gravatar-area {
+  margin: 0 20px 0 0;
+}
+.authorCap-wrapper {
+  -webkit-box-flex: 3;
+  -moz-box-flex: 3;
+  -o-box-flex: 3;
+  box-flex: 3;
+  -webkit-flex: 3;
+  -ms-flex: 3;
+  flex: 3;
+}
+.blog-title {
+  border-bottom: none;
+  float: none;
+  font-size: 120%;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  margin: 10px 0;
+  padding-bottom: 0.2em;
+}
+.blog-title a {
+  left: 0.1em;
+  padding: 0.4em 0;
+}
+.circle {
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+}
+.clearfix:after {
+  content: ".";
+  display: block;
+  height: 0;
+}
+.copyright-title {
+  font-size: 1.2em;
+}
+.copyright-tool {
+  text-align: center;
+  font-family: 'メイリオ', 'MS PGothic', sans-serif;
+  margin: 1em 0 0 0;
+}
+h6.tag,
+h6.categories {
+  color: #0379c4;
+  font-size: 110%;
+}
+.entry-content {
+  width: 93.75%;
+  margin: 0 auto;
+  font-size: 100%;
+}
+.entry-content h2,
+.entry-content h3 {
+  text-align: center;
+}
+.entry-content h1 {
+  font-size: 170%;
+  line-height: 1.5;
+  margin: 1em 0 0.8em;
+}
+.entry-content h2,
+.entry-content h3,
+.entry-content h4,
+.entry-content h5,
+.entry-content h6 {
+  line-height: 1.5;
+  margin: 1em 0 0.8em;
+}
+.entry-content h2 {
+  border-bottom: 2px solid #0379c4;
+  color: #0379c4;
+  font-size: 160%;
+  margin: 1.8em 0 0.5em;
+  padding: 0.8em 0;
+}
+.entry-content h3 {
+  color: #0379c4;
+  font-size: 150%;
+  margin: 1.8em 0 0.5em;
+  padding: 0.8em 0.5em;
+}
+.entry-content h4 {
+  border-left: 2px solid #0379c4;
+  color: #0379c4;
+  font-size: 120%;
+  margin: 1.8em 0 0.5em;
+  padding-left: 1.2em;
+  text-align: left;
+}
+.entry-content h5,
+.entry-content h6 {
+  color: #0379c4;
+  margin: 1.8em 0 0.5em;
+  text-align: left;
+}
+.entry-content h5 {
+  font-size: 110%;
+  padding-left: 1.2em;
+}
+.entry-content h6 {
+  font-size: 100%;
+}
+.entry-content p {
+  font-size: 1em;
+  letter-spacing: 0;
+  line-height: 2.2em;
+  margin: 1.8em 0;
+}
+.entry-content p em {
+  background-color: #faf7dc;
+  color: #736e4f;
+  font-style: normal;
+  margin: 0 2px;
+  padding: 3px;
+}
+.entry-content p strong {
+  color: #734f4f;
+  font-style: normal;
+  margin: 0 2px;
+  padding: 3px;
+  background-color: #fadcdc;
+}
+.entry-content dl,
+.entry-content ol,
+.entry-content ul {
+  margin: 1.8em 0 1.8em 1em;
+  padding: 0;
+}
+.entry-content ol p,
+.entry-content ul p,
+.entry-content dl p {
+  margin: 0;
+}
+.entry-content dl li,
+.entry-content ol li {
+  line-height: 1.8em;
+  margin: 0.5em;
+}
+.entry-content ol {
+  list-style: decimal ;
+}
+.entry-content ol li {
+  font-size: 1em;
+  margin: 0.2em 0 0.2em 2.6em;
+  padding: 0 0 0 0.1em;
+  position: relative;
+}
+.entry-content ol p:not(:first-child),
+.entry-content ul p:not(:first-child) {
+  color: #4c5355;
+}
+.entry-content ol {
+  padding: 0 /* paddingキャンセル */;
+  margin: 0 /* marginキャンセル */;
+  list-style: none /* olがはき出す数字を消す */;
+}
+.entry-content ol {
+  counter-reset: number /* 名前を付けたカウンターをリセット */;
+  list-style: none /* olが数字を付けることをキャンセル */;
+  margin: 0;
+  padding: 0;
+}
+.entry-content ol li:before {
+  counter-increment: number /* 任意の名前を付けて！ */;
+  content: counter(number) /* 名前を付けたカウンターを呼び出し */;
+  position: absolute;
+  left: -2.2em;
+  top: 0.05em;
+  display: inline-block;
+  margin: 0 0.5em 0 0;
+  padding: 0;
+  float: left;
+  background: #6abcf0;
+  width: 1.6em;
+  height: 1.6em;
+  border-radius: 50%;
+  color: #fff;
+  text-align: center;
+  line-height: 1.6em;
+}
+.entry-content ol li p:first-child {
+  display: inline-block;
+  line-height: 1.6em;
+  height: 1.6em;
+  line-height: 1.6em;
+}
+.entry-content ul {
+  list-style: none;
+}
+.entry-content ul li {
+  font-size: 1em;
+  margin: 0.2em 0 0.2em 0.5em;
+  padding: 0 0 0 0.2em;
+  position: relative;
+}
+.entry-content ul li::after {
+  display: block;
+  content: '';
+  position: absolute;
+  top: 0.4em;
+  left: -1em;
+  width: 8px;
+  height: 8px;
+  border-bottom: 3px solid #ddd;
+}
+.entry-content dl li ol,
+.entry-content dl li ul {
+  margin-bottom: 2em;
+}
+.entry-content ol li ol,
+.entry-content ol li ul {
+  margin-bottom: 2em;
+}
+.entry-content ul li ol,
+.entry-content ul li ul {
+  margin-bottom: 2em;
+}
+.entry-content blockquote p:last-child,
+.entry-content .archive .post {
+  margin-bottom: 0;
+}
+.entry-content blockquote {
+  margin: 1.8em 0;
+  padding: 0.5em 20px;
+  position: relative;
+  background-color: #f6f6f4;
+}
+.entry-content blockquote p {
+  margin: 1em 0;
+}
+.entry-content blockquote:before {
+  color: #dfdfd8;
+  content: "”";
+  font-family: sans-serif;
+  font-size: 600%;
+  line-height: 1em;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 1;
+}
+.entry-content blockquote blockquote:before {
+  content: "";
+}
+.entry-content hr {
+  border: 0;
+  border-top: 3px solid #ddd;
+  margin: 3em auto;
+  width: 20%;
+}
+.entry-content img,
+.entry-content video {
+  display: block;
+  height: auto;
+  margin: auto;
+  max-width: 100%;
+}
+.entry-content pre {
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding;
+  background: #f5f2f0;
+  -webkit-background-clip: padding;
+  -moz-background-clip: padding;
+  background-clip: padding-box;
+  border: 0;
+  font-size: 100%;
+  line-height: 1.3;
+  overflow-x: auto;
+  padding: 15px;
+}
+.entry-content table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  font-size: 0.85em;
+  margin: 1.8em auto;
+  width: auto;
+}
+.entry-content td {
+  border: 1px solid #c4c4c4;
+  line-height: 1.5em;
+  padding: 0.6em 0.4em;
+}
+.entry-content th {
+  background-color: #fdf7f4;
+  border: 1px solid #c4c4c4;
+  padding: 0.6em 0.4em;
+}
+.entry-content iframe {
+  width: 100% ;
+}
+.entry-content figure.highlight {
+  margin: 1.8em 0;
+}
+.entry-content figure.highlight td {
+  border: 0;
+  font-size: 1.1em;
+  padding: 0;
+}
+.entry-content figure.highlight td.code {
+  border-left: 1px solid #eceae8;
+}
+.entry-meta-header {
+  font-size: 87%;
+  left: -200px;
+  margin-bottom: 1em;
+  position: static;
+  top: 0.5em;
+  width: auto;
+  text-align: center;
+}
+.entry-meta-header .date {
+  font-family: 'メイリオ', 'MS PGothic', sans-serif;
+}
+.entry-meta-header .meta-elements {
+  display: inline;
+  margin-bottom: 0.5em;
+  margin-right: 1em;
+}
+.gist {
+  background: #fff;
+  border: 1px solid color-gutter;
+  color: #918577;
+  line-height: 1.6;
+  margin-top: 15px;
+  overflow: auto;
+  padding: 7px 15px;
+}
+.gist .gist-file {
+  border: none;
+  font-family: inherit;
+  font-size: 1em;
+  letter-spacing: 0;
+  margin: 0;
+}
+.gist .gist-file .gist-data {
+  background: 0 0;
+  border-bottom: none;
+}
+.gist .gist-file .gist-data pre {
+  font-family: Menlo, Consolas, Monaco, Consolas, monospace;
+  padding: 0 ;
+}
+.gist .gist-file .gist-meta {
+  background: 0 0;
+  color: #918577;
+  font-size: 100%;
+  margin-top: 5px;
+  padding: 0;
+}
+.gist .gist-file .gist-meta a {
+  color: #918577;
+}
+.gist .gist-file .gist-meta a:visited {
+  color: #918577;
+}
+.line {
+  font-size: 95%;
+  letter-spacing: 0.05em;
+  line-height: 2em;
+}
+.post {
+  font-size: 90%;
+  margin-bottom: 5em;
+  position: relative;
+}
+.post .entry-header {
+  margin-bottom: 2em;
+}
+.post .entry-title {
+  font-size: 130%;
+  margin: 0;
+}
+.post h1 {
+  font-size: 1.2em;
+}
+.table-align-right {
+  text-align: right;
+}
+figure.highlight {
+  background: #fff;
+  border: 1px solid color-gutter;
+  font-size: 0.9em;
+  line-height: 2;
+  margin: 2.2em 0;
+  overflow: auto;
+  padding: 7px 10px;
+  position: relative;
+}
+figure.highlight .code {
+  border-left: 1px solid #fff;
+  color: #918577;
+}
+figure.highlight .gutter {
+  color: #d4d0cd;
+  padding-right: 10px;
+  text-align: left;
+}
+figure.highlight figcaption {
+  color: #d4d0cd;
+  margin-bottom: 5px;
+}
+figure.highlight figcaption a {
+  position: absolute;
+  right: 15px;
+}
+figure.highlight pre {
+  background: 0 0;
+  border: none;
+  margin: 0;
+  padding: 8px;
+}
+figure.highlight table {
+  border-spacing: 0;
+  margin: 0;
+}
+.post .entry-content figure.highlight table {
+  border-spacing: 0;
+  margin: 0;
+}
+figure.highlight th {
+  border: 0;
+  font-weight: 400;
+  padding: 0;
+}
+h1 a,
+h2 a,
+h3 a,
+h4 a,
+h5 a,
+h6 a {
+  color: #000;
+  text-decoration: none;
+}
+h1 a:hover,
+h2 a:hover,
+h3 a:hover,
+h4 a:hover,
+h5 a:hover,
+h6 a:hover {
+  color: #0379c4;
+}
+img.responsive-img {
+  height: auto;
+  max-width: 100%;
+}
+video.responsive-video {
+  height: auto;
+  max-width: 100%;
+}
+kbd {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-border-radius: 3px;
+  -webkit-box-shadow: 0 0 10px #e2e2e2 inset, 0 1px 0 #c3c3c3, 0 2px 0 #c9c9c9, 0 3px 3px #333;
+  -webkit-font-smoothing: subpixel-antialiased;
+  background: #fff;
+  border-bottom: 1px solid #e6e6e6;
+  border-left: 1px solid #fff;
+  border-radius: 3px;
+  border-right: 1px solid #e6e6e6;
+  border-top: 1px solid #fff;
+  -webkit-box-shadow: 0 0 10px #e8e8e8 inset, 0 1px 0 #c3c3c3, 0 2px 0 #c9c9c9, 0 3px 3px #333;
+  box-shadow: 0 0 10px #e8e8e8 inset, 0 1px 0 #c3c3c3, 0 2px 0 #c9c9c9, 0 3px 3px #333;
+  font-size: 0.85em;
+  line-height: 1;
+  margin: 5px;
+  padding: 6px 8px 3px;
+  text-shadow: 0 1px 0 #fff;
+  vertical-align: baseline;
+  
+}
+pre .addition,
+pre .css .tag,
+pre .keyword,
+pre .method,
+pre .nginx .title,
+pre .request,
+pre .status,
+pre .winutils {
+  color: #1a9ca1;
+}
+pre .attr_selector,
+pre .cdata,
+pre .clojure .title,
+pre .diff .change,
+pre .important {
+  color: #816ec5;
+}
+pre .preprocessor {
+  color: #816ec5;
+}
+pre .preprocessor .keyword {
+  color: #816ec5;
+}
+pre .shebang,
+pre .special,
+pre .subst {
+  color: #816ec5;
+}
+pre .symbol {
+  color: #816ec5;
+}
+pre .symbol .string {
+  color: #816ec5;
+}
+pre .attribute,
+pre .class .title,
+pre .constant,
+pre .haskell .type,
+pre .lisp .body,
+pre .parent,
+pre .smalltalk .number,
+pre .variable {
+  color: #c38700;
+}
+pre .built_in,
+pre .chunk,
+pre .decorator,
+pre .id,
+pre .identifier,
+pre .literal,
+pre .localvars,
+pre .title,
+pre .vhdl,
+pre .deletion {
+  color: #b42147;
+}
+pre .command,
+pre .hexcolor,
+pre .number,
+pre .phpdoc,
+pre .regexp,
+pre .string,
+pre .tag .value,
+pre .tex .formula {
+  color: #6c9a1c;
+}
+pre .comment,
+pre .diff .header,
+pre .doctype,
+pre .javadoc,
+pre .lisp .string,
+pre .pi,
+pre .template_comment {
+  color: #d4d0cd;
+  font-wight: normal;
+}
+sub {
+  bottom: -0.2em;
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+}
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  top: -0.5em;
+}
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+td.code,
+.article-tag-list {
+  padding: 0;
+}
+.entry-content .toc {
+  background: #fff;
+  padding: 1em 1em 1em 0;
+  margin: 2.8em 0em;
+  border: 1px solid #98d1f5;
+}
+.entry-content .toc ul:first-child {
+  border-top: none;
+}
+.entry-content .toc ul {
+  margin-bottom: 0;
+  padding: 0;
+  margin: 0;
+  border-top: 1px dotted #98d1f5;
+}
+.entry-content .toc ul ul,
+.entry-content .toc ul ol {
+  margin-bottom: 0;
+  padding: 0;
+  margin: 0 0 0 0.8em;
+}
+.entry-content .toc ul li {
+  padding: 0;
+  margin: 0 0 0 1em;
+  border-top: 1px dotted #98d1f5;
+}
+.entry-content .toc ul li a {
+  display: block;
+  padding: 10px 8px;
+  color: #34393a;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -o-transition: 0.3s;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -o-transition: 0.3s;
+  -ms-transition: 0.3s;
+  transition: 0.3s;
+}
+.entry-content .toc ul li a:hover {
+  color: #0379c4;
+  background-color: #98d1f5;
+}
+.entry-content .toc ul li a:before {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+  margin-right: 0.8em;
+}
+.entry-content .toc ul li ul,
+.entry-content .toc ul li ol {
+  margin-bottom: 0;
+  padding: 0;
+  margin: 0 0 0 0.8em;
+}
+.entry-content .toc ul li ul li a,
+.entry-content .toc ul li ol li a {
+  padding: 7px 10px;
+  font-size: 0.9em;
+}
+.entry-content .toc ul li ul li a:before,
+.entry-content .toc ul li ol li a:before {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+  margin-right: 0.6em;
+}
+.entry-content .toc ul li:first-child {
+  border-top: none;
+}
+.entry-content .toc ul li::after,
+.entry-content .toc ul li::before {
+  content: normal;
+}
+header {
+  height: 60px;
+}
+header .nav-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  -webkit-box-pack: justify;
+  -moz-box-pack: justify;
+  -o-box-pack: justify;
+  -ms-flex-pack: justify;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+}
+header .left-nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -o-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  -webkit-box-pack: start;
+  -moz-box-pack: start;
+  -o-box-pack: start;
+  -ms-flex-pack: start;
+  -webkit-justify-content: flex-start;
+  justify-content: flex-start;
+  font-size: 20px;
+  margin-left: 0;
+  font-weight: 300;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  -webkit-box-pack: start;
+  -moz-box-pack: start;
+  -o-box-pack: start;
+  -ms-flex-pack: start;
+  -webkit-justify-content: flex-start;
+  justify-content: flex-start;
+  -webkit-box-flex: 1;
+  -ms-flex: 1 1 auto;
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -o-box-flex: 1;
+  box-flex: 1;
+  -webkit-flex: 1 1 auto;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  text-align: left;
+  width: auto;
+  font-size: 15px;
+}
+header .right {
+  font-size: 15px;
+}
+header .alt {
+  padding: 0;
+  text-align: right;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -webkit-box-align: stretch;
+  -ms-flex-align: stretch;
+  -webkit-box-align: stretch;
+  -moz-box-align: stretch;
+  -o-box-align: stretch;
+  -ms-flex-align: stretch;
+  -webkit-align-items: stretch;
+  align-items: stretch;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  -o-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+.header-title a {
+  padding: 0 0 0 20px;
+  height: 60px;
+  line-height: 60px;
+  font-size: 20px;
+  color: #000;
+  letter-spacing: 0.2em;
+}
+button {
+  -webkit-box-align: start;
+  -moz-box-align: start;
+  -o-box-align: start;
+  -ms-flex-align: start;
+  -webkit-align-items: flex-start;
+  align-items: flex-start;
+  text-align: center;
+  cursor: default;
+  color: buttontext;
+  background-color: buttonface;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 2px 6px 3px;
+  border-width: 2px;
+  border-style: outset;
+  border-color: buttonface;
+  -webkit-border-image: initial;
+  -moz-border-image: initial;
+  -o-border-image: initial;
+  border-image: initial;
+  text-rendering: auto;
+  color: initial;
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-transform: none;
+  text-indent: 0px;
+  text-shadow: none;
+  display: inline-block;
+  text-align: start;
+  margin: 0em 0em 0em 0em;
+  font: 11px system-ui;
+  -webkit-writing-mode: horizontal-tb;
+  -webkit-appearance: button;
+}
+.__web-inspector-hide-shortcut__ {
+  visibility: hidden ;
+}
+.hamburger {
+  display: inline-block;
+  background-color: transparent;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-3 -6 24 24\"><path fill=\"#4A4A4A\" d=\"M0 12h18v-2H0v2M0 7h18V5H0v2M0 0v2h18V0H0\"/></svg>");
+  background-repeat: no-repeat;
+  -webkit-background-size: 30px 24px;
+  -moz-background-size: 30px 24px;
+  background-size: 30px 24px;
+  background-position: center center;
+  border: none;
+  margin: 0;
+  padding: 0;
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  -ms-flex-item-align: center;
+  -ms-grid-row-align: center;
+  -webkit-align-self: center;
+  align-self: center;
+  -ms-flex-item-align: center;
+}
+.tab {
+  position: relative;
+  color: #424242;
+  padding: 6px;
+  margin: 0 4px;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: 400;
+  -webkit-transition: 0.1s ease color;
+  -webkit-transition: 0.1s ease color;
+  -moz-transition: 0.1s ease color;
+  -o-transition: 0.1s ease color;
+  -ms-transition: 0.1s ease color;
+  transition: 0.1s ease color;
+}
+amp-sidebar {
+  width: 200px;
+}
+amp-sidebar ul {
+  padding: 10px 0;
+}
+amp-sidebar li a {
+  display: block;
+  padding: 10px 20px;
+}
+.title-cover {
+  background-color: #0379c4;
+  color: #fff;
+  padding: 30px 15px 20px 15px;
+  text-align: center;
+}
+.title-cover a {
+  color: #fff;
+}
+.title-cover a:hover {
+  color: #fff;
+}
+.meta-content {
+  background-color: #e9e9e9;
+  padding: 20px 0;
+}
+.meta-wrapper {
+  margin: 20px 20px;
+  padding: 20px 20px;
+  background-color: #fff;
+}
+#footer .homeLink,
+#footer .copyright-tool {
+  margin: 20px;
+}
+.copyright-tool {
+  color: #fff;
+  font-size: 0.5em;
+}
+.social-share {
+  margin: 10px 0 0 0;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  -o-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+.social-share amp-social-share {
+  margin: 5px;
+}
+#totop {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  font-size: 1.2em;
+  z-index: 995;
+  line-height: 1.8em;
+}
+#totop a {
+  background: rgba(152,209,245,0.6);
+  text-decoration: none;
+  color: #fff;
+  padding: 0;
+  text-align: center;
+  display: block;
+  width: 1.2em;
+  height: 2.2em;
+  line-height: 2em;
+  letter-spacing: 0;
+  position: relative;
+  display: inline-block;
+  padding: 0 0 0 16px;
+  vertical-align: middle;
+  text-decoration: none;
+  font-size: 15px;
+}
+#totop a:before,
+#totop a:after {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  content: "";
+  vertical-align: middle;
+}
+#totop a:before {
+  left: 12px;
+  width: 8px;
+  height: 8px;
+  border-top: 2px solid #fff;
+  border-right: 2px solid #fff;
+  -webkit-transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+#totop a:hover {
+  text-decoration: none;
+  background: #0379c4;
+  color: #fff;
+  line-height: 2.3em;
+}
+.site-author-desc {
+  font-size: 1.2em;
+  line-height: 2em;
+  margin-top: 1em;
+}
+.site-author-info {
+  background-color: #fff;
+  margin: 20px;
+}
+.gravatar-area {
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+}
+.article-tag,
+.article-tag-list,
+.article-categories,
+.article-categories-list {
+  padding: 0;
+  margin: 0;
+}
+.article-categories {
+  margin-bottom: 1.6em;
+}
+.article-tag-list li,
+.article-categories-list li {
+  list-style: none;
+  display: inline-block;
+  padding: 0;
+  margin: 0.2em 0;
+}
+.article-tag-list li a,
+.article-categories-list li a {
+  padding: 0.5em 0.6em;
+  margin: 0.4em 0em;
+  background-color: #f5f2f0;
+  color: #34393a;
+}
+.article-tag-list li a:before,
+.article-categories-list li a:before {
+  content: "#";
+}
+.article-tag-list li a:hover,
+.article-categories-list li a:hover {
+  color: #fff;
+  background-color: #0498f6;
+}
+.homeLink,
+.htmlPageLink {
+  font-weight: 700;
+  -moz-transition: 0.7s;
+  -ms-transition: 0.7s;
+  -o-transition: 0.7s;
+  -webkit-transition: 0.7s;
+  -webkit-transition: 0.7s;
+  -moz-transition: 0.7s;
+  -o-transition: 0.7s;
+  -ms-transition: 0.7s;
+  transition: 0.7s;
+  padding: 0.4em 0;
+}
+.homeLink a,
+.htmlPageLink a {
+  color: #fff;
+  display: block;
+  padding: 1em;
+  text-align: center;
+}
+.homeLink:hover,
+.htmlPageLink:hover {
+  -moz-transition: 0.3s;
+  -ms-transition: 0.3s;
+  -o-transition: 0.3s;
+  -webkit-transition: 0.3s;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -o-transition: 0.3s;
+  -ms-transition: 0.3s;
+  transition: 0.3s;
+}
+.homeLink {
+  font-size: 120%;
+  background: #18a3fb;
+}
+.homeLink:hover {
+  background: #4ab7fc;
+}
+.htmlPageLink {
+  font-size: 110%;
+  background: #18a3fb;
+}
+.htmlPageLink:hover {
+  background: #4ab7fc;
+}
+.googleAdPost,
+.ad-footer,
+amp-instagram,
+amp-vimeo,
+amp-video,
+amp-youtube,
+amp-twitter {
+  margin: 2.8em auto;
+}
+@media (min-width: 800px) {
+  .entry-header,
+  .entry-title,
+  .entry-content,
+  .article-nav {
+    width: 780px;
+    margin: 0 auto;
+  }
+  .nav-container {
+    width: 800px;
+    margin: 0 auto;
+  }
+  .meta-wrapper {
+    width: 760px;
+    margin: 20px auto;
+  }
+  .site-author-info {
+    width: 760px;
+    margin: 20px auto;
+  }
+  #footer .homeLink,
+  #footer .copyright-tool {
+    width: 760px;
+    margin: 20px auto;
+  }
+}
+
+	</style>
+	
+  </head>
+  <body>
+  	
+  	
+  	<!-- google analytics -->
+  	
+  	
+  	
+  	<!-- menu -->
+  	<header>
+  		<div class="nav-container">
+	  		<div class="left-nav">
+	  			<div class="header-title">
+	  				<a href="/">Chester.Cao Blog</a>
+	  			</div>
+	  		</div>
+	  		<div class="right alt">
+	  			<button on='tap:sidebar.toggle' class="tab hamburger"></button>
+	  		</div>
+	  	</div>
+    </header>
+  	
+  	
+  	<!-- sidebar -->
+  	<amp-sidebar id='sidebar' layout="nodisplay" side="left">
+      <ul>
+      	<!--
+      		To use the menu, add the menu option of _config.yml.
+      		
+      		generator_amp:
+      		  theme:
+			    menu:
+			      diary: /categories/diary/
+			      gallery: /categories/archive-gallery
+			      archives: /archives
+      	-->
+        <li><a href="/">Home</a></li>
+        
+      </ul>
+    </amp-sidebar>
+  	
+  	
+  	<!-- container -->
+  	<div id="container">
+	  	<div id="main">
+		    <article id="post-hexo/hexo-mermaid" class="post">
+		    
+		    	<!-- entry title -->
+				<div class="title-cover">
+					<div class="entry-header">
+						
+						  <h1 class="article-title entry-title" itemprop="name">
+						    <a href="http://blog.rcant.com/2017/03/10/hexo/hexo-mermaid/" target="_blank" itemprop="url">Mermaid 使用指南</a>
+						  </h1>
+						
+					</div>
+					
+					<!-- datePublished -->
+					<div class="entry-meta-header">
+						<span class="meta-elements date">
+							<time datetime="2017-03-10" itemprop="datePublished">2017-03-10</time>
+						</span>
+					</div>
+				</div>
+				
+				<!-- entry content -->
+			    <div class="entry-content ecp">
+			    
+			    
+			    	<!-- social share button -->
+			    	<!--
+			      		To use the facebook button, add the facebook_app_id option of _config.yml.
+			      		
+			      		generator_amp:
+			      		  theme:
+    						facebook_app_id: 123456789
+			      	-->
+			    	<div class="social-share">
+			    		<amp-social-share type="twitter" width="40" height="40"></amp-social-share>
+			    		
+			    		<!--
+			    		<amp-social-share type="pinterest" width="40" height="40"></amp-social-share>
+			    		-->
+			    		<amp-social-share type="gplus" width="40" height="40"></amp-social-share>
+			    		<!--
+			    		<amp-social-share type="tumblr" width="40" height="40"></amp-social-share>
+			    		<amp-social-share type="whatsapp" width="40" height="40"></amp-social-share>
+			    		<amp-social-share type="linkedin" width="40" height="40"></amp-social-share>
+			    		<amp-social-share type="email" width="40" height="40"></amp-social-share>
+			    		-->
+			    	</div>
+			    	
+			    	
+			    	<!-- content -->
+			  		<h2 id="&#x8D77;&#x56E0;"><a href="#&#x8D77;&#x56E0;" class="headerlink" title="&#x8D77;&#x56E0;"></a>&#x8D77;&#x56E0;</h2><p>&#x5728; MarkDown &#x4E2D; &#x4F7F;&#x7528; Mermaid &#x753B;&#x6D41;&#x7A0B;&#x56FE;&#x5F88;&#x65B9;&#x4FBF;&#xFF0C;&#x4F46;&#x662F;&#x9700;&#x8981;&#x6709;&#x4E00;&#x5B9A;&#x89C4;&#x5219;, &#x505A;&#x4E2A;&#x8BB0;&#x5F55;</p>
+<h2 id="&#x914D;&#x7F6E;&#x73AF;&#x5883;"><a href="#&#x914D;&#x7F6E;&#x73AF;&#x5883;" class="headerlink" title="&#x914D;&#x7F6E;&#x73AF;&#x5883;"></a>&#x914D;&#x7F6E;&#x73AF;&#x5883;</h2><ul>
+<li>Node v12.18</li>
+<li>Hexo v4.2.1</li>
+<li>Mermaid(hexo-filter-mermaid-diagrams) v1.0.5</li>
+</ul>
+<a id="more"></a>
+<h2 id="&#x5B89;&#x88C5;"><a href="#&#x5B89;&#x88C5;" class="headerlink" title="&#x5B89;&#x88C5;"></a>&#x5B89;&#x88C5;</h2><figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-filter-mermaid-diagrams</span><br></pre></td></tr></tbody></table></figure>
+<p>&#x4FEE;&#x6539;&#x914D;&#x7F6E; site/themes/next/_config.yml</p>
+<figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="section"># Mermaid tag</span></span><br><span class="line">mermaid:</span><br><span class="line">  enable: true</span><br><span class="line">  # Available themes: default | dark | forest | neutral</span><br><span class="line">  theme: forest</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="&#x4F7F;&#x7528;&#x58F0;&#x660E;"><a href="#&#x4F7F;&#x7528;&#x58F0;&#x660E;" class="headerlink" title="&#x4F7F;&#x7528;&#x58F0;&#x660E;"></a>&#x4F7F;&#x7528;&#x58F0;&#x660E;</h2><p>&#x5728;markdown&#x4E2D;&#x4F7F;&#x7528; &#x9700;&#x8981;&#x5C06;&#x4EE3;&#x7801;&#x58F0;&#x660E;&#x5728; <strong>mermaid</strong> &#x4EE3;&#x7801;&#x5757;&#x4E2D;</p>
+<figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(<span class="code">```</span>)mermaid</span><br><span class="line">code</span><br><span class="line">(<span class="code">```</span>)</span><br></pre></td></tr></tbody></table></figure>
+<blockquote>
+<p>&#x8BF7;&#x5FFD;&#x7565;&#x62EC;&#x53F7;&#xFF0C;&#x8FD9;&#x91CC;&#x662F;&#x4E3A;&#x4E86;&#x9632;&#x6B62;&#x8F6C;&#x4E49;</p>
+</blockquote>
+<h2 id="&#x6D41;&#x7A0B;&#x56FE;"><a href="#&#x6D41;&#x7A0B;&#x56FE;" class="headerlink" title="&#x6D41;&#x7A0B;&#x56FE;"></a>&#x6D41;&#x7A0B;&#x56FE;</h2><h3 id="&#x57FA;&#x7840;Graph"><a href="#&#x57FA;&#x7840;Graph" class="headerlink" title="&#x57FA;&#x7840;Graph"></a>&#x57FA;&#x7840;Graph</h3><p>graph &#x9700;&#x8981;&#x6709;&#x58F0;&#x660E;</p>
+<figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">graph $Ori</span><br></pre></td></tr></tbody></table></figure>
+<h4 id="&#x6D41;&#x7A0B;&#x56FE;&#x65B9;&#x5411;"><a href="#&#x6D41;&#x7A0B;&#x56FE;&#x65B9;&#x5411;" class="headerlink" title="&#x6D41;&#x7A0B;&#x56FE;&#x65B9;&#x5411;"></a>&#x6D41;&#x7A0B;&#x56FE;&#x65B9;&#x5411;</h4><div class="table-container">
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>&#x4EE3;&#x7801;</th>
+<th>&#x65B9;&#x5411;</th>
+<th>&#x8BF4;&#x660E;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TB/TD</td>
+<td>top to bottom</td>
+<td></td>
+</tr>
+<tr>
+<td>BT</td>
+<td>bottom to top</td>
+<td></td>
+</tr>
+<tr>
+<td>LR</td>
+<td>left to right</td>
+<td></td>
+</tr>
+<tr>
+<td>RL</td>
+<td>right to left</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<h5 id="1-&#x793A;&#x4F8B;-TD"><a href="#1-&#x793A;&#x4F8B;-TD" class="headerlink" title="1. &#x793A;&#x4F8B; TD"></a>1. &#x793A;&#x4F8B; TD</h5>  <figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">graph TD;</span><br><span class="line"><span class="code">    Start --&gt; Stop</span></span><br></pre></td></tr></tbody></table></figure>
+  <pre class="mermaid">  graph TD;
+      Start --&gt; Stop</pre>
+
+<h5 id="2-&#x793A;&#x4F8B;-LR"><a href="#2-&#x793A;&#x4F8B;-LR" class="headerlink" title="2. &#x793A;&#x4F8B; LR"></a>2. &#x793A;&#x4F8B; LR</h5>  <figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">graph LR;</span><br><span class="line"><span class="code">    Start --&gt; Stop</span></span><br></pre></td></tr></tbody></table></figure>
+  <pre class="mermaid">  graph LR;
+      Start --&gt; Stop</pre>
+
+<h4 id="&#x8282;&#x70B9;-&#x56FE;&#x5F62;"><a href="#&#x8282;&#x70B9;-&#x56FE;&#x5F62;" class="headerlink" title="&#x8282;&#x70B9;/&#x56FE;&#x5F62;"></a>&#x8282;&#x70B9;/&#x56FE;&#x5F62;</h4><h5 id="&#x9ED8;&#x8BA4;"><a href="#&#x9ED8;&#x8BA4;" class="headerlink" title="&#x9ED8;&#x8BA4;"></a>&#x9ED8;&#x8BA4;</h5><figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">graph LR;</span><br><span class="line"><span class="code">    id;</span></span><br></pre></td></tr></tbody></table></figure>
+<pre class="mermaid">graph LR;
+    id;</pre>
+
+<h5 id="&#x5E26;&#x6587;&#x672C;&#x7684;Node"><a href="#&#x5E26;&#x6587;&#x672C;&#x7684;Node" class="headerlink" title="&#x5E26;&#x6587;&#x672C;&#x7684;Node"></a>&#x5E26;&#x6587;&#x672C;&#x7684;Node</h5><figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">graph LR;</span><br><span class="line"><span class="code">    id1[This is the text in the box];</span></span><br></pre></td></tr></tbody></table></figure>
+<pre class="mermaid">graph LR;
+    id1[This is the text in the box];</pre>
+
+<h5 id="&#x5706;&#x89D2;Node"><a href="#&#x5706;&#x89D2;Node" class="headerlink" title="&#x5706;&#x89D2;Node"></a>&#x5706;&#x89D2;Node</h5><figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">graph LR;</span><br><span class="line"><span class="code">    id1(This is the text in the box);</span></span><br></pre></td></tr></tbody></table></figure>
+<pre class="mermaid">graph LR;
+    id1(This is the text in the box);</pre>
+
+<h5 id="&#x4F53;&#x80B2;&#x573A;&#x5F0F;&#x5706;&#x89D2;Node"><a href="#&#x4F53;&#x80B2;&#x573A;&#x5F0F;&#x5706;&#x89D2;Node" class="headerlink" title="&#x4F53;&#x80B2;&#x573A;&#x5F0F;&#x5706;&#x89D2;Node"></a>&#x4F53;&#x80B2;&#x573A;&#x5F0F;&#x5706;&#x89D2;Node</h5><figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">graph LR;</span><br><span class="line"><span class="code">    id1([This is the text in the box]);</span></span><br></pre></td></tr></tbody></table></figure>
+<pre class="mermaid">graph LR;
+    id1([This is the text in the box]);</pre>
+
+<h5 id="&#x5B50;&#x7A0B;&#x5E8F;Node"><a href="#&#x5B50;&#x7A0B;&#x5E8F;Node" class="headerlink" title="&#x5B50;&#x7A0B;&#x5E8F;Node"></a>&#x5B50;&#x7A0B;&#x5E8F;Node</h5><figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">graph LR;</span><br><span class="line"><span class="code">    id1[[This is the text in the box]];</span></span><br></pre></td></tr></tbody></table></figure>
+<pre class="mermaid">graph LR;
+    id1[[This is the text in the box]];</pre>
+
+<h5 id="&#x5706;&#x67F1;Node"><a href="#&#x5706;&#x67F1;Node" class="headerlink" title="&#x5706;&#x67F1;Node"></a>&#x5706;&#x67F1;Node</h5><figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">graph LR;</span><br><span class="line"><span class="code">    id1[(This is the text in the box)];</span></span><br></pre></td></tr></tbody></table></figure>
+<pre class="mermaid">graph LR;
+    id1[(This is the text in the box)];</pre>
+
+<h5 id="&#x5706;Node"><a href="#&#x5706;Node" class="headerlink" title="&#x5706;Node"></a>&#x5706;Node</h5><figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">graph LR;</span><br><span class="line"><span class="code">    id1((This is the text in the box));</span></span><br></pre></td></tr></tbody></table></figure>
+<pre class="mermaid">graph LR;
+    id1((This is the text in the box));</pre>
+
+<h5 id="&#x4E0D;&#x5BF9;&#x79F0;Node-&#x73B0;&#x5728;&#x53EA;&#x6709;&#x8FD9;&#x4E00;&#x79CD;&#x5F62;&#x5F0F;"><a href="#&#x4E0D;&#x5BF9;&#x79F0;Node-&#x73B0;&#x5728;&#x53EA;&#x6709;&#x8FD9;&#x4E00;&#x79CD;&#x5F62;&#x5F0F;" class="headerlink" title="&#x4E0D;&#x5BF9;&#x79F0;Node (&#x73B0;&#x5728;&#x53EA;&#x6709;&#x8FD9;&#x4E00;&#x79CD;&#x5F62;&#x5F0F;)"></a>&#x4E0D;&#x5BF9;&#x79F0;Node (&#x73B0;&#x5728;&#x53EA;&#x6709;&#x8FD9;&#x4E00;&#x79CD;&#x5F62;&#x5F0F;)</h5><figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">graph LR;</span><br><span class="line"><span class="code">    id1&gt;This is the text in the box];</span></span><br></pre></td></tr></tbody></table></figure>
+<pre class="mermaid">graph LR;
+    id1&gt;This is the text in the box];</pre>
+
+<h5 id="&#x83F1;&#x5F62;Node"><a href="#&#x83F1;&#x5F62;Node" class="headerlink" title="&#x83F1;&#x5F62;Node"></a>&#x83F1;&#x5F62;Node</h5><figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">graph LR;</span><br><span class="line"><span class="code">    id1{This is the text in the box};</span></span><br></pre></td></tr></tbody></table></figure>
+<pre class="mermaid">graph LR;
+    id1{This is the text in the box};</pre>
+
+<h5 id="&#x516D;&#x89D2;&#x5F62;Node"><a href="#&#x516D;&#x89D2;&#x5F62;Node" class="headerlink" title="&#x516D;&#x89D2;&#x5F62;Node"></a>&#x516D;&#x89D2;&#x5F62;Node</h5><figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">graph LR;</span><br><span class="line"><span class="code">    id1{{This is the text in the box}};</span></span><br></pre></td></tr></tbody></table></figure>
+<p>&#x6211;&#x7684;&#x535A;&#x5BA2;&#x4E0D;&#x5BB9;&#x8BB8;&#x6211;&#x663E;&#x793A;&#x8FD9;&#x4E2A;&#x6548;&#x679C;&#xFF01;</p>
+<h5 id="&#x5E73;&#x884C;&#x56DB;&#x8FB9;&#x5F62;Node"><a href="#&#x5E73;&#x884C;&#x56DB;&#x8FB9;&#x5F62;Node" class="headerlink" title="&#x5E73;&#x884C;&#x56DB;&#x8FB9;&#x5F62;Node"></a>&#x5E73;&#x884C;&#x56DB;&#x8FB9;&#x5F62;Node</h5><figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">graph LR;</span><br><span class="line"><span class="code">    id1[/This is the text in the box/];</span></span><br></pre></td></tr></tbody></table></figure>
+<pre class="mermaid">graph LR;
+    id1[/This is the text in the box/];</pre>
+
+<h5 id="&#x68AF;&#x5F62;Node"><a href="#&#x68AF;&#x5F62;Node" class="headerlink" title="&#x68AF;&#x5F62;Node"></a>&#x68AF;&#x5F62;Node</h5><figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">graph LR;</span><br><span class="line"><span class="code">    id1[/This is the text in the box\];</span></span><br><span class="line"><span class="code">    id2[\This is the text in the box/];</span></span><br></pre></td></tr></tbody></table></figure>
+<pre class="mermaid">graph LR;
+    id1[/This is the text in the box\];
+    id2[\This is the text in the box/];</pre>
+
+<h4 id="&#x8282;&#x70B9;&#x5173;&#x7CFB;&#xFF08;&#x8FDE;&#x7EBF;&#xFF09;"><a href="#&#x8282;&#x70B9;&#x5173;&#x7CFB;&#xFF08;&#x8FDE;&#x7EBF;&#xFF09;" class="headerlink" title="&#x8282;&#x70B9;&#x5173;&#x7CFB;&#xFF08;&#x8FDE;&#x7EBF;&#xFF09;"></a>&#x8282;&#x70B9;&#x5173;&#x7CFB;&#xFF08;&#x8FDE;&#x7EBF;&#xFF09;</h4><h4 id="&#x7EBF;&#x7684;&#x957F;&#x5EA6;"><a href="#&#x7EBF;&#x7684;&#x957F;&#x5EA6;" class="headerlink" title="&#x7EBF;&#x7684;&#x957F;&#x5EA6;"></a>&#x7EBF;&#x7684;&#x957F;&#x5EA6;</h4><div class="table-container">
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>Length</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Normal</td>
+<td>&#x2014;-</td>
+<td>&#x2014;&#x2014;</td>
+<td>&#x2014;&#x2014;-</td>
+</tr>
+<tr>
+<td>Normal with arrow</td>
+<td>&#x2014;&gt;</td>
+<td>&#x2014;-&gt;</td>
+<td>&#x2014;&#x2014;&gt;</td>
+</tr>
+<tr>
+<td>Thick</td>
+<td>===</td>
+<td>====</td>
+<td>=====</td>
+</tr>
+<tr>
+<td>Thick with arrow</td>
+<td>==&gt;</td>
+<td>===&gt;</td>
+<td>====&gt;</td>
+</tr>
+<tr>
+<td>Dotted</td>
+<td>-.-</td>
+<td>-..-</td>
+<td>-&#x2026;-</td>
+</tr>
+<tr>
+<td>Dotted with arrow</td>
+<td>-.-&gt;</td>
+<td>-..-&gt;</td>
+<td>-&#x2026;-&gt;</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<h4 id="&#x7EBF;&#x7684;&#x7C7B;&#x578B;"><a href="#&#x7EBF;&#x7684;&#x7C7B;&#x578B;" class="headerlink" title="&#x7EBF;&#x7684;&#x7C7B;&#x578B;"></a>&#x7EBF;&#x7684;&#x7C7B;&#x578B;</h4><div class="table-container">
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>&#x4EE3;&#x7801;</th>
+<th>&#x540D;&#x79F0;</th>
+<th>&#x8BF4;&#x660E;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&#x2014;-</td>
+<td>&#x666E;&#x901A;&#x7EBF;&#x6BB5;</td>
+<td></td>
+</tr>
+<tr>
+<td>&#x2014;&gt;</td>
+<td>&#x5E26;&#x7BAD;&#x5934;</td>
+<td></td>
+</tr>
+<tr>
+<td>===</td>
+<td>&#x7C97;&#x7EBF;</td>
+<td></td>
+</tr>
+<tr>
+<td>==&gt;</td>
+<td>&#x7C97;&#x7EBF;&#x5E26;&#x7BAD;&#x5934;</td>
+<td></td>
+</tr>
+<tr>
+<td>-.-</td>
+<td>&#x865A;&#x7EBF;</td>
+<td></td>
+</tr>
+<tr>
+<td>-.-&gt;</td>
+<td>&#x865A;&#x7EBF;&#x5E26;&#x7BAD;&#x5934;</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<h5 id="&#x666E;&#x901A;&#x7BAD;&#x5934;"><a href="#&#x666E;&#x901A;&#x7BAD;&#x5934;" class="headerlink" title="&#x666E;&#x901A;&#x7BAD;&#x5934;"></a>&#x666E;&#x901A;&#x7BAD;&#x5934;</h5><figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">graph LR</span><br><span class="line"><span class="code">    A--&gt;B</span></span><br></pre></td></tr></tbody></table></figure>
+<pre class="mermaid">graph LR
+    A--&gt;B</pre>
+
+<h5 id="&#x76F4;&#x63A5;&#x8FDE;&#x7EBF;"><a href="#&#x76F4;&#x63A5;&#x8FDE;&#x7EBF;" class="headerlink" title="&#x76F4;&#x63A5;&#x8FDE;&#x7EBF;"></a>&#x76F4;&#x63A5;&#x8FDE;&#x7EBF;</h5><figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">graph LR</span><br><span class="line"><span class="code">    A --- B</span></span><br></pre></td></tr></tbody></table></figure>
+<pre class="mermaid">graph LR
+    A --- B</pre>
+
+<h5 id="&#x5E26;&#x6587;&#x5B57;&#x7684;&#x8FDE;&#x7EBF;"><a href="#&#x5E26;&#x6587;&#x5B57;&#x7684;&#x8FDE;&#x7EBF;" class="headerlink" title="&#x5E26;&#x6587;&#x5B57;&#x7684;&#x8FDE;&#x7EBF;"></a>&#x5E26;&#x6587;&#x5B57;&#x7684;&#x8FDE;&#x7EBF;</h5><figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">graph LR</span><br><span class="line"><span class="code">    A-- This is the text! ---B</span></span><br><span class="line"><span class="code">    C---|This is the text|D</span></span><br></pre></td></tr></tbody></table></figure>
+<pre class="mermaid">graph LR
+    A-- This is the text! ---B
+    C---|This is the text|D</pre>
+
+<h5 id="&#x5E26;&#x6587;&#x5B57;&#x5E26;&#x7BAD;&#x5934;&#x7684;&#x8FDE;&#x7EBF;"><a href="#&#x5E26;&#x6587;&#x5B57;&#x5E26;&#x7BAD;&#x5934;&#x7684;&#x8FDE;&#x7EBF;" class="headerlink" title="&#x5E26;&#x6587;&#x5B57;&#x5E26;&#x7BAD;&#x5934;&#x7684;&#x8FDE;&#x7EBF;"></a>&#x5E26;&#x6587;&#x5B57;&#x5E26;&#x7BAD;&#x5934;&#x7684;&#x8FDE;&#x7EBF;</h5><figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">graph LR</span><br><span class="line"><span class="code">    A -- text --&gt; B</span></span><br><span class="line"><span class="code">    C --&gt;| text |D</span></span><br></pre></td></tr></tbody></table></figure>
+<pre class="mermaid">graph LR
+    A -- text --&gt; B
+    C --&gt;| text |D</pre>
+
+<h5 id="&#x865A;&#x7EBF;"><a href="#&#x865A;&#x7EBF;" class="headerlink" title="&#x865A;&#x7EBF;"></a>&#x865A;&#x7EBF;</h5><figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">graph LR;</span><br><span class="line">   A-.-B;</span><br><span class="line">   C-.-&gt;D;</span><br><span class="line">   E-. text .-&gt; F</span><br><span class="line">   H-.-&gt;|text|G</span><br></pre></td></tr></tbody></table></figure>
+<pre class="mermaid">graph LR;
+   A-.-B;
+   C-.-&gt;D;
+   E-.text.-&gt; F
+   H-.-&gt;|text|G</pre>
+
+<h5 id="&#x539A;&#x7EBF;"><a href="#&#x539A;&#x7EBF;" class="headerlink" title="&#x539A;&#x7EBF;"></a>&#x539A;&#x7EBF;</h5><figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">graph LR;</span><br><span class="line">   A===B;</span><br><span class="line">   C==&gt;D;</span><br><span class="line">   E==text==&gt; F</span><br><span class="line">   H==&gt;|text|G</span><br></pre></td></tr></tbody></table></figure>
+<pre class="mermaid">graph LR;
+   A===B;
+   C==&gt;D;
+   E==text==&gt; F
+   H==&gt;|text|G</pre>
+
+<h5 id="&#x4E32;&#x8054;"><a href="#&#x4E32;&#x8054;" class="headerlink" title="&#x4E32;&#x8054;"></a>&#x4E32;&#x8054;</h5><figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">graph LR</span><br><span class="line">   A -- text --&gt; B -- text2 --&gt; C</span><br><span class="line">   a --&gt; b &amp; c--&gt; d</span><br></pre></td></tr></tbody></table></figure>
+<pre class="mermaid">graph LR
+   A -- text --&gt; B -- text2 --&gt; C
+   a --&gt; b &amp; c--&gt; d</pre>
+
+<figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">graph TB</span><br><span class="line"><span class="code">    A &amp; B--&gt; C &amp; D</span></span><br></pre></td></tr></tbody></table></figure>
+<pre class="mermaid">graph TB
+    A &amp; B--&gt; C &amp; D</pre>
+
+<figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">graph TB</span><br><span class="line"><span class="code">    A --&gt; C</span></span><br><span class="line"><span class="code">    A --&gt; D</span></span><br><span class="line"><span class="code">    B --&gt; C</span></span><br><span class="line"><span class="code">    B --&gt; D</span></span><br></pre></td></tr></tbody></table></figure>
+<pre class="mermaid">graph TB
+    A --&gt; C
+    A --&gt; D
+    B --&gt; C
+    B --&gt; D</pre>
+
+<h4 id="&#x7279;&#x6B8A;&#x5B57;&#x7B26;"><a href="#&#x7279;&#x6B8A;&#x5B57;&#x7B26;" class="headerlink" title="&#x7279;&#x6B8A;&#x5B57;&#x7B26;"></a>&#x7279;&#x6B8A;&#x5B57;&#x7B26;</h4><figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">graph LR</span><br><span class="line"><span class="code">    id1[&quot;This is the (text) in the box&quot;]</span></span><br></pre></td></tr></tbody></table></figure>
+<pre class="mermaid">graph LR
+    id1[&quot;This is the (text) in the box&quot;]</pre>
+
+<h4 id="&#x5B50;&#x56FE;"><a href="#&#x5B50;&#x56FE;" class="headerlink" title="&#x5B50;&#x56FE;"></a>&#x5B50;&#x56FE;</h4><p>&#x5B9A;&#x4E49;</p>
+<figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">subgraph title</span><br><span class="line"><span class="code">    graph definition</span></span><br><span class="line">end</span><br></pre></td></tr></tbody></table></figure>
+<p>&#x793A;&#x4F8B;</p>
+<figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">graph TB</span><br><span class="line"><span class="code">    c1--&gt;a2</span></span><br><span class="line"><span class="code">    subgraph one</span></span><br><span class="line"><span class="code">    a1--&gt;a2</span></span><br><span class="line"><span class="code">    end</span></span><br><span class="line"><span class="code">    subgraph two</span></span><br><span class="line"><span class="code">    b1--&gt;b2</span></span><br><span class="line"><span class="code">    end</span></span><br><span class="line"><span class="code">    subgraph three</span></span><br><span class="line"><span class="code">    c1--&gt;c2</span></span><br><span class="line"><span class="code">    end</span></span><br></pre></td></tr></tbody></table></figure>
+<pre class="mermaid">graph TB
+    c1--&gt;a2
+    subgraph one
+    a1--&gt;a2
+    end
+    subgraph two
+    b1--&gt;b2
+    end
+    subgraph three
+    c1--&gt;c2
+    end</pre>
+
+<p>&#x4E5F;&#x53EF;&#x4EE5;&#x8FD9;&#x6837;</p>
+<figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">graph TB</span><br><span class="line"><span class="code">    c1--&gt;a2</span></span><br><span class="line"><span class="code">    subgraph ide1 [one]</span></span><br><span class="line"><span class="code">    a1--&gt;a2</span></span><br><span class="line"><span class="code">    end</span></span><br></pre></td></tr></tbody></table></figure>
+<pre class="mermaid">graph TB
+    c1--&gt;a2
+    subgraph ide1 [one]
+    a1--&gt;a2
+    end</pre>
+
+<h4 id="&#x6CE8;&#x91CA;"><a href="#&#x6CE8;&#x91CA;" class="headerlink" title="&#x6CE8;&#x91CA;"></a>&#x6CE8;&#x91CA;</h4><p>&#x6CE8;&#x91CA;&#x4EE5;%% &#x5F00;&#x5934;</p>
+<figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">graph LR</span><br><span class="line">%% this is a comment A -- text --&gt; B{node}</span><br><span class="line">   A -- text --&gt; B -- text2 --&gt; C</span><br></pre></td></tr></tbody></table></figure>
+<pre class="mermaid">graph LR
+%% this is a comment A -- text --&gt; B{node}
+   A -- text --&gt; B -- text2 --&gt; C</pre>
+
+<h3 id="&#x6700;&#x540E;&#x7ED9;&#x4E2A;&#x4F8B;&#x5B50;"><a href="#&#x6700;&#x540E;&#x7ED9;&#x4E2A;&#x4F8B;&#x5B50;" class="headerlink" title="&#x6700;&#x540E;&#x7ED9;&#x4E2A;&#x4F8B;&#x5B50;"></a>&#x6700;&#x540E;&#x7ED9;&#x4E2A;&#x4F8B;&#x5B50;</h3><figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">graph LR</span><br><span class="line"><span class="code">    A[Hard edge] --&gt;|Link text| B(Round edge)</span></span><br><span class="line"><span class="code">    B --&gt; C{Decision}</span></span><br><span class="line"><span class="code">    C --&gt;|One| D[Result one]</span></span><br><span class="line"><span class="code">    C --&gt;|Two| E[Result two]</span></span><br></pre></td></tr></tbody></table></figure>
+<pre class="mermaid">graph LR
+    A[Hard edge] --&gt;|Link text| B(Round edge)
+    B --&gt; C{Decision}
+    C --&gt;|One| D[Result one]
+    C --&gt;|Two| E[Result two]</pre>
+
+<p>&#x6362;&#x4E2A;&#x5199;&#x6CD5;</p>
+<figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">graph TD</span><br><span class="line"><span class="code">    A[Hard edge];</span></span><br><span class="line"><span class="code">    B(Round edge);</span></span><br><span class="line"><span class="code">    C{Decision};</span></span><br><span class="line"><span class="code">    D[Result one];</span></span><br><span class="line"><span class="code">    E[Result two];</span></span><br><span class="line"></span><br><span class="line"><span class="code">    A--&gt;|Link text|B;</span></span><br><span class="line"><span class="code">    B--&gt;C;</span></span><br><span class="line"><span class="code">    C--&gt;|One|D;</span></span><br><span class="line"><span class="code">    C--&gt;|Two|E;</span></span><br></pre></td></tr></tbody></table></figure>
+<pre class="mermaid">graph TD
+    A[Hard edge];
+    B(Round edge);
+    C{Decision};
+    D[Result one];
+    E[Result two];
+    A--&gt;|Link text|B;
+    B--&gt;C;
+    C--&gt;|One|D;
+    C--&gt;|Two|E;</pre>
+
+<h2 id="&#x53C2;&#x8003;&#x7F51;&#x7AD9;"><a href="#&#x53C2;&#x8003;&#x7F51;&#x7AD9;" class="headerlink" title="&#x53C2;&#x8003;&#x7F51;&#x7AD9;"></a>&#x53C2;&#x8003;&#x7F51;&#x7AD9;</h2><ul>
+<li><a href="https://mermaid-js.github.io/mermaid/#/" target="_blank" rel="noopener">Mermaid&#x5B98;&#x7F51;</a></li>
+</ul>
+<h2 id="Hexo&#x535A;&#x5BA2;&#x7CFB;&#x5217;"><a href="#Hexo&#x535A;&#x5BA2;&#x7CFB;&#x5217;" class="headerlink" title="Hexo&#x535A;&#x5BA2;&#x7CFB;&#x5217;"></a>Hexo&#x535A;&#x5BA2;&#x7CFB;&#x5217;</h2><ul>
+<li><a href="/2017/03/01/hexo/hexo-firstblog/" title="Hexo&#x535A;&#x5BA2;&#x642D;&#x5EFA;">Hexo&#x535A;&#x5BA2;&#x642D;&#x5EFA;</a>  </li>
+<li><a href="/2017/03/01/hexo/hexo-secordblog/" title="Hexo&#x66F4;&#x6362;&#x535A;&#x5BA2;&#x6837;&#x5F0F;">Hexo&#x66F4;&#x6362;&#x535A;&#x5BA2;&#x6837;&#x5F0F;</a>  </li>
+<li><a href="/2017/03/03/hexo/hexo-updatenode/" title="Hexo&#x5347;&#x7EA7;Node&#x7248;&#x672C;">Hexo&#x5347;&#x7EA7;Node&#x7248;&#x672C;</a>  </li>
+<li><a href="/2017/03/04/hexo/hexo-amp-enable/" title="Hexo AMP &#x652F;&#x6301;">Hexo AMP &#x652F;&#x6301;</a>  </li>
+<li><a href="/2017/03/03/others/markdown-first/" title="MarkDown&#x8BED;&#x6CD5;">MarkDown&#x8BED;&#x6CD5;</a></li>
+<li><a href="/2017/03/06/hexo/hexo-markdown-extends/" title="Hexo-MarkDown&#x6269;&#x5C55;">Hexo-MarkDown&#x6269;&#x5C55;</a>  </li>
+<li><a href="/2017/03/07/hexo/hexo-flags/" title="Hexo &#x6807;&#x7B7E;&#x63D2;&#x4EF6;&#x7684;&#x4F7F;&#x7528;">Hexo &#x6807;&#x7B7E;&#x63D2;&#x4EF6;&#x7684;&#x4F7F;&#x7528;</a>  </li>
+<li><a href="/2017/03/10/hexo/hexo-mermaid/" title="Mermaid &#x4F7F;&#x7528;&#x6307;&#x5357;">Mermaid &#x4F7F;&#x7528;&#x6307;&#x5357;</a>  </li>
+<li><a href="/2017/03/11/hexo/hexo-plugins/" title="Hexo &#x63D2;&#x4EF6;&#x6DFB;&#x52A0;">Hexo &#x63D2;&#x4EF6;&#x6DFB;&#x52A0;</a>  
+</li>
+</ul>
+
+			  		
+			  		
+			  		<!-- google Adsense -->
+			  		
+					
+			  	</div>
+				
+		  	</article>
+		  	
+		  	
+		  	<!-- meta (categories , tags) -->
+		  	
+		  	<div class="meta-content">
+		  	
+		  		
+		  		<div class="meta-wrapper">
+				  	<h6 class="categories">Category</h6>
+				  	<div class="article-categories">
+						<ul class="article-categories-list">
+							
+					    		<li class="article-categories-list-item">
+					    			<a class="article-categories-list-link" href="/categories/hexo/" class="link-gaTrack" data-linkType="link-categories">
+					    				hexo
+					    			</a>
+					    		</li>
+							
+						</ul>
+					</div>
+				</div>
+				
+				
+				
+				<div class="meta-wrapper">
+				  	<h6 class="tag">Tag</h6>
+				  	<div class="article-tag">
+						<ul class="article-tag-list">
+							
+					    		<li class="article-tag-list-item">
+					    			<a class="article-tag-list-link" href="/tags/mermaid/" class="link-gaTrack" data-linkType="link-tag">
+					    				mermaid
+					    			</a>
+					    		</li>
+							
+					    		<li class="article-tag-list-item">
+					    			<a class="article-tag-list-link" href="/tags/markdown/" class="link-gaTrack" data-linkType="link-tag">
+					    				markdown
+					    			</a>
+					    		</li>
+							
+						</ul>
+					</div>
+				</div>
+				
+			</div>
+		  	
+		  	
+		  	<!-- article nav -->
+		  	
+			<nav id="article-nav">
+			  
+			  <a href="/2017/03/11/hexo/hexo-plugins/" id="article-nav-newer" class="article-nav-link-wrap">
+			    <strong class="article-nav-caption">Newer</strong>
+			    <div class="article-nav-title">
+			      
+			        Hexo 插件添加
+			      
+			    </div>
+			  </a>
+			  
+			  
+			  <a href="/2017/03/07/hexo/hexo-flags/" id="article-nav-older" class="article-nav-link-wrap">
+			    <strong class="article-nav-caption">Older</strong>
+			    <div class="article-nav-title">
+			      
+			        Hexo 标签插件的使用
+			      
+			    </div>
+			  </a>
+			  
+			</nav>
+			
+			
+		</div>
+		
+		
+		<footer id="footer">
+		
+			
+			
+			
+			
+			<div class="homeLink">
+		  		<a href="/">Home</a>
+		  	</div>
+			
+			
+			<div class="copyright-tool">
+				<div class="copyright-title">
+					<span>
+					&copy; 2021&nbsp;Chester.C
+					</span>
+				</div>
+				
+			</div>
+			
+		</footer>
+		
+		
+	</div>
+	
+	
+  	<div id="totop"><a href="#"></a></div>
+  	
+  	
+  </body>
+</html>

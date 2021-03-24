@@ -1,0 +1,1807 @@
+<!doctype html>
+<html ⚡>
+  <head>
+    <meta charset="utf-8">
+    <link rel="canonical" href="http://blog.rcant.com/2017/05/28/git/git-submodule/index.html" >
+    <title>Git Submodule使用教程 | Chester.Cao Blog</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+    <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style>
+    <noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+    <script async custom-element="amp-sidebar" src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js"></script>
+  	<script async custom-element="amp-social-share" src="https://cdn.ampproject.org/v0/amp-social-share-0.1.js"></script>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+    <script type="application/ld+json">
+		{
+			"@context": "http://schema.org",
+			"@type": "BlogPosting",
+			"headline": "Git Submodule使用教程",
+			
+			"description": "&lt;h2 id=&#34;引子&#34;&gt;&lt;a href=&#34;#引子&#34; class=&#34;headerlink&#34; title=&#34;引子&#34;&gt;&lt;/a&gt;引子&lt;/h2&gt;&lt;p&gt;Git Submodule使用教程&lt;/p&gt;",
+			
+			"mainEntityOfPage":{
+			    "@type":"WebPage",
+			    "@id":"http://blog.rcant.com/2017/05/28/git/git-submodule/"
+			},
+			"datePublished": "2017-05-28T03:39:17.000Z",
+			"dateModified": "2021-03-24T06:25:44.552Z",
+			
+			"image": {
+				"@type": "ImageObject",
+				"url": "\amp-dist\sample\sample-substituteTitleImage.png",
+				"width" : "1024",
+				"height" : "800"
+			},
+			
+			"author": {
+			    "@type": "Person",
+			    "name": "Chester.C"
+			},
+			"publisher": {
+			    "@type": "Organization",
+			    "name": "Chester.Cao Blog"
+			    
+			    ,
+			    "logo": {
+			      "@type": "ImageObject",
+			      "url": "http://blog.rcant.com\amp-dist\sample\sample-logo.png",
+			      "width": 600,
+			      "height": 60
+			    }
+			    
+			}
+		}
+	</script>
+	
+	<style amp-custom>
+		
+:root sub,
+:root sup {
+  vertical-align: baseline;
+}
+a {
+  -moz-transition: 0.7s;
+  -ms-transition: 0.7s;
+  -o-transition: 0.7s;
+  -webkit-transition: 0.7s;
+  color: #0379c4;
+  -webkit-transition: 0.7s;
+  -moz-transition: 0.7s;
+  -o-transition: 0.7s;
+  -ms-transition: 0.7s;
+  transition: 0.7s;
+  border: 0;
+  font-family: inherit;
+  font-size: 100%;
+  font-style: inherit;
+  font-weight: inherit;
+  margin: 0;
+  outline: 0;
+  padding: 0;
+  vertical-align: baseline;
+}
+a img {
+  border: none;
+}
+a:hover {
+  -moz-transition: 0.3s;
+  -ms-transition: 0.3s;
+  -o-transition: 0.3s;
+  -webkit-transition: 0.3s;
+  color: #31adfc;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -o-transition: 0.3s;
+  -ms-transition: 0.3s;
+  transition: 0.3s;
+}
+abbr,
+acronym,
+address,
+applet,
+big,
+blockquote,
+body,
+caption,
+cite,
+code,
+dd,
+del,
+dfn,
+div,
+dl,
+dt,
+em,
+fieldset,
+form,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+html,
+iframe,
+img,
+ins,
+kbd,
+label,
+legend,
+li,
+object,
+ol,
+p,
+pre,
+q,
+s,
+samp,
+small,
+span,
+strike,
+strong,
+sub,
+sup,
+table,
+tbody,
+td,
+tfoot,
+th,
+thead,
+tr,
+tt,
+ul,
+var {
+  border: 0;
+  font-family: inherit;
+  font-size: 100%;
+  font-style: inherit;
+  font-weight: inherit;
+  margin: 0;
+  outline: 0;
+  padding: 0;
+  vertical-align: baseline;
+}
+abbr {
+  cursor: help;
+  border-bottom: 1px dotted;
+  font-variant: normal;
+}
+acronym {
+  border-bottom: 1px dotted;
+  font-variant: normal;
+}
+body {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  background: #fff;
+  color: #34393a;
+  font-family: 'メイリオ', 'MS PGothic', sans-serif;
+  font-size: 102%;
+  font-wight: 500;
+  line-height: 2em;
+  text-rendering: optimizelegibility;
+}
+button::-moz-focus-inner,
+input::-moz-focus-inner,
+figure.highlight td,
+.post .entry-content figure.highlight th {
+  border: 0;
+  padding: 0;
+}
+caption,
+table,
+td,
+th {
+  vertical-align: middle;
+}
+caption,
+td,
+th,
+.table-align-left {
+  text-align: left;
+}
+code,
+figure.highlight .code,
+pre {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: subpixel-antialiased;
+}
+code,
+kbd,
+pre,
+samp {
+  font-family: Menlo, Consolas, Monaco, Consolas, monospace;
+}
+code,
+pre {
+  background-color: #f5f2f0;
+  margin: 0 3px;
+  padding: 1px 8px;
+}
+code,
+pre,
+samp {
+  font-size: 0.9em;
+  letter-spacing: 0.05em;
+}
+del {
+  text-decoration: line-through;
+}
+#article-nav {
+  clear: both;
+  margin: 1em 20px;
+  position: relative;
+  
+}
+#article-nav:after {
+  clear: both;
+  content: "";
+  display: table;
+}
+#article-nav:before {
+  content: "";
+  display: table;
+  -webkit-border-radius: 50%;
+  -webkit-box-shadow: 0 1px 2px #fff;
+  border-radius: 50%;
+  -webkit-box-shadow: 0 1px 2px #fff;
+  box-shadow: 0 1px 2px #fff;
+  content: "";
+  height: 8px;
+  left: 50%;
+  margin-left: -4px;
+  margin-top: -4px;
+  position: absolute;
+  top: 50%;
+  width: 8px;
+}
+#article-nav-newer {
+  float: left;
+  padding-right: 20px;
+  text-align: right;
+}
+#article-nav-newer .article-nav-caption {
+  margin-right: -2px;
+}
+#article-nav-older {
+  float: right;
+  padding-left: 20px;
+  text-align: left;
+}
+#container {
+  margin-left: auto;
+  margin-right: auto;
+}
+#footer {
+  background-color: #0379c4;
+  display: block;
+  font-size: 70%;
+  line-height: 1.6;
+  padding: 20px 0;
+}
+#footer:after {
+  content: ".";
+  display: block;
+  font-size: 0;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+.moreRead:before,
+.useFlame,
+kbd,
+.copyright,
+.table-align-center {
+  text-align: center;
+}
+.blog-title a,
+.nav,
+.nav-icon,
+.loadingPutAbsolute,
+.moreRead:before,
+.titleWrapper {
+  position: relative;
+}
+#header {
+  display: block;
+  margin: 0.5em 0 1em;
+  position: static;
+  text-align: center;
+  position: relative;
+}
+#header:after {
+  display: block;
+  font-size: 0;
+  height: 0;
+}
+#header:after,
+.clearfix:after,
+.nav ul:after {
+  clear: both;
+  visibility: hidden;
+}
+#main {
+  margin-bottom: 3em;
+  padding-left: 0;
+}
+.useFlame,
+kbd {
+  display: inline-block;
+}
+#page-nav a,
+.photoby,
+kbd {
+  color: #4c5355;
+}
+* html .clearfix {
+  height: 1%;
+}
+.alignleft,
+.left {
+  float: left;
+}
+.alignright,
+.right {
+  float: right;
+}
+.article-devider {
+  border: 0;
+  border-top: 5px solid #ddd;
+  margin: 5em auto;
+  width: 8%;
+}
+.article-nav-caption,
+.nav {
+  text-transform: uppercase;
+}
+.article-nav-caption {
+  color: #ddd;
+  font-weight: 700;
+  letter-spacing: 2px;
+  line-height: 1em;
+}
+.article-nav-link-wrap,
+a {
+  text-decoration: none;
+}
+.article-nav-link-wrap {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #999;
+  display: block;
+  margin-top: 0;
+  text-align: center;
+  width: 50%;
+}
+.article-nav-link-wrap:hover {
+  color: #bfbfbf;
+}
+.article-nav-title {
+  font-size: 0.85em;
+  line-height: 1.6em;
+  margin-top: 0.5em;
+}
+.nav ul {
+  display: block;
+}
+.nav ul li {
+  display: block;
+}
+.nav ul li a {
+  display: block;
+}
+.authorCap {
+  font-size: 1.5em;
+}
+.authorReading {
+  font-size: 0.7em;
+}
+.site-author-info-wrapper {
+  padding: 20px;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -o-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+.gravatar-wrapper {
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -o-box-flex: 1;
+  box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+.gravatar-area {
+  margin: 0 20px 0 0;
+}
+.authorCap-wrapper {
+  -webkit-box-flex: 3;
+  -moz-box-flex: 3;
+  -o-box-flex: 3;
+  box-flex: 3;
+  -webkit-flex: 3;
+  -ms-flex: 3;
+  flex: 3;
+}
+.blog-title {
+  border-bottom: none;
+  float: none;
+  font-size: 120%;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  margin: 10px 0;
+  padding-bottom: 0.2em;
+}
+.blog-title a {
+  left: 0.1em;
+  padding: 0.4em 0;
+}
+.circle {
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+}
+.clearfix:after {
+  content: ".";
+  display: block;
+  height: 0;
+}
+.copyright-title {
+  font-size: 1.2em;
+}
+.copyright-tool {
+  text-align: center;
+  font-family: 'メイリオ', 'MS PGothic', sans-serif;
+  margin: 1em 0 0 0;
+}
+h6.tag,
+h6.categories {
+  color: #0379c4;
+  font-size: 110%;
+}
+.entry-content {
+  width: 93.75%;
+  margin: 0 auto;
+  font-size: 100%;
+}
+.entry-content h2,
+.entry-content h3 {
+  text-align: center;
+}
+.entry-content h1 {
+  font-size: 170%;
+  line-height: 1.5;
+  margin: 1em 0 0.8em;
+}
+.entry-content h2,
+.entry-content h3,
+.entry-content h4,
+.entry-content h5,
+.entry-content h6 {
+  line-height: 1.5;
+  margin: 1em 0 0.8em;
+}
+.entry-content h2 {
+  border-bottom: 2px solid #0379c4;
+  color: #0379c4;
+  font-size: 160%;
+  margin: 1.8em 0 0.5em;
+  padding: 0.8em 0;
+}
+.entry-content h3 {
+  color: #0379c4;
+  font-size: 150%;
+  margin: 1.8em 0 0.5em;
+  padding: 0.8em 0.5em;
+}
+.entry-content h4 {
+  border-left: 2px solid #0379c4;
+  color: #0379c4;
+  font-size: 120%;
+  margin: 1.8em 0 0.5em;
+  padding-left: 1.2em;
+  text-align: left;
+}
+.entry-content h5,
+.entry-content h6 {
+  color: #0379c4;
+  margin: 1.8em 0 0.5em;
+  text-align: left;
+}
+.entry-content h5 {
+  font-size: 110%;
+  padding-left: 1.2em;
+}
+.entry-content h6 {
+  font-size: 100%;
+}
+.entry-content p {
+  font-size: 1em;
+  letter-spacing: 0;
+  line-height: 2.2em;
+  margin: 1.8em 0;
+}
+.entry-content p em {
+  background-color: #faf7dc;
+  color: #736e4f;
+  font-style: normal;
+  margin: 0 2px;
+  padding: 3px;
+}
+.entry-content p strong {
+  color: #734f4f;
+  font-style: normal;
+  margin: 0 2px;
+  padding: 3px;
+  background-color: #fadcdc;
+}
+.entry-content dl,
+.entry-content ol,
+.entry-content ul {
+  margin: 1.8em 0 1.8em 1em;
+  padding: 0;
+}
+.entry-content ol p,
+.entry-content ul p,
+.entry-content dl p {
+  margin: 0;
+}
+.entry-content dl li,
+.entry-content ol li {
+  line-height: 1.8em;
+  margin: 0.5em;
+}
+.entry-content ol {
+  list-style: decimal ;
+}
+.entry-content ol li {
+  font-size: 1em;
+  margin: 0.2em 0 0.2em 2.6em;
+  padding: 0 0 0 0.1em;
+  position: relative;
+}
+.entry-content ol p:not(:first-child),
+.entry-content ul p:not(:first-child) {
+  color: #4c5355;
+}
+.entry-content ol {
+  padding: 0 /* paddingキャンセル */;
+  margin: 0 /* marginキャンセル */;
+  list-style: none /* olがはき出す数字を消す */;
+}
+.entry-content ol {
+  counter-reset: number /* 名前を付けたカウンターをリセット */;
+  list-style: none /* olが数字を付けることをキャンセル */;
+  margin: 0;
+  padding: 0;
+}
+.entry-content ol li:before {
+  counter-increment: number /* 任意の名前を付けて！ */;
+  content: counter(number) /* 名前を付けたカウンターを呼び出し */;
+  position: absolute;
+  left: -2.2em;
+  top: 0.05em;
+  display: inline-block;
+  margin: 0 0.5em 0 0;
+  padding: 0;
+  float: left;
+  background: #6abcf0;
+  width: 1.6em;
+  height: 1.6em;
+  border-radius: 50%;
+  color: #fff;
+  text-align: center;
+  line-height: 1.6em;
+}
+.entry-content ol li p:first-child {
+  display: inline-block;
+  line-height: 1.6em;
+  height: 1.6em;
+  line-height: 1.6em;
+}
+.entry-content ul {
+  list-style: none;
+}
+.entry-content ul li {
+  font-size: 1em;
+  margin: 0.2em 0 0.2em 0.5em;
+  padding: 0 0 0 0.2em;
+  position: relative;
+}
+.entry-content ul li::after {
+  display: block;
+  content: '';
+  position: absolute;
+  top: 0.4em;
+  left: -1em;
+  width: 8px;
+  height: 8px;
+  border-bottom: 3px solid #ddd;
+}
+.entry-content dl li ol,
+.entry-content dl li ul {
+  margin-bottom: 2em;
+}
+.entry-content ol li ol,
+.entry-content ol li ul {
+  margin-bottom: 2em;
+}
+.entry-content ul li ol,
+.entry-content ul li ul {
+  margin-bottom: 2em;
+}
+.entry-content blockquote p:last-child,
+.entry-content .archive .post {
+  margin-bottom: 0;
+}
+.entry-content blockquote {
+  margin: 1.8em 0;
+  padding: 0.5em 20px;
+  position: relative;
+  background-color: #f6f6f4;
+}
+.entry-content blockquote p {
+  margin: 1em 0;
+}
+.entry-content blockquote:before {
+  color: #dfdfd8;
+  content: "”";
+  font-family: sans-serif;
+  font-size: 600%;
+  line-height: 1em;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 1;
+}
+.entry-content blockquote blockquote:before {
+  content: "";
+}
+.entry-content hr {
+  border: 0;
+  border-top: 3px solid #ddd;
+  margin: 3em auto;
+  width: 20%;
+}
+.entry-content img,
+.entry-content video {
+  display: block;
+  height: auto;
+  margin: auto;
+  max-width: 100%;
+}
+.entry-content pre {
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding;
+  background: #f5f2f0;
+  -webkit-background-clip: padding;
+  -moz-background-clip: padding;
+  background-clip: padding-box;
+  border: 0;
+  font-size: 100%;
+  line-height: 1.3;
+  overflow-x: auto;
+  padding: 15px;
+}
+.entry-content table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  font-size: 0.85em;
+  margin: 1.8em auto;
+  width: auto;
+}
+.entry-content td {
+  border: 1px solid #c4c4c4;
+  line-height: 1.5em;
+  padding: 0.6em 0.4em;
+}
+.entry-content th {
+  background-color: #fdf7f4;
+  border: 1px solid #c4c4c4;
+  padding: 0.6em 0.4em;
+}
+.entry-content iframe {
+  width: 100% ;
+}
+.entry-content figure.highlight {
+  margin: 1.8em 0;
+}
+.entry-content figure.highlight td {
+  border: 0;
+  font-size: 1.1em;
+  padding: 0;
+}
+.entry-content figure.highlight td.code {
+  border-left: 1px solid #eceae8;
+}
+.entry-meta-header {
+  font-size: 87%;
+  left: -200px;
+  margin-bottom: 1em;
+  position: static;
+  top: 0.5em;
+  width: auto;
+  text-align: center;
+}
+.entry-meta-header .date {
+  font-family: 'メイリオ', 'MS PGothic', sans-serif;
+}
+.entry-meta-header .meta-elements {
+  display: inline;
+  margin-bottom: 0.5em;
+  margin-right: 1em;
+}
+.gist {
+  background: #fff;
+  border: 1px solid color-gutter;
+  color: #918577;
+  line-height: 1.6;
+  margin-top: 15px;
+  overflow: auto;
+  padding: 7px 15px;
+}
+.gist .gist-file {
+  border: none;
+  font-family: inherit;
+  font-size: 1em;
+  letter-spacing: 0;
+  margin: 0;
+}
+.gist .gist-file .gist-data {
+  background: 0 0;
+  border-bottom: none;
+}
+.gist .gist-file .gist-data pre {
+  font-family: Menlo, Consolas, Monaco, Consolas, monospace;
+  padding: 0 ;
+}
+.gist .gist-file .gist-meta {
+  background: 0 0;
+  color: #918577;
+  font-size: 100%;
+  margin-top: 5px;
+  padding: 0;
+}
+.gist .gist-file .gist-meta a {
+  color: #918577;
+}
+.gist .gist-file .gist-meta a:visited {
+  color: #918577;
+}
+.line {
+  font-size: 95%;
+  letter-spacing: 0.05em;
+  line-height: 2em;
+}
+.post {
+  font-size: 90%;
+  margin-bottom: 5em;
+  position: relative;
+}
+.post .entry-header {
+  margin-bottom: 2em;
+}
+.post .entry-title {
+  font-size: 130%;
+  margin: 0;
+}
+.post h1 {
+  font-size: 1.2em;
+}
+.table-align-right {
+  text-align: right;
+}
+figure.highlight {
+  background: #fff;
+  border: 1px solid color-gutter;
+  font-size: 0.9em;
+  line-height: 2;
+  margin: 2.2em 0;
+  overflow: auto;
+  padding: 7px 10px;
+  position: relative;
+}
+figure.highlight .code {
+  border-left: 1px solid #fff;
+  color: #918577;
+}
+figure.highlight .gutter {
+  color: #d4d0cd;
+  padding-right: 10px;
+  text-align: left;
+}
+figure.highlight figcaption {
+  color: #d4d0cd;
+  margin-bottom: 5px;
+}
+figure.highlight figcaption a {
+  position: absolute;
+  right: 15px;
+}
+figure.highlight pre {
+  background: 0 0;
+  border: none;
+  margin: 0;
+  padding: 8px;
+}
+figure.highlight table {
+  border-spacing: 0;
+  margin: 0;
+}
+.post .entry-content figure.highlight table {
+  border-spacing: 0;
+  margin: 0;
+}
+figure.highlight th {
+  border: 0;
+  font-weight: 400;
+  padding: 0;
+}
+h1 a,
+h2 a,
+h3 a,
+h4 a,
+h5 a,
+h6 a {
+  color: #000;
+  text-decoration: none;
+}
+h1 a:hover,
+h2 a:hover,
+h3 a:hover,
+h4 a:hover,
+h5 a:hover,
+h6 a:hover {
+  color: #0379c4;
+}
+img.responsive-img {
+  height: auto;
+  max-width: 100%;
+}
+video.responsive-video {
+  height: auto;
+  max-width: 100%;
+}
+kbd {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-border-radius: 3px;
+  -webkit-box-shadow: 0 0 10px #e2e2e2 inset, 0 1px 0 #c3c3c3, 0 2px 0 #c9c9c9, 0 3px 3px #333;
+  -webkit-font-smoothing: subpixel-antialiased;
+  background: #fff;
+  border-bottom: 1px solid #e6e6e6;
+  border-left: 1px solid #fff;
+  border-radius: 3px;
+  border-right: 1px solid #e6e6e6;
+  border-top: 1px solid #fff;
+  -webkit-box-shadow: 0 0 10px #e8e8e8 inset, 0 1px 0 #c3c3c3, 0 2px 0 #c9c9c9, 0 3px 3px #333;
+  box-shadow: 0 0 10px #e8e8e8 inset, 0 1px 0 #c3c3c3, 0 2px 0 #c9c9c9, 0 3px 3px #333;
+  font-size: 0.85em;
+  line-height: 1;
+  margin: 5px;
+  padding: 6px 8px 3px;
+  text-shadow: 0 1px 0 #fff;
+  vertical-align: baseline;
+  
+}
+pre .addition,
+pre .css .tag,
+pre .keyword,
+pre .method,
+pre .nginx .title,
+pre .request,
+pre .status,
+pre .winutils {
+  color: #1a9ca1;
+}
+pre .attr_selector,
+pre .cdata,
+pre .clojure .title,
+pre .diff .change,
+pre .important {
+  color: #816ec5;
+}
+pre .preprocessor {
+  color: #816ec5;
+}
+pre .preprocessor .keyword {
+  color: #816ec5;
+}
+pre .shebang,
+pre .special,
+pre .subst {
+  color: #816ec5;
+}
+pre .symbol {
+  color: #816ec5;
+}
+pre .symbol .string {
+  color: #816ec5;
+}
+pre .attribute,
+pre .class .title,
+pre .constant,
+pre .haskell .type,
+pre .lisp .body,
+pre .parent,
+pre .smalltalk .number,
+pre .variable {
+  color: #c38700;
+}
+pre .built_in,
+pre .chunk,
+pre .decorator,
+pre .id,
+pre .identifier,
+pre .literal,
+pre .localvars,
+pre .title,
+pre .vhdl,
+pre .deletion {
+  color: #b42147;
+}
+pre .command,
+pre .hexcolor,
+pre .number,
+pre .phpdoc,
+pre .regexp,
+pre .string,
+pre .tag .value,
+pre .tex .formula {
+  color: #6c9a1c;
+}
+pre .comment,
+pre .diff .header,
+pre .doctype,
+pre .javadoc,
+pre .lisp .string,
+pre .pi,
+pre .template_comment {
+  color: #d4d0cd;
+  font-wight: normal;
+}
+sub {
+  bottom: -0.2em;
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+}
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  top: -0.5em;
+}
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+td.code,
+.article-tag-list {
+  padding: 0;
+}
+.entry-content .toc {
+  background: #fff;
+  padding: 1em 1em 1em 0;
+  margin: 2.8em 0em;
+  border: 1px solid #98d1f5;
+}
+.entry-content .toc ul:first-child {
+  border-top: none;
+}
+.entry-content .toc ul {
+  margin-bottom: 0;
+  padding: 0;
+  margin: 0;
+  border-top: 1px dotted #98d1f5;
+}
+.entry-content .toc ul ul,
+.entry-content .toc ul ol {
+  margin-bottom: 0;
+  padding: 0;
+  margin: 0 0 0 0.8em;
+}
+.entry-content .toc ul li {
+  padding: 0;
+  margin: 0 0 0 1em;
+  border-top: 1px dotted #98d1f5;
+}
+.entry-content .toc ul li a {
+  display: block;
+  padding: 10px 8px;
+  color: #34393a;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -o-transition: 0.3s;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -o-transition: 0.3s;
+  -ms-transition: 0.3s;
+  transition: 0.3s;
+}
+.entry-content .toc ul li a:hover {
+  color: #0379c4;
+  background-color: #98d1f5;
+}
+.entry-content .toc ul li a:before {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+  margin-right: 0.8em;
+}
+.entry-content .toc ul li ul,
+.entry-content .toc ul li ol {
+  margin-bottom: 0;
+  padding: 0;
+  margin: 0 0 0 0.8em;
+}
+.entry-content .toc ul li ul li a,
+.entry-content .toc ul li ol li a {
+  padding: 7px 10px;
+  font-size: 0.9em;
+}
+.entry-content .toc ul li ul li a:before,
+.entry-content .toc ul li ol li a:before {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+  margin-right: 0.6em;
+}
+.entry-content .toc ul li:first-child {
+  border-top: none;
+}
+.entry-content .toc ul li::after,
+.entry-content .toc ul li::before {
+  content: normal;
+}
+header {
+  height: 60px;
+}
+header .nav-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  -webkit-box-pack: justify;
+  -moz-box-pack: justify;
+  -o-box-pack: justify;
+  -ms-flex-pack: justify;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+}
+header .left-nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -o-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  -webkit-box-pack: start;
+  -moz-box-pack: start;
+  -o-box-pack: start;
+  -ms-flex-pack: start;
+  -webkit-justify-content: flex-start;
+  justify-content: flex-start;
+  font-size: 20px;
+  margin-left: 0;
+  font-weight: 300;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  -webkit-box-pack: start;
+  -moz-box-pack: start;
+  -o-box-pack: start;
+  -ms-flex-pack: start;
+  -webkit-justify-content: flex-start;
+  justify-content: flex-start;
+  -webkit-box-flex: 1;
+  -ms-flex: 1 1 auto;
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -o-box-flex: 1;
+  box-flex: 1;
+  -webkit-flex: 1 1 auto;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  text-align: left;
+  width: auto;
+  font-size: 15px;
+}
+header .right {
+  font-size: 15px;
+}
+header .alt {
+  padding: 0;
+  text-align: right;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -webkit-box-align: stretch;
+  -ms-flex-align: stretch;
+  -webkit-box-align: stretch;
+  -moz-box-align: stretch;
+  -o-box-align: stretch;
+  -ms-flex-align: stretch;
+  -webkit-align-items: stretch;
+  align-items: stretch;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  -o-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+.header-title a {
+  padding: 0 0 0 20px;
+  height: 60px;
+  line-height: 60px;
+  font-size: 20px;
+  color: #000;
+  letter-spacing: 0.2em;
+}
+button {
+  -webkit-box-align: start;
+  -moz-box-align: start;
+  -o-box-align: start;
+  -ms-flex-align: start;
+  -webkit-align-items: flex-start;
+  align-items: flex-start;
+  text-align: center;
+  cursor: default;
+  color: buttontext;
+  background-color: buttonface;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 2px 6px 3px;
+  border-width: 2px;
+  border-style: outset;
+  border-color: buttonface;
+  -webkit-border-image: initial;
+  -moz-border-image: initial;
+  -o-border-image: initial;
+  border-image: initial;
+  text-rendering: auto;
+  color: initial;
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-transform: none;
+  text-indent: 0px;
+  text-shadow: none;
+  display: inline-block;
+  text-align: start;
+  margin: 0em 0em 0em 0em;
+  font: 11px system-ui;
+  -webkit-writing-mode: horizontal-tb;
+  -webkit-appearance: button;
+}
+.__web-inspector-hide-shortcut__ {
+  visibility: hidden ;
+}
+.hamburger {
+  display: inline-block;
+  background-color: transparent;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-3 -6 24 24\"><path fill=\"#4A4A4A\" d=\"M0 12h18v-2H0v2M0 7h18V5H0v2M0 0v2h18V0H0\"/></svg>");
+  background-repeat: no-repeat;
+  -webkit-background-size: 30px 24px;
+  -moz-background-size: 30px 24px;
+  background-size: 30px 24px;
+  background-position: center center;
+  border: none;
+  margin: 0;
+  padding: 0;
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  -ms-flex-item-align: center;
+  -ms-grid-row-align: center;
+  -webkit-align-self: center;
+  align-self: center;
+  -ms-flex-item-align: center;
+}
+.tab {
+  position: relative;
+  color: #424242;
+  padding: 6px;
+  margin: 0 4px;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: 400;
+  -webkit-transition: 0.1s ease color;
+  -webkit-transition: 0.1s ease color;
+  -moz-transition: 0.1s ease color;
+  -o-transition: 0.1s ease color;
+  -ms-transition: 0.1s ease color;
+  transition: 0.1s ease color;
+}
+amp-sidebar {
+  width: 200px;
+}
+amp-sidebar ul {
+  padding: 10px 0;
+}
+amp-sidebar li a {
+  display: block;
+  padding: 10px 20px;
+}
+.title-cover {
+  background-color: #0379c4;
+  color: #fff;
+  padding: 30px 15px 20px 15px;
+  text-align: center;
+}
+.title-cover a {
+  color: #fff;
+}
+.title-cover a:hover {
+  color: #fff;
+}
+.meta-content {
+  background-color: #e9e9e9;
+  padding: 20px 0;
+}
+.meta-wrapper {
+  margin: 20px 20px;
+  padding: 20px 20px;
+  background-color: #fff;
+}
+#footer .homeLink,
+#footer .copyright-tool {
+  margin: 20px;
+}
+.copyright-tool {
+  color: #fff;
+  font-size: 0.5em;
+}
+.social-share {
+  margin: 10px 0 0 0;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  -o-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+.social-share amp-social-share {
+  margin: 5px;
+}
+#totop {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  font-size: 1.2em;
+  z-index: 995;
+  line-height: 1.8em;
+}
+#totop a {
+  background: rgba(152,209,245,0.6);
+  text-decoration: none;
+  color: #fff;
+  padding: 0;
+  text-align: center;
+  display: block;
+  width: 1.2em;
+  height: 2.2em;
+  line-height: 2em;
+  letter-spacing: 0;
+  position: relative;
+  display: inline-block;
+  padding: 0 0 0 16px;
+  vertical-align: middle;
+  text-decoration: none;
+  font-size: 15px;
+}
+#totop a:before,
+#totop a:after {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  content: "";
+  vertical-align: middle;
+}
+#totop a:before {
+  left: 12px;
+  width: 8px;
+  height: 8px;
+  border-top: 2px solid #fff;
+  border-right: 2px solid #fff;
+  -webkit-transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+#totop a:hover {
+  text-decoration: none;
+  background: #0379c4;
+  color: #fff;
+  line-height: 2.3em;
+}
+.site-author-desc {
+  font-size: 1.2em;
+  line-height: 2em;
+  margin-top: 1em;
+}
+.site-author-info {
+  background-color: #fff;
+  margin: 20px;
+}
+.gravatar-area {
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+}
+.article-tag,
+.article-tag-list,
+.article-categories,
+.article-categories-list {
+  padding: 0;
+  margin: 0;
+}
+.article-categories {
+  margin-bottom: 1.6em;
+}
+.article-tag-list li,
+.article-categories-list li {
+  list-style: none;
+  display: inline-block;
+  padding: 0;
+  margin: 0.2em 0;
+}
+.article-tag-list li a,
+.article-categories-list li a {
+  padding: 0.5em 0.6em;
+  margin: 0.4em 0em;
+  background-color: #f5f2f0;
+  color: #34393a;
+}
+.article-tag-list li a:before,
+.article-categories-list li a:before {
+  content: "#";
+}
+.article-tag-list li a:hover,
+.article-categories-list li a:hover {
+  color: #fff;
+  background-color: #0498f6;
+}
+.homeLink,
+.htmlPageLink {
+  font-weight: 700;
+  -moz-transition: 0.7s;
+  -ms-transition: 0.7s;
+  -o-transition: 0.7s;
+  -webkit-transition: 0.7s;
+  -webkit-transition: 0.7s;
+  -moz-transition: 0.7s;
+  -o-transition: 0.7s;
+  -ms-transition: 0.7s;
+  transition: 0.7s;
+  padding: 0.4em 0;
+}
+.homeLink a,
+.htmlPageLink a {
+  color: #fff;
+  display: block;
+  padding: 1em;
+  text-align: center;
+}
+.homeLink:hover,
+.htmlPageLink:hover {
+  -moz-transition: 0.3s;
+  -ms-transition: 0.3s;
+  -o-transition: 0.3s;
+  -webkit-transition: 0.3s;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -o-transition: 0.3s;
+  -ms-transition: 0.3s;
+  transition: 0.3s;
+}
+.homeLink {
+  font-size: 120%;
+  background: #18a3fb;
+}
+.homeLink:hover {
+  background: #4ab7fc;
+}
+.htmlPageLink {
+  font-size: 110%;
+  background: #18a3fb;
+}
+.htmlPageLink:hover {
+  background: #4ab7fc;
+}
+.googleAdPost,
+.ad-footer,
+amp-instagram,
+amp-vimeo,
+amp-video,
+amp-youtube,
+amp-twitter {
+  margin: 2.8em auto;
+}
+@media (min-width: 800px) {
+  .entry-header,
+  .entry-title,
+  .entry-content,
+  .article-nav {
+    width: 780px;
+    margin: 0 auto;
+  }
+  .nav-container {
+    width: 800px;
+    margin: 0 auto;
+  }
+  .meta-wrapper {
+    width: 760px;
+    margin: 20px auto;
+  }
+  .site-author-info {
+    width: 760px;
+    margin: 20px auto;
+  }
+  #footer .homeLink,
+  #footer .copyright-tool {
+    width: 760px;
+    margin: 20px auto;
+  }
+}
+
+	</style>
+	
+  </head>
+  <body>
+  	
+  	
+  	<!-- google analytics -->
+  	
+  	
+  	
+  	<!-- menu -->
+  	<header>
+  		<div class="nav-container">
+	  		<div class="left-nav">
+	  			<div class="header-title">
+	  				<a href="/">Chester.Cao Blog</a>
+	  			</div>
+	  		</div>
+	  		<div class="right alt">
+	  			<button on='tap:sidebar.toggle' class="tab hamburger"></button>
+	  		</div>
+	  	</div>
+    </header>
+  	
+  	
+  	<!-- sidebar -->
+  	<amp-sidebar id='sidebar' layout="nodisplay" side="left">
+      <ul>
+      	<!--
+      		To use the menu, add the menu option of _config.yml.
+      		
+      		generator_amp:
+      		  theme:
+			    menu:
+			      diary: /categories/diary/
+			      gallery: /categories/archive-gallery
+			      archives: /archives
+      	-->
+        <li><a href="/">Home</a></li>
+        
+      </ul>
+    </amp-sidebar>
+  	
+  	
+  	<!-- container -->
+  	<div id="container">
+	  	<div id="main">
+		    <article id="post-git/git-submodule" class="post">
+		    
+		    	<!-- entry title -->
+				<div class="title-cover">
+					<div class="entry-header">
+						
+						  <h1 class="article-title entry-title" itemprop="name">
+						    <a href="http://blog.rcant.com/2017/05/28/git/git-submodule/" target="_blank" itemprop="url">Git Submodule使用教程</a>
+						  </h1>
+						
+					</div>
+					
+					<!-- datePublished -->
+					<div class="entry-meta-header">
+						<span class="meta-elements date">
+							<time datetime="2017-05-28" itemprop="datePublished">2017-05-28</time>
+						</span>
+					</div>
+				</div>
+				
+				<!-- entry content -->
+			    <div class="entry-content ecp">
+			    
+			    
+			    	<!-- social share button -->
+			    	<!--
+			      		To use the facebook button, add the facebook_app_id option of _config.yml.
+			      		
+			      		generator_amp:
+			      		  theme:
+    						facebook_app_id: 123456789
+			      	-->
+			    	<div class="social-share">
+			    		<amp-social-share type="twitter" width="40" height="40"></amp-social-share>
+			    		
+			    		<!--
+			    		<amp-social-share type="pinterest" width="40" height="40"></amp-social-share>
+			    		-->
+			    		<amp-social-share type="gplus" width="40" height="40"></amp-social-share>
+			    		<!--
+			    		<amp-social-share type="tumblr" width="40" height="40"></amp-social-share>
+			    		<amp-social-share type="whatsapp" width="40" height="40"></amp-social-share>
+			    		<amp-social-share type="linkedin" width="40" height="40"></amp-social-share>
+			    		<amp-social-share type="email" width="40" height="40"></amp-social-share>
+			    		-->
+			    	</div>
+			    	
+			    	
+			    	<!-- content -->
+			  		<h2 id="&#x5F15;&#x5B50;"><a href="#&#x5F15;&#x5B50;" class="headerlink" title="&#x5F15;&#x5B50;"></a>&#x5F15;&#x5B50;</h2><p>Git Submodule&#x4F7F;&#x7528;&#x6559;&#x7A0B;</p>
+<span id="more"></span>
+<h2 id="Submodule-&#x662F;&#x4EC0;&#x4E48;&#xFF1F;"><a href="#Submodule-&#x662F;&#x4EC0;&#x4E48;&#xFF1F;" class="headerlink" title="Submodule &#x662F;&#x4EC0;&#x4E48;&#xFF1F;"></a>Submodule &#x662F;&#x4EC0;&#x4E48;&#xFF1F;</h2><p>&#x9879;&#x76EE;&#x7684;&#x7248;&#x672C;&#x5E93;&#x5728;&#x67D0;&#x4E9B;&#x60C5;&#x51B5;&#x4E0B;&#x9700;&#x8981;&#x5F15;&#x7528;&#x5176;&#x4ED6;&#x7248;&#x672C;&#x5E93;&#x7684;&#x6587;&#x4EF6;&#xFF0C;&#x4F8B;&#x5982;&#x516C;&#x53F8;&#x79EF;&#x7D2F;&#x4E86;&#x4E00;&#x5957;&#x5E38;&#x7528;&#x7684;&#x51FD;&#x6570;&#x5E93;&#xFF0C;&#x88AB;&#x591A;&#x4E2A;&#x9879;&#x76EE;&#x8C03;&#x7528;. &#x663E;&#x7136;&#x8FD9;&#x4E2A;&#x51FD;&#x6570;&#x5E93;&#x7684;&#x4EE3;&#x7801;&#x4E0D;&#x80FD;&#x76F4;&#x63A5;&#x653E;&#x5230;&#x67D0;&#x4E2A;&#x9879;&#x76EE;&#x7684;&#x4EE3;&#x7801;&#x4E2D;&#xFF0C;&#x800C;&#x662F;&#x8981;&#x72EC;&#x7ACB;&#x4E3A;&#x4E00;&#x4E2A;&#x4EE3;&#x7801;&#x5E93;&#x3002;&#x8FD9;&#x4E2A;&#x65F6;&#x5019;&#x5C31;&#x9700;&#x8981;&#x4F7F;&#x7528;Submodule&#x3002;</p>
+<p>1.&#x5BF9;&#x4E8E;&#x516C;&#x5171;&#x8D44;&#x6E90;&#x5404;&#x79CD;&#x7A0B;&#x5E8F;&#x5458;&#x7684;&#x5904;&#x7406;&#x65B9;&#x5F0F;<br>&#x6BCF;&#x4E2A;&#x516C;&#x53F8;&#x7684;&#x7CFB;&#x7EDF;&#x90FD;&#x4F1A;&#x6709;&#x4E00;&#x5957;&#x7EDF;&#x4E00;&#x7684;&#x7CFB;&#x7EDF;&#x98CE;&#x683C;&#xFF0C;&#x6216;&#x8005;&#x9488;&#x5BF9;&#x67D0;&#x4E00;&#x4E2A;&#x5927;&#x5BA2;&#x6237;&#x7684;&#x591A;&#x4E2A;&#x7CFB;&#x7EDF;&#x98CE;&#x683C;&#x4FDD;&#x6301;&#x7EDF;&#x4E00;&#xFF0C;&#x800C;&#x4E14;&#x5982;&#x679C;&#x98CE;&#x683C;&#x6539;&#x52A8;&#x540E;&#x8981;&#x540C;&#x6B65;&#x5230;&#x591A;&#x4E2A;&#x7CFB;&#x7EDF;&#x4E2D;&#xFF1B;&#x8FD9;&#x6837;&#x7684;&#x9700;&#x6C42;&#x51E0;&#x4E4E;&#x6BCF;&#x4E2A;&#x5F00;&#x53D1;&#x4EBA;&#x5458;&#x90FD;&#x9047;&#x5230;&#xFF0C;&#x4E0B;&#x9762;&#x770B;&#x770B;&#x5404;&#x4E2A;&#x5C42;&#x6B21;&#x7684;&#x7A0B;&#x5E8F;&#x5458;&#x600E;&#x4E48;&#x5904;&#x7406;&#xFF1A;</p>
+<p>&#x5047;&#x5982;&#x5BF9;&#x4E8E;&#x7CFB;&#x7EDF;&#x7684;&#x98CE;&#x683C;&#x9700;&#x8981;&#x51E0;&#x4E2A;&#x76EE;&#x5F55;&#xFF1A;css&#x3001;images&#x3001;js&#x3002;</p>
+<ul>
+<li>&#x666E;&#x901A;&#x7A0B;&#x5E8F;&#x5458;&#xFF0C;&#x628A;&#x6700;&#x65B0;&#x7248;&#x672C;&#x7684;&#x4EE3;&#x7801;&#x9010;&#x4E2A;&#x590D;&#x5236;&#x5230;&#x6BCF;&#x4E2A;&#x9879;&#x76EE;&#x4E2D;&#xFF0C;&#x5982;&#x679C;&#x6709;N&#x4E2A;&#x9879;&#x76EE;&#xFF0C;&#x90A3;&#x5C31;&#x662F;&#x8981;&#x590D;&#x5236;N x 3&#x6B21;&#xFF1B;&#x5982;&#x679C;&#x6F0F;&#x6389;&#x4E86;&#x67D0;&#x4E2A;&#x6587;&#x4EF6;&#x5939;&#x6CA1;&#x6709;&#x590D;&#x5236;&#x2026;</li>
+<li>&#x6587;&#x827A;&#x7A0B;&#x5E8F;&#x5458;&#xFF0C;&#x4F7F;&#x7528;Git Submodule&#x529F;&#x80FD;&#xFF0C;&#x6267;&#x884C;&#xFF1A;<span class="label danger">git submodule update</span>&#xFF0C;&#x7136;&#x540E;&#x51B2;&#x4E00;&#x676F;&#x5496;&#x5561;&#x60A0;&#x54C9;&#x7684;&#x4EAB;&#x53D7;&#x7740;&#x3002;</li>
+</ul>
+<p>&#x7C7B;&#x4F3C;&#x4E8E;SVN&#x7684;svn:externals.</p>
+<div class="table-container">
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>&#x529F;&#x80FD;</th>
+<th>svn:externals</th>
+<th>git submodule</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&#x5982;&#x4F55;&#x8BB0;&#x5F55;&#x5916;&#x90E8;&#x7248;&#x672C;&#x5E93;&#x7684;&#x5730;&#x5740;</td>
+<td>&#x76EE;&#x5F55; svn:externals &#x5C5E;&#x6027;</td>
+<td>&#x9879;&#x76EE;&#x6839;&#x76EE;&#x5F55;&#x4E0B;&#x7684; .gitmodules &#x6587;&#x4EF6;</td>
+</tr>
+<tr>
+<td>&#x9ED8;&#x8BA4;&#x662F;&#x5426;&#x81EA;&#x52A8;&#x68C0;&#x51FA;&#x5916;&#x90E8;&#x7248;&#x672C;&#x5E93;</td>
+<td>&#x662F;\n&#x5728;&#x4F7F;&#x7528;svn checkout &#x68C0;&#x51FA;&#x65F6;&#x82E5;&#x4F7F;&#x7528; &#x2014;ignore-externals&#x53EF;&#x4EE5;&#x5FFD;&#x7565;&#x5BF9;&#x5916;&#x90E8;&#x7248;&#x672C;&#x5E93;&#x7684;&#x5F15;&#x7528;&#xFF0C;&#x4E0D;&#x68C0;&#x51FA;</td>
+<td>&#x5426;\n&#x9ED8;&#x8BA4;&#x4E0D;&#x514B;&#x9686;&#x5916;&#x90E8;&#x7248;&#x672C;&#x5E93;&#x3002;&#x82E5;&#x8981;&#x514B;&#x9686;&#x5219;&#x9700;&#x8981;&#x4F7F;&#x7528;git submodule init&#x53CA;git submodule update&#x547D;&#x4EE4;</td>
+</tr>
+<tr>
+<td>&#x662F;&#x5426;&#x80FD;&#x90E8;&#x5206;&#x5F15;&#x7528;&#x5916;&#x90E8;&#x7248;&#x672C;&#x5E93;&#x5185;&#x5BB9;</td>
+<td>&#x662F;\n&#x56E0;&#x4E3A;svn&#x652F;&#x6301;&#x90E8;&#x5206;&#x68C0;&#x51FA;</td>
+<td>&#x5426;\n&#x5FC5;&#x987B;&#x514B;&#x9686;&#x6574;&#x4E2A;&#x5916;&#x90E8;&#x7248;&#x672C;&#x5E93;</td>
+</tr>
+<tr>
+<td>&#x662F;&#x5426;&#x53EF;&#x4EE5;&#x6307;&#x5411;&#x5206;&#x652F;&#x800C;&#x968F;&#x4E4B;&#x6539;&#x53D8;</td>
+<td>&#x662F;</td>
+<td>&#x5426;\n&#x56FA;&#x5B9A;&#x4E8E;&#x5916;&#x90E8;&#x7248;&#x672C;&#x5E93;&#x7684;&#x67D0;&#x4E2A;&#x63D0;&#x4EA4;</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<h2 id="&#x51C6;&#x5907;&#x5DE5;&#x4F5C;"><a href="#&#x51C6;&#x5907;&#x5DE5;&#x4F5C;" class="headerlink" title="&#x51C6;&#x5907;&#x5DE5;&#x4F5C;"></a>&#x51C6;&#x5907;&#x5DE5;&#x4F5C;</h2><div class="note info">
+            <p>&#x8BF4;&#x660E;&#xFF1A;&#x672C;&#x4F8B;&#x91C7;&#x7528;<span class="label danger">&#x4E24;&#x4E2A;&#x9879;&#x76EE;</span>&#x4EE5;&#x53CA;<span class="label danger">&#x4E24;&#x4E2A;&#x516C;&#x5171;&#x7C7B;&#x5E93;</span>&#x6F14;&#x793A;&#x5BF9;submodule&#x7684;&#x64CD;&#x4F5C;&#x3002;</p>
+          </div> 
+<h3 id="&#x51C6;&#x5907;&#x73AF;&#x5883;"><a href="#&#x51C6;&#x5907;&#x73AF;&#x5883;" class="headerlink" title="&#x51C6;&#x5907;&#x73AF;&#x5883;"></a>&#x51C6;&#x5907;&#x73AF;&#x5883;</h3><h4 id="&#x521B;&#x5EFA;&#x516C;&#x5171;&#x7C7B;&#x5E93;&#x7684;&#x672C;&#x5730;&#x4ED3;&#x5E93;"><a href="#&#x521B;&#x5EFA;&#x516C;&#x5171;&#x7C7B;&#x5E93;&#x7684;&#x672C;&#x5730;&#x4ED3;&#x5E93;" class="headerlink" title="&#x521B;&#x5EFA;&#x516C;&#x5171;&#x7C7B;&#x5E93;&#x7684;&#x672C;&#x5730;&#x4ED3;&#x5E93;"></a>&#x521B;&#x5EFA;&#x516C;&#x5171;&#x7C7B;&#x5E93;&#x7684;&#x672C;&#x5730;&#x4ED3;&#x5E93;</h4><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost projects]# git --git-dir=/root/repos/libA.git init --bare</span><br><span class="line">Initialized empty Git repository in /root/repos/libA.git/</span><br><span class="line">[root@localhost projects]# git --git-dir=/root/repos/libB.git init --bare</span><br><span class="line">Initialized empty Git repository in /root/repos/libB.git/</span><br><span class="line">[root@localhost projects]# ls -al /root/repos</span><br><span class="line">total 4</span><br><span class="line">drwxr-xr-x.  4 root root   38 Nov 20 04:35 .</span><br><span class="line">dr-xr-x---. 13 root root 4096 Nov 20 04:34 ..</span><br><span class="line">drwxr-xr-x.  7 root root  119 Nov 20 04:35 libA.git</span><br><span class="line">drwxr-xr-x.  7 root root  119 Nov 20 04:35 libB.git</span><br></pre></td></tr></tbody></table></figure>
+<h4 id="&#x521D;&#x59CB;&#x5316;&#x516C;&#x5171;&#x5E93;"><a href="#&#x521D;&#x59CB;&#x5316;&#x516C;&#x5171;&#x5E93;" class="headerlink" title="&#x521D;&#x59CB;&#x5316;&#x516C;&#x5171;&#x5E93;"></a>&#x521D;&#x59CB;&#x5316;&#x516C;&#x5171;&#x5E93;</h4><p>&#x83B7;&#x53D6;<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost projects]# git clone /root/repos/libA.git</span><br><span class="line">Cloning into &apos;libA&apos;...</span><br><span class="line">warning: You appear to have cloned an empty repository.</span><br><span class="line">done.</span><br><span class="line">[root@localhost projects]# git clone /root/repos/libB.git</span><br><span class="line">Cloning into &apos;libB&apos;...</span><br><span class="line">warning: You appear to have cloned an empty repository.</span><br><span class="line">done.</span><br><span class="line">[root@localhost projects]#</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<p>&#x521D;&#x59CB;&#x5316;libA</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost projects]# cd libA/</span><br><span class="line">[root@localhost libA]# echo &quot;libA&quot; &gt; readme</span><br><span class="line">[root@localhost libA]# git add readme</span><br><span class="line">[root@localhost libA]# git commit -m &quot;init&quot; readme</span><br><span class="line">[master (root-commit) ee8edb6] init</span><br><span class="line"> 1 file changed, 1 insertion(+)</span><br><span class="line"> create mode 100644 readme</span><br><span class="line">[root@localhost libA]# git push origin master</span><br><span class="line">Enumerating objects: 3, done.</span><br><span class="line">Counting objects: 100% (3/3), done.</span><br><span class="line">Writing objects: 100% (3/3), 207 bytes | 69.00 KiB/s, done.</span><br><span class="line">Total 3 (delta 0), reused 0 (delta 0)</span><br><span class="line">To /root/repos/libA.git</span><br><span class="line"> * [new branch]      master -&gt; master</span><br></pre></td></tr></tbody></table></figure>
+<p>&#x521D;&#x59CB;&#x5316;libB</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost libA]# cd ../libB/</span><br><span class="line">[root@localhost libB]# echo &quot;libB&quot;&gt;readme</span><br><span class="line">[root@localhost libB]# git add readme</span><br><span class="line">[root@localhost libB]# git commit -m&quot;init&quot; readme</span><br><span class="line">[master (root-commit) f70d346] init</span><br><span class="line"> 1 file changed, 1 insertion(+)</span><br><span class="line"> create mode 100644 readme</span><br><span class="line">[root@localhost libB]# git push origin master</span><br><span class="line">Enumerating objects: 3, done.</span><br><span class="line">Counting objects: 100% (3/3), done.</span><br><span class="line">Writing objects: 100% (3/3), 200 bytes | 100.00 KiB/s, done.</span><br><span class="line">Total 3 (delta 0), reused 0 (delta 0)</span><br><span class="line">To /root/repos/libB.git</span><br><span class="line"> * [new branch]      master -&gt; master</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="&#x521B;&#x5EFA;&#x9879;&#x76EE;&#x4F7F;&#x7528;&#x4E24;&#x4E2A;&#x6A21;&#x5757;"><a href="#&#x521B;&#x5EFA;&#x9879;&#x76EE;&#x4F7F;&#x7528;&#x4E24;&#x4E2A;&#x6A21;&#x5757;" class="headerlink" title="&#x521B;&#x5EFA;&#x9879;&#x76EE;&#x4F7F;&#x7528;&#x4E24;&#x4E2A;&#x6A21;&#x5757;"></a>&#x521B;&#x5EFA;&#x9879;&#x76EE;&#x4F7F;&#x7528;&#x4E24;&#x4E2A;&#x6A21;&#x5757;</h2><h3 id="&#x521B;&#x5EFA;&#x4E24;&#x4E2A;&#x9879;&#x76EE;&#x4ED3;&#x5E93;"><a href="#&#x521B;&#x5EFA;&#x4E24;&#x4E2A;&#x9879;&#x76EE;&#x4ED3;&#x5E93;" class="headerlink" title="&#x521B;&#x5EFA;&#x4E24;&#x4E2A;&#x9879;&#x76EE;&#x4ED3;&#x5E93;"></a>&#x521B;&#x5EFA;&#x4E24;&#x4E2A;&#x9879;&#x76EE;&#x4ED3;&#x5E93;</h3><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost projects]# git --git-dir=/root/repos/project1.git init --bare</span><br><span class="line">Initialized empty Git repository in /root/repos/project1.git/</span><br><span class="line">[root@localhost projects]# git --git-dir=/root/repos/project2.git init --bare</span><br><span class="line">Initialized empty Git repository in /root/repos/project2.git/</span><br><span class="line">[root@localhost projects]#</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="&#x83B7;&#x53D6;project1&#x5230;&#x672C;&#x5730;"><a href="#&#x83B7;&#x53D6;project1&#x5230;&#x672C;&#x5730;" class="headerlink" title="&#x83B7;&#x53D6;project1&#x5230;&#x672C;&#x5730;"></a>&#x83B7;&#x53D6;project1&#x5230;&#x672C;&#x5730;</h3><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost libB]# cd ../</span><br><span class="line">[root@localhost projects]# git clone /root/repos/project1.git</span><br><span class="line">Cloning into &apos;project1&apos;...</span><br><span class="line">warning: You appear to have cloned an empty repository.</span><br><span class="line">done.</span><br><span class="line">[root@localhost projects]# cd project1/</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="&#x4F7F;&#x7528;-&#x6DFB;&#x52A0;&#x5B50;&#x6A21;&#x5757;"><a href="#&#x4F7F;&#x7528;-&#x6DFB;&#x52A0;&#x5B50;&#x6A21;&#x5757;" class="headerlink" title="&#x4F7F;&#x7528;  &#x6DFB;&#x52A0;&#x5B50;&#x6A21;&#x5757;"></a>&#x4F7F;&#x7528; <span class="label danger">git submodule add</span> &#x6DFB;&#x52A0;&#x5B50;&#x6A21;&#x5757;</h3><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost project1]# git submodule add /root/repos/libA.git libs/libA</span><br><span class="line">Cloning into &apos;/root/projects/project1/libs/libA&apos;...</span><br><span class="line">done.</span><br><span class="line">[root@localhost project1]# git submodule add /root/repos/libB.git libs/libB</span><br><span class="line">Cloning into &apos;/root/projects/project1/libs/libB&apos;...</span><br><span class="line">done.</span><br><span class="line">[root@localhost project1]# git status</span><br><span class="line">On branch master</span><br><span class="line"></span><br><span class="line">No commits yet</span><br><span class="line"></span><br><span class="line">Changes to be committed:</span><br><span class="line">  (use &quot;git rm --cached &lt;file&gt;...&quot; to unstage)</span><br><span class="line"></span><br><span class="line">        new file:   .gitmodules</span><br><span class="line">        new file:   libs/libA</span><br><span class="line">        new file:   libs/libB</span><br></pre></td></tr></tbody></table></figure>
+<p>&#x597D;&#x4E86;&#xFF0C;&#x5230;&#x76EE;&#x524D;&#x4E3A;&#x6B62;&#x6211;&#x4EEC;&#x5DF2;&#x7ECF;&#x4F7F;&#x7528;<span class="label danger">git submodule add</span>&#x547D;&#x4EE4;&#x4E3A;<span class="label danger">project1</span>&#x6210;&#x529F;&#x6DFB;&#x52A0;&#x4E86;&#x4E24;&#x4E2A;&#x516C;&#x5171;&#x7C7B;&#x5E93;&#xFF08;libA&#x3001;libB&#xFF09;&#xFF0C;&#x67E5;&#x770B;&#x4E86;&#x5F53;&#x524D;&#x7684;&#x72B6;&#x6001;&#x53D1;&#x73B0;&#x6DFB;&#x52A0;&#x4E86;&#x4E00;&#x4E2A;&#x65B0;&#x6587;&#x4EF6;(.gitmodules)&#x548C;&#x4E24;&#x4E2A;&#x6587;&#x4EF6;&#x5939;(libs/libA&#x3001;libs/libB)&#xFF1B;&#x90A3;&#x4E48;&#x65B0;&#x589E;&#x7684;.gitmodules&#x6587;&#x4EF6;&#x662F;&#x505A;&#x4EC0;&#x4E48;&#x7528;&#x7684;&#x5462;&#xFF1F;&#x6211;&#x4EEC;&#x67E5;&#x770B;&#x4E00;&#x4E0B;&#x6587;&#x4EF6;&#x5185;&#x5BB9;&#x4FBF;&#x77E5;&#x6653;&#x4E86;&#xFF1A;</p>
+<p>&#x6A21;&#x5757;&#x7684;&#x8BB0;&#x5F55;&#x6587;&#x4EF6; &#x5728;.gitmodules&#x5B58;&#x53D6;</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost project1]# cat .gitmodules</span><br><span class="line">[submodule &quot;libs/libA&quot;]</span><br><span class="line">        path = libs/libA</span><br><span class="line">        url = /root/repos/libA.git</span><br><span class="line">[submodule &quot;libs/libB&quot;]</span><br><span class="line">        path = libs/libB</span><br><span class="line">        url = /root/repos/libB.git</span><br></pre></td></tr></tbody></table></figure>
+<p>&#x987A;&#x4FBF;&#x770B;&#x4E00;&#x4E0B; .git/config<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost project1]# cat .git/config</span><br><span class="line">[core]</span><br><span class="line">        repositoryformatversion = 0</span><br><span class="line">        filemode = true</span><br><span class="line">        bare = false</span><br><span class="line">        logallrefupdates = true</span><br><span class="line">[remote &quot;origin&quot;]</span><br><span class="line">        url = /root/repos/project1.git</span><br><span class="line">        fetch = +refs/heads/*:refs/remotes/origin/*</span><br><span class="line">[branch &quot;master&quot;]</span><br><span class="line">        remote = origin</span><br><span class="line">        merge = refs/heads/master</span><br><span class="line">[submodule &quot;libs/libA&quot;]</span><br><span class="line">        url = /root/repos/libA.git</span><br><span class="line">        active = true</span><br><span class="line">[submodule &quot;libs/libB&quot;]</span><br><span class="line">        url = /root/repos/libB.git</span><br><span class="line">        active = true</span><br></pre></td></tr></tbody></table></figure>
+<p>&#x53EF;&#x4EE5;&#x770B;&#x5230; libs&#x76EE;&#x5F55;&#x4E0B;&#x5DF2;&#x7ECF;&#x5B58;&#x5728;&#x4E24;&#x4E2A;&#x5B50;&#x6A21;&#x5757;&#x7684;&#x5185;&#x5BB9;&#x4E86;</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost project1]# tree -L 2 libs/</span><br><span class="line">libs/</span><br><span class="line">&#x251C;&#x2500;&#x2500; libA</span><br><span class="line">&#x2502;&#xA0;&#xA0; &#x2514;&#x2500;&#x2500; readme</span><br><span class="line">&#x2514;&#x2500;&#x2500; libB</span><br><span class="line">    &#x2514;&#x2500;&#x2500; readme</span><br><span class="line"></span><br><span class="line">2 directories, 2 files</span><br><span class="line">[root@localhost project1]# tree -L 2 .git/modules/libs/</span><br><span class="line">.git/modules/libs/</span><br><span class="line">&#x251C;&#x2500;&#x2500; libA</span><br><span class="line">&#x2502;&#xA0;&#xA0; &#x251C;&#x2500;&#x2500; branches</span><br><span class="line">&#x2502;&#xA0;&#xA0; &#x251C;&#x2500;&#x2500; config</span><br><span class="line">&#x2502;&#xA0;&#xA0; &#x251C;&#x2500;&#x2500; description</span><br><span class="line">&#x2502;&#xA0;&#xA0; &#x251C;&#x2500;&#x2500; HEAD</span><br><span class="line">&#x2502;&#xA0;&#xA0; &#x251C;&#x2500;&#x2500; hooks</span><br><span class="line">&#x2502;&#xA0;&#xA0; &#x251C;&#x2500;&#x2500; index</span><br><span class="line">&#x2502;&#xA0;&#xA0; &#x251C;&#x2500;&#x2500; info</span><br><span class="line">&#x2502;&#xA0;&#xA0; &#x251C;&#x2500;&#x2500; logs</span><br><span class="line">&#x2502;&#xA0;&#xA0; &#x251C;&#x2500;&#x2500; objects</span><br><span class="line">&#x2502;&#xA0;&#xA0; &#x251C;&#x2500;&#x2500; packed-refs</span><br><span class="line">&#x2502;&#xA0;&#xA0; &#x2514;&#x2500;&#x2500; refs</span><br><span class="line">&#x2514;&#x2500;&#x2500; libB</span><br><span class="line">    &#x251C;&#x2500;&#x2500; branches</span><br><span class="line">    &#x251C;&#x2500;&#x2500; config</span><br><span class="line">    &#x251C;&#x2500;&#x2500; description</span><br><span class="line">    &#x251C;&#x2500;&#x2500; HEAD</span><br><span class="line">    &#x251C;&#x2500;&#x2500; hooks</span><br><span class="line">    &#x251C;&#x2500;&#x2500; index</span><br><span class="line">    &#x251C;&#x2500;&#x2500; info</span><br><span class="line">    &#x251C;&#x2500;&#x2500; logs</span><br><span class="line">    &#x251C;&#x2500;&#x2500; objects</span><br><span class="line">    &#x251C;&#x2500;&#x2500; packed-refs</span><br><span class="line">    &#x2514;&#x2500;&#x2500; refs</span><br><span class="line"></span><br><span class="line">14 directories, 10 files</span><br></pre></td></tr></tbody></table></figure>
+<p>&#x8FD8;&#x53EF;&#x4EE5;&#x67E5;&#x770B;&#x5F53;&#x524D;submodule&#x72B6;&#x6001;<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost project1]# git submodule status</span><br><span class="line"> ee8edb6e68cf05a4cceeccb3e0344dc149c5a1ea libs/libA (heads/master)</span><br><span class="line"> f70d346153fe4020db82d3a8b990c1898b6c86fb libs/libB (heads/master)</span><br></pre></td></tr></tbody></table></figure>
+<p>&#x5C06;&#x4FEE;&#x6539;&#x63D0;&#x4EA4;&#x5230;&#x4ED3;&#x5E93;&#x4E2D;</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost project1]# git commit -am&quot;add submodules to project&quot;</span><br><span class="line">[master (root-commit) fabea54] add submodules to project</span><br><span class="line"> 3 files changed, 8 insertions(+)</span><br><span class="line"> create mode 100644 .gitmodules</span><br><span class="line"> create mode 160000 libs/libA</span><br><span class="line"> create mode 160000 libs/libB</span><br><span class="line">[root@localhost project1]# git push</span><br><span class="line">Enumerating objects: 4, done.</span><br><span class="line">Counting objects: 100% (4/4), done.</span><br><span class="line">Compressing objects: 100% (4/4), done.</span><br><span class="line">Writing objects: 100% (4/4), 360 bytes | 180.00 KiB/s, done.</span><br><span class="line">Total 4 (delta 0), reused 0 (delta 0)</span><br><span class="line">To /root/repos/project1.git</span><br><span class="line"> * [new branch]      master -&gt; master</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="&#x5176;&#x4ED6;&#x4EBA;&#x4F7F;&#x7528;&#x5E26;&#x6709;Submodule&#x7684;&#x4ED3;&#x5E93;"><a href="#&#x5176;&#x4ED6;&#x4EBA;&#x4F7F;&#x7528;&#x5E26;&#x6709;Submodule&#x7684;&#x4ED3;&#x5E93;" class="headerlink" title="&#x5176;&#x4ED6;&#x4EBA;&#x4F7F;&#x7528;&#x5E26;&#x6709;Submodule&#x7684;&#x4ED3;&#x5E93;"></a>&#x5176;&#x4ED6;&#x4EBA;&#x4F7F;&#x7528;&#x5E26;&#x6709;Submodule&#x7684;&#x4ED3;&#x5E93;</h2><p>&#x5F00;&#x53D1;&#x4EBA;&#x5458;B &#x2026;</p>
+<h3 id="&#x4F7F;&#x7528;&#x83B7;&#x53D6;&#x8FDC;&#x7A0B;&#x4ED3;&#x5E93;"><a href="#&#x4F7F;&#x7528;&#x83B7;&#x53D6;&#x8FDC;&#x7A0B;&#x4ED3;&#x5E93;" class="headerlink" title="&#x4F7F;&#x7528;&#x83B7;&#x53D6;&#x8FDC;&#x7A0B;&#x4ED3;&#x5E93;"></a>&#x4F7F;&#x7528;<span class="label danger">git clone</span>&#x83B7;&#x53D6;&#x8FDC;&#x7A0B;&#x4ED3;&#x5E93;</h3><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost projects]# git clone /root/repos/project1.git project1-b</span><br><span class="line">Cloning into &apos;project1-b&apos;...</span><br><span class="line">done.</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="&#x4F7F;&#x7528;&#x67E5;&#x770B;&#x5F53;&#x524D;&#x5B50;&#x6A21;&#x5757;&#x72B6;&#x6001;"><a href="#&#x4F7F;&#x7528;&#x67E5;&#x770B;&#x5F53;&#x524D;&#x5B50;&#x6A21;&#x5757;&#x72B6;&#x6001;" class="headerlink" title="&#x4F7F;&#x7528;&#x67E5;&#x770B;&#x5F53;&#x524D;&#x5B50;&#x6A21;&#x5757;&#x72B6;&#x6001;"></a>&#x4F7F;&#x7528;<span class="label danger">git submodule status</span>&#x67E5;&#x770B;&#x5F53;&#x524D;&#x5B50;&#x6A21;&#x5757;&#x72B6;&#x6001;</h3><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost project1-b]# git submodule status</span><br><span class="line">-ee8edb6e68cf05a4cceeccb3e0344dc149c5a1ea libs/libA</span><br><span class="line">-f70d346153fe4020db82d3a8b990c1898b6c86fb libs/libB</span><br></pre></td></tr></tbody></table></figure>
+<p>&#x5176;&#x4E2D; <span class="label danger">-</span> &#x4EE3;&#x8868;&#x8D44;&#x6E90;&#x672A;&#x521D;&#x59CB;&#x5316;&#x5230;&#x6A21;&#x5757;&#x4E2D;<br>&#x540E;&#x9762;&#x7684;&#x4EE3;&#x7801;&#x4E3A; &#x5BF9;&#x5E94;&#x6A21;&#x5757;git&#x5E93;&#x7684;<span class="label danger">commitID</span></p>
+<p>&#x672A;&#x521D;&#x59CB;&#x5316;&#x68C0;&#x51FA; &#x5373;&#x672A;&#x8C03;&#x7528;&#x8FC7; <span class="label danger">git submodule init</span> </p>
+<p>&#x6B64;&#x65F6;<span class="label danger">.git/config</span> &#x4E2D;&#x662F;&#x4E0D;&#x5B58;&#x5728; submodule &#x7684;&#x4FE1;&#x606F;&#x7684;</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost project1-b]# cat .git/config</span><br><span class="line">[core]</span><br><span class="line">        repositoryformatversion = 0</span><br><span class="line">        filemode = true</span><br><span class="line">        bare = false</span><br><span class="line">        logallrefupdates = true</span><br><span class="line">[remote &quot;origin&quot;]</span><br><span class="line">        url = /root/repos/project1.git</span><br><span class="line">        fetch = +refs/heads/*:refs/remotes/origin/*</span><br><span class="line">[branch &quot;master&quot;]</span><br><span class="line">        remote = origin</span><br><span class="line">        merge = refs/heads/master</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="&#x521D;&#x59CB;&#x5316;"><a href="#&#x521D;&#x59CB;&#x5316;" class="headerlink" title="&#x521D;&#x59CB;&#x5316; "></a>&#x521D;&#x59CB;&#x5316; <span class="label danger">git submodule init</span></h3><div class="note ">
+            <p>&#x6267;&#x884C; <span class="label danger">git submodule init</span>  &#x5B9E;&#x9645;&#x4E0A;&#x4FEE;&#x6539;&#x4E86;  <span class="label danger">.git/config</span>  &#x6587;&#x4EF6;&#xFF0C;&#x5BF9;&#x5B50;&#x6A21;&#x5757;&#x8FDB;&#x884C;&#x4E86;&#x6CE8;&#x518C;&#x3002;</p>
+          </div>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost project1-b]# git submodule init</span><br><span class="line">Submodule &apos;libs/libA&apos; (/root/repos/libA.git) registered for path &apos;libs/libA&apos;</span><br><span class="line">Submodule &apos;libs/libB&apos; (/root/repos/libB.git) registered for path &apos;libs/libB&apos;</span><br></pre></td></tr></tbody></table></figure>
+<p>&#x67E5;&#x770B;&#x72B6;&#x6001; </p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost project1-b]# git submodule status</span><br><span class="line"> ee8edb6e68cf05a4cceeccb3e0344dc149c5a1ea libs/libA</span><br><span class="line"> f70d346153fe4020db82d3a8b990c1898b6c86fb libs/libB</span><br></pre></td></tr></tbody></table></figure>
+<p>&#x6B64;&#x65F6;&#x524D;&#x9762;&#x4EE5;&#x53CA;&#x6CA1;&#x6709;<span class="label danger">-</span>&#x7B26;&#x53F7;&#x4E86;<br>&#x67E5;&#x770B;&#x6587;&#x4EF6;<span class="label danger">.git/config</span><br>(&#x4EE5;&#x52A0;&#x53F7;&#x5F00;&#x59CB;&#x7684;&#x884C;&#x4E3A;&#x65B0;&#x589E;&#x52A0;&#x7684;&#x884C;)</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">[core]</span><br><span class="line">        repositoryformatversion = 0</span><br><span class="line">        filemode = true</span><br><span class="line">        bare = false</span><br><span class="line">        logallrefupdates = true</span><br><span class="line">[remote &quot;origin&quot;]</span><br><span class="line">        url = /root/repos/project1.git</span><br><span class="line">        fetch = +refs/heads/*:refs/remotes/origin/*</span><br><span class="line">[branch &quot;master&quot;]</span><br><span class="line">        remote = origin</span><br><span class="line">        merge = refs/heads/master</span><br><span class="line">+[submodule &quot;libs/libA&quot;]</span><br><span class="line">+        active = true</span><br><span class="line">+        url = /root/repos/libA.git</span><br><span class="line">+[submodule &quot;libs/libB&quot;]</span><br><span class="line">+        active = true</span><br><span class="line">+        url = /root/repos/libB.git</span><br></pre></td></tr></tbody></table></figure>
+<p>&#x67E5;&#x770B; &#x5DE5;&#x4F5C;&#x7A7A;&#x95F4;&#x4E2D;&#x7684;&#x6587;&#x4EF6;&#x4FE1;&#x606F; </p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost project1-b]# tree -L 2 libs/</span><br><span class="line">libs/</span><br><span class="line">&#x251C;&#x2500;&#x2500; libA</span><br><span class="line">&#x2514;&#x2500;&#x2500; libB</span><br><span class="line"></span><br><span class="line">2 directories, 0 files</span><br></pre></td></tr></tbody></table></figure>
+<p>&#x53D1;&#x73B0;&#x5E76;&#x4E0D;&#x5B58;&#x5728;&#x6587;&#x4EF6;&#xFF0C;&#x8FD9;&#x662F;&#x9700;&#x8981; &#x68C0;&#x51FA; &#x5B50;&#x6A21;&#x5757;&#x7684;&#x4EE3;&#x7801;&#x4FE1;&#x606F;</p>
+<h3 id="&#x4F7F;&#x7528;-&#x68C0;&#x51FA;&#x4EE3;&#x7801;"><a href="#&#x4F7F;&#x7528;-&#x68C0;&#x51FA;&#x4EE3;&#x7801;" class="headerlink" title="&#x4F7F;&#x7528;  &#x68C0;&#x51FA;&#x4EE3;&#x7801;"></a>&#x4F7F;&#x7528; <span class="label danger">git submodule update</span> &#x68C0;&#x51FA;&#x4EE3;&#x7801;</h3><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost project1-b]# git submodule update</span><br><span class="line">Cloning into &apos;/root/projects/project1-b/libs/libA&apos;...</span><br><span class="line">done.</span><br><span class="line">Cloning into &apos;/root/projects/project1-b/libs/libB&apos;...</span><br><span class="line">done.</span><br><span class="line">Submodule path &apos;libs/libA&apos;: checked out &apos;ee8edb6e68cf05a4cceeccb3e0344dc149c5a1ea&apos;</span><br><span class="line">Submodule path &apos;libs/libB&apos;: checked out &apos;f70d346153fe4020db82d3a8b990c1898b6c86fb&apos;</span><br><span class="line">[root@localhost project1-b]# tree -L 2 libs/</span><br><span class="line">libs/</span><br><span class="line">&#x251C;&#x2500;&#x2500; libA</span><br><span class="line">&#x2502;&#xA0;&#xA0; &#x2514;&#x2500;&#x2500; readme</span><br><span class="line">&#x2514;&#x2500;&#x2500; libB</span><br><span class="line">    &#x2514;&#x2500;&#x2500; readme</span><br><span class="line"></span><br><span class="line">2 directories, 2 files</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="&#x4FEE;&#x6539;&#x5B50;&#x6A21;&#x5757;"><a href="#&#x4FEE;&#x6539;&#x5B50;&#x6A21;&#x5757;" class="headerlink" title="&#x4FEE;&#x6539;&#x5B50;&#x6A21;&#x5757;"></a>&#x4FEE;&#x6539;&#x5B50;&#x6A21;&#x5757;</h3><p>&#x67E5;&#x770B;&#x5F53;&#x524D; &#x4ED3;&#x5E93;&#x72B6;&#x6001;<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost project1-b]# git status</span><br><span class="line">On branch master</span><br><span class="line">Your branch is up to date with &apos;origin/master&apos;.</span><br><span class="line"></span><br><span class="line">nothing to commit, working tree clean</span><br></pre></td></tr></tbody></table></figure>
+<p>&#x5982;&#x679C;&#x6211;&#x4EEC;&#x8FDB;&#x5165;&#x5B50;&#x6A21;&#x5757;A &#x67E5;&#x770B;&#x72B6;&#x6001;&#x5462;<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost project1-b]# cd libs/libA/</span><br><span class="line">[root@localhost libA]# git status</span><br><span class="line">HEAD detached at ee8edb6</span><br><span class="line">nothing to commit, working tree clean</span><br><span class="line">[root@localhost libA]# git branch</span><br><span class="line">* (HEAD detached at ee8edb6)</span><br><span class="line">  master</span><br></pre></td></tr></tbody></table></figure><br>&#x6211;&#x4EEC;&#x53D1;&#x73B0; &#x5F53;&#x524D; git&#x7684;&#x5934;&#x6307;&#x9488;&#x4E0D;&#x662F;&#x6307;&#x5411;master&#x7684;&#xFF0C;&#x800C;&#x662F;&#x6307;&#x5411;&#x56FA;&#x5B9A;&#x7684;commitID&#x7684;<br>&#x5982;&#x679C;&#x8FD9;&#x4E2A;&#x65F6;&#x5019;&#x6211;&#x4EEC;&#x4FEE;&#x6539;&#x5B50;&#x6A21;&#x5757;A&#x4E2D;&#x7684;&#x6587;&#x4EF6;&#xFF0C;&#x63D0;&#x4EA4;&#x5C31;&#x4F1A;&#x4E22;&#x5931;&#x3002;
+<p>&#x6211;&#x4EEC;&#x770B; .gitmodule &#x6587;&#x4EF6;<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost libA]# cat ../../.gitmodules</span><br><span class="line">[submodule &quot;libs/libA&quot;]</span><br><span class="line">        path = libs/libA</span><br><span class="line">        url = /root/repos/libA.git</span><br><span class="line">[submodule &quot;libs/libB&quot;]</span><br><span class="line">        path = libs/libB</span><br><span class="line">        url = /root/repos/libB.git</span><br></pre></td></tr></tbody></table></figure>
+<p>&#x6BCF;&#x4E00;&#x4E2A; submodule &#x8BB0;&#x5F55;&#x4E86;</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- submodule &#x540D;&#x79F0; submodule &quot;libs/libA&quot;</span><br><span class="line">- submodule &#x5728;&#x4E3B;&#x9879;&#x76EE;&#x4E2D;&#x7684;&#x4F4D;&#x7F6E; path = libs/libA</span><br><span class="line">- submodule &#x4F7F;&#x7528;&#x7684;&#x4ED3;&#x5E93;&#x5730;&#x5740; url = /root/repos/libB.git</span><br><span class="line">- submodule &#x7248;&#x672C;&#x9ED8;&#x8BA4;commitID [default:master]</span><br></pre></td></tr></tbody></table></figure>
+<p>&#x8FD9;&#x4E2A;&#x65F6;&#x5019;&#x5982;&#x679C;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x4FEE;&#x6539; &#x5B50;&#x6A21;&#x5757;&#x7684;&#x5185;&#x5BB9;<br>&#x9700;&#x8981;&#x5148;&#x5C06; &#x5F53;&#x524D;Head &#x6307;&#x5411; &#x9700;&#x8981;&#x4FEE;&#x6539;&#x7684;&#x5206;&#x652F;&#xFF0C;&#x4FEE;&#x6539;&#x5B8C;&#x5185;&#x5BB9;&#x540E;&#x63D0;&#x4EA4;&#x5230;&#x5206;&#x652F;&#x4E0A;<br>&#x6BD4;&#x5982;&#x5F53;&#x524D;&#x7684;&#x5206;&#x652F;master</p>
+<p>&#x5207;&#x6362;&#x5206;&#x652F; &#x4FEE;&#x6539;&#x5185;&#x5BB9;&#xFF0C;&#x5E76;&#x63D0;&#x4EA4;<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost libA]# git checkout master</span><br><span class="line">Switched to branch &apos;master&apos;</span><br><span class="line">Your branch is up to date with &apos;origin/master&apos;.</span><br><span class="line">[root@localhost libA]# echo &quot;add by developer B&quot; &gt;&gt; readme</span><br><span class="line">[root@localhost libA]# git commit -am &quot;update libA by developer B&quot;</span><br><span class="line">[master 0d13d75] update libA by developer B</span><br><span class="line"> 1 file changed, 1 insertion(+)</span><br></pre></td></tr></tbody></table></figure>
+<p>&#x5C06;&#x5DE5;&#x4F5C;&#x7A7A;&#x95F4;&#x5207;&#x6362;&#x5230;&#x4E3B;&#x9879;&#x76EE;&#x4E0B;&#xFF0C;&#x67E5;&#x770B;&#x5F53;&#x524D;&#x4E3B;&#x9879;&#x76EE;&#x72B6;&#x6001;<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost libA]# cd ../../</span><br><span class="line">[root@localhost project1-b]# git status</span><br><span class="line">On branch master</span><br><span class="line">Your branch is up to date with &apos;origin/master&apos;.</span><br><span class="line"></span><br><span class="line">Changes not staged for commit:</span><br><span class="line">  (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)</span><br><span class="line">  (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)</span><br><span class="line"></span><br><span class="line">        modified:   libs/libA (new commits)</span><br><span class="line"></span><br><span class="line">no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)</span><br><span class="line">[root@localhost project1-b]# git diff</span><br><span class="line">diff --git a/libs/libA b/libs/libA</span><br><span class="line">index ee8edb6..0d13d75 160000</span><br><span class="line">--- a/libs/libA</span><br><span class="line">+++ b/libs/libA</span><br><span class="line">@@ -1 +1 @@</span><br><span class="line">-Subproject commit ee8edb6e68cf05a4cceeccb3e0344dc149c5a1ea</span><br><span class="line">+Subproject commit 0d13d7551eea10cb8c1407055fa674109753f360</span><br></pre></td></tr></tbody></table></figure><br>&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x53D1;&#x73B0;commitID &#x4EE5;&#x53CA;&#x88AB;&#x4FEE;&#x6539;&#x4E86;
+<div class="note ">
+            <p>&#x6CE8;&#x610F;&#xFF1A;&#x5982;&#x679C;&#x73B0;&#x5728;&#x6267;&#x884C;&#x4E86; git submodule update &#x64CD;&#x4F5C;&#x90A3;&#x4E48;libs/libA&#x7684;commit id&#x53C8;&#x4F1A;&#x8FD8;&#x539F;&#x5230;ee8edb6e68cf05a4cceeccb3e0344dc149c5a1ea</p>
+          </div>
+<p>&#x8FD9;&#x6837;&#x7684;&#x8BDD;&#x521A;&#x521A;&#x7684;&#x4FEE;&#x6539;&#x662F;&#x4E0D;&#x662F;&#x5C31;&#x4E22;&#x4E86;&#x5462;&#xFF1F;&#x4E0D;&#x4F1A;&#xFF0C;&#x56E0;&#x4E3A;&#x4FEE;&#x6539;&#x5DF2;&#x7ECF;&#x63D0;&#x4EA4;&#x5230;&#x4E86;master&#x5206;&#x652F;&#xFF0C;&#x53EA;&#x8981;&#x518D;git checkout master&#x5C31;&#x53EF;&#x4EE5;&#x4E86;&#x3002;</p>
+<p>&#x6211;&#x4EEC;&#x73B0;&#x5728;&#x5148;&#x5C06; libs/libA &#x7684;&#x4FEE;&#x6539;&#x63D0;&#x4EA4;&#x5230;&#x4ED3;&#x5E93;</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost project1-b]# cd libs/libA/</span><br><span class="line">[root@localhost libA]# git push</span><br><span class="line">Enumerating objects: 5, done.</span><br><span class="line">Counting objects: 100% (5/5), done.</span><br><span class="line">Writing objects: 100% (3/3), 265 bytes | 88.00 KiB/s, done.</span><br><span class="line">Total 3 (delta 0), reused 0 (delta 0)</span><br><span class="line">To /root/repos/libA.git</span><br><span class="line">   ee8edb6..0d13d75  master -&gt; master</span><br></pre></td></tr></tbody></table></figure>
+<p>&#x73B0;&#x5728;&#x4EC5;&#x4EC5;&#x53EA;&#x5B8C;&#x6210;&#x4E86;&#x4E00;&#x6B65;&#xFF0C;&#x4E0B;&#x4E00;&#x6B65;&#x8981;&#x63D0;&#x4EA4;&#x4E3B;&#x9879;&#x76EE;&#x5F15;&#x7528;submodule&#x7684;commit id&#xFF1A;</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<h2 id="&#x53C2;&#x8003;"><a href="#&#x53C2;&#x8003;" class="headerlink" title="&#x53C2;&#x8003;"></a>&#x53C2;&#x8003;</h2><p><a href="https://www.cnblogs.com/lsgxeva/p/8540758.html">Git Submodule&#x4F7F;&#x7528;&#x5B8C;&#x6574;&#x6559;&#x7A0B;</a><br><a href="https://www.jianshu.com/p/e27a978ddb88">git submodule &#x7684;&#x4F7F;&#x7528;</a><br><a href="https://www.jianshu.com/p/f8a55b972972/">git submodule &#x4F7F;&#x7528;&#x5C0F;&#x7ED3;</a></p>
+
+			  		
+			  		
+			  		<!-- google Adsense -->
+			  		
+					
+			  	</div>
+				
+		  	</article>
+		  	
+		  	
+		  	<!-- meta (categories , tags) -->
+		  	
+		  	<div class="meta-content">
+		  	
+		  		
+		  		<div class="meta-wrapper">
+				  	<h6 class="categories">Category</h6>
+				  	<div class="article-categories">
+						<ul class="article-categories-list">
+							
+					    		<li class="article-categories-list-item">
+					    			<a class="article-categories-list-link" href="/categories/git/" class="link-gaTrack" data-linkType="link-categories">
+					    				git
+					    			</a>
+					    		</li>
+							
+						</ul>
+					</div>
+				</div>
+				
+				
+				
+				<div class="meta-wrapper">
+				  	<h6 class="tag">Tag</h6>
+				  	<div class="article-tag">
+						<ul class="article-tag-list">
+							
+					    		<li class="article-tag-list-item">
+					    			<a class="article-tag-list-link" href="/tags/git/" class="link-gaTrack" data-linkType="link-tag">
+					    				git
+					    			</a>
+					    		</li>
+							
+						</ul>
+					</div>
+				</div>
+				
+			</div>
+		  	
+		  	
+		  	<!-- article nav -->
+		  	
+			<nav id="article-nav">
+			  
+			  <a href="/2017/05/29/unity/shader-second/" id="article-nav-newer" class="article-nav-link-wrap">
+			    <strong class="article-nav-caption">Newer</strong>
+			    <div class="article-nav-title">
+			      
+			        Shader 学习文档 [二]
+			      
+			    </div>
+			  </a>
+			  
+			  
+			  <a href="/2017/05/28/unity/shader-first/" id="article-nav-older" class="article-nav-link-wrap">
+			    <strong class="article-nav-caption">Older</strong>
+			    <div class="article-nav-title">
+			      
+			        Shader 学习文档 [一]
+			      
+			    </div>
+			  </a>
+			  
+			</nav>
+			
+			
+		</div>
+		
+		
+		<footer id="footer">
+		
+			
+			
+			
+			
+			<div class="homeLink">
+		  		<a href="/">Home</a>
+		  	</div>
+			
+			
+			<div class="copyright-tool">
+				<div class="copyright-title">
+					<span>
+					&copy; 2021&nbsp;Chester.C
+					</span>
+				</div>
+				
+			</div>
+			
+		</footer>
+		
+		
+	</div>
+	
+	
+  	<div id="totop"><a href="#"></a></div>
+  	
+  	
+  </body>
+</html>

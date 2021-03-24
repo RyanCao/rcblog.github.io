@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.1">
+<meta name="generator" content="Hexo 5.4.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -19,7 +19,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"blog.rcant.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"blog.rcant.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
   <meta name="description" content="引子接上篇，主要讲 Git 版本回退">
@@ -407,7 +407,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#引子"><span class="nav-number">1.</span> <span class="nav-text">引子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#谈一谈GIT的后悔药怎么吃"><span class="nav-number">2.</span> <span class="nav-text">谈一谈GIT的后悔药怎么吃</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#本地分支版本回退的方法"><span class="nav-number">2.1.</span> <span class="nav-text">本地分支版本回退的方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#获取要回退的版本号-Commit-ID"><span class="nav-number">2.1.1.</span> <span class="nav-text">获取要回退的版本号 Commit ID</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#执行回退操作"><span class="nav-number">2.1.2.</span> <span class="nav-text">执行回退操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#如果回退操作执行了，然后你又后悔了"><span class="nav-number">2.1.3.</span> <span class="nav-text">如果回退操作执行了，然后你又后悔了</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如果想要回退个人远程仓库的版本怎么办"><span class="nav-number">2.2.</span> <span class="nav-text">如果想要回退个人远程仓库的版本怎么办?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如果要回退公共远程仓库怎么办？"><span class="nav-number">2.3.</span> <span class="nav-text">如果要回退公共远程仓库怎么办？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#比较粗暴的回滚"><span class="nav-number">2.3.1.</span> <span class="nav-text">比较粗暴的回滚</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#将某个-文件-文件夹-回滚到某个版本"><span class="nav-number">2.4.</span> <span class="nav-text">将某个 文件&#x2F;文件夹 回滚到某个版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">2.5.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Git-学习系列"><span class="nav-number">3.</span> <span class="nav-text">Git 学习系列</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%95%E5%AD%90"><span class="nav-number">1.</span> <span class="nav-text">引子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B0%88%E4%B8%80%E8%B0%88GIT%E7%9A%84%E5%90%8E%E6%82%94%E8%8D%AF%E6%80%8E%E4%B9%88%E5%90%83"><span class="nav-number">2.</span> <span class="nav-text">谈一谈GIT的后悔药怎么吃</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%AC%E5%9C%B0%E5%88%86%E6%94%AF%E7%89%88%E6%9C%AC%E5%9B%9E%E9%80%80%E7%9A%84%E6%96%B9%E6%B3%95"><span class="nav-number">2.1.</span> <span class="nav-text">本地分支版本回退的方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E8%A6%81%E5%9B%9E%E9%80%80%E7%9A%84%E7%89%88%E6%9C%AC%E5%8F%B7-Commit-ID"><span class="nav-number">2.1.1.</span> <span class="nav-text">获取要回退的版本号 Commit ID</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%89%A7%E8%A1%8C%E5%9B%9E%E9%80%80%E6%93%8D%E4%BD%9C"><span class="nav-number">2.1.2.</span> <span class="nav-text">执行回退操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%82%E6%9E%9C%E5%9B%9E%E9%80%80%E6%93%8D%E4%BD%9C%E6%89%A7%E8%A1%8C%E4%BA%86%EF%BC%8C%E7%84%B6%E5%90%8E%E4%BD%A0%E5%8F%88%E5%90%8E%E6%82%94%E4%BA%86"><span class="nav-number">2.1.3.</span> <span class="nav-text">如果回退操作执行了，然后你又后悔了</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E6%9E%9C%E6%83%B3%E8%A6%81%E5%9B%9E%E9%80%80%E4%B8%AA%E4%BA%BA%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E7%9A%84%E7%89%88%E6%9C%AC%E6%80%8E%E4%B9%88%E5%8A%9E"><span class="nav-number">2.2.</span> <span class="nav-text">如果想要回退个人远程仓库的版本怎么办?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E6%9E%9C%E8%A6%81%E5%9B%9E%E9%80%80%E5%85%AC%E5%85%B1%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E6%80%8E%E4%B9%88%E5%8A%9E%EF%BC%9F"><span class="nav-number">2.3.</span> <span class="nav-text">如果要回退公共远程仓库怎么办？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AF%94%E8%BE%83%E7%B2%97%E6%9A%B4%E7%9A%84%E5%9B%9E%E6%BB%9A"><span class="nav-number">2.3.1.</span> <span class="nav-text">比较粗暴的回滚</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%86%E6%9F%90%E4%B8%AA-%E6%96%87%E4%BB%B6-%E6%96%87%E4%BB%B6%E5%A4%B9-%E5%9B%9E%E6%BB%9A%E5%88%B0%E6%9F%90%E4%B8%AA%E7%89%88%E6%9C%AC"><span class="nav-number">2.4.</span> <span class="nav-text">将某个 文件&#x2F;文件夹 回滚到某个版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">2.5.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Git-%E5%AD%A6%E4%B9%A0%E7%B3%BB%E5%88%97"><span class="nav-number">3.</span> <span class="nav-text">Git 学习系列</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -421,14 +421,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">119</span>
+          <span class="site-state-item-count">142</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-count">32</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -461,13 +461,13 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Chester.C</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
   </div>
 
         
@@ -493,7 +493,7 @@
 <script src="/js/motion.js"></script>
 
 
-<script src="/js/schemes/muse.js"></script>
+<script src="/js/schemes/pisces.js"></script>
 
 
 <script src="/js/next-boot.js"></script>

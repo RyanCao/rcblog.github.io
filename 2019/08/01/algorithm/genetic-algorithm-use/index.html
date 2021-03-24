@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.1">
+<meta name="generator" content="Hexo 5.4.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -19,7 +19,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"blog.rcant.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"blog.rcant.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
   <meta name="description" content="遗传算法">
@@ -308,8 +308,8 @@
       <i class="fa fa-chevron-left"></i> CentOS7.x单用户模式更改密码
     </a></div>
       <div class="post-nav-item">
-    <a href="/2019/08/03/algorithm/divideconquer-algorithm/" rel="next" title="分治算法">
-      分治算法 <i class="fa fa-chevron-right"></i>
+    <a href="/2019/08/03/algorithm/greedy-algorithm/" rel="next" title="贪婪法">
+      贪婪法 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -370,7 +370,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-什么是遗传算法"><span class="nav-number">1.</span> <span class="nav-text">1. 什么是遗传算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-遗传算法基本运算过程"><span class="nav-number">2.</span> <span class="nav-text">2. 遗传算法基本运算过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#a-初始化：设置进化代数计数器t-0，设置最大进化代数T，随机生成M个个体作为初始群体P-0-。"><span class="nav-number">2.1.</span> <span class="nav-text">a)初始化：设置进化代数计数器t&#x3D;0，设置最大进化代数T，随机生成M个个体作为初始群体P(0)。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#b-个体评价：计算群体P-t-中各个个体的适应度。"><span class="nav-number">2.2.</span> <span class="nav-text">b)个体评价：计算群体P(t)中各个个体的适应度。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#c-选择运算：将选择算子作用于群体。选择的目的是把优化的个体直接遗传到下一代或通过配对交叉产生新的个体再遗传到下一代。选择操作是建立在群体中个体的适应度评估基础上的。"><span class="nav-number">2.3.</span> <span class="nav-text">c)选择运算：将选择算子作用于群体。选择的目的是把优化的个体直接遗传到下一代或通过配对交叉产生新的个体再遗传到下一代。选择操作是建立在群体中个体的适应度评估基础上的。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#d-交叉运算：将交叉算子作用于群体。遗传算法中起核心作用的就是交叉算子。"><span class="nav-number">2.4.</span> <span class="nav-text">d)交叉运算：将交叉算子作用于群体。遗传算法中起核心作用的就是交叉算子。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#e-变异运算：将变异算子作用于群体。即是对群体中的个体串的某些基因座上的基因值作变动。群体P-t-经过选择、交叉、变异运算之后得到下一代群体P-t-1-。"><span class="nav-number">2.5.</span> <span class="nav-text">e)变异运算：将变异算子作用于群体。即是对群体中的个体串的某些基因座上的基因值作变动。群体P(t)经过选择、交叉、变异运算之后得到下一代群体P(t+1)。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#f-终止条件判断：若t-T-则以进化过程中所得到的具有最大适应度个体作为最优解输出，终止计算。"><span class="nav-number">2.6.</span> <span class="nav-text">f)终止条件判断：若t&#x3D;T,则以进化过程中所得到的具有最大适应度个体作为最优解输出，终止计算。</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#算法系列"><span class="nav-number">3.</span> <span class="nav-text">算法系列</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E4%BB%80%E4%B9%88%E6%98%AF%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text">1. 什么是遗传算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95%E5%9F%BA%E6%9C%AC%E8%BF%90%E7%AE%97%E8%BF%87%E7%A8%8B"><span class="nav-number">2.</span> <span class="nav-text">2. 遗传算法基本运算过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#a-%E5%88%9D%E5%A7%8B%E5%8C%96%EF%BC%9A%E8%AE%BE%E7%BD%AE%E8%BF%9B%E5%8C%96%E4%BB%A3%E6%95%B0%E8%AE%A1%E6%95%B0%E5%99%A8t-0%EF%BC%8C%E8%AE%BE%E7%BD%AE%E6%9C%80%E5%A4%A7%E8%BF%9B%E5%8C%96%E4%BB%A3%E6%95%B0T%EF%BC%8C%E9%9A%8F%E6%9C%BA%E7%94%9F%E6%88%90M%E4%B8%AA%E4%B8%AA%E4%BD%93%E4%BD%9C%E4%B8%BA%E5%88%9D%E5%A7%8B%E7%BE%A4%E4%BD%93P-0-%E3%80%82"><span class="nav-number">2.1.</span> <span class="nav-text">a)初始化：设置进化代数计数器t&#x3D;0，设置最大进化代数T，随机生成M个个体作为初始群体P(0)。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#b-%E4%B8%AA%E4%BD%93%E8%AF%84%E4%BB%B7%EF%BC%9A%E8%AE%A1%E7%AE%97%E7%BE%A4%E4%BD%93P-t-%E4%B8%AD%E5%90%84%E4%B8%AA%E4%B8%AA%E4%BD%93%E7%9A%84%E9%80%82%E5%BA%94%E5%BA%A6%E3%80%82"><span class="nav-number">2.2.</span> <span class="nav-text">b)个体评价：计算群体P(t)中各个个体的适应度。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#c-%E9%80%89%E6%8B%A9%E8%BF%90%E7%AE%97%EF%BC%9A%E5%B0%86%E9%80%89%E6%8B%A9%E7%AE%97%E5%AD%90%E4%BD%9C%E7%94%A8%E4%BA%8E%E7%BE%A4%E4%BD%93%E3%80%82%E9%80%89%E6%8B%A9%E7%9A%84%E7%9B%AE%E7%9A%84%E6%98%AF%E6%8A%8A%E4%BC%98%E5%8C%96%E7%9A%84%E4%B8%AA%E4%BD%93%E7%9B%B4%E6%8E%A5%E9%81%97%E4%BC%A0%E5%88%B0%E4%B8%8B%E4%B8%80%E4%BB%A3%E6%88%96%E9%80%9A%E8%BF%87%E9%85%8D%E5%AF%B9%E4%BA%A4%E5%8F%89%E4%BA%A7%E7%94%9F%E6%96%B0%E7%9A%84%E4%B8%AA%E4%BD%93%E5%86%8D%E9%81%97%E4%BC%A0%E5%88%B0%E4%B8%8B%E4%B8%80%E4%BB%A3%E3%80%82%E9%80%89%E6%8B%A9%E6%93%8D%E4%BD%9C%E6%98%AF%E5%BB%BA%E7%AB%8B%E5%9C%A8%E7%BE%A4%E4%BD%93%E4%B8%AD%E4%B8%AA%E4%BD%93%E7%9A%84%E9%80%82%E5%BA%94%E5%BA%A6%E8%AF%84%E4%BC%B0%E5%9F%BA%E7%A1%80%E4%B8%8A%E7%9A%84%E3%80%82"><span class="nav-number">2.3.</span> <span class="nav-text">c)选择运算：将选择算子作用于群体。选择的目的是把优化的个体直接遗传到下一代或通过配对交叉产生新的个体再遗传到下一代。选择操作是建立在群体中个体的适应度评估基础上的。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#d-%E4%BA%A4%E5%8F%89%E8%BF%90%E7%AE%97%EF%BC%9A%E5%B0%86%E4%BA%A4%E5%8F%89%E7%AE%97%E5%AD%90%E4%BD%9C%E7%94%A8%E4%BA%8E%E7%BE%A4%E4%BD%93%E3%80%82%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95%E4%B8%AD%E8%B5%B7%E6%A0%B8%E5%BF%83%E4%BD%9C%E7%94%A8%E7%9A%84%E5%B0%B1%E6%98%AF%E4%BA%A4%E5%8F%89%E7%AE%97%E5%AD%90%E3%80%82"><span class="nav-number">2.4.</span> <span class="nav-text">d)交叉运算：将交叉算子作用于群体。遗传算法中起核心作用的就是交叉算子。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#e-%E5%8F%98%E5%BC%82%E8%BF%90%E7%AE%97%EF%BC%9A%E5%B0%86%E5%8F%98%E5%BC%82%E7%AE%97%E5%AD%90%E4%BD%9C%E7%94%A8%E4%BA%8E%E7%BE%A4%E4%BD%93%E3%80%82%E5%8D%B3%E6%98%AF%E5%AF%B9%E7%BE%A4%E4%BD%93%E4%B8%AD%E7%9A%84%E4%B8%AA%E4%BD%93%E4%B8%B2%E7%9A%84%E6%9F%90%E4%BA%9B%E5%9F%BA%E5%9B%A0%E5%BA%A7%E4%B8%8A%E7%9A%84%E5%9F%BA%E5%9B%A0%E5%80%BC%E4%BD%9C%E5%8F%98%E5%8A%A8%E3%80%82%E7%BE%A4%E4%BD%93P-t-%E7%BB%8F%E8%BF%87%E9%80%89%E6%8B%A9%E3%80%81%E4%BA%A4%E5%8F%89%E3%80%81%E5%8F%98%E5%BC%82%E8%BF%90%E7%AE%97%E4%B9%8B%E5%90%8E%E5%BE%97%E5%88%B0%E4%B8%8B%E4%B8%80%E4%BB%A3%E7%BE%A4%E4%BD%93P-t-1-%E3%80%82"><span class="nav-number">2.5.</span> <span class="nav-text">e)变异运算：将变异算子作用于群体。即是对群体中的个体串的某些基因座上的基因值作变动。群体P(t)经过选择、交叉、变异运算之后得到下一代群体P(t+1)。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#f-%E7%BB%88%E6%AD%A2%E6%9D%A1%E4%BB%B6%E5%88%A4%E6%96%AD%EF%BC%9A%E8%8B%A5t-T-%E5%88%99%E4%BB%A5%E8%BF%9B%E5%8C%96%E8%BF%87%E7%A8%8B%E4%B8%AD%E6%89%80%E5%BE%97%E5%88%B0%E7%9A%84%E5%85%B7%E6%9C%89%E6%9C%80%E5%A4%A7%E9%80%82%E5%BA%94%E5%BA%A6%E4%B8%AA%E4%BD%93%E4%BD%9C%E4%B8%BA%E6%9C%80%E4%BC%98%E8%A7%A3%E8%BE%93%E5%87%BA%EF%BC%8C%E7%BB%88%E6%AD%A2%E8%AE%A1%E7%AE%97%E3%80%82"><span class="nav-number">2.6.</span> <span class="nav-text">f)终止条件判断：若t&#x3D;T,则以进化过程中所得到的具有最大适应度个体作为最优解输出，终止计算。</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E7%B3%BB%E5%88%97"><span class="nav-number">3.</span> <span class="nav-text">算法系列</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -384,14 +384,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">119</span>
+          <span class="site-state-item-count">142</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-count">32</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -424,13 +424,13 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Chester.C</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
   </div>
 
         
@@ -456,7 +456,7 @@
 <script src="/js/motion.js"></script>
 
 
-<script src="/js/schemes/muse.js"></script>
+<script src="/js/schemes/pisces.js"></script>
 
 
 <script src="/js/next-boot.js"></script>
