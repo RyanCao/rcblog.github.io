@@ -253,7 +253,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h2><a id="more"></a>
+        <h2 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h2><span id="more"></span>
 <p>由于平时一直使用docker build 命令才生成一个镜像，有时候由于代码跟新频繁就会产生很多的none的image，最近想着清除一下。<br>于是就写了以下脚本：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker ps -a | grep &quot;Exited&quot; | awk &#39;&#123;print $1 &#125;&#39;|xargs docker stop</span><br><span class="line">docker ps -a | grep &quot;Exited&quot; | awk &#39;&#123;print $1 &#125;&#39;|xargs docker rm</span><br><span class="line">docker images -a|grep none|awk &#39;&#123;print $3 &#125;&#39;|xargs docker rmi</span><br></pre></td></tr></table></figure>
 <h2 id="Docker系列"><a href="#Docker系列" class="headerlink" title="Docker系列"></a>Docker系列</h2><ul>

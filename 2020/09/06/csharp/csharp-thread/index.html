@@ -254,7 +254,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h2><a id="more"></a>
+        <h2 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h2><span id="more"></span>
 <h2 id="异步线程调用"><a href="#异步线程调用" class="headerlink" title="异步线程调用"></a>异步线程调用</h2><h2 id="异步调用线程，线程消息回调主线程"><a href="#异步调用线程，线程消息回调主线程" class="headerlink" title="异步调用线程，线程消息回调主线程"></a>异步调用线程，线程消息回调主线程</h2><h3 id="其他线程-作为生产者产出消息，主线程作为消费者-消费其他线程的产出"><a href="#其他线程-作为生产者产出消息，主线程作为消费者-消费其他线程的产出" class="headerlink" title="其他线程 作为生产者产出消息，主线程作为消费者 消费其他线程的产出"></a>其他线程 作为生产者产出消息，主线程作为消费者 消费其他线程的产出</h3><h2 id="多个线程之间消息传递"><a href="#多个线程之间消息传递" class="headerlink" title="多个线程之间消息传递"></a>多个线程之间消息传递</h2><h3 id="示例-渲染系统，将渲染任务交给Render线程，将数据收集交给Collect线程"><a href="#示例-渲染系统，将渲染任务交给Render线程，将数据收集交给Collect线程" class="headerlink" title="示例 渲染系统，将渲染任务交给Render线程，将数据收集交给Collect线程"></a>示例 渲染系统，将渲染任务交给Render线程，将数据收集交给Collect线程</h3><p>主线程(传递消息到Render线程) -&gt; 渲染任务(消息告诉Collect线程去收集需要的信息) -&gt; Collect任务(消息传递到Render线程) -&gt; 渲染任务执行-&gt; 执行完成以后消息(传递消息到主线程) -&gt; 主线程执行下一帧循环</p>
 <p>需要 几个 消费队列</p>
 <ol>

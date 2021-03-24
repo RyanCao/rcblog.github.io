@@ -1594,7 +1594,7 @@ amp-twitter {
 			    	
 			    	
 			    	<!-- content -->
-			  		<h2 id="&#x5F15;&#x5B50;"><a href="#&#x5F15;&#x5B50;" class="headerlink" title="&#x5F15;&#x5B50;"></a>&#x5F15;&#x5B50;</h2><a id="more"></a>
+			  		<h2 id="&#x5F15;&#x5B50;"><a href="#&#x5F15;&#x5B50;" class="headerlink" title="&#x5F15;&#x5B50;"></a>&#x5F15;&#x5B50;</h2><span id="more"></span>
 <h2 id="python-doc-test"><a href="#python-doc-test" class="headerlink" title="python doc test"></a>python doc test</h2><p>&#x73B0;&#x6709;python &#x811A;&#x672C;&#x5982;&#x4E0B; fib.py<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">def fib(n):</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    &gt;&gt;&gt; fib(8)</span><br><span class="line">    13</span><br><span class="line">    &gt;&gt;&gt; fib(9)</span><br><span class="line">    21</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    pred,curr = 0,1</span><br><span class="line">    k = 2</span><br><span class="line">    while k&lt;n :</span><br><span class="line">        pred,curr = curr,pred+curr</span><br><span class="line">        k = k+1</span><br><span class="line">    return curr</span><br></pre></td></tr></tbody></table></figure>
 <figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 -m doctest fib.py</span><br></pre></td></tr></tbody></table></figure>
 <p>&#x8FD9;&#x6837;&#x5C31;&#x53EF;&#x4EE5;&#x6D4B;&#x8BD5;fib.py &#x91CC;&#x9762;&#x7684;&#x6D4B;&#x8BD5;&#x51FD;&#x6570;<br>fib(8) &#x662F;&#x5426;&#x7B49;&#x4E8E; 13<br>fib(9) &#x662F;&#x5426;&#x7B49;&#x4E8E; 21</p>
@@ -1603,7 +1603,7 @@ amp-twitter {
 <p>&#x5982;&#x679C;&#x60F3;&#x6D4B;&#x8BD5;&#x901A;&#x8FC7;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x4E5F;&#x6709;&#x8F93;&#x51FA;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x4E0B;&#x9762;&#x7684;-v</p>
 <figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 -m doctest -v fib.py</span><br></pre></td></tr></tbody></table></figure>
 <p>&#x8FD9;&#x4E2A;&#x975E;&#x5E38;&#x65B9;&#x4FBF;</p>
-<h2 id="doctest-&#x4E5F;&#x53EF;&#x4EE5;&#x6362;&#x4E2A;&#x65B9;&#x5F0F;&#x8C03;&#x7528;"><a href="#doctest-&#x4E5F;&#x53EF;&#x4EE5;&#x6362;&#x4E2A;&#x65B9;&#x5F0F;&#x8C03;&#x7528;" class="headerlink" title="doctest &#x4E5F;&#x53EF;&#x4EE5;&#x6362;&#x4E2A;&#x65B9;&#x5F0F;&#x8C03;&#x7528;"></a>doctest &#x4E5F;&#x53EF;&#x4EE5;&#x6362;&#x4E2A;&#x65B9;&#x5F0F;&#x8C03;&#x7528;</h2><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">def fib(n):</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    &gt;&gt;&gt; fib(8)</span><br><span class="line">    13</span><br><span class="line">    &gt;&gt;&gt; fib(9)</span><br><span class="line">    21</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    pred,curr = 0,1</span><br><span class="line">    k = 2</span><br><span class="line">    while k&lt;n :</span><br><span class="line">        pred,curr = curr,pred+curr</span><br><span class="line">        k = k+1</span><br><span class="line">    return curr</span><br><span class="line"></span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">    import doctest</span><br><span class="line">    doctest.testmod(verbose=True)</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="doctest-&#x4E5F;&#x53EF;&#x4EE5;&#x6362;&#x4E2A;&#x65B9;&#x5F0F;&#x8C03;&#x7528;"><a href="#doctest-&#x4E5F;&#x53EF;&#x4EE5;&#x6362;&#x4E2A;&#x65B9;&#x5F0F;&#x8C03;&#x7528;" class="headerlink" title="doctest &#x4E5F;&#x53EF;&#x4EE5;&#x6362;&#x4E2A;&#x65B9;&#x5F0F;&#x8C03;&#x7528;"></a>doctest &#x4E5F;&#x53EF;&#x4EE5;&#x6362;&#x4E2A;&#x65B9;&#x5F0F;&#x8C03;&#x7528;</h2><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">def fib(n):</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    &gt;&gt;&gt; fib(8)</span><br><span class="line">    13</span><br><span class="line">    &gt;&gt;&gt; fib(9)</span><br><span class="line">    21</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    pred,curr = 0,1</span><br><span class="line">    k = 2</span><br><span class="line">    while k&lt;n :</span><br><span class="line">        pred,curr = curr,pred+curr</span><br><span class="line">        k = k+1</span><br><span class="line">    return curr</span><br><span class="line"></span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">    import doctest</span><br><span class="line">    doctest.testmod(verbose=True)</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
 <p>&#x76F8;&#x5F53;&#x4E8E;<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 -m doctest -v fib.py</span><br></pre></td></tr></tbody></table></figure>
 <p>&#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#x7528;&#x5728;&#x811A;&#x672C;&#x9700;&#x8981;&#x5BFC;&#x5165;&#x5176;&#x4ED6;&#x6A21;&#x5757;&#x7684;&#x65F6;&#x5019;</p>
 
@@ -1661,21 +1661,21 @@ amp-twitter {
 		  	
 			<nav id="article-nav">
 			  
-			  <a href="/2017/11/03/python/python3-install/" id="article-nav-newer" class="article-nav-link-wrap">
+			  <a href="/2017/11/09/sublime/sublime-text3-license/" id="article-nav-newer" class="article-nav-link-wrap">
 			    <strong class="article-nav-caption">Newer</strong>
 			    <div class="article-nav-title">
 			      
-			        python3 安装
+			        Sublime Text3 注册码
 			      
 			    </div>
 			  </a>
 			  
 			  
-			  <a href="/2017/10/24/centos/centos-repos-change/" id="article-nav-older" class="article-nav-link-wrap">
+			  <a href="/2017/11/03/python/python3-install/" id="article-nav-older" class="article-nav-link-wrap">
 			    <strong class="article-nav-caption">Older</strong>
 			    <div class="article-nav-title">
 			      
-			        centos 更换镜像源
+			        python3 安装
 			      
 			    </div>
 			  </a>

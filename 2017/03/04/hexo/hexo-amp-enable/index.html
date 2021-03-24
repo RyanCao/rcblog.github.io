@@ -258,7 +258,7 @@
 
       
         <h2 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h2><p>Google 的 AMP，能够显著加快网站的移动访问。</p>
-<a id="more"></a>
+<span id="more"></span>
 <h2 id="AMP-简介"><a href="#AMP-简介" class="headerlink" title="AMP 简介"></a>AMP 简介</h2><blockquote>
 <p>Accelerated Mobile Pages（简称 AMP，意为 “加速移动页面”）是 Google 带领开发的开源项目，目的是为提升移动设备对网站的访问速度。AMP 也可指其派生的标准和库等项目成果。AMP 在 HTML 等广泛使用的网络技术基础上进行改良，它的核心称作 AMP HTML，是 HTML 的一种。服务于技术预览期结束后的 2016 年 2 月正式发布。</p>
 </blockquote>
@@ -267,25 +267,25 @@
 <p>如果不成功，加个 sudo 再试一下。</p>
 <h3 id="修改主题"><a href="#修改主题" class="headerlink" title="修改主题"></a>修改主题</h3><p>本文使用的是 NexT 主题 v7.8.0。</p>
 <p>打开 <strong>themes/next/layout/_partials/head/</strong> 文件夹中的 <strong>head.swig</strong> 文件。</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi themes/next/layout/_partials/head/head.swig</span><br></pre></td></tr></table></figure>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi themes/next/layout/<span class="emphasis">_partials/head/head.swig</span></span><br></pre></td></tr></table></figure>
 <p>在文件中添加如下内容。</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;%- if is<span class="emphasis">_post() and config.generator_</span>amp %&#125;</span><br><span class="line">  <span class="xml"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"amphtml"</span> <span class="attr">href</span>=<span class="string">"./amp/"</span> /&gt;</span></span></span><br><span class="line">&#123;%- endif %&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;%- if is<span class="emphasis">_post() and config.generator_</span>amp %&#125;</span><br><span class="line">  <span class="xml"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;amphtml&quot;</span> <span class="attr">href</span>=<span class="string">&quot;./amp/&quot;</span> /&gt;</span></span></span><br><span class="line">&#123;%- endif %&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="注意-这个版本中有个bug"><a href="#注意-这个版本中有个bug" class="headerlink" title="注意 这个版本中有个bug"></a>注意 这个版本中有个bug</h4><p>利用 <strong>hexo s</strong> 本地测试的时候， <strong>is_post()</strong> 判断没问题，只有在 <strong>Post</strong> <strong>Render</strong> 的时候才会返回True</p>
 <p>但是 <strong>hexo g</strong> 或者 <strong>hexo d</strong> ，所有情况返回的都是 <strong>False</strong></p>
 <p><strong>Bug</strong> 是由于 <strong>Next Theme</strong>  对 <strong>Head</strong> 使用了缓存机制. 只会生成一次 <strong>Head</strong> 后面所有的文章重用这个缓存，导致所有情况返回的都是 <strong>False</strong></p>
 <ul>
-<li><a href="https://github.com/hexojs/hexo/issues/2503" target="_blank" rel="noopener">参考1</a>  </li>
-<li><a href="https://github.com/hexojs/hexo/issues/3483" target="_blank" rel="noopener">参考2</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues/2503">参考1</a>  </li>
+<li><a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues/3483">参考2</a></li>
 </ul>
 <p>修改方法</p>
 <p>打开 <strong>themes/next/layout/_layout.swig</strong> 文件。</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi themes/next/layout/_layout.swig</span><br></pre></td></tr></table></figure>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi themes/next/layout/<span class="emphasis">_layout.swig</span></span><br></pre></td></tr></table></figure>
 <p>将这段修改掉</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123; partial('_partials/head/head.swig', &#123;&#125;, &#123;cache: theme.cache.enable&#125;) &#125;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123; partial(&#x27;<span class="emphasis">_partials/head/head.swig&#x27;, &#123;&#125;, &#123;cache: theme.cache.enable&#125;) &#125;&#125;</span></span><br></pre></td></tr></table></figure>
 <p>修改为下面这段 不容许生成缓存</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123; partial('_partials/head/head.swig', &#123;&#125;) &#125;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123; partial(&#x27;<span class="emphasis">_partials/head/head.swig&#x27;, &#123;&#125;) &#125;&#125;</span></span><br></pre></td></tr></table></figure>
 <h3 id="修改站点配置"><a href="#修改站点配置" class="headerlink" title="修改站点配置"></a>修改站点配置</h3><p>打开站点配置文件 <strong>_config.yml</strong> ，加入以下内容。</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">generator_amp:</span><br><span class="line">  templateDir:  amp-template</span><br><span class="line">  assetDistDir: amp-dist</span><br><span class="line">  logo:</span><br><span class="line"><span class="code">    path:   sample/sample-logo.png</span></span><br><span class="line"><span class="code">    width:  600</span></span><br><span class="line"><span class="code">    height: 60</span></span><br><span class="line">  substituteTitleImage:</span><br><span class="line"><span class="code">    path:   sample/sample-substituteTitleImage.png</span></span><br><span class="line"><span class="code">    width:  1024</span></span><br><span class="line"><span class="code">    height: 800</span></span><br><span class="line">  warningLog: false   # To display warning, please set true.</span><br></pre></td></tr></table></figure>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">generator<span class="emphasis">_amp:</span></span><br><span class="line"><span class="emphasis">  templateDir:  amp-template</span></span><br><span class="line"><span class="emphasis">  assetDistDir: amp-dist</span></span><br><span class="line"><span class="emphasis">  logo:</span></span><br><span class="line"><span class="emphasis">    path:   sample/sample-logo.png</span></span><br><span class="line"><span class="emphasis">    width:  600</span></span><br><span class="line"><span class="emphasis">    height: 60</span></span><br><span class="line"><span class="emphasis">  substituteTitleImage:</span></span><br><span class="line"><span class="emphasis">    path:   sample/sample-substituteTitleImage.png</span></span><br><span class="line"><span class="emphasis">    width:  1024</span></span><br><span class="line"><span class="emphasis">    height: 800</span></span><br><span class="line"><span class="emphasis">  warningLog: false   # To display warning, please set true.</span></span><br></pre></td></tr></table></figure>
 <h3 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h3><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g -d</span><br></pre></td></tr></table></figure>
 <h3 id="查看效果"><a href="#查看效果" class="headerlink" title="查看效果"></a>查看效果</h3><p>在我的每篇文章地址后加上./amp/ 即可看到效果，以本文为例。</p>
 <img src="/2017/03/04/hexo/hexo-amp-enable/1.png" class="" title="amp页面">  
@@ -298,15 +298,15 @@
 <img src="/2017/03/04/hexo/hexo-amp-enable/3.png" class="" title="amp测试页面">  
 <h2 id="AMP-提交搜索引擎"><a href="#AMP-提交搜索引擎" class="headerlink" title="AMP 提交搜索引擎"></a>AMP 提交搜索引擎</h2><h3 id="AMP-SiteMap"><a href="#AMP-SiteMap" class="headerlink" title="AMP SiteMap"></a>AMP SiteMap</h3><p>SiteMap 支持AMP</p>
 <h3 id="提交给百度"><a href="#提交给百度" class="headerlink" title="提交给百度"></a>提交给百度</h3><ul>
-<li>进入<a href="https://ziyuan.baidu.com/site/index#/" target="_blank" rel="noopener">百度资源搜索平台</a></li>
+<li>进入<a target="_blank" rel="noopener" href="https://ziyuan.baidu.com/site/index#/">百度资源搜索平台</a></li>
 <li>管理站点</li>
 <li>移动适配 填写适配规则</li>
 </ul>
 <h3 id="提交给谷歌"><a href="#提交给谷歌" class="headerlink" title="提交给谷歌"></a>提交给谷歌</h3><ul>
-<li>进入<a href="https://search.google.com/search-console/" target="_blank" rel="noopener">谷歌搜索平台</a></li>
+<li>进入<a target="_blank" rel="noopener" href="https://search.google.com/search-console/">谷歌搜索平台</a></li>
 <li>管理站点</li>
 </ul>
-<h3 id="相关文章"><a href="#相关文章" class="headerlink" title="相关文章"></a>相关文章</h3><p><a href="https://www.iszy.cc/2018/08/26/hexo-enable-amp/" target="_blank" rel="noopener">本站已全面启用 AMP</a></p>
+<h3 id="相关文章"><a href="#相关文章" class="headerlink" title="相关文章"></a>相关文章</h3><p><a target="_blank" rel="noopener" href="https://www.iszy.cc/2018/08/26/hexo-enable-amp/">本站已全面启用 AMP</a></p>
 <h2 id="Hexo博客系列"><a href="#Hexo博客系列" class="headerlink" title="Hexo博客系列"></a>Hexo博客系列</h2><ul>
 <li><a href="/2017/03/01/hexo/hexo-firstblog/" title="Hexo博客搭建">Hexo博客搭建</a>  </li>
 <li><a href="/2017/03/01/hexo/hexo-secordblog/" title="Hexo更换博客样式">Hexo更换博客样式</a>  </li>

@@ -254,8 +254,8 @@
 
       
         <p>个人收集的一些Docker的问题</p>
-<a id="more"></a>
-<h2 id="Docker服务重启"><a href="#Docker服务重启" class="headerlink" title="Docker服务重启"></a>Docker服务重启</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">### 查看docker运行状态的方法:</span><br><span class="line">sudo service docker status  </span><br><span class="line"></span><br><span class="line">### 打开&#x2F;关闭&#x2F;重启docker服务：</span><br><span class="line">sudo service docker start&#x2F;stop&#x2F;restart</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<h2 id="Docker服务重启"><a href="#Docker服务重启" class="headerlink" title="Docker服务重启"></a>Docker服务重启</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">### 查看docker运行状态的方法:</span><br><span class="line">sudo service docker status  </span><br><span class="line"></span><br><span class="line">### 打开&#x2F;关闭&#x2F;重启docker服务：</span><br><span class="line">sudo service docker start&#x2F;stop&#x2F;restart  </span><br></pre></td></tr></table></figure>
 <h2 id="Docker-启动时报错：iptables-No-chain-target-match-by-the-name"><a href="#Docker-启动时报错：iptables-No-chain-target-match-by-the-name" class="headerlink" title="Docker 启动时报错：iptables:No chain/target/match by the name"></a>Docker 启动时报错：iptables:No chain/target/match by the name</h2><h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>django的docker containner启动失败，报错：</p>
 <p>failed programming external connectivity … iptables: No chain/target/match by that name</p>
 <h3 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h3><p>百度了好多，有说没有iptables的mod的，等等，直觉搞得有点复杂，不是解决问题之法，因为之前是好用的，之前就没有这个模块，所以判定不是这类问题</p>
@@ -263,7 +263,7 @@
 <p>正文：<br>docker 服务启动的时候，docker服务会向iptables注册一个链，以便让docker服务管理的containner所暴露的端口之间进行通信</p>
 <p>通过命令iptables -L可以查看iptables 链<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -L</span><br></pre></td></tr></table></figure></p>
 <p>在开发环境中，如果你删除了iptables中的docker链，或者iptables的规则被丢失了（例如重启firewalld），docker就会报iptables error例如：failed programming external connectivity … iptables: No chain/target/match by that name<br>要解决这个问题，只要重启docker服务，之后，正确的iptables规则就会被创建出来</p>
-<p><a href="https://www.replicated.com/docs/kb/developer-resources/docker-iptables/" target="_blank" rel="noopener">引用链接</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.replicated.com/docs/kb/developer-resources/docker-iptables/">引用链接</a></p>
 <h2 id="Docker系列"><a href="#Docker系列" class="headerlink" title="Docker系列"></a>Docker系列</h2><ul>
 <li><a href="/2017/05/18/docker/docker-first/" title="Docker 安装">Docker 安装</a>  </li>
 <li><a href="/2017/05/18/docker/docker-gitlab/" title="Docker安装Gitlab">Docker安装Gitlab</a>  </li>

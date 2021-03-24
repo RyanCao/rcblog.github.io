@@ -254,7 +254,7 @@
 
       
         <h2 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h2><p>为了让逐个编译的过程变成一条命令</p>
-<a id="more"></a>
+<span id="more"></span>
 <h2 id="前提：了解Makefile是什么？"><a href="#前提：了解Makefile是什么？" class="headerlink" title="前提：了解Makefile是什么？"></a>前提：了解Makefile是什么？</h2><span class="label danger">Makefile</span>  关系到了整个工程的编译规则。一个工程中的源文件不计数，其按类型、功能、模块分别放在若干个目录中，<span class="label danger">Makefile</span> 定义了一系列的规则来指定，哪些文件需要先编译，哪些文件需要后编译，哪些文件需要重新编译，甚至于进行更复杂的功能操作，因为 <span class="label danger">Makefile</span>  就像一个 <span class="label danger">Makefile</span> 脚本一样，其中也可以执行操作系统的命令。
 
 <span class="label danger">Makefile</span>  带来的好处就是——“自动化编译”，一旦写好，只需要一个 <span class="label danger">make</span> 命令，整个工程完全自动编译，极大的提高了软件开发的效率。 
@@ -269,8 +269,8 @@
 <blockquote><p>总结一下，源文件首先会生成中间目标文件，再由中间目标文件生成执行文件。在编译时，编译器只检测程序语法，和函数、变量是否被声明。如果函数未被声明，编译器会给出一个警告，但可以生成Object File。而在链接程序时，链接器会在所有的Object File中找寻函数的实现，如果找不到，那到就会报链接错误码（Linker Error），在VC下，这种错误一般是：Link 2001错误，意思说是说，链接器未能找到函数的实现。你需要指定函数的ObjectFile.</p>
 </blockquote>
 <h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><ul>
-<li><a href="https://wiki.ubuntu.org.cn/%E8%B7%9F%E6%88%91%E4%B8%80%E8%B5%B7%E5%86%99Makefile" target="_blank" rel="noopener">跟我一起写Makefile</a></li>
-<li><a href="https://blog.csdn.net/weixin_38391755/article/details/80380786" target="_blank" rel="noopener">Makefile教程（绝对经典，所有问题看这一篇足够了）</a></li>
+<li><a target="_blank" rel="noopener" href="https://wiki.ubuntu.org.cn/%E8%B7%9F%E6%88%91%E4%B8%80%E8%B5%B7%E5%86%99Makefile">跟我一起写Makefile</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_38391755/article/details/80380786">Makefile教程（绝对经典，所有问题看这一篇足够了）</a></li>
 </ul>
 <h2 id="MakeFile系列"><a href="#MakeFile系列" class="headerlink" title="MakeFile系列"></a>MakeFile系列</h2><ul>
 <li><a href="/2020/11/12/cpp/cpp-makefile-0/" title="学习MakeFile-前言">学习MakeFile-前言</a>  </li>
@@ -317,8 +317,8 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/11/12/cpp/cpp-makefile-1/" rel="prev" title="学习MakeFile(介绍)">
-      <i class="fa fa-chevron-left"></i> 学习MakeFile(介绍)
+    <a href="/2020/11/12/cpp/cpp-makefile-2/" rel="prev" title="学习MakeFile(总述)">
+      <i class="fa fa-chevron-left"></i> 学习MakeFile(总述)
     </a></div>
       <div class="post-nav-item">
     <a href="/2020/11/13/cpp/cpp-cmake-0/" rel="next" title="学习CMake">

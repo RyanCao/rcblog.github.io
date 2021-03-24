@@ -254,7 +254,7 @@
 
       
         <h2 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h2><p>首次接触Docker<br>第一次知道Docker是从Kali的课堂上知道的，现在发现它很不错，值得学习</p>
-<a id="more"></a>
+<span id="more"></span>
 <h2 id="读者"><a href="#读者" class="headerlink" title="读者"></a>读者</h2><p>没接触过Docker的运维人员，半运维人员，对Docker感兴趣的同学</p>
 <h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><ul>
 <li>Centos 7</li>
@@ -264,11 +264,11 @@
 <p>容器和 VM（虚拟机）的主要区别是，容器提供了基于进程的隔离，而虚拟机提供了资源的完全隔离。虚拟机可能需要一分钟来启动，而容器只需要一秒钟或更短。容器使用宿主操作系统的内核，而虚拟机使用独立的内核。</p>
 <p>Docker 的局限性之一是，它只能用在 64 位的操作系统上。</p>
 <h2 id="Docker-的一些理解"><a href="#Docker-的一些理解" class="headerlink" title="Docker  的一些理解"></a>Docker  的一些理解</h2><p>Docker 的镜像文件【images】是不能修改的，只读的<br>Docker 的架构是镜像叠加，所以镜像文件尽量不要有冗余操作<br>Docker 的容器是一个可读的镜像，是在镜像之上又架了一层可写的镜像，这个镜像经过修改，可以作为镜像出现<br>Docker 最让我觉得很好的地方是很多环境搭建变得简单了，然后也比较简洁</p>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install docker</span><br></pre></td></tr></table></figure>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum install docker</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <h2 id="启动Docker服务"><a href="#启动Docker服务" class="headerlink" title="启动Docker服务"></a>启动Docker服务</h2><p>旧语法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">service docker start 				&#x2F;&#x2F;启动Docker</span><br><span class="line">chkconfig docker on 				&#x2F;&#x2F; 配置开机启动</span><br></pre></td></tr></table></figure></p>
 <p>新语法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl start docker.service 		&#x2F;&#x2F;启动Docker</span><br><span class="line">systemctl enable docker.service 	&#x2F;&#x2F; 配置开机启动</span><br></pre></td></tr></table></figure></p>
-<h2 id="下载Centos镜像文件"><a href="#下载Centos镜像文件" class="headerlink" title="下载Centos镜像文件"></a>下载Centos镜像文件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker pull centos  		&#x2F;&#x2F;获取centos镜像</span><br><span class="line">docker images  				&#x2F;&#x2F;查看镜像列表</span><br></pre></td></tr></table></figure>
-<h2 id="运行一个Docker容器"><a href="#运行一个Docker容器" class="headerlink" title="运行一个Docker容器"></a>运行一个Docker容器</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -i -t centos &#x2F;bin&#x2F;bash</span><br></pre></td></tr></table></figure>
+<h2 id="下载Centos镜像文件"><a href="#下载Centos镜像文件" class="headerlink" title="下载Centos镜像文件"></a>下载Centos镜像文件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker pull centos  		&#x2F;&#x2F;获取centos镜像</span><br><span class="line">docker images  				&#x2F;&#x2F;查看镜像列表</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="运行一个Docker容器"><a href="#运行一个Docker容器" class="headerlink" title="运行一个Docker容器"></a>运行一个Docker容器</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -i -t centos &#x2F;bin&#x2F;bash </span><br></pre></td></tr></table></figure>
 <p>运行一个Docker容器，使用-i 捕获输入输出，-t 分配一个终端挥着控制台<br>断开容器的连接，输入exit</p>
 <h2 id="查看当前正在运行的容器列表"><a href="#查看当前正在运行的容器列表" class="headerlink" title="查看当前正在运行的容器列表"></a>查看当前正在运行的容器列表</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps</span><br></pre></td></tr></table></figure>
 <h2 id="进入当前正在运行的容器"><a href="#进入当前正在运行的容器" class="headerlink" title="进入当前正在运行的容器"></a>进入当前正在运行的容器</h2><h3 id="exec-命令"><a href="#exec-命令" class="headerlink" title="exec 命令"></a>exec 命令</h3><p>docker exec 是Docker內建的命令。</p>
@@ -346,12 +346,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2017/05/18/docker/docker-compose-first/" rel="prev" title="Docker-compose 学习">
-      <i class="fa fa-chevron-left"></i> Docker-compose 学习
+    <a href="/2017/05/17/others/virtualbox-first/" rel="prev" title="VirtualBox 使用">
+      <i class="fa fa-chevron-left"></i> VirtualBox 使用
     </a></div>
       <div class="post-nav-item">
-    <a href="/2017/05/18/docker/docker-gitlab/" rel="next" title="Docker安装Gitlab">
-      Docker安装Gitlab <i class="fa fa-chevron-right"></i>
+    <a href="/2017/05/18/docker/docker-machine/" rel="next" title="Docker Machine 介绍">
+      Docker Machine 介绍 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>

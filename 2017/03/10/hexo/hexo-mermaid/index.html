@@ -32,8 +32,8 @@
 <meta property="article:published_time" content="2017-03-10T03:39:17.000Z">
 <meta property="article:modified_time" content="2020-11-13T12:21:29.724Z">
 <meta property="article:author" content="Chester.C">
-<meta property="article:tag" content="mermaid">
 <meta property="article:tag" content="markdown">
+<meta property="article:tag" content="mermaid">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://blog.rcant.com/2017/03/10/hexo/hexo-mermaid/">
@@ -260,12 +260,12 @@
 <li>Hexo v4.2.1</li>
 <li>Mermaid(hexo-filter-mermaid-diagrams) v1.0.5</li>
 </ul>
-<a id="more"></a>
+<span id="more"></span>
 <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-filter-mermaid-diagrams</span><br></pre></td></tr></table></figure>
 <p>修改配置 site/themes/next/_config.yml</p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="section"># Mermaid tag</span></span><br><span class="line">mermaid:</span><br><span class="line">  enable: true</span><br><span class="line">  # Available themes: default | dark | forest | neutral</span><br><span class="line">  theme: forest</span><br></pre></td></tr></table></figure>
 <h2 id="使用声明"><a href="#使用声明" class="headerlink" title="使用声明"></a>使用声明</h2><p>在markdown中使用 需要将代码声明在 <strong>mermaid</strong> 代码块中</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(<span class="code">```</span>)mermaid</span><br><span class="line">code</span><br><span class="line">(<span class="code">```</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(<span class="code">```)mermaid</span></span><br><span class="line"><span class="code">code</span></span><br><span class="line"><span class="code">(```)</span></span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>请忽略括号，这里是为了防止转义</p>
 </blockquote>
@@ -498,12 +498,12 @@
     B --> C
     B --> D</pre>
 
-<h4 id="特殊字符"><a href="#特殊字符" class="headerlink" title="特殊字符"></a>特殊字符</h4><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">graph LR</span><br><span class="line"><span class="code">    id1["This is the (text) in the box"]</span></span><br></pre></td></tr></table></figure>
+<h4 id="特殊字符"><a href="#特殊字符" class="headerlink" title="特殊字符"></a>特殊字符</h4><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">graph LR</span><br><span class="line"><span class="code">    id1[&quot;This is the (text) in the box&quot;]</span></span><br></pre></td></tr></table></figure>
 <pre class="mermaid">graph LR
     id1["This is the (text) in the box"]</pre>
 
 <h4 id="子图"><a href="#子图" class="headerlink" title="子图"></a>子图</h4><p>定义</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">subgraph title</span><br><span class="line"><span class="code">    graph definition</span></span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">subgraph title</span><br><span class="line"><span class="code">    graph definition</span></span><br><span class="line"><span class="code">end</span></span><br></pre></td></tr></table></figure>
 <p>示例</p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">graph TB</span><br><span class="line"><span class="code">    c1--&gt;a2</span></span><br><span class="line"><span class="code">    subgraph one</span></span><br><span class="line"><span class="code">    a1--&gt;a2</span></span><br><span class="line"><span class="code">    end</span></span><br><span class="line"><span class="code">    subgraph two</span></span><br><span class="line"><span class="code">    b1--&gt;b2</span></span><br><span class="line"><span class="code">    end</span></span><br><span class="line"><span class="code">    subgraph three</span></span><br><span class="line"><span class="code">    c1--&gt;c2</span></span><br><span class="line"><span class="code">    end</span></span><br></pre></td></tr></table></figure>
 <pre class="mermaid">graph TB
@@ -540,7 +540,7 @@
     C -->|Two| E[Result two]</pre>
 
 <p>换个写法</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">graph TD</span><br><span class="line"><span class="code">    A[Hard edge];</span></span><br><span class="line"><span class="code">    B(Round edge);</span></span><br><span class="line"><span class="code">    C&#123;Decision&#125;;</span></span><br><span class="line"><span class="code">    D[Result one];</span></span><br><span class="line"><span class="code">    E[Result two];</span></span><br><span class="line"></span><br><span class="line"><span class="code">    A--&gt;|Link text|B;</span></span><br><span class="line"><span class="code">    B--&gt;C;</span></span><br><span class="line"><span class="code">    C--&gt;|One|D;</span></span><br><span class="line"><span class="code">    C--&gt;|Two|E;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">graph TD</span><br><span class="line"><span class="code">    A[Hard edge];</span></span><br><span class="line"><span class="code">    B(Round edge);</span></span><br><span class="line"><span class="code">    C&#123;Decision&#125;;</span></span><br><span class="line"><span class="code">    D[Result one];</span></span><br><span class="line"><span class="code">    E[Result two];</span></span><br><span class="line"><span class="code"></span></span><br><span class="line"><span class="code">    A--&gt;|Link text|B;</span></span><br><span class="line"><span class="code">    B--&gt;C;</span></span><br><span class="line"><span class="code">    C--&gt;|One|D;</span></span><br><span class="line"><span class="code">    C--&gt;|Two|E;</span></span><br></pre></td></tr></table></figure>
 <pre class="mermaid">graph TD
     A[Hard edge];
     B(Round edge);
@@ -553,7 +553,7 @@
     C-->|Two|E;</pre>
 
 <h2 id="参考网站"><a href="#参考网站" class="headerlink" title="参考网站"></a>参考网站</h2><ul>
-<li><a href="https://mermaid-js.github.io/mermaid/#/" target="_blank" rel="noopener">Mermaid官网</a></li>
+<li><a target="_blank" rel="noopener" href="https://mermaid-js.github.io/mermaid/#/">Mermaid官网</a></li>
 </ul>
 <h2 id="Hexo博客系列"><a href="#Hexo博客系列" class="headerlink" title="Hexo博客系列"></a>Hexo博客系列</h2><ul>
 <li><a href="/2017/03/01/hexo/hexo-firstblog/" title="Hexo博客搭建">Hexo博客搭建</a>  </li>
@@ -595,8 +595,8 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/mermaid/" rel="tag"># mermaid</a>
               <a href="/tags/markdown/" rel="tag"># markdown</a>
+              <a href="/tags/mermaid/" rel="tag"># mermaid</a>
           </div>
 
         

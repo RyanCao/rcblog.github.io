@@ -254,7 +254,7 @@
 
       
         <h2 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h2><p>个人记录备份</p>
-<a id="more"></a>
+<span id="more"></span>
 <h2 id="影响性能的因素"><a href="#影响性能的因素" class="headerlink" title="影响性能的因素"></a>影响性能的因素</h2><p>首先，我们得了解，影响游戏性能的因素哪些，才能对症下药。对于一个游戏来说，有两种主要的计算资源：CPU和GPU。它们会互相合作，来让我们的游戏可以在预期的帧率和分辨率下工作。CPU负责其中的帧率，GPU主要负责分辨率相关的一些东西。</p>
 <p>总结起来，主要的性能瓶颈在于：</p>
 <h3 id="CPU"><a href="#CPU" class="headerlink" title="CPU"></a>CPU</h3><ul>
@@ -300,9 +300,9 @@
 <p>对于包含动画的这类物体，我们无法全部使用静态批处理，但其中如果有不动的部分，可以把这部分标识成“Static”。</p>
 <p>一些讨论：</p>
 <ul>
-<li><a href="http://answers.unity3d.com/questions/593206/how-static-batching-works.html" target="_blank" rel="noopener">How static batching works</a></li>
-<li><a href="http://forum.unity3d.com/threads/static-batching-use-a-ton-of-memory.102800/" target="_blank" rel="noopener">Static batching use a ton of memory?</a></li>
-<li><a href="http://gamedev.stackexchange.com/questions/45433/unity3d-draw-call-optimization-static-batching-vs-manually-draw-mesh-with-mate" target="_blank" rel="noopener">Unity3D draw call optimization</a></li>
+<li><a target="_blank" rel="noopener" href="http://answers.unity3d.com/questions/593206/how-static-batching-works.html">How static batching works</a></li>
+<li><a target="_blank" rel="noopener" href="http://forum.unity3d.com/threads/static-batching-use-a-ton-of-memory.102800/">Static batching use a ton of memory?</a></li>
+<li><a target="_blank" rel="noopener" href="http://gamedev.stackexchange.com/questions/45433/unity3d-draw-call-optimization-static-batching-vs-manually-draw-mesh-with-mate">Unity3D draw call optimization</a></li>
 </ul>
 <h4 id="合并纹理（Atlas）"><a href="#合并纹理（Atlas）" class="headerlink" title="合并纹理（Atlas）"></a>合并纹理（Atlas）</h4><p>虽然批处理是个很好的方式，但很容易就打破它的规定。例如，场景中的物体都使用Diffuse材质，但它们可能会使用不同的纹理。因此，尽可能把多张小纹理合并到一张大纹理（Atlas）中是一个好主意。</p>
 <h4 id="利用网格的顶点数据"><a href="#利用网格的顶点数据" class="headerlink" title="利用网格的顶点数据"></a>利用网格的顶点数据</h4><p>但有时，除了纹理不同外，还有对于不同的物体，它们在材质上还有一些微小的参数变化，例如颜色不同、某些浮点参数不同。但铁定律是，不管是动态批处理还是静态批处理，它们的前提都是要使用同一个材质。是同一个，而不是同一种，也就是说它们指向的材质必须是同一个实体。这意味着，只要我们调整了参数，就会影响到所有使用这个材质的对象。那么想要微小的调整怎么办呢？由于Unity中的规定非常死，那么我们只好想些“歪门邪道”，其中一种就是使用网格的顶点数据（最常见的就是顶点颜色数据）。</p>
@@ -323,11 +323,11 @@
 <p>通过上面的LOD Group面板，我们可以选择需要控制的模型以及距离设置。下面展示了油桶从一个完整网格到简化网格，最后完全被剔除的例子：</p>
 <h3 id="使用遮挡剔除（Occlusion-culling）技术"><a href="#使用遮挡剔除（Occlusion-culling）技术" class="headerlink" title="使用遮挡剔除（Occlusion culling）技术"></a>使用遮挡剔除（Occlusion culling）技术</h3><p>遮挡剔除是用来消除躲在其他物件后面看不到的物件，这代表资源不会浪费在计算那些看不到的顶点上，进而提升性能。关于遮挡剔除，Unity Taiwan有一个系列文章大家可以看看（需翻墙）：</p>
 <ul>
-<li><p><a href="http://unitytaiwan.blogspot.tw/2013/12/unity-43-occlusion-culling.html" target="_blank" rel="noopener">Unity 4.3 关于Occlusion Culling : 基本篇</a></p>
+<li><p><a target="_blank" rel="noopener" href="http://unitytaiwan.blogspot.tw/2013/12/unity-43-occlusion-culling.html">Unity 4.3 关于Occlusion Culling : 基本篇</a></p>
 </li>
-<li><p><a href="http://unitytaiwan.blogspot.com/2013/12/unity-43-occlusion-culling_26.html" target="_blank" rel="noopener">Unity 4.3 关于Occlusion Culling : 最佳做法</a></p>
+<li><p><a target="_blank" rel="noopener" href="http://unitytaiwan.blogspot.com/2013/12/unity-43-occlusion-culling_26.html">Unity 4.3 关于Occlusion Culling : 最佳做法</a></p>
 </li>
-<li><p><a href="http://unitytaiwan.blogspot.tw/2014/01/unity-43-occlusion-culling.html" target="_blank" rel="noopener">Unity 4.3 关于Occlusion Culling : 错误诊断</a></p>
+<li><p><a target="_blank" rel="noopener" href="http://unitytaiwan.blogspot.tw/2014/01/unity-43-occlusion-culling.html">Unity 4.3 关于Occlusion Culling : 错误诊断</a></p>
 </li>
 </ul>
 <p>具体的内容大家可以自行查找。</p>

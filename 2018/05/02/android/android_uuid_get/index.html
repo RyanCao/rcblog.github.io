@@ -255,11 +255,11 @@
       
         <p>有很多场景和需求你需要用到手机设备的唯一标识符。</p>
 <p>在Android中，有以下几种方法获取这样的ID。</p>
-<a id="more"></a>
+<span id="more"></span>
 <ol>
 <li>The IMEI: 仅仅只对Android手机有效:</li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">TelephonyManager TelephonyMgr &#x3D; (TelephonyManager)getSystemService(TELEPHONY_SERVICE); </span><br><span class="line">String szImei &#x3D; TelephonyMgr.getDeviceId();</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">TelephonyManager TelephonyMgr &#x3D; (TelephonyManager)getSystemService(TELEPHONY_SERVICE); </span><br><span class="line">String szImei &#x3D; TelephonyMgr.getDeviceId(); </span><br></pre></td></tr></table></figure>
 <p>采用此种方法，需要在AndroidManifest.xml中加入一个许可：android.permission.READ_PHONE_STATE，并且用户应当允许安装此应用。作为手机来讲，IMEI是唯一的，它应该类似于 359881030314356（除非你有一个没有量产的手机（水货）它可能有无效的IMEI，如：0000000000000）。</p>
 <ol>
 <li>Pseudo-Unique ID, 这个在任何Android手机中都有效<br>有一些特殊的情况，一些如平板电脑的设置没有通话功能，或者你不愿加入READ_PHONE_STATE许可。而你仍然想获得唯一序列号之类的东西。这时你可以通过取出ROM版本、制造商、CPU型号、以及其他硬件信息来实现这一点。这样计算出来的ID不是唯一的（因为如果两个手机应用了同样的硬件以及Rom 镜像）。但应当明白的是，出现类似情况的可能性基本可以忽略。要实现这一点，你可以使用Build类:</li>

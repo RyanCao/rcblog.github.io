@@ -254,7 +254,7 @@
 
       
         <h2 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h2><p>为了让逐个编译的过程变成一条命令</p>
-<a id="more"></a>
+<span id="more"></span>
 <h2 id="3-书写规则"><a href="#3-书写规则" class="headerlink" title="3 书写规则"></a>3 书写规则</h2><p>规则包含两个部分，一个是依赖关系，一个是生成目标的方法。</p>
 <p>在Makefile中，规则的顺序是很重要的，因为，Makefile中只应该有一个最终目标，其它的目标都是被这个目标所连带出来的，所以一定要让make知道你的最终目标是什么。一般来说，定义在Makefile中的目标可能会有很多，但是第一条规则中的目标将被确立为最终的目标。如果第一条规则中的目标有很多个，那么，第一个目标会成为最终的目标。make所完成的也就是这个目标。</p>
 <p>好了，还是让我们来看一看如何书写规则</p>
@@ -288,7 +288,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">objects :&#x3D; $(wildcard *.c)</span><br></pre></td></tr></table></figure>
 <p>b. 列出（a）中所有文件对应的”.o”文件，在（c）中我们可以看到它是由make自动编译出的。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(patsubst %.c,%.o,$(wildcard *.c))</span><br></pre></td></tr></table></figure>
-<p>c. 由（a）（b）两步，可写出编译并链接所有“.c”和”.o”文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">objects :&#x3D; $(patsubst %.c,%.o,$(wildcard *.c))</span><br><span class="line">foo : $(objects)</span><br><span class="line">  cc -o foo $(objects)</span><br></pre></td></tr></table></figure></p>
+<p>c. 由（a）（b）两步，可写出编译并链接所有“.c”和”.o”文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">objects :&#x3D; $(patsubst %.c,%.o,$(wildcard *.c))</span><br><span class="line">foo : $(objects)</span><br><span class="line">  cc -o foo $(objects)  </span><br></pre></td></tr></table></figure></p>
 <p>这种用法由关键字“wildcard”，“patsubst”指出，关于Makefile的关键字，我们将在后面讨论。</p>
 <h3 id="3-4-在规则中使用通配符"><a href="#3-4-在规则中使用通配符" class="headerlink" title="3.4 在规则中使用通配符"></a>3.4 在规则中使用通配符</h3><p>在一些大的工程中，有大量的源文件，我们通常的做法是把这许多的源文件分类，并存放在不同的目录中。所以，当make需要去找寻文件的依赖关系时，你可以在文件前加上路径，但最好的方法是把一个路径告诉make，让make自动去找。</p>
 <p>Makefile文件中的特殊变量“VPATH”就是完成这个功能的，如果没有指明这个变量，make只会在当前的目录中去找寻依赖文件和目标文件。如果定义了这个变量，那么，make就会在当前目录找不到的情况下，到所指定的目录中去找寻文件了。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">VPATH &#x3D; src:..&#x2F;headers</span><br></pre></td></tr></table></figure><br>上面的的定义指定两个目录，“src”和“../headers”，make会按照这个顺序进行搜索。目录由“冒号”分隔。（当然，当前目录永远是最高优先搜索的地方）</p>

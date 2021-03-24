@@ -1605,12 +1605,12 @@ amp-twitter {
 <li>Hexo v4.2.1</li>
 <li>Mermaid(hexo-filter-mermaid-diagrams) v1.0.5</li>
 </ul>
-<a id="more"></a>
+<span id="more"></span>
 <h2 id="&#x5B89;&#x88C5;"><a href="#&#x5B89;&#x88C5;" class="headerlink" title="&#x5B89;&#x88C5;"></a>&#x5B89;&#x88C5;</h2><figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-filter-mermaid-diagrams</span><br></pre></td></tr></tbody></table></figure>
 <p>&#x4FEE;&#x6539;&#x914D;&#x7F6E; site/themes/next/_config.yml</p>
 <figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="section"># Mermaid tag</span></span><br><span class="line">mermaid:</span><br><span class="line">  enable: true</span><br><span class="line">  # Available themes: default | dark | forest | neutral</span><br><span class="line">  theme: forest</span><br></pre></td></tr></tbody></table></figure>
 <h2 id="&#x4F7F;&#x7528;&#x58F0;&#x660E;"><a href="#&#x4F7F;&#x7528;&#x58F0;&#x660E;" class="headerlink" title="&#x4F7F;&#x7528;&#x58F0;&#x660E;"></a>&#x4F7F;&#x7528;&#x58F0;&#x660E;</h2><p>&#x5728;markdown&#x4E2D;&#x4F7F;&#x7528; &#x9700;&#x8981;&#x5C06;&#x4EE3;&#x7801;&#x58F0;&#x660E;&#x5728; <strong>mermaid</strong> &#x4EE3;&#x7801;&#x5757;&#x4E2D;</p>
-<figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(<span class="code">```</span>)mermaid</span><br><span class="line">code</span><br><span class="line">(<span class="code">```</span>)</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(<span class="code">```)mermaid</span></span><br><span class="line"><span class="code">code</span></span><br><span class="line"><span class="code">(```)</span></span><br></pre></td></tr></tbody></table></figure>
 <blockquote>
 <p>&#x8BF7;&#x5FFD;&#x7565;&#x62EC;&#x53F7;&#xFF0C;&#x8FD9;&#x91CC;&#x662F;&#x4E3A;&#x4E86;&#x9632;&#x6B62;&#x8F6C;&#x4E49;</p>
 </blockquote>
@@ -1848,7 +1848,7 @@ amp-twitter {
     id1[&quot;This is the (text) in the box&quot;]</pre>
 
 <h4 id="&#x5B50;&#x56FE;"><a href="#&#x5B50;&#x56FE;" class="headerlink" title="&#x5B50;&#x56FE;"></a>&#x5B50;&#x56FE;</h4><p>&#x5B9A;&#x4E49;</p>
-<figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">subgraph title</span><br><span class="line"><span class="code">    graph definition</span></span><br><span class="line">end</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">subgraph title</span><br><span class="line"><span class="code">    graph definition</span></span><br><span class="line"><span class="code">end</span></span><br></pre></td></tr></tbody></table></figure>
 <p>&#x793A;&#x4F8B;</p>
 <figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">graph TB</span><br><span class="line"><span class="code">    c1--&gt;a2</span></span><br><span class="line"><span class="code">    subgraph one</span></span><br><span class="line"><span class="code">    a1--&gt;a2</span></span><br><span class="line"><span class="code">    end</span></span><br><span class="line"><span class="code">    subgraph two</span></span><br><span class="line"><span class="code">    b1--&gt;b2</span></span><br><span class="line"><span class="code">    end</span></span><br><span class="line"><span class="code">    subgraph three</span></span><br><span class="line"><span class="code">    c1--&gt;c2</span></span><br><span class="line"><span class="code">    end</span></span><br></pre></td></tr></tbody></table></figure>
 <pre class="mermaid">graph TB
@@ -1885,7 +1885,7 @@ amp-twitter {
     C --&gt;|Two| E[Result two]</pre>
 
 <p>&#x6362;&#x4E2A;&#x5199;&#x6CD5;</p>
-<figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">graph TD</span><br><span class="line"><span class="code">    A[Hard edge];</span></span><br><span class="line"><span class="code">    B(Round edge);</span></span><br><span class="line"><span class="code">    C{Decision};</span></span><br><span class="line"><span class="code">    D[Result one];</span></span><br><span class="line"><span class="code">    E[Result two];</span></span><br><span class="line"></span><br><span class="line"><span class="code">    A--&gt;|Link text|B;</span></span><br><span class="line"><span class="code">    B--&gt;C;</span></span><br><span class="line"><span class="code">    C--&gt;|One|D;</span></span><br><span class="line"><span class="code">    C--&gt;|Two|E;</span></span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">graph TD</span><br><span class="line"><span class="code">    A[Hard edge];</span></span><br><span class="line"><span class="code">    B(Round edge);</span></span><br><span class="line"><span class="code">    C{Decision};</span></span><br><span class="line"><span class="code">    D[Result one];</span></span><br><span class="line"><span class="code">    E[Result two];</span></span><br><span class="line"><span class="code"></span></span><br><span class="line"><span class="code">    A--&gt;|Link text|B;</span></span><br><span class="line"><span class="code">    B--&gt;C;</span></span><br><span class="line"><span class="code">    C--&gt;|One|D;</span></span><br><span class="line"><span class="code">    C--&gt;|Two|E;</span></span><br></pre></td></tr></tbody></table></figure>
 <pre class="mermaid">graph TD
     A[Hard edge];
     B(Round edge);
@@ -1898,7 +1898,7 @@ amp-twitter {
     C--&gt;|Two|E;</pre>
 
 <h2 id="&#x53C2;&#x8003;&#x7F51;&#x7AD9;"><a href="#&#x53C2;&#x8003;&#x7F51;&#x7AD9;" class="headerlink" title="&#x53C2;&#x8003;&#x7F51;&#x7AD9;"></a>&#x53C2;&#x8003;&#x7F51;&#x7AD9;</h2><ul>
-<li><a href="https://mermaid-js.github.io/mermaid/#/" target="_blank" rel="noopener">Mermaid&#x5B98;&#x7F51;</a></li>
+<li><a href="https://mermaid-js.github.io/mermaid/#/">Mermaid&#x5B98;&#x7F51;</a></li>
 </ul>
 <h2 id="Hexo&#x535A;&#x5BA2;&#x7CFB;&#x5217;"><a href="#Hexo&#x535A;&#x5BA2;&#x7CFB;&#x5217;" class="headerlink" title="Hexo&#x535A;&#x5BA2;&#x7CFB;&#x5217;"></a>Hexo&#x535A;&#x5BA2;&#x7CFB;&#x5217;</h2><ul>
 <li><a href="/2017/03/01/hexo/hexo-firstblog/" title="Hexo&#x535A;&#x5BA2;&#x642D;&#x5EFA;">Hexo&#x535A;&#x5BA2;&#x642D;&#x5EFA;</a>  </li>
@@ -1951,14 +1951,14 @@ amp-twitter {
 						<ul class="article-tag-list">
 							
 					    		<li class="article-tag-list-item">
-					    			<a class="article-tag-list-link" href="/tags/mermaid/" class="link-gaTrack" data-linkType="link-tag">
-					    				mermaid
+					    			<a class="article-tag-list-link" href="/tags/markdown/" class="link-gaTrack" data-linkType="link-tag">
+					    				markdown
 					    			</a>
 					    		</li>
 							
 					    		<li class="article-tag-list-item">
-					    			<a class="article-tag-list-link" href="/tags/markdown/" class="link-gaTrack" data-linkType="link-tag">
-					    				markdown
+					    			<a class="article-tag-list-link" href="/tags/mermaid/" class="link-gaTrack" data-linkType="link-tag">
+					    				mermaid
 					    			</a>
 					    		</li>
 							

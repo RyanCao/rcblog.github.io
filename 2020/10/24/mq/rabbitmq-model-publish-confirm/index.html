@@ -248,7 +248,7 @@
 
       
         <p>发布者确认</p>
-<a id="more"></a>
+<span id="more"></span>
 <h2 id="发布者确认"><a href="#发布者确认" class="headerlink" title="发布者确认"></a>发布者确认</h2><p>发布者确认是RabbitMQ的扩展，可以实现可靠的发布。在channel上启用发布者确认后，代理将异步确认客户端发布的消息，这意味着他们已在服务器端处理。</p>
 <h2 id="在频道上启用发布者确认"><a href="#在频道上启用发布者确认" class="headerlink" title="在频道上启用发布者确认"></a>在频道上启用发布者确认</h2><p>发布者确认是AMQP 0.9.1协议的RabbitMQ扩展，因此默认情况下未启用它们。发布者确认是通过ConfirmSelect方法在通道级别启用的：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var channel &#x3D; connection.CreateModel();</span><br><span class="line">channel.ConfirmSelect();</span><br></pre></td></tr></table></figure>
@@ -327,8 +327,8 @@
       <i class="fa fa-chevron-left"></i> RabbitMQ 路由模式
     </a></div>
       <div class="post-nav-item">
-    <a href="/2020/11/12/cpp/cpp-makefile-simple/" rel="next" title="学习MakeFile">
-      学习MakeFile <i class="fa fa-chevron-right"></i>
+    <a href="/2020/11/12/cpp/cpp-makefile-1/" rel="next" title="学习MakeFile(介绍)">
+      学习MakeFile(介绍) <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>

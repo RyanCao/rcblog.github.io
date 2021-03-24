@@ -253,7 +253,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h2><a id="more"></a>
+        <h2 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h2><span id="more"></span>
 <h2 id="python-doc-test"><a href="#python-doc-test" class="headerlink" title="python doc test"></a>python doc test</h2><p>现有python 脚本如下 fib.py<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">def fib(n):</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    &gt;&gt;&gt; fib(8)</span><br><span class="line">    13</span><br><span class="line">    &gt;&gt;&gt; fib(9)</span><br><span class="line">    21</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    pred,curr &#x3D; 0,1</span><br><span class="line">    k &#x3D; 2</span><br><span class="line">    while k&lt;n :</span><br><span class="line">        pred,curr &#x3D; curr,pred+curr</span><br><span class="line">        k &#x3D; k+1</span><br><span class="line">    return curr</span><br></pre></td></tr></table></figure></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 -m doctest fib.py</span><br></pre></td></tr></table></figure>
 <p>这样就可以测试fib.py 里面的测试函数<br>fib(8) 是否等于 13<br>fib(9) 是否等于 21</p>
@@ -262,7 +262,7 @@
 <p>如果想测试通过的时候，也有输出可以使用下面的-v</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 -m doctest -v fib.py</span><br></pre></td></tr></table></figure>
 <p>这个非常方便</p>
-<h2 id="doctest-也可以换个方式调用"><a href="#doctest-也可以换个方式调用" class="headerlink" title="doctest 也可以换个方式调用"></a>doctest 也可以换个方式调用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">def fib(n):</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    &gt;&gt;&gt; fib(8)</span><br><span class="line">    13</span><br><span class="line">    &gt;&gt;&gt; fib(9)</span><br><span class="line">    21</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    pred,curr &#x3D; 0,1</span><br><span class="line">    k &#x3D; 2</span><br><span class="line">    while k&lt;n :</span><br><span class="line">        pred,curr &#x3D; curr,pred+curr</span><br><span class="line">        k &#x3D; k+1</span><br><span class="line">    return curr</span><br><span class="line"></span><br><span class="line">if __name__ &#x3D;&#x3D; &#39;__main__&#39;:</span><br><span class="line">    import doctest</span><br><span class="line">    doctest.testmod(verbose&#x3D;True)</span><br></pre></td></tr></table></figure>
+<h2 id="doctest-也可以换个方式调用"><a href="#doctest-也可以换个方式调用" class="headerlink" title="doctest 也可以换个方式调用"></a>doctest 也可以换个方式调用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">def fib(n):</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    &gt;&gt;&gt; fib(8)</span><br><span class="line">    13</span><br><span class="line">    &gt;&gt;&gt; fib(9)</span><br><span class="line">    21</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    pred,curr &#x3D; 0,1</span><br><span class="line">    k &#x3D; 2</span><br><span class="line">    while k&lt;n :</span><br><span class="line">        pred,curr &#x3D; curr,pred+curr</span><br><span class="line">        k &#x3D; k+1</span><br><span class="line">    return curr</span><br><span class="line"></span><br><span class="line">if __name__ &#x3D;&#x3D; &#39;__main__&#39;:</span><br><span class="line">    import doctest</span><br><span class="line">    doctest.testmod(verbose&#x3D;True)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>相当于<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 -m doctest -v fib.py</span><br></pre></td></tr></table></figure></p>
 <p>这种情况用在脚本需要导入其他模块的时候</p>
 
@@ -302,12 +302,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2017/10/24/centos/centos-repos-change/" rel="prev" title="centos 更换镜像源">
-      <i class="fa fa-chevron-left"></i> centos 更换镜像源
+    <a href="/2017/11/03/python/python3-install/" rel="prev" title="python3 安装">
+      <i class="fa fa-chevron-left"></i> python3 安装
     </a></div>
       <div class="post-nav-item">
-    <a href="/2017/11/03/python/python3-install/" rel="next" title="python3 安装">
-      python3 安装 <i class="fa fa-chevron-right"></i>
+    <a href="/2017/11/09/sublime/sublime-text3-license/" rel="next" title="Sublime Text3 注册码">
+      Sublime Text3 注册码 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>

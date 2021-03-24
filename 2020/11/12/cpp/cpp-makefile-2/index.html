@@ -254,7 +254,7 @@
 
       
         <h2 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h2><p>为了让逐个编译的过程变成一条命令</p>
-<a id="more"></a>
+<span id="more"></span>
 <h2 id="2-Makefile-总述"><a href="#2-Makefile-总述" class="headerlink" title="2 Makefile 总述"></a>2 Makefile 总述</h2><h3 id="2-1-Makefile里有什么？"><a href="#2-1-Makefile里有什么？" class="headerlink" title="2.1 Makefile里有什么？"></a>2.1 Makefile里有什么？</h3><p>Makefile里主要包含了五个东西：显式规则、隐晦规则、变量定义、文件指示和注释。</p>
 <ol>
 <li>显式规则。显式规则说明了，如何生成一个或多的的目标文件。这是由Makefile的书写者明显指出，要生成的文件，文件的依赖文件，生成的命令。</li>
@@ -267,7 +267,7 @@
 <h3 id="2-2-Makefile的文件名"><a href="#2-2-Makefile的文件名" class="headerlink" title="2.2 Makefile的文件名"></a>2.2 Makefile的文件名</h3><p>默认的情况下，make命令会在当前目录下按顺序找寻文件名为“GNUmakefile”、“makefile”、“Makefile”的文件，找到了解释这个文件。在这三个文件名中，最好使用“Makefile”这个文件名，因为，这个文件名第一个字符为大写，这样有一种显目的感觉。最好不要用“GNUmakefile”，这个文件是GNU的make识别的。有另外一些make只对全小写的“makefile”文件名敏感，但是基本上来说，大多数的make都支持“makefile”和“Makefile”这两种默认文件名。</p>
 <p>当然，你可以使用别的文件名来书写Makefile，比如：“Make.Linux”，“Make.Solaris”，“Make.AIX”等，如果要指定特定的Makefile，你可以使用make的“-f”和“—file”参数，如：make -f Make.Linux或make —file Make.AIX。</p>
 <h3 id="2-3-引用其它的Makefile"><a href="#2-3-引用其它的Makefile" class="headerlink" title="2.3 引用其它的Makefile"></a>2.3 引用其它的Makefile</h3><p>在Makefile使用include关键字可以把别的Makefile包含进来，这很像C语言的#include，被包含的文件会原模原样的放在当前文件的包含位置。include的语法是：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">include&lt;filename&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">include&lt;filename&gt; </span><br></pre></td></tr></table></figure>
 <p>filename可以是当前操作系统Shell的文件模式（可以保含路径和通配符）</p>
 <p>在include前面可以有一些空字符，但是绝不能是[Tab]键开始。include和可以用一个或多个空格隔开。举个例子，你有这样几个Makefile：a.mk、b.mk、c.mk，还有一个文件叫foo.make，以及一个变量$(bar)，其包含了e.mk和f.mk，那么，下面的语句：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">include foo.make *.mk $(bar)</span><br></pre></td></tr></table></figure>
@@ -328,8 +328,8 @@
       <i class="fa fa-chevron-left"></i> 学习MakeFile
     </a></div>
       <div class="post-nav-item">
-    <a href="/2020/11/12/cpp/cpp-makefile-1/" rel="next" title="学习MakeFile(介绍)">
-      学习MakeFile(介绍) <i class="fa fa-chevron-right"></i>
+    <a href="/2020/11/12/cpp/cpp-makefile-0/" rel="next" title="学习MakeFile(前言)">
+      学习MakeFile(前言) <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>

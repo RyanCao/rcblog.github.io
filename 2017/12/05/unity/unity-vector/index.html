@@ -254,7 +254,7 @@
 
       
         <h2 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h2><p>记录学习 Vector向量 数学知识<br>巩固下</p>
-<a id="more"></a>
+<span id="more"></span>
 <h2 id="向量操作"><a href="#向量操作" class="headerlink" title="向量操作"></a>向量操作</h2><h3 id="2D-向量"><a href="#2D-向量" class="headerlink" title="2D 向量"></a>2D 向量</h3><p>对2D向量的操作一般有：旋转，缩放，移动，两个向量之间的夹角（A-&gt;B夹角和B-&gt;A夹角相同），两个向量夹角的有符号夹角(A向量到B向量的夹角和 B向量到A向量的夹角不同)<br>一条线段绕原点旋转，已经线段绕目标点旋转操作</p>
 <p>最简单的是向量的移动</p>
 <ul>
@@ -271,7 +271,7 @@
 <ul>
 <li>向量的旋转<br>求A向量旋转 θ 角度</li>
 </ul>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Vector2 a = <span class="keyword">new</span> Vector2(<span class="number">1</span>,<span class="number">.5</span>f);</span><br><span class="line"></span><br><span class="line"><span class="keyword">float</span> sinValue = Mathf.sin(θ)</span><br><span class="line"><span class="keyword">float</span> cosValue = Mathf.sin(θ)</span><br><span class="line"></span><br><span class="line">Vector2 rotateA = <span class="keyword">new</span> Vector2(sinValue*a.x + cosValue*a.y , sinValue*a.y-cosValue*a.x );</span><br></pre></td></tr></table></figure>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Vector2 a = <span class="keyword">new</span> Vector2(<span class="number">1</span>,<span class="number">.5</span>f);</span><br><span class="line"></span><br><span class="line"><span class="keyword">float</span> sinValue = Mathf.sin(θ)</span><br><span class="line"><span class="keyword">float</span> cosValue = Mathf.sin(θ)</span><br><span class="line"></span><br><span class="line">Vector2 rotateA = <span class="keyword">new</span> Vector2(sinValue*a.x + cosValue*a.y , sinValue*a.y-cosValue*a.x );</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
     </div>
 
